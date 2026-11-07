@@ -1,0 +1,1278 @@
+Hydrogeology Journal
+https://doi.org/10.1007/s10040-023-02703-9
+
+    PAPER
+
+
+
+Quantifying the historic and future response of karst spring discharge
+to climate variability and change at a snow-influenced temperate
+catchment in central Europe
+Xinyang Fan1,2       · Nadine Goeppert1          · Nico Goldscheider1
+
+Received: 10 January 2023 / Accepted: 18 August 2023
+© The Author(s) 2023
+
+
+Abstract
+Climate change is projected to threaten groundwater resources in many regions, but projections are highly uncertain. Quanti-
+fying the historic impact potentially allows for understanding of hydrologic changes and increases confidence in the predic-
+tions. In this study, the responses of karst discharge to historic and future climatic changes are quantified at Blautopf Spring
+in southern Germany, which is one of the largest karst springs in central Europe and belongs to a regional aquifer system
+relevant to the freshwater supply of millions of people. Statistical approaches are first adopted to quantify the hydrodynamic
+characteristics of the karst system and to analyse the historic time series (1952–2021) of climate variables and discharge. A
+reservoir model is then calibrated and evaluated with the observed discharge and used to simulate changes with three future
+climate-change scenarios. Results show that changes in the annual mean and annual low discharge were not significant, but
+the annual peak discharge shifted to a low state (<13.6 ­m3 ­s−1) from 1988 onwards due to decreasing precipitation, increasing
+air temperature, and less intense peak snowmelt. The peak discharge may decrease by 50% in this century according to the
+projections of all climate-change scenarios. Despite there being no significant historic changes, the base flow is projected
+to decrease by 35–55% by 2100 due to increasing evapotranspiration. These findings show the prolonged impact of climate
+change and variability on the floods and droughts at the springs in central Europe, and may imply water scarcity risks at
+similar climatic and geologic settings worldwide.
+
+Keywords Karst · Spring discharge · Climate change · Conceptual modelling · Germany
+
+
+Introduction                                                            2017). Being a vital freshwater resource, karst aquifers and
+                                                                        springs play a vital role in fulfilling the drinking water needs
+Climate change is projected to impact groundwater resources             of ~9.2% of the global population (Stevanović 2019). Under-
+globally (IPCC 2014, 2021); many countries and regions                  standing their changes is thus crucial for sustainably man-
+may face declining groundwater levels such as the US, India,            aging the usage while meeting the increasing demands of
+and Germany (Amanambu et al. 2020; Wunsch et al. 2022).                 climate change and population growth (Mahler et al. 2021).
+Compared with porous aquifers, karst aquifers are poten-                   Many studies have attempted to project groundwater
+tially more sensitive to climate change, as their fast flow             changes in the future climate by using groundwater models
+paths respond quickly to reduced recharge due to decreasing             (e.g. MODFLOW, MIKE SHE) which take future meteoro-
+precipitation and increasing temperature (Hartmann et al.               logical variables either derived from global climate models
+                                                                        (GCMs) and regional climate models (RCMs; Toews and
+* Xinyang Fan                                                           Allen 2009; Kumar 2012; Doummar et al. 2018; Amanambu
+  xinyang.fan@partner.kit.edu                                           et al. 2020) or by applying a change factor to the historic
+1
+                                                                        climate (Chen et al. 2018; Dubois et al. 2020). However,
+     Institute of Applied Geosciences, Division of Hydrogeology,        the exact magnitudes of model projections are often highly
+     Karlsruhe Institute of Technology (KIT), 76131 Karlsruhe,
+     Germany                                                            uncertain due to (1) the influential drivers of groundwater,
+2                                                                       which are considered static in the model but are subjected
+     Department of Infrastructure Engineering & Melbourne
+     Climate Futures Academy, University of Melbourne,                  to change, such as agricultural irrigation, land use and land
+     Melbourne 3053, Australia                                          cover changes, natural climate variations, and anthropogenic
+
+
+                                                                                                                               1  3
+                                                                                                                        Vol.:(0123456789)
+                                                                                                             Hydrogeology Journal
+
+
+climate change (Green et al. 2011; Hartmann et al. 2014;          (3) use the model to simulate future discharge changes under
+Goderniaux et al. 2015); (2) the delayed response of ground-      climate change. Step 1 is widely lacking in the studies which
+water to climate change (Panagopoulos and Lambrakis 2006;         attempted to project future water resource changes (Toews
+Hosseini et al. 2017); (3) the highly variable precipitation      and Allen 2009; Kumar 2012; Amanambu et al. 2020), but
+under climate change, and the increasing temperature that         it is crucial for understanding the hydrological behaviour of
+impacts not only evapotranspiration but also the timing of        the system and the projected future changes. The Blautopf
+snowmelt (Chen et al. 2018; Lorenzi et al. 2022).                 spring in southern Germany is studied, as it is one of the
+   Quantifying the historic impact of climate change on           largest and most important karst springs in central Europe
+groundwater contributes to understanding the causes of the        (Ufrecht et al. 2016). It drains a large catchment and belongs
+change and increases confidence in the model projections.         to Germany’s largest karst aquifer system (Swabian-Franco-
+Analysing long-term hydrographs at natural catchments             nian Alb), which is essential to the drinking water supply of
+potentially allows for the assessment of this impact (Peterson    millions of people (Fahrmeier et al. 2022). Quantifying the
+and Western 2014; Ravbar et al. 2018). However, very              response of the Blautopf system contributes to understand-
+few studies have quantified the historic impact due to the        ing the changes of karst aquifers and springs in the temperate
+heterogeneous subsurface properties and flow processes (e.g.      climates where around 19% of the land surface consists of
+exchange between groundwater and surface water; Hartmann          carbonate rocks (Goldscheider et al. 2020). The research
+et al. 2014; Bonotto et al. 2022), multiple influential drivers   questions below are answered in this article:
+of groundwater (e.g. pumping, land use changes, human
+activities; Shapoori et al. 2015; Kovačič et al. 2020), and       1. What are the historic climatic changes at the study site,
+lack of long-term groundwater observations (Taylor et al.            in terms of temperature, evapotranspiration, precipita-
+2013; Olarinoye et al. 2020). These issues are particularly          tion, intensity and duration of snowmelt?
+outstanding for karst aquifers. Due to limited lengths of         2. Did the observed climatic changes impact the karst dis-
+records and complicated hydrogeological characteristics, a           charge? If yes, what was the impact on the mean, low,
+few studies have investigated the water availability in the          and high flow, as well as the intensity and duration of
+karst regions within a time frame of 20 years (Xanke and             hydrological extremes?
+Liesch 2022; Lorenzi et al. 2022). Only a handful of studies      3. Assuming the IPCC climate change scenarios, how will
+have assessed the trends over a half-century (Kimmeier and           the climate and discharge (minimum, mean, maximum)
+Bouzelboudjen 2001; Fiorillo et al. 2015, 2021; Leone et al.         change at this type of climatic and hydrogeological set-
+2021), and some of them struggled to attribute the trend of          ting (temperate, snow-influenced karst system) by the
+changes to climate change (Bonacci 2007). The long-term              end of the twenty-first century?
+historic impact of climate change and variations on karst
+aquifers and springs is thus still largely unknown.
+   Climate change impacts the global water cycle and its          Study site
+impact is spatially variable because of the varying precipi-
+tation patterns and changing land surface-atmosphere feed-        The Blautopf spring is located at the southern margin of
+backs (IPCC 2021). Downscaling the global impact to the           the Swabian-Franconian Jura Mountains, Germany’s
+local scale potentially allows water managers and policy-         largest karst landscape and karst aquifer system. The
+makers to understand the impact on their managing sites and       spring catchment covers an area of ~165 ­km2 delineated by
+regulate groundwater usage and licence the pumping limits         numerous tracer tests and diving explorations (Armbruster
+accordingly. Besides that, new methodologies can be best          et al. 2006; Ufrecht et al. 2016). The catchment drips
+developed at the local scale through analysis in great detail,    gradually from northwest to southeast in a range of 878
+then generalised and transferred to other sites. Complement-      to 609 m asl. (Fig. 1). The land surface is mainly covered
+ing research at the global scale with detailed research at the    by forests (~31%) and agriculture (~60%) (Köberle 2005;
+local scale is thus necessary.                                    Lauber et al. 2014). Numerous dolines and dry valleys
+   This study aims to establish and test an integrated            are visible on the land surface. Underneath the landscape
+approach to quantify the impact of climate variability and        is a spectacular and large cave system. The catchment is
+change on karst spring discharge from both historic and           divided into two subzones by two major caves: the Blue
+future perspectives. The proposed workflow of this approach       Cave (“Blauhöhle” in German, ~14.6 km length) and the
+is to (1) quantify the hydrodynamic characteristics of the        Hessenhau Cave (“Hessenhauhöhle” in German, ~6.0 km
+karst system and the historic trends of the climate variables     length; Schwarz et al. 2009). Each subcatchment is estimated
+and discharge by using statistical approaches; (2) build up       to contribute approximately half of the spring discharge,
+a lumped parameter model for the karst site and evaluate it       which is the only known direct outlet of this catchment
+with the knowledge learned from the historic analysis; and        (Lauber et al. 2013, 2014). The vertical profile shows that
+
+13
+Hydrogeology Journal
+
+                            9°40'0"E                         10°0'0"E
+
+                                                                                              Legend
+                                                                                                   Blautopf spring          Blautopf catchment
+
+48°40'0"N                                                                         48°40'0"N        Climate station          Carbonate rock
+                                                                                                   River              880
+
+                                                                                                                            Elevation [m a.s.l.]
+                                                                                                   Flow direction     230
+
+
+
+
+48°30'0"N                                                                         48°30'0"N
+
+
+
+
+48°20'0"N                                                                         48°20'0"N
+                            9°40'0"E                         10°0'0"E
+
+
+
+Fig. 1  Location and map of the Blautopf spring and catchment. a        the Blautopf catchment and spring and its nearby climate stations and
+Distribution of carbonate rocks in Germany and nearby countries         river networks. c A view from the top of the Blautopf spring (photo:
+(Chen et al. 2017), with the location of Blautopf indicated. b Map of   N. Goldscheider)
+
+
+
+the catchment consists of multiple layers of Upper Jurassic             both methods provides consistent results [Section S1 in the
+limestone and marl (Selg and Schwarz 2009). The thick                   electronic supplementary material (ESM)]. The data were
+saturated (50–120 m) and unsaturated zones (100–150 m)                  recorded in the hourly interval from 1952 to 2016 and the
+allow a considerable storage capacity of the karst system               15-min interval from 2016 onwards. After removing errors,
+(Schwarz et al. 2009).                                                  the data show no daily gap. The subdaily data were then
+                                                                        used to calculate the daily, monthly, seasonal, and annual
+                                                                        mean discharge.
+Data and methods
+                                                                        Climate data
+Karst discharge data
+                                                                        The daily precipitation (P), mean air temperature (T), snow
+The karst spring discharge (Q) recorded at station (ID                  height (SH), and snow water equivalent (SWE) data of the
+76273) from 1 Jan 1952 to 31 Dec 2021 was used in this                  nearby weather stations (Fig. 1) were used to estimate the
+study and obtained from the Baden-Württemberg State                     catchment climate. The data were obtained from the Climate
+Office for Environment (LUBW). Records show that the                    Data Center of Germany (Deutscher Wetterdienst 2021).
+discharge was estimated with the stage–discharge relation-              Table 1 summarises the observed climate variables and the
+ship from 1952 to 2004. Since 2005, the discharge was                   locations of the stations.
+calculated as the discharge difference between the down-                   The observed precipitation at each station has a data miss-
+stream and upstream rivers. The discharge calculated with               ing rate of <1.5%. The temporal data gaps of each station
+
+Table 1  The weather stations          Station ID   Longitude [° E]     Latitude [° N]           Elevation    Data length      Climate variables
+near the Blautopf catchment                                                                      [m asl]
+(locations shown in Fig. 1).
+Note, the elevation of Station         2814         9.7644              48.5122                  687          1952–2021        P
+3402 was 721 m asl (48.4065°
+                                       5511         9.6187              48.5206                  825          1952–2021        P
+N, 9.4928° E) before 1989
+                                       537          9.7443              48.4369                  705          1952–2021        P
+                                       3402         9.4837              48.3851                  755          1952–2021        P, T, SH, SWE
+                                       4887         9.8648              48.6656                  734          1952–2016        T, SH, SWE
+                                       2949         9.5275              48.5396                  758          1952–2001        T, SH, SWE
+
+
+
+                                                                                                                                      13
+                                                                                                                       Hydrogeology Journal
+
+were filled with the mean precipitation of the other stations          where PET is given in the unit of millimetre per day [mm
+on that day. The catchment precipitation was estimated with            ­day−1], Re is the extra-terrestrial radiation [MJ ­m−2 ­day−1] esti-
+the Thiessen polygon method in which each station takes                mated with the FAO method by using catchment latitude and
+a weight of 50.3% (ID 5511), 37.6% (ID 537), 8.4% (ID                  Julian day (Allen et al. 1998 and Section S2.2 in the ESM), λ
+2814), and 3.7% (ID 3402). The observed daily mean air                 is the latent heat flux (= 2.45 MJ ­kg−1), ρ is the water density
+temperature at station 3402 with no temporal gap was used              [kg ­m−3], and Ta is the daily mean air temperature [°C].
+to represent the catchment temperature.
+   The Blautopf catchment was influenced by snow between               Statistical analysis
+October and April. Both SH and SWE data were recorded as
+accumulations of previous and new snow. The daily SH data              The hydrodynamic characteristics of the karst system
+had only one missing datum which was filled with the mean              were analysed by using the correlations between the
+snow heights of the neighbouring days. Because of snow com-            daily precipitation and discharge from 1952 to 2021. The
+paction, the SH data were only used to indicate the days when          autocorrelation and cross-correlation were calculated
+the catchment was covered by snow; the SWE data were used              with the acf and ccf functions in the R stats package. The
+to represent the snow amount and were nearly in the weekly             autocorrelation of discharge informs (1) the karstification
+interval. To interpolate it to daily, the SWE data were first filled   degree of the system and the existence of fast and slow
+with 0 on the days when the SH was 0 and the remaining gaps            flow paths indicated by the slope of the function (Padilla
+were then filled by linear interpolation (note that small snow         and Pulido-Bosch 1995; Panagopoulos and Lambrakis
+events, which resulted in 2–3 days of snow cover, between two          2006), and (2) the karst system memory which refers to the
+zeros in the weekly SWE time series were not accounted). The           time that the water needs to flow through the karst aquifer
+degree-day factor (DDF) method (Martinec 1960; Çallı et al.            and is determined as the time lag at which the function
+2022) was adopted to represent the snowmelt processes:                 coefficient decreases to 0.2 (Mangin 1984; Benavente et al.
+           {                                                           1985; Larocque et al. 1998). The cross-correlation function
+Snowi =           ( Snowi−1 + Pi , Ti ≤)TM                       (1)   quantifies the response time of the discharge to precipitation
+              max Snowi−1 − Melt i , 0 , Ti > TM                       at the time lag when the maximum coefficient is achieved
+                                                                       (Panagopoulos and Lambrakis 2006).
+                                                                           The long-term trends of discharge and climate variables
+        {
+Lwi =               ( 0, Ti ≤ TM )                              (2)
+            Pi + min Snowi−1 , Melt i , Ti > TM                        were quantified from monthly to annual scales by using the
+                                                                       nonparametric Mann–Kendall test (Mann 1945; Kendall
+           {                                                           1955) and Sen’s slope method (Sen 1968). A MATLAB
+Melt i =            (0, Ti ≤ T)M                                (3)    function mannkendall v1.0.0 (Collaud Coen et al. 2020;
+               DDF × Ti − TM , Ti > TM                                 Collaud Coen and Vogt 2021) was used to first remove the
+                                                                       first-order autocorrelation in the data with a 3PW prewhit-
+ where Pi is the daily precipitation [mm] for day i, Ti is the
+                                                                       ening procedure and then to quantify the trends. To identify
+ daily mean temperature [°C], TM is the temperature thresh-
+                                                                       any abrupt changes in the data, a Bayesian change-point
+ old above which the snowmelt occurs, ­Snowi is the snow
+                                                                       detection and time-series decomposition algorithm called
+ storage [mm ­day−1], ­Melti is the snowmelt amount [mm
+                                                                       Rbeast (Zhao et al. 2019b) was applied. This algorithm uses
+­day−1], ­Lwi is the liquid water [mm ­day−1] that is available
+                                                                       a Bayesian model averaging scheme and the Markov Chain
+ to infiltrate into the subsurface, and DDF is the degree-day
+                                                                       Monte Carlo stochastic sampling approach to approximate
+ factor (DDF) [mm °C−1 ­day−1]. The DDF (0.1–10) and TM
+                                                                       the complex relationships in the data (Zhao et al. 2019a).
+ (−1, 0, 1 °C) are the calibration parameters, and the best set
+                                                                       The results include the locations of the change points and
+ of these was determined to be the one that gives the best
+                                                                       their probability. In this study, the period was set to 1 in the
+ estimates of snow storage compared with the observed SWE
+                                                                       algorithm for the annual time-series data.
+ (Fig. S2 in the ESM).
+    The daily potential evapotranspiration (PET) of the
+ catchment was estimated with a temperature-based method
+                                                                       Karst discharge modelling
+ (Oudin et al. 2005):
+                                                                       Historical simulation
+     R T +5
+PET = e a   , if Ta + 5 > 0                                     (4)
+     𝜆𝜌 100                                                            A reservoir model, KarstMod (Mazzilli et al. 2019), was
+                                                                       used to simulate the time-series discharge under historic
+                                                                       climate variations. This model was set up with three com-
+PET = 0, otherwise                                              (5)
+                                                                       partments (E, M, C; Fig. 2), whereby E represents the
+                                                                       infiltration zone (soil and epikarst) which is recharged
+
+
+13
+Hydrogeology Journal
+
+
+                             P       PET                               flow; QS represents the spring discharge ­[m3 ­s−1]; RA repre-
+                                                                       sents the recharge area ­[km2].
+                                                                          The model took the daily transformed precipitation (with
+                       0         E
+                       Emin                                            the DDF method) and PET as inputs to simulate the daily
+                                                                       discharge from 1952 to 2021. Three phases were defined in
+                   QEM                     QEC                         the model: warm-up (1952–1956), calibration (1957–2007)
+                                                                       and validation (2008–2021). The model was calibrated by
+                                                                       using a quasi-Monte-Carlo approach with a Sobol sequence
+              M                             C                          sampling of the parameter space (Sobol 1976; Mazzilli
+                         0             0                               et al. 2019). Five parameters (kEM, kEC, kMS, kCS, and RA)
+                QMS                           QCS                      were calibrated and 10,000 parameter sets were generated
+                                                                       (parameter descriptions and values provided in Table S5 in
+                                                                       the ESM). The parameter sensitivity was calculated with
+                                                         QS            the Sobol index (Saltelli 2002) and the model performance
+                                                                       was evaluated with the Nash-Sutcliffe efficiency (NSE) coef-
+Fig. 2  The model structure adopted to simulate the storage and flow   ficient (Nash and Sutcliffe 1970):
+dynamics of the Blautopf system
+                                                                                    ∑�                �2
+                                                                                        Qobs − Qsim
+by precipitation and loses water into the atmosphere via
+                                                                       NSE = 1 − ∑ �                  �2                        (15)
+                                                                                       Qobs − Qmean
+evapotranspiration, and M and C represent the fissured
+rock matrix and conduits in the underground subsystems.                where Qobs is the daily observed spring discharge ­[m3 ­s−1],
+The equations of the model are provided in the following               Qsim is the daily simulated discharge ­[m3 ­s−1], and Qmean is
+(Mazzilli et al. 2019):                                                the average of the observed discharge ­[m3 ­s−1]. An NSE = 1
+dE                                                                     represents the best model performance and 0 means the
+   = P − PET − QEM − QEC , if E ≥ 0                             (6)    model performance equivalent to using the observed mean
+dt
+                                                                       discharge.
+dE
+   = P − PET, if Emin < E < 0                                   (7)
+dt                                                                     Simulation of future climate change impacts
+
+dM                                                                     The discharge was simulated with the calibrated model from
+    = QEM − QMS                                                 (8)
+ dt                                                                    2006 to 2100 under three climate change scenarios in the
+                                                                       5th Phase of the Coupled Model Intercomparison Project
+dC
+   = QEC − QCS                                                  (9)    (CMIP5): representative concentration pathways (RCPs)
+dt                                                                     2.6, 4.5, and 8.5 (most extreme scenario). Each RCP has an
+                                                                       ensemble of climate projections generated with the GCMs
+QEM = kEM × Et , if Et > 0, otherwise QEM = 0                  (10)    which are coupled with the RCMs for estimating regional
+                                                                       climate change. The GCM-RCM members that repre-
+QEC = kEC × Et , if Et > 0, otherwise QEC = 0                  (11)    sent >80% of the climate spread of all model projections
+                                                                       were adopted in this study (Deutscher Wetterdienst 2018).
+                                                                       This criterion resulted in five GCM-RCM members being
+QMS = kMS × Mt , if Mt > 0, otherwise QMS = 0                  (12)
+                                                                       selected for RCP 2.6 and six members for RCPs 4.5 and 8.5
+                                                                       respectively (Table S2 in the ESM). The climate data of the
+QCS = kCS × Ct , if Ct > 0, otherwise QCS = 0                  (13)    adopted members were bias-corrected and downscaled to
+                                                                       5 km × 5 km by Brienen et al. (2020).
+                                                               (14)       The daily precipitation and air temperature were extracted
+         (          )
+QS = RA × QMS + QCS
+                                                                       from each GCM-RCM member at the locations of the
+where Et, Mt, and Ct represent the water levels [mm] in the            observed weather stations (ID 5511, 2814, 3402, 537 in
+compartments E, M, and C at the time t; Emin [mm] repre-               Table 1). The climate data at each location was calculated as
+sents the water holding capacity (of the soil and epikarst)            the mean of the surrounding 3 × 3 cells of the gridded climate
+over which the water flows from E into M and C; QAB rep-               outputs (Wunsch et al. 2022). The future catchment climates
+resents the flow [mm ­day−1] from compartment A to B (e.g.             were estimated with the same methods as in section “Climate
+E to M), and kAB represents the recession coefficient of the           data”—that is, the catchment precipitation and temperature
+
+
+                                                                                                                          13
+                                                                                                                                                     Hydrogeology Journal
+
+were estimated by spatially interpolating the extracted cli-                        such as between the intervals of 11–16 days and 17–43 days
+mate data using the Thiessen polygon method; the precipita-                         because of the slow flow components. Overall, this karst sys-
+tion was transformed into the time-series liquid water with                         tem has highly karstified flow paths which allow the system
+the DDF method; the PET was estimated with the method                               to respond quickly to rainfall and snowmelt, and it also has
+of Oudin et al. (2005). The daily transformed precipitation                         a large storage capacity and fissured karst matrix as reflected
+and PET of each GCM-RCM member were then taken by                                   by the system memory.
+the model to simulate the discharge for each climate change
+scenario. The trends of the simulated annual minimum (2.5th                         Discharge and climate trends
+percentile), maximum (97.5th percentile), and mean dis-
+charge and climates were quantified with the nonparametric                          The annual mean air temperature and total PET at Blautopf
+Mann–Kendall test and Sen’s slope method (Mann 1945;                                show a significantly increasing trend between 1952 and 2021
+Kendall 1955; Sen 1968) as in section “Statistical analysis”.                       with a slope of 0.03 and 0.95 °C mm ­year−1 (Fig. 4a). The
+                                                                                    annual total precipitation is highly variable and does not
+                                                                                    show a significant trend of changes (Fig. 4b). On average,
+Results                                                                             around two-thirds of the annual total precipitation goes into
+                                                                                    the atmosphere via evapotranspiration and one-third of it
+Karst system hydrodynamics                                                          recharges the aquifer (Table 2). The spring discharge shows
+                                                                                    a high variability in different time scales (monthly, seasonal,
+The cross-correlation function of the daily precipitation                           and annual). The annual mean discharge also does not show
+and discharge (Fig. 3a) shows that the discharge responds                           a significant trend of changes, with the maximum nearly four
+to precipitation with a lag of 3 days. The quick response                           times the minimum.
+of the discharge to precipitation confirms the existence of                            The monthly discharge and climate variables (Fig. 4c–e)
+fast flow paths in the karst system. The small peak coeffi-                         show that June, July, and August are the warmest and also
+cient (0.22) indicates that the precipitation signal has been                       wettest months of the year. The mean discharge in these
+strongly attenuated before flowing out to the spring. Fol-                          months is however lower than the annual mean rate (1.7 cf.
+lowing the maximum, no other peak is observed, indicating                           2.3 ­m3 ­s−1). August to October have the lowest discharge
+that one primary quick flow component exists in the system.                         (1.2 ­m3 ­s−1 on average) of the year. March has the highest
+    The autocorrelation function of the daily precipitation                         discharge but the lowest precipitation. It is also the month
+decreases rapidly to 0 (Fig. 3b), indicating no autocorre-                          when the mean air temperature normally turns from negative
+lation in the data and that precipitation can be treated as                         to positive. Snowmelt thus plays a crucial role in generating
+a random variable. In contrast, the daily discharge shows                           the high discharge in March at the spring.
+strong autocorrelation and the system is estimated to have a                           The daily mean air temperature at the catchment var-
+memory of 40 days at the coefficient of 0.2. The changing                           ies by nearly 50 °C between the minimum and maximum
+gradients of the function between the time lags indicate the                        (from −23.0 to +26.7 °C; Fig. 4f). Nearly 20% of the days
+existence of both fast and slow flow components in the sys-                         are below 0 °C and 40% of the days have no precipitation.
+tem. The coefficient decreases quickly from 1 to 0.5 in the                         The maximum daily precipitation is 81 mm and the high-
+first 11 days because of the fast flow and then reduces slowly,                     est 10% is more than 11 mm (Fig. 4g). The daily discharge
+
+
+Fig. 3  Cross-correlation and      (a) 0.4                                                           (b) 1.0
+autocorrelation functions of                                                                                                                                Discharge
+the daily precipitation and                                                                                                                                 Precipitation
+discharge from 1952 to 2021.                            0.3                                                            0.8
+a Cross-correlation function. b
+
+
+
+
+                                    Cross-correlation                                                Autocorrelation
+Autocorrelation functions of the                                                3 days
+precipitation and discharge and                         0.2                                                            0.6
+the red dots on it indicate the                                                                                                  11 days
+lags when the gradient of the
+                                                                                                                                   16 days
+function changes                                        0.1                                                            0.4
+
+
+                                                        0.0                                                            0.2                        43 days
+                                                                                                                                                              69 days
+                                                                                                                                                  59 days
+
+                                                        -0.1                                                           0.0
+                                                           -100   -50       0            50    100                           0    20         40        60        80         100
+                                                                        Lag [days]                                                         Lag [days]
+
+
+13
+Hydrogeology Journal
+
+
+(a) 800                                                                              9                (c)                20                                (f) 1.0
+                       Evapotranspiration
+                       Air temperature                                                                                                                            0.8
+            600                                                                      8
+
+ PET [mm]
+                                                                                                                         10                                       0.6
+                                                                                                                                                            CDF
+            400                                                                      7   T [°C]              T [°C]                                               0.4
+                                                                                                                          0
+            200                                                                                                                                                   0.2
+                                                                                     6
+                                                                                                                         -10                                   0.0
+             0                                                                                                                                                   -30 -20 -10 0 10 20              30
+                                                                                     5
+                                                                                                                         Ja
+                                                                                                                         Fen
+                                                                                                                         Mb
+                                                                                                                          a
+                                                                                                                                                                          Daily T [°C]
+                                                                                                                         Ap r
+             1950     1960      1970        1980    1990   2000    2010    2020
+                                                                                                                         Mr
+                                                                                                                          a
+                                                                                                                         Ju y
+                                                                                                                         Jun
+                                                                                                                         Aul
+                                                                                                                         Seg
+                                                                                                                         Op
+                                                                                                                          c
+                                                                                                                         N t
+                                                                                                                          o
+                                                                                                                         Dv
+                                                                                                                          ec
+                                                                                                      (d) 250                                              (g) 1.0
+(b)           0
+                                                                                                                    200                                           0.8
+            250
+
+                                                                                                          P [mm]
+                                                                                                                    150                                           0.6
+            500                                                                                                                                             CDF
+ P [mm]
+                                                                                                                    100                                           0.4
+            750                                                                                                                                                   0.2
+                                                                                                                         50
+       1000                                                                                                               0                                       0.0
+                                                                                                                         Ja
+                                                                                                                         Fen
+                                                                                                                         Mb                                          0   20     40 60 80          100
+       1250                                                                                                                                                                    Daily P [mm]
+                                                                                                                          a
+                                                                                                                         Ap r
+                                                                                                                         Mr
+                                                                                                                          ay
+                                                                                                                         Ju
+                                                                                                                         Jun
+                                                                                                                         Aul
+                                                                                                                         Seg
+                                                                                                                         Op
+                                                                                                      (e) 12
+                                                                                                                          c
+                                                                                                                         N t
+                                                                                                                          o
+                                                                                                                         Dv
+                                                                                                                                                           (h) 1.0
+                                                                                                                          ec
+                                                                     Precipitation
+                                                                     Discharge
+                                                                                     4.0
+                                                                                     3.5                                 10                                       0.8
+
+
+                                                                                                            Q [m3 s-1]
+                                                                                     3.0
+
+                                                                                             Q [m3 s-1]
+                                                                                                                         8
+                  Mean = 2.3                                                                                                                                      0.6
+                                                                                     2.5                                 6                                  CDF
+                                                                                     2.0                                                                          0.4
+                                                                                                                          4
+                                                                                     1.5                                                                          0.2
+                                                                                                                          2
+                                                                                     1.0
+             1950     1960      1970        1980    1990   2000    2010    2020                                          0                                        0.0
+                                                                                                                                                                     0    10        20     30     40
+                                                   Year
+                                                                                                                         Ja
+                                                                                                                         Fen
+                                                                                                                         Mb
+                                                                                                                          a
+                                                                                                                         Ap r
+                                                                                                                         Mr
+                                                                                                                          a
+                                                                                                                                                                               Daily Q [m3 s-1]
+                                                                                                                         Ju y
+                                                                                                                         Jun
+                                                                                                                         Au l
+                                                                                                                         Seg
+                                                                                                                         Op
+                                                                                                                          c
+                                                                                                                         N t
+                                                                                                                          o
+                                                                                                                         Dv
+                                                                                                                          ec
+
+
+
+Fig. 4  The annual, monthly, and daily discharge and climates at Blau-                                                   line). c–e The monthly mean air temperature, total precipitation, and
+topf from 1952 to 2021. a–b The annual mean air temperature (T) and                                                      mean discharge. f–h The cumulative distribution functions (CDFs)
+total potential evapotranspiration (PET); the annual total precipitation                                                 of the daily mean air temperature, total precipitation, and mean dis-
+(P) and mean discharge (Q) with the average indicated (purple dashed                                                     charge
+
+
+
+varies largely between 0.1 and 32.6 ­m3 ­s−1, with an average                                                            significantly decreasing precipitation, increasing tempera-
+of 2.3 ­m3 ­s−1 (Fig. 4h). The 10th and 90th percentiles of the                                                          ture and evapotranspiration.
+daily discharge are 0.7 and 4.7 ­m3 ­s−1.
+   The annual, seasonal, and most of the monthly mean dis-                                                               The impact of snowmelt on discharge
+charge and total precipitation show no significant trends of
+changes (Figs. S3–S5 in the ESM). The annual high (≥90th                                                                 Timing
+percentile) and low discharge (≤10th percentile) also show
+no significant annual trends of changes (Fig. S6 in the                                                                  The occurrence of peak spring discharge highly relates to the
+ESM). However, the discharge in January shows a signifi-                                                                 peak snowmelt at the catchment. The changing timing and
+cantly increasing trend, and that in April shows a signifi-                                                              intensity of the peak snowmelt under increasing temperature
+cantly decreasing trend at the same rate of 0.02 ­m3 ­s−1 ­year−1                                                        and decreasing snow can hence impact the peak discharge.
+(Fig. 5). April is the last snow month of the catchment.                                                                 The peak snowmelt normally occurs between December and
+The declining discharge in April is found because of the                                                                 April at Blautopf (Fig. 6a). Results show that nearly two-
+                                                                                                                         thirds (n = 39) of the daily discharge maxima were observed
+                                                                                                                         during and after the peak snowmelt within 1 week. The peak
+Table 2  Minimum, mean, and maximum of the annual total precipita-                                                       snowmelt period is counted from the day when the peak
+tion (P), annual total potential evapotranspiration (PET), the differ-                                                   snow accumulation (measured in SWE) is observed until it
+ence between the annual total P and PET, annual mean air tempera-                                                        is entirely melted (e.g. Fig. 6b). The start day of the peak
+ture (T), and annual mean discharge (Q) from 1952 to 2021                                                                snowmelt shows no significant trend of changes (Fig. 6c),
+Items                                  Minimum               Mean              Maximum                                   but the end day significantly shifts from March towards Feb-
+                                                                                                                         ruary (Fig. 6d). The duration of the peak snowmelt shows a
+Σ P [mm]                               640                   950               1,288
+                                                                                                                         significantly declining trend at a rate of −0.13 days ­year−1
+Σ PET [mm]                             497                   552               629
+                                                                                                                         (Fig. 6e). The peak snowmelt lasts 17 days on average in
+Σ (P-PET) [mm]                         143                   398               659
+                                                                                                                         the first 20 years (1950–1970) but only 13 days in the last
+T [°C]                                 5.4                   7.0               8.9
+                                                                                                                         20 years (2000–2020), showing a long-term average of
+Q ­[m3 ­s−1]                           1.3                   2.3               4.0
+                                                                                                                         15 days. Overall, the peak snowmelt is shown to end earlier
+
+
+                                                                                                                                                                                         13
+                                                                                                                                                                         Hydrogeology Journal
+
+                                    Jan                                       Feb                                      Mar                                                  Apr
+              15                                       15                                           15                                                   15
+                   Slope = 0.02                              Slope = 0.01                                 Slope = -0.01                                        Slope = -0.02
+                   p-Value = 0.09                            p-Value = 0.57                               p-Value = 0.36                                       p-Value = 0.08
+
+              10                                       10                                           10                                                   10
+
+Q [m3 s-1]                                Q [m3 s-1]                                   Q [m3 s-1]                                           Q [m3 s-1]
+               5                                         5                                           5                                                    5
+
+
+               0                                        0                                            0                                                    0
+               1950 1970 1990 2010 2030                 1950 1970 1990 2010 2030                     1950 1970 1990 2010 2030                             1950 1970 1990 2010 2030
+             250 Slope = 0.15                     250 Slope = -0.16                               250 Slope = 0.13                                   250
+                                                                                                                                                               Slope = -0.32
+                   p-Value = 0.56                            p-Value = 0.45                               p-Value = 0.54                                       p-Value = 0.07
+             200                                  200                                             200                                                200
+
+             150                                  150                                             150                                                150
+P [mm]                                    P [mm]                                       P [mm]                                               P [mm]
+             100                                  100                                             100                                                100
+
+              50                                       50                                           50                                                   50
+
+               0                                        0                                            0                                                    0
+               1950 1970 1990 2010 2030                 1950 1970 1990 2010 2030                     1950 1970 1990 2010 2030                             1950 1970 1990 2010 2030
+              80                                       80 Slope = 0.05                              80 Slope = 0.08                                      80 Slope = 0.12
+                   Slope = 0.03
+                   p-Value = 0.04                            p-Value = 0.07                               p-Value = 0.04                                       p-Value = 0.01
+              60                                       60                                           60                                                   60
+
+
+PET [mm]                                  PET [mm]                                     PET [mm]                                             PET [mm]
+              40                                       40                                           40                                                   40
+
+              20                                       20                                           20                                                   20
+
+              0                                         0                                            0                                                    0
+              1950 1970 1990 2010 2030                  1950 1970 1990 2010 2030                     1950      1970        1990   2010   2030             1950 1970 1990 2010 2030
+             15 Slope = 0.03                           15 Slope = 0.03                              15 Slope = 0.03                                      15 Slope = 0.03
+                                                                                                          p-Value = 0.04
+             10    p-Value = 0.01
+                                                       10    p-Value = 0.11
+                                                                                                    10                                                   10 p-Value = 0.01
+               5                                        5                                            5                                                    5
+
+T [°C]         0                          T [°C]        0                              T [°C]        0                                      T [°C]        0
+              -5                                        -5                                           -5                                                   -5
+             -10                                       -10                                          -10                                                  -10
+             -15                                       -15                                          -15                                                  -15
+               1950 1970 1990 2010 2030                  1950 1970 1990 2010        2030              1950 1970 1990 2010 2030                             1950 1970 1990 2010 2030
+
+
+Fig. 5  Trends of the monthly mean discharge (Q), total precipitation (P), total potential evapotranspiration (PET), and mean air temperature (T)
+between January and April from 1952 to 2021. The dashed lines represent the trends
+
+
+and last for a shorter duration. The peak discharge in the                                     and Tables S3–S4 in the ESM). The most probable chang-
+snow period is also found to onset earlier but this trend is                                   ing point was identified around 1988 and the peak snow
+not significant.                                                                               accumulation has decreased by 35 mm on average since
+                                                                                               then (Fig. 7b). Around 85% of the peak snow accumulation
+Intensity                                                                                      was more than the daily precipitation maxima before 1988,
+                                                                                               but this rate has decreased to 75% after this year (Fig. S9
+The intensity of the peak snowmelt depends on the amount                                       in the ESM). Despite that the daily precipitation maxima
+of the peak snow accumulation. Results show that around                                        increasingly exceed the peak snow accumulation, they are
+3–23% of the annual total precipitation at Blautopf is snow,                                   mostly below the mean level (60 mm) of the latter. Overall,
+with a mean of 14% (Table 3). The peak snow accumulation                                       the peak snow accumulation at the catchment has shown a
+is around half of the annual total snowfall on average. The                                    significant decreasing trend and the reducing magnitude has
+highest peak snow accumulation at Blautopf was 181 mm                                          been especially severe since 1988.
+recorded in 1988. This peak snow took only 14 days (close                                         The same changing point was identified in the annual
+to the mean duration) to melt and generated the highest                                        snow-period (Oct–Apr) mean air temperature, which shows
+discharge rate (32.6 ­m3 ­s−1) at Blautopf on record. The peak                                 a significant increasing trend at a rate of +0.03 °C ­year−1
+snow accumulation shows a decreasing trend at all observed                                     (Fig. 7a). The coldest snow period (–0.5 °C) was observed
+stations at a rate between −0.3 and −0.8 mm ­year−1 (Fig. S8                                   in 1962 and the warmest snow period (5.5 °C) was in
+
+
+13
+Hydrogeology Journal
+
+
+ (a) 250                                                                                                                                     (b)100
+
+
+                                                                                                                                                                                                              Peak snowmelt
+                                                                                                                    Peak snowmelt event
+
+
+
+
+                                                                                                                                              Daily observed snow accu. [mm]
+                     200   Snow free: May - Sep                                                                     Qmax appearing day
+                                                                                                                                                                               80
+                     150
+
+
+
+ Day of year
+                     100   Peak snowmelt: Dec - Apr                                                                                                                            60
+
+                      50                                                                                                                                                       40
+                       0
+                                                                                                                                                                               20
+                     315   Snow period (minor snowmelt): Oct - Nov
+                     265                                                                                                                          0
+                      1950          1960          1970           1980                            1990       2000        2010          2020          0     1     2        1     2   3     4
+                                                                                                                                                 2-1 952-1 952-1 953-0 953-0 953-0 953-0
+                                                                    Year                                                                           1951    1      1        1     1   1
+                                                                                                                                                                    Year-Month
+(c) 120                                                                   (d) 120                                                            (e) 80
+                                                         Slope = -0.18                                                      Slope = -0.31                                                                Slope = -0.13
+                                                         p-Value = 0.32                                                     p-Value = 0.07                                                               p-Value = 0.10
+
+                     80                                                                     80                                                                                 60
+
+
+
+ Start day of year                                                        End day of year                                                     Duration [days]
+                     40                                                                     40                                                                                 40
+
+
+                      0                                                                     0                                                                                  20
+
+
+                     325                                       325                                                                                                             0
+                       1950 1960 1970 1980 1990 2000 2010 2020  1950 1960 1970 1980 1990 2000 2010 2020                                                                        1950 1960 1970 1980 1990 2000 2010 2020
+                                         Year                                     Year                                                                                                           Year
+
+
+Fig. 6  Timing of the peak snowmelt and the daily discharge max-                                                   accumulation (accu., measured in snow water equivalent). c–e The
+ima (Qmax) from 1952 to 2020. a The peak snowmelt period and the                                                   start day, the end day, and the duration of the peak snowmelt. The red
+appearance of the daily discharge maxima. b An example of the peak                                                 solid line represents the trend. Note, a 1-year cycle is defined from
+snowmelt in 1953 (blue block). The y-axis is the daily observed snow                                               July to June of the next year to cover a continuous snow period
+
+
+2006. Starting from 1988, 70% of the annual snow-period                                                            (60 mm) and melted slowly (~17 days) in a cold temperature
+mean air temperature was above the long-term median and                                                            (<2.3 °C); after this year, the peak snow accumulation was
+increased by 1 °C on average. These results show that the                                                          mostly below the average and melted faster (~13 days) in a
+catchment has entered a warm and low-snow state since then                                                         warmer temperature (>2.3 °C). The multilinear regression
+(Fig. 7a,b).                                                                                                       between the peak snow accumulation, the snow-period mean
+   With the decreasing peak snow accumulation and increas-                                                         air temperature, and the peak discharge (p-value < 0.01)
+ing air temperature, the peak discharge in the snow period                                                         shows that a 1-mm change in the peak snow accumulation
+tends to decrease, but the trend is statistically not significant.                                                 results in 0.003 ­m3 ­s–1 change in the peak discharge, and
+Nevertheless, it has shifted towards the low state since 1988                                                      1 °C change in the air temperature results in a –1.8 ­m3 ­s–1
+(Fig. 7c). Around 80% of the peak discharge rates are lower                                                        change in the peak discharge. The low R2 (0.2), however,
+than the long-term mean (13.6 ­m3 ­s–1) and have decreased                                                         indicates that the multilinear regression model explains little
+by 1.1 ­m3 ­s–1 on average since then. Before 1988, the peak                                                       variance in the variables.
+snow accumulation was often above the long-term average
+
+                                                                                                                   Karst discharge simulation in the past and future
+Table 3  The annual peak snow accumulation (measured in snow
+water equivalent), total snowfall (measured in snow water equiva-
+lent), total precipitation, total number of days covered in snow, and                                              The results of model calibration show that all 10,000 param-
+the annual maximum discharge (Qmax) between 1952 and 2020. Note,                                                   eter sets give an NSE ≥ 0.70 (Fig. S10 in the ESM). An opti-
+a 1-year cycle is defined as spanning from July to June of the next                                                mum was found after exploring the whole parameter space,
+year to cover a continuous snow period                                                                             and the NSE of the optimum calibration is 0.74 and that of
+Items                                                    Minimum              Mean                  Maximum        validation is 0.79 (Fig. 8). The NSE value indicates that 74%
+                                                                                                                   of the discharge changes at Blautopf have been explained by
+Peak snow accumulation [mm]                              16                   60                    181
+                                                                                                                   climate variations alone. The model has well captured the
+Total snowfall [mm]                                      19                   132                   295
+                                                                                                                   majority of the flow dynamics despite occasionally under-
+Total precipitation [mm]                                 640                  950                   1,288
+                                                                                                                   estimating the extremely high discharges (Fig. 8 and Fig.
+Number of days covered in snow                           22                   81                    152
+                                                                                                                   S11 in the ESM). Overall, the model shows to be skillful in
+Qmax ­[m3 ­s–1]                                          4.5                  13.6                  32.6
+                                                                                                                   simulating the long-term discharge changes and the trend
+
+
+                                                                                                                                                                                                            13
+                                                                                                                                                                 Hydrogeology Journal
+
+                                                                                                                [%ile]                                                      Qmax [m3 s-1]
+(a)                            4                                                                                         100   (c)
+
+
+      T anomaly [°C]
+                                                                                                                         90
+                               2                                                                                         75
+                               0                                                                                         50
+
+
+
+
+                                                                                                                               T anomaly [°C]
+                                                                                                                         25
+                              -2
+                                                                                                                         10
+                              -4                                                                                         0
+(b)                                                                                                                      100
+
+
+
+
+      Peak snow accu. [mm]
+                             210
+                                                                                                                         90
+                             140                                                                                         75
+                                                                                                                         50
+                             70                                                                                          25
+                                                                                                                         10
+                              0                                                                                          0
+                               1950   1960   1970      1980               1990      2000          2010       2020
+                                                                   Year                                                                            Peak snow accu. [mm]
+
+
+Fig. 7  The daily peak discharge (Qmax) of the snow period (Oct–Apr)                              The annual peak snow accumulation relative to its long-term aver-
+have shifted to a low state due to increasing air temperature (T) and                             age (60 mm). The interval of the legend is divided by the percentile
+decreasing peak snow accumulation (accu., measured in snow water                                  (%ile) of the variables. c The relationship between the mean air tem-
+equivalent) between 1952 and 2020. a The annual snow-period mean                                  perature anomaly, the peak snow accumulation, and the daily peak
+air temperature anomaly relative to its long-term average (2.3 °C). b                             discharge in the snow period
+
+
+
+with only climate inputs, but caution is needed when using                                        to be slightly higher (20–50 mm) than the observed annual
+it to estimate the hydrologic high extremes.                                                      mean (950 mm) between 1952 and 2021. The annual mean
+    The future projections simulated with the model show a                                        discharge also is shown to be highly variable under climate
+substantially different warming degree between the climate                                        change, similar to the precipitation. In an extremely warming
+change scenarios at Blautopf (Fig. 9): the annual mean air                                        scenario of RCP 8.5, the annual mean discharge is projected
+temperature is projected to increase by 0.5, 1.8, and 4.5 °C                                      to decrease at a rate of −0.003 ­m3 ­s−1 ­year−1 (p-value: 0.06).
+by the end of the twenty-first century for the RCPs 2.6,                                          The confidence interval shows the discrepancies between
+4.5, and 8.5 respectively. The annual total precipitation is                                      the projections of the adopted GCM-RCM members. The
+highly variable in the whole time series, showing no sig-                                         uncertainty due to climate models is ~10% for the projected
+nificant trend of changes for the RCPs 2.6 and 8.5, and a                                         annual mean air temperature, ~14–18% for the annual total
+slightly increasing trend for the RCP 4.5 with a slope of                                         precipitation, and ~35% for the annual mean discharge.
+0.6 mm ­year−1 (p-value: 0.04). The long-term average of                                              The annual minimum, mean, and maximum temperatures
+the annual precipitation between 2000 and 2100 is shown                                           all increase with the climate change scenarios (Fig. 10a–c):
+
+
+Fig. 8  The observed and                                               Warm-up                                      Calibration
+simulated daily discharge                           (a)           50                                                                                                               0
+under climate variations a in
+the warm-up (1952–1956) and                                       40                                                                                                               20
+
+
+
+                                                                                                                                                                                         P, PET [mm]
+calibration phases (1957–2007,
+
+                                                     Q [m3 s-1]
+                                                                  30                                                                                                               40
+NSE = 0.74), and b in the
+validation phase (2008–2021,                                      20                                                                                                               60
+NSE = 0.79) with simulation
+uncertainty, which is quanti-                                     10                                                                                                               80
+fied as the differences between
+the maximum and minimum                                            0                                                                                                               100
+simulated discharges of all                                              1955    1960   1965      1970   1975       1980                 1985   1990   1995    2000    2005
+behavioural parameter sets                                                                                      Validation
+(n = 10,000, NSE ≥ 0.70).                           (b)           50                                                                                                                0
+Abbreviations: observed
+discharge (Qobs), simulated                                       40                                                                                                                20
+
+
+
+                                                                                                                                                                                          P, PET [mm]
+discharge (Qsim), precipitation
+
+                                                     Q [m3 s-1]
+                                                                  30                                                                                                                40
+(P), potential evapotranspiration
+(PET)
+                                                                  20                                                                                                                60
+
+                                                                  10                                                                                                                80
+
+                                                                  0                                                                                                                 100
+                                                                  2008           2010         2012           2014                 2016            2018         2020
+                                                                             Qobs          Qsim          P                 PET                     Simulation uncertainty
+
+
+
+13
+Hydrogeology Journal
+
+
+(a) 15                                            (b) 1600                                                    (c) 5
+                                                               1400
+      13                                                                                                                   4
+
+                                                               1200
+          11                                                                                                               3
+
+                                                                                                              Q [m3 s-1]
+ T [°C]                                               P [mm]   1000
+          9                                                                                                                2
+                                                                800
+
+          7                                                                                                                1
+                                                                600
+
+          5                                                     400                                                        0
+             0   0   0   0   0   0   0   0   0    0                  0   0   0   0   0    0  0   0   0    0
+          201 202 203 204 205 206 207 208 209 210                 201 202 203 204 205 206 207 208 209 210
+                                                                                                                              0   0   0   0   0    0  0   0   0
+                                                                                                                           201 202 203 204 205 206 207 208 209 210
+                                                                                                                                                                   0
+                           Year                                                      Year                                                     Year
+               Observation                                            Observation                                              Observation
+                        75%CI Median                                           75%CI Median                                            75%CI Median
+               RCP 2.6:                                               RCP 2.6:                                                 RCP 2.6:
+               RCP 4.5:                                               RCP 4.5:                                                 RCP 4.5:
+               RCP 8.5:                                               RCP 8.5:                                                 RCP 8.5:
+
+
+
+Fig. 9  The annual a mean air temperature (T), b total precipita-                        all GCM-RCM members for each RCP; the coloured blocks represent
+tion (P), and c mean discharge (Q) simulated under three climate                         the 75% confidence interval (CI) of all simulations; the black lines
+change scenarios (RCPs 2.6, 4.5, and 8.5) between 2006 and 2100.                         represent the observations
+The coloured lines represent the median of the simulation results of
+
+
+
+the annual minimum temperature is projected to increase                                  Discussion
+between 0.3 and 3.4 °C, the annual mean temperature may
+increase between 0.4 and 3.1 °C, and the annual maximum                                  Karst system structure
+temperature may increase between 0.3 and 3.7 °C for the
+three RCPs by the end of the twenty-first century. For the                               The Blautopf karst system responds quickly to precipita-
+changes of precipitation by 2100 (Fig. 10d–f), the annual                                tion in 3 days and also has a memory of 40 days. The quick
+minimum precipitation (Pmin) slightly decreases with the                                 response of discharge reveals that part of the karst system
+intensifying climate change scenarios: Pmin (RCP2.6) > Pmin                              is highly karstified and forms fast flow paths, which are
+(RCP4.5) > Pmin (RCP8.5). The annual total precipitation                                 also supported by direct observations in the active con-
+(indicated by the median) is projected to decrease by around                             duit network and in-cave tracer tests (Lauber et al. 2014).
+2 and 4% (−22 mm and −36 mm) for RCPs 2.6 and 8.5,                                       Besides the fast flow, some rainfall infiltrates into the
+but to increase by 3% (+26 mm) for RCP 4.5. The annual                                   small fissures in the rocks and is released slowly to the
+maximum precipitation may increase by 4 and 5% (+0.7                                     spring (Larocque et al. 1998; Panagopoulos and Lamb-
+and +0.9 mm) for RCPs 4.5 and 8.5, but shows no trend                                    rakis 2006). The rainfall signal is found to have signifi-
+for RCP 2.6.                                                                             cantly attenuated before the water discharges, as the newly
+   The annual minimum, mean, and maximum discharge                                       recharged water has well mixed with the previous storage
+all decrease with the intensifying climate change scenarios                              in the deep unsaturated zone (100–150 m), the large and
+(Fig. 10g–i). The annual minimum discharge (indicated by                                 deep phreatic conduits, and the underground lakes in the
+the median) is projected to decrease by the end of the cen-                              karst system. The hydrodynamic characteristics of the
+tury by 43% (−0.21 ­m3 ­s−1) for RCP 2.6, 35% (−0.17 ­m3 ­s−1)                           karst system summarised from correlation analysis (of
+for RCP 4.5, and 55% (−0.27 ­m3 ­s−1) for RCP 8.5, com-                                  discharge and precipitation) are also supported by the pre-
+pared with that (0.49 ­m3 ­s−1) between 1952 and 2021.                                   vious isotope study which traced the water flow from the
+The annual mean discharge is projected to decrease by 4%                                 surface to the discharge at this site (Schwarz et al. 2009).
+(−0.10 ­m3 ­s−1) to 10% (−0.22 ­m3 ­s−1) for RCP 2.6 to RCP
+8.5 by 2100. The annual maximum discharge is shown to
+change variably in each stage of the century, with a long-                               Reliability of the groundwater model
+term average of ~6.7–7.0 ­m3 ­s−1 for the three RCPs. Com-
+pared with the long-term mean (13.6 ­m3 ­s−1) between 1952                               In examining the adequacy of the groundwater model, the
+and 2021, the annual maximum discharge may decrease                                      long-term observed daily discharge changes have been
+by ~50% projected by all three RCPs.                                                     well simulated with only climate inputs in both calibra-
+                                                                                         tion and validation phases (Fig. 8). The model proves to be
+
+
+
+                                                                                                                                                         13
+                                                                                                                                                Hydrogeology Journal
+
+
+                               Minimum T                                              Mean T                                                Maximum T
+(a)            2                                     (b) 14                                                   (c) 28
+               0
+                                                                                                                           26
+                                                                    12
+               -2
+                                                                                                                           24
+
+ T [° C ]      -4                                     T [°C]        10                                        T [°C]
+                                                                                                                           22
+               -6
+                                                                    8
+                                                                                                                           20
+               -8
+
+              -10                                                   6                                                      18
+                     B M E      B M E      B M E                           B M E      B M E       B M E                           B M E      B M E       B M E
+                     RCP 2.6    RCP 4.5    RCP 8.5                         RCP 2.6    RCP 4.5     RCP 8.5                         RCP 2.6    RCP 4.5     RCP 8.5
+
+                               Minimum P                                              Sum P                                                 Maximum P
+(d) 0.04                                             (e) 1300                                                 (f) 25
+                                                                   1200
+              0.03
+                                                                   1100                                                    20
+
+
+ P [mm d-1]                                          P [mm yr-1]                                              P [mm d-1]
+              0.02                                                 1000
+
+                                                                    900                                                    15
+              0.01
+                                                                    800
+
+              0.00                                                  700                                                    10
+                     B M E      B M E      B M E                            B M E     B M E       B M E                           B M E       B M E      B M E
+                     RCP 2.6    RCP 4.5    RCP 8.5                          RCP 2.6   RCP 4.5     RCP 8.5                         RCP 2.6     RCP 4.5    RCP 8.5
+
+                               Minimum Q                                              Mean Q                                                Maximum Q
+(g) 1.0                                               (h) 3.5                                                  (i) 12
+
+              0.8                                                    3.0
+                                                                                                                             10
+
+              0.6                                                    2.5
+
+ Q [m3 s-1]                                            Q [m3 s-1]                                               Q [m3 s-1]
+                                                                                                                             8
+              0.4                                                    2.0
+
+                                                                                                                             6
+              0.2                                                    1.5
+
+
+              0.0                                                    1.0                                                     4
+                     B M E      B M E      B M E                            B M E      B M E      B M E                           B M E      B M E       B M E
+                     RCP 2.6    RCP 4.5    RCP 8.5                          RCP 2.6    RCP 4.5    RCP 8.5                         RCP 2.6    RCP 4.5     RCP 8.5
+
+
+Fig. 10  The annual minimum (2.5th percentile), mean (or sum), and                      change scenarios (RCPs 2.6, 4.5, 8.5) in the beginning (B, 2006–
+maximum (97.5th percentile) a–c air temperature (T), d–f precipita-                     2039), middle (M, 2040–2069), and end (E, 2070–2100) stages of the
+tion (P), and g–i discharge (Q) at Blautopf simulated for three climate                 twenty-first century
+
+
+skillful in simulating the discharge in both low and mean                               model has a system memory which is ~20 days longer than
+flow but also occasionally underestimates the extremely                                 the observed site. This indicates that the model may need
+high discharges (Fig. S11 in the ESM), which is a com-                                  more time to return to the initial state after experienc-
+monly known issue in hydrological modelling (Cinkus                                     ing any disturbances; additionally, the calibrated model
+et al. 2023). Future simulations of such events may thus                                parameters (i.e. recession coefficients of the flows and
+contain higher uncertainty. Additionally, the hydrody-                                  recharge area) could potentially be useful for understand-
+namic characteristics of the karst system have been well                                ing the site and system properties. The calibrated catch-
+simulated by the model, which is close to the historic anal-                            ment recharge area (164.70 ­km2) is in good consistency
+ysis of the observed discharge and climate data (Figs. S12                              with the results (165 ­k m 2) from tracer tests and diving
+and S13 in the ESM). Specifically, the modelled discharge                               campaigns (Ufrecht et al. 2016), thus increasing confi-
+reacts to the rainfall and snowmelt events the same as the                              dence in the model.
+observed discharge with a lag of 2–3 days; however, the
+
+
+13
+Hydrogeology Journal
+
+   The model however also shows a few caveats that may            increase the evapotranspiration but also impact the timing
+impact the future projections. For example, the model             and intensity of snowmelt. Despite that Blautopf is located
+parameters show relatively high interactions with each            at a relatively low altitude (600–800 m asl) and experiences
+other (Sobol sensitivity indexes in Table S6 in the ESM),         less snow (~14% of the precipitation) compared with the
+theoretically indicating a lower identifiability of the param-    alpine regions, the peak snowmelt still plays a crucial role
+eters, which could be because of the simple and symmetric         in generating the annual peak discharge at the spring. In the
+structure of the model (Fig. 2). The selection of this model      past decades, the peak snowmelt has been shown to last for
+structure is because (1) this structure is consistent with the    a shorter duration (−4 days) and has become less intense
+previous literature (Schwarz et al. 2009) and expert knowl-       (−35 mm in peak snow accumulation). As a result, the peak
+edge of the system; (2) this structure gives the best model       discharge has shifted towards a low state. Despite that the
+performance; (3) all calibrated parameters are sensitive and      daily precipitation maxima increasingly exceed the peak
+show an optimum (Fig. S10 in the ESM), and (4) the param-         snow accumulation since 1988, they are mostly lower than
+eters that show relatively high interactions (i.e. kEM, kMS)      the long-term average (60 mm) of the peak snow accumula-
+could be potentially linked and interdependent by nature. For     tion. With the increasing annual minimum temperature in
+these reasons, this model structure is tentatively accepted but   winter (+0.3 to 3.4 °C by 2100), the peak discharge may
+may contribute to uncertainty in future projections. Regard-      continue decreasing by nearly half of the rate due to the less
+ing the prediction uncertainty, some other factors can also       intense peak snowmelt under global warming.
+play a role: (1) the parameters in the groundwater model and         This study has focused on quantifying the long-term
+snow model are assumed as constant; however, changes in           response of the karst discharge to climate variations. To
+snow model parameters (e.g. DDF factor) may impact the            understand the detailed changes of the karst discharge in
+partitioning of precipitation to snow and rainfall and thus       the dry and wet periods, future research may identify all
+influence the rate and timing of the peak discharge (Doum-        likely changing points in the time-series discharge and cli-
+mar et al. 2018); (2) the stationary assumptions of the system    mate data and analyse the step changes (Bonacci 2007).
+evolution (karstification) and the land use and land cover,       Additionally, our model is constrained to simulate the
+which may change in the future and impact the hydrological        extremely high discharge. The future simulations of such
+processes; (3) and the model may struggle to simulate the         events may hence contain higher uncertainty. Despite this
+extremely high and low flows because of lack of training          caveat, the model still proves to be useful in estimating the
+for simulating such unobserved and challenging conditions.        system behaviour and the trends of discharge changes under
+                                                                  climate change.
+Trends and mechanisms
+                                                                  Implications
+The annual mean and minimum discharge of Blautopf do not
+show significant annual and seasonal trends of changes from       This study demonstrated the importance of quantifying the
+1952 to 2021, but rather they are projected to decrease by        response of karst discharge to long-term climate change and
+the end of the twenty-first century. In the scenarios of RCPs     variations. Catchments like Blautopf located in the temperate
+2.6, 4.5 and 8.5, the annual mean discharge is projected to       climate and mid-latitude may have been thought of as safe
+decrease by 4–10% and the annual minimum discharge may            under climate change, compared with glaciers and arid zones
+decrease by 35–55%. In contrast, the intensity of the annual      (IPCC 2021). This study shows that despite the not signifi-
+high discharge has already been impacted by the warming           cant historic trends of changes in the annual mean and mini-
+climate and shifted to a low state (<13.6 ­m3 ­s−1) since the     mum discharge, the annual peak discharge at the spring has
+1980s, and may decrease by 50% projected by all three sce-        reduced due to weakened peak snowmelt. If climate change
+narios in this century.                                           continues, all types of discharge at the spring are projected to
+   The changes of discharge at Blautopf could be attrib-          experience long-term adverse impact by 2100. The baseflow
+uted to its climatic and hydrogeologic settings. With the         plays a crucial role in sustaining spring discharge, especially
+increasing temperature under climate change, the catch-           in the dry period. The decreasing minimum discharge may
+ment evapotranspiration can be enhanced due to ~90% of            indicate water scarcity risks at the spring and pose threats
+the land surface being covered by forests and agriculture         to the groundwater-dependent ecosystems. The decreasing
+(Köberle 2005). As the annual total precipitation is pro-         high discharge may warn of potential water supply risks for
+jected to change slightly (−36 to +26 mm) at the catch-           local communities and infrastructures, such as in southern
+ment by the end of the century, the groundwater recharge          Germany where karst aquifers and springs are taken as one
+may thus reduce due to increasing evapotranspiration (+60         of the main drinking water supplies (Fahrmeier et al. 2022).
+to +147 mm) and the discharge may consequently decline.              Quantifying the local impact of climate change also
+Besides that, the increasing temperature will not only            allows for comparing the responses of karst discharge
+
+
+                                                                                                                       13
+                                                                                                                      Hydrogeology Journal
+
+at various climatic and geologic settings worldwide and          karst discharge under three climate change scenarios. This
+understanding the variable impact of climate change. Due         methodology has been applied to quantify the response of
+to limited lengths of karst discharge data and multiple influ-   karst discharge at a snow-influenced temperate catchment
+ential factors (e.g. pumping), very few studies have quanti-     (Blautopf) in central Europe from 1952 to 2100. The key
+fied the long-term historic climate impact on karst discharge    findings of this study are:
+(Kimmeier and Bouzelboudjen 2001; Fiorillo et al. 2015,
+2021). The karst spring discharge in central and southern        • The Blautopf karst system, with a memory of 40 days,
+Italy is found to have declined by 15–30% since 1987 (Fio-         consists of both fast and slow flow paths that enable the
+rillo et al. 2015). Similarly, the Blautopf spring has experi-     discharge to respond quickly to precipitation in 3 days.
+enced significant changes since 1988, but its annual mean          The fast and slow flow components characterize the
+discharge decreased by 4% (−0.1 ­m3 ­s−1) and the daily dis-       unique response of the karst aquifer to climate change
+charge maxima decreased by 8% (−1.1 ­m3 ­s−1). The annual          and variations.
+mean discharge at the springs in Italy shows a significantly     • The annual and seasonal mean discharge do not show
+decreasing trend since the 1920s due to the drying climate         a significant historic trend of changes. The monthly
+(Leone et al. 2021), whereas this trend is not significant for     mean discharge shows that the discharge in April (the
+Blautopf. These findings imply that southern Germany has           last month of the snow period) has significantly reduced
+experienced the adverse historic impact of climate change,         (−0.02 ­m3 ­s−1 ­year−1) due to decreasing precipitation and
+although relatively slighter than the hotspots (e.g. Italy) in     increasing air temperature and evapotranspiration. The
+the Mediterranean.                                                 annual mean discharge is projected to decrease by 4–10%
+    When looking at the future projections in the twenty-          (−0.10 to −0.22 ­m3 ­s−1) for the RCPs 2.6, 4.5 and 8.5 by
+first century, the annual low, mean, and high discharge at         2100.
+the karst springs in the Mediterranean are all projected to      • The peak snowmelt plays a key role in generating the
+decrease, also the same for Blautopf, but their decreasing         discharge maxima of the spring, but it is shown that
+magnitudes are different. For example, the annual mean             it will end earlier (shift from March to February), last
+discharge is projected to decrease by 73% at a snow-gov-           shorter (−4 days), and become less intense (−35 mm in
+erned semiarid site and by 36% at a site slightly impacted         peak snow accumulation). As a result, the annual peak
+by snow in Lebanon (Doummar et al. 2018; Dubois et al.             discharge has shifted towards a low state (<13.6 ­m3 ­s−1)
+2020), whereas at the karst springs in southern Greece and         under global warming since 1988. The peak discharge
+the West Bank in eastern Mediterranean, where they are             may continue decreasing by 50% (−7 ­m3 ­s−1) as projected
+almost not impacted by snow at all, the decrease may be            by all scenarios.
+15–30% (Hartmann et al. 2012; Nerantzaki and Nikolaidis          • The annual minimum discharge does not indicate a sig-
+2020). For Blautopf (southern Germany, temperate climate,          nificant historic trend of changes; however, it is projected
+snow-influenced), the annual mean discharge may decrease           to decline by 35–55% (−0.17 to −0.27 ­m3 ­s−1) for RCPs
+by 4–10% in this century. Despite the uncertainty, these           2.6, 4.5 and 8.5 due to increasing evapotranspiration.
+findings suggest that the karst aquifers and springs in the
+Mediterranean are likely to experience severe depletion in          Overall, this study shows the long-term historic and
+the future climate scenario, while the sites more impacted       future impacts of climate change and variations for a snow-
+by snow and located in more arid climates may experi-            influenced temperate catchment in central Europe, and may
+ence larger reductions. These findings reinforce the need        suggest potential water scarcity risks at similar climatic and
+for maintaining and extending the groundwater monitoring         geologic settings (temperate climate, snow-influenced, large
+networks for detection and management of groundwater             karst drainage area) worldwide. Despite that the impact is
+changes under climate change.                                    relatively milder compared with the Mediterranean region,
+                                                                 quantifying and understanding the changes of karst aquifers
+                                                                 and springs in this type of setting is necessary for mitigating
+Conclusions                                                      the future impact of climate change.
+
+                                                                 Supplementary Information The online version contains supplemen-
+In this study, a three-step integrated methodology has been      tary material available at https://​doi.​org/​10.​1007/​s10040-​023-​02703-9.
+established to quantify the long-term impact of climate vari-
+ability and change on karst discharge from both historic and     Acknowledgements The authors thank Mr. Guillaume Cinkus and Dr.
+future perspectives, including (1) statistical analysis of the   Naomi Mazzilli for their helpful discussions and generous assistance
+                                                                 with the KarstMod software and modelling, Dr. Andreas Wunsch for
+hydrodynamic characteristics of the karst system and the         the GCM-RCM data acquisition, and Ms. Yanina Müller for providing
+observed climates and discharge, (2) model calibration and       details on the discharge measurements at Blautopf spring. The authors
+evaluation with historic data analysis, and (3) simulations of   acknowledge the state environmental agency Landesanstalt für Umwelt
+
+
+13
+Hydrogeology Journal
+
+Baden-Württemberg (LUBW) in Germany for providing the karst dis-                        the atmosphere and hydrosphere: final report of the key topic
+charge data.                                                                            scenario development (SP-101) in the topic area 1 of the BMVI-
+                                                                                        Expert network]. https://​doi.​org/​10.​5675/​ExpNB​S2020.​2020.​02
+Funding Open Access funding enabled and organized by Projekt                       Çallı SS, Çallı KÖ, Tuğrul Yılmaz M, Çelik M (2022) Contribution
+DEAL. The authors acknowledge that the Melbourne Research Schol-                        of the satellite-data driven snow routine to a karst hydrological
+arship funded XF in the joint Ph.D. program between the University of                   model. J Hydrol 607:127511. https://​doi.​org/​10.​1016/j.​jhydr​ol.​
+Melbourne and Karlsruhe Institute of Technology (KIT), and thank the                    2022.​127511
+donors of the Justin Costelloe Award and the Diane Lemaire Scholar-                Chen Z, Auler AS, Bakalowicz M, Drew D, Griger F, Hartmann J, Jiang
+ship granted to XF. The authors also acknowledge the support of the                     G, Moosdorf N, Richts A, Stevanovic Z, Veni G, Goldscheider
+KIT-Publication Fund. Additionally, this paper is a contribution to the                 N (2017) The World Karst Aquifer Mapping project: concept,
+IMPART project of NG and NG who were funded by the German                               mapping procedure and map of Europe. Hydrogeol J 25:771–785.
+Research Foundation (DFG, project No. 432288610).                                       https://​doi.​org/​10.​1007/​s10040-​016-​1519-3
+                                                                                   Chen Z, Hartmann A, Wagener T, Goldscheider N (2018) Dynam-
+Declarations                                                                            ics of water fluxes and storages in an alpine karst catch-
+                                                                                        ment under current and potential future climate conditions.
+Conflicts of interest On behalf of all authors, the corresponding author                Hydrol Earth Syst Sci 22:3807–3823. https://​doi.​org/​10.​5194/​
+states that there is no conflict of interest.                                           hess-​22-​3807-​2018
+                                                                                   Cinkus G, Wunsch A, Mazzilli N, Liesch T, Chen Z, Ravbar N,
+Open Access This article is licensed under a Creative Commons Attri-                    Doummar J, Fernández-Ortega J, Barberá JA, Andreo B,
+bution 4.0 International License, which permits use, sharing, adapta-                   Goldscheider N, Jourde H (2023) Comparison of artificial
+tion, distribution and reproduction in any medium or format, as long                    neural networks and reservoir models for simulating karst spring
+as you give appropriate credit to the original author(s) and the source,                discharge on five test sites in the Alpine and Mediterranean
+provide a link to the Creative Commons licence, and indicate if changes                 regions. Hydrol Earth Syst Sci 27:1961–1985. https://​doi.​org/​10.​
+were made. The images or other third party material in this article are                 5194/​hess-​27-​1961-​2023
+included in the article's Creative Commons licence, unless indicated               CollaudCoen M, Andrews E, Bigi A, Martucci G, Romanens G,
+otherwise in a credit line to the material. If material is not included in              Vogt FPA, Vuilleumier L (2020) Effects of the prewhitening
+the article's Creative Commons licence and your intended use is not                     method, the time granularity, and the time segmentation on the
+permitted by statutory regulation or exceeds the permitted use, you will                Mann-Kendall trend detection and the associated Sen’s slope.
+need to obtain permission directly from the copyright holder. To view a                 Atmos Meas Tech 13:6945–6964. https:// ​ d oi. ​ o rg/ ​ 1 0. ​ 5 194/​
+copy of this licence, visit http://​creat​iveco​mmons.​org/​licen​ses/​by/4.​0/.        amt-​13-​6945-​2020
+                                                                                   Collaud Coen M, Vogt FPA (2021) mannkendall/Matlab: Bug fix: prob_
+                                                                                        mk_n (v1.1.0). Zenodo. https://​doi.​org/​10.​5281/​zenodo.​44955​89
+                                                                                   Deutscher Wetterdienst (2018) Kern-Ensemble v2018 [Core-ensemble
+                                                                                        v2018]. https://​www.​dwd.​de/​DE/​klima​umwelt/​klima​forsc​hung/​
+References                                                                              klima​proje​ktion​en/​fuer_​deuts​chland/​fuer_​dtld_​rcp-​daten​satz_​
+                                                                                        node.​html. Accessed Jan 2022
+Allen RG, Pereira LS, Raes D, Smith M (1998) Crop evapotranspi-                    Deutscher Wetterdienst (2021) Daily station data. https://​cdc.​dwd.​de/​
+    ration: guidelines for computing crop water requirements. FAO                       portal/. Accessed Jan 2022
+    Irrigation and Drainage Paper 56, FAO, Rome                                    Doummar J, Hassan Kassem A, Gurdak JJ (2018) Impact of historic
+Amanambu AC, Obarein OA, Mossa J, Li L, Ayeni SS, Balogun O,                            and future climate on spring recharge and discharge based on an
+    Oyebamiji A, Ochege FU (2020) Groundwater system and cli-                           integrated numerical modelling approach: application on a snow-
+    mate change: present status and future considerations. J Hydrol                     governed semi-arid karst catchment area. J Hydrol 565:636–649.
+    589:125163. https://​doi.​org/​10.​1016/j.​jhydr​ol.​2020.​125163                   https://​doi.​org/​10.​1016/j.​jhydr​ol.​2018.​08.​062
+Armbruster V, Selg M, Bauer M, Schopper M, Straub R (2006) Unter-                  Dubois E, Doummar J, Pistre S, Larocque M (2020) Calibration of
+    suchungen zur Aquiferdynamik im Einzugsgebiet des Blautopfs                         a lumped karst system model and application to the Qachqouch
+    (Oberjura, Süddeutschland) [Investigations on aquifer dynamics                      karst spring (Lebanon) under climate change conditions.
+    in the Blautopf catchment (Upper Jura, southern Germany)]. C98,                     Hydrol Earth Syst Sci 24:4275–4290. https://​doi.​org/​10.​5194/​
+    Tübinger Geowissenschaftliche Arb (TGA), Tübingen, Germany                          hess-​24-​4275-​2020
+Benavente J, Bosch AP, Mangin A (1985) Application of correlation                  Fahrmeier N, Frank S, Goeppert N, Goldscheider N (2022) Multi-scale
+    and spectral procedures to the study of discharge in a karstic sys-                 characterization of a complex karst and alluvial aquifer system
+    tem (eastern Spain). Karst Water Resour (Proc Ankara-Antalya                        in southern Germany using a combination of different tracer
+    Symp) 161:67–75                                                                     methods. Hydrogeol J 30:1863–1875. https://​doi.​org/​10.​1007/​
+Bonacci O (2007) Analysis of long-term (1878–2004) mean annual                          s10040-​022-​02514-4
+    discharges of the Karst Spring Fontaine de Vaucluse (France).                  Fiorillo F, Petitta M, Preziosi E, Rusi S, Esposito L, Tallini M (2015)
+    Acta Carsolog 36:151–156. https://​doi.​org/​10.​3986/​ac.​v36i1.​217               Long-term trend and fluctuations of karst spring discharge in a
+Bonotto G, Peterson TJ, Fowler K, Western AW (2022) Identifying                         Mediterranean area (central-southern Italy). Environ Earth Sci
+    causal interactions between groundwater and streamflow using                        74:153–172. https://​doi.​org/​10.​1007/​s12665-​014-​3946-6
+    convergent cross-mapping. Water Resour Res 58:1–28. https://​                  Fiorillo F, Leone G, Pagnozzi M, Esposito L (2021) Long-term
+    doi.​org/​10.​1029/​2021W​R0302​31                                                  trends in karst spring discharge and relation to climate factors
+Brienen S, Walter A, Brendel C, Fleischer C, Ganske A, Haller M,                        and changes. Hydrogeol J 29:347–377. https://​doi.​org/​10.​1007/​
+    Helms M, Höpp S, Jensen C, Jochumsen K, Möller J, Krähenmann                        s10040-​020-​02265-0
+    S, Nilson E, Rauthe M, Razafimaharo C, Rudolph E, Rybka H,                     Goderniaux P, Brouyère S, Wildemeersch S, Therrien R, Dassargues A
+    Schade N, Stanley K (2020) Klimawandelbedingte Änderungen                           (2015) Uncertainty of climate change impact on groundwater reserves:
+    in Atmosphäre und Hydrosphäre: Schlussbericht des Schwer-                           application to a chalk aquifer. J Hydrol 528:108–121. https://​doi.​org/​
+    punktthemas Szenarienbildung (SP-101) im Themenfeld 1 des                           10.​1016/j.​jhydr​ol.​2015.​06.​018
+    BMVI-Expertennetzwerks [Climate change-induced changes in
+
+
+                                                                                                                                                   13
+                                                                                                                                 Hydrogeology Journal
+
+Goldscheider N, Chen Z, Auler AS, Bakalowicz M, Broda S, Drew                  availability under climate change. Stoch Environ Res Risk Assess
+    D, Hartmann J, Jiang G, Moosdorf N, Stevanovic Z, Veni G                   35:345–370. https://​doi.​org/​10.​1007/​s00477-​020-​01908-8
+    (2020) Global distribution of carbonate rocks and karst water         Lorenzi V, Sbarbati C, Banzato F, Lacchini A, Petitta M (2022)
+    resources. Hydrogeol J 28:1661–1677. https://​doi.​org/​10.​1007/​         Recharge assessment of the Gran Sasso aquifer (Central Italy):
+    s10040-​020-​02139-5                                                       time-variable infiltration and influence of snow cover extension.
+Green TR, Taniguchi M, Kooi H, Gurdak JJ, Allen DM, Hiscock KM,                J Hydrol Reg Stud 41:101090. https://​doi.​org/​10.​1016/j.​ejrh.​2022.​
+    Treidel H, Aureli A (2011) Beneath the surface of global change:           101090
+    impacts of climate change on groundwater. J Hydrol 405:532–560.       Mahler BJ, Jiang Y, Pu J, Martin JB (2021) Editorial: advances in
+    https://​doi.​org/​10.​1016/j.​jhydr​ol.​2011.​05.​002                     hydrology and the water environment in the karst critical zone
+Hartmann A, Lange J, VivóAguado À, Mizyed N, Smiatek G,                        under the impacts of climate change and anthropogenic activi-
+    Kunstmann H (2012) A multi-model approach for improved                     ties. J Hydrol 595:125982. https://​doi.​org/​10.​1016/j.​jhydr​ol.​2021.​
+    simulations of future water availability at a large Eastern                125982
+    Mediterranean karst spring. J Hydrol 468–469:130–138. https://​       Mangin A (1984) Pour une meilleure connaissance des systèmes
+    doi.​org/​10.​1016/j.​jhydr​ol.​2012.​08.​024                              hydrologiques à partir des analyses corrélatoire et spectrale [For
+Hartmann A, Goldscheider N, Wagener T, Lange J, Weiler M (2014)                a better understanding of hydrological systems using correlation
+    Karst water resources in a changing world: review of hydrological          and spectral analysis]. J Hydrol 67:25–43
+    modeling approaches. Rev Geophys 52:218–242. https://​doi.​org/​      Mann HB (1945) Nonparametric tests against trend. Econometrica
+    10.​1002/​2013R​G0004​43                                                   13(3):245–259. https://​doi.​org/​10.​2307/​19071​87
+Hartmann A, Gleeson T, Wada Y, Wagener T (2017) Enhanced ground-          Martinec J (1960) The degree-day factor for snowmelt runoff forecast-
+    water recharge rates and altered recharge sensitivity to climate           ing. IUGG Gen Assem Helsinki, IAHS Publ. 51, IAHS, Walling-
+    variability through subsurface heterogeneity. Proc Natl Acad Sci           ford, UK, pp 468–477
+    USA 114:2842–2847. https://​doi.​org/​10.​1073/​pnas.​16149​41114     Mazzilli N, Guinot V, Jourde H, Lecoq N, Labat D, Arfib B, Baudement
+Hosseini SM, Ataie-Ashtiani B, Simmons CT (2017) Spring hydro-                 C, Danquigny C, Dal Soglio L, Bertin D (2019) KarstMod: a
+    graph simulation of karstic aquifers: impacts of variable recharge         modelling platform for rainfall–discharge analysis and modelling
+    area, intermediate storage and memory effects. J Hydrol 552:225–           dedicated to karst systems. Environ Model Softw 122:103927.
+    240. https://​doi.​org/​10.​1016/j.​jhydr​ol.​2017.​06.​018                https://​doi.​org/​10.​1016/j.​envso​ft.​2017.​03.​015
+IPCC (2014) Climate Change 2014: Synthesis Report. Contribution           Nash JE, Sutcliffe JV (1970) River flow forecasting through conceptual
+    of Working Groups I, II and III to the Fifth Assessment Report of          models, part I: a discussion of principles. J Hydrol 10:282–290.
+    the Intergovernmental Panel on Climate Change]. IPCC, Geneva,              https://​doi.​org/​10.​1016/​0022-​1694(70)​90255-6
+    Switzerland                                                           Nerantzaki SD, Nikolaidis NP (2020) The response of three Mediter-
+IPCC (2021) Summary for Policymakers. In: Climate Change 2021:                 ranean karst springs to drought and the impact of climate change.
+    the physical science basis. Contribution of Working Group I to             J Hydrol 591. https://​doi.​org/​10.​1016/j.​jhydr​ol.​2020.​125296
+    the Sixth Assessment Report of the Intergovernmental Panel on         Olarinoye T, Gleeson T, Marx V, Seeger S, Adinehvand R, Allocca
+    Climate Change]. Cambridge University Press, New York                      V, Andreo B, Apaéstegui J, Apolit C, Arfib B, Auler A, Bailly-
+Kendall MG (1955) Rank correlation methods. Charles Griffin,                   Comte V, Barberá JA, Batiot-Guilhe C, Bechtel T, Binet S, Bittner
+    London, 196 pp                                                             D, Blatnik M, Bolger T, Brunet P, Charlier JB, Chen Z, Chiogna
+Kimmeier F, Bouzelboudjen M (2001) A statistical time series analysis          G, Coxon G, De Vita P, Doummar J, Epting J, Fleury P, Fournier
+    of hydro-climatic stress on karst aquifer system (Switzerland). 3rd        M, Goldscheider N, Gunn J, Guo F, Guyot JL, Howden N,
+    Int Conf. Futurw Groundwater Resources Risk, Lisbon, Portugal              Huggenberger P, Hunt B, Jeannin PY, Jiang G, Jones G, Jourde H,
+Köberle G (2005) GIS-generierte Bodenkarte von Baden-Württemberg               Karmann I, Koit O, Kordilla J, Labat D, Ladouche B, Liso IS, Liu
+    1:25000 [GIS-generated terrain map of Baden-Württemberg                    Z, Maréchal JC, Massei N, Mazzilli N, Mudarra M, Parise M, Pu
+    1:25000]. Blatt 7524 Blaubeuren. Karte mit Erläuterungen,                  J, Ravbar N, Sanchez LH, Santo A, Sauter M, Seidel JL, Sivelle V,
+    Tübinger Geographische Studien 123, Universität Tübingen,                  Skoglund RØ, Stevanovic Z, Wood C, Worthington S, Hartmann
+    Germany                                                                    A (2020) Global karst springs hydrograph dataset for research and
+Kovačič G, Petrič M, Ravbar N (2020) Evaluation and quantification of          management of the world’s fastest-flowing groundwater. Sci Data
+    the effects of climate and vegetation cover change on karst water          7:59. https://​doi.​org/​10.​1038/​s41597-​019-​0346-5
+    sources: case studies of two springs in south-western Slovenia.       Oudin L, Hervieu F, Michel C, Perrin C, Andréassian V, Anctil F,
+    Water 12:3087. https://​doi.​org/​10.​3390/​w1211​3087                     Loumagne C (2005) Which potential evapotranspiration input for
+Kumar CP (2012) Climate change and its impact on groundwater                   a lumped rainfall-runoff model? Part 2, towards a simple and effi-
+    resources. Int J Eng Sci 1:43–60                                           cient potential evapotranspiration model for rainfall-runoff mod-
+Larocque M, Mangin A, Razack M, Banton O (1998) Contribution of                elling. J Hydrol 303:290–306. https://​doi.​org/​10.​1016/j.​jhydr​ol.​
+    correlation and spectral analyses to the regional study of a large         2004.​08.​026
+    karst aquifer (Charente, France). J Hydrol 205:217–231. https://​     Padilla A, Pulido-Bosch A (1995) Study of hydrographs of karstic aqui-
+    doi.​org/​10.​1016/​S0022-​1694(97)​00155-8                                fers by means of correlation and cross-spectral analysis. J Hydrol
+Lauber U, Ufrecht W, Goldscheider N (2013) Neue Erkenntnisse zur               168:73–89. https://​doi.​org/​10.​1016/​0022-​1694(94)​02648-U
+    Struktur der Karstentwässerung im aktiven Höhlensystem des            Panagopoulos G, Lambrakis N (2006) The contribution of time series
+    Blautopfs [New insights into the structure of karst drainage in the        analysis to the study of the hydrodynamic characteristics of the
+    active cave system of Blautopf]. Grundwasser 18:247–257. https://​         karst systems: application on two typical karst aquifers of Greece
+    doi.​org/​10.​1007/​s00767-​013-​0239-z                                    (Trifilia, Almyros Crete). J Hydrol 329:368–376. https://​doi.​org/​
+Lauber U, Ufrecht W, Goldscheider N (2014) Spatially resolved                  10.​1016/j.​jhydr​ol.​2006.​02.​023
+    information on karst conduit flow from in-cave dye tracing.           Peterson TJ, Western AW (2014) Nonlinear time-series modeling of
+    Hydrol Earth Syst Sci 18:435–445. https://​doi.​org/​10.​5194/​            unconfined groundwater head. Water Resour Res 50:8330–8355.
+    hess-​18-​435-​2014                                                        https://​doi.​org/​10.​1002/​2013W​R0148​00
+Leone G, Pagnozzi M, Catani V, Ventafridda G, Esposito L, Fiorillo F      Ravbar N, Kovačič G, Petrič M, Kogovšek J, Brun C, Koželj A (2018)
+    (2021) A hundred years of Caposele spring discharge measure-               Climatological trends and anticipated karst spring quantity and
+    ments: trends and statistics for understanding water resource
+
+
+13
+Hydrogeology Journal
+
+     quality: case study of the Slovene Istria. Geol Soc Lond Spec Publ            H (2013) Ground water and climate change. Nat Clim Chang
+     466:295–305. https://​doi.​org/​10.​1144/​SP466.​19                           3:322–329. https://​doi.​org/​10.​1038/​nclim​ate17​44
+Saltelli A (2002) Making best use of model evaluations to compute              Toews MW, Allen DM (2009) Evaluating different GCMs for predict-
+     sensitivity indices. Comput Phys Commun 145:280–297                           ing spatial recharge in an irrigated arid region. J Hydrol 374:265–
+Schwarz K, Barth JAC, Postigo-Rebollo C, Grathwohl P (2009) Mix-                   281. https://​doi.​org/​10.​1016/j.​jhydr​ol.​2009.​06.​022
+     ing and transport of water in a karst catchment: a case study from        Ufrecht W, Bohnert J, Jan H (2016) Ein konzeptionelles Modell der
+     precipitation via seepage to the spring. Hydrol Earth Syst Sci                Verkarstungsgeschichte für das Einzugsgebiet des Blautopfs
+     13:285–292. https://​doi.​org/​10.​5194/​hess-​13-​285-​2009                  (mittlere Schwäbische Alb) [A conceptual model of the
+Selg M, Schwarz K (2009) Am Puls der schönen Lau: zur Hydrogeolo-                  karstification history for the Blautopf catchment (middle Swabian
+     gie des Blautopf-Einzugsgebietes [On the pulse of the beautiful               Alb)]. Laichinger Höhlenfreund 51:3–44
+     Lau: on the hydrogeology of the Blautopf catchment]. Laichinger           Wunsch A, Liesch T, Broda S (2022) Deep learning shows declining
+     Höhlenfreund 44:45–72                                                         groundwater levels in Germany until 2100 due to climate change.
+Sen PK (1968) Estimates of the regression coefficient based on Kend-               Nat Commun 13:1221. https://​doi.​org/​10.​1038/​s41467-​022-​28770-2
+     all’s tau. J Am Stat Assoc 63:1379–1389                                   Xanke J, Liesch T (2022) Quantification and possible causes of declin-
+Shapoori V, Peterson TJ, Western AW, Costelloe JF (2015) Decompos-                 ing groundwater resources in the Euro-Mediterranean region from
+     ing groundwater head variations into meteorological and pump-                 2003 to 2020. Hydrogeol J 30:379–400. https://​doi.​org/​10.​1007/​
+     ing components: a synthetic study. Hydrogeol J 23:1431–1448.                  s10040-​021-​02448-3
+     https://​doi.​org/​10.​1007/​s10040-​015-​1269-7                          Zhao K, Wulder MA, Hu T, Bright R, Wu Q, Qin H, Li Y, Toman E, Mal-
+Sobol IM (1976) Uniformly distributed sequences with an additional                 lick B, Zhang X, Brown M (2019a) Detecting change-point, trend,
+     uniform property. USSR Comput Math Math Phys 16:236–242                       and seasonality in satellite time series data to track abrupt changes
+Stevanović Z (2019) Karst waters in potable water supply: a global                 and nonlinear dynamics: a Bayesian ensemble algorithm. Remote
+     scale overview. Environ Earth Sci 78:662. https://​doi.​org/​10.​1007/​       Sens Environ 232:111181. https://​doi.​org/​10.​1016/j.​rse.​2019.​04.​034
+     s12665-​019-​8670-9                                                       Zhao K, Hu T, Li Y (2019b) Rbeast: Bayesian change-point detection
+Taylor RG, Scanlon B, Döll P, Rodell M, van Beek R, Wada Y,                        and time series decomposition. https://​CRAN.R-​proje​ct.​org/​packa​
+     Longuevergne L, Leblanc M, Famiglietti JS, Edmunds M,                         ge=​Rbeast. Accessed Jan 2022
+     Konikow L, Green TR, Chen J, Taniguchi M, Bierkens MFP,
+     MacDonald A, Fan Y, Maxwell RM, Yechieli Y, Gurdak JJ, Allen              Publisher’s Note Springer Nature remains neutral with regard to
+     DM, Shamsudduha M, Hiscock K, Yeh PJF, Holman I, Treidel                  jurisdictional claims in published maps and institutional affiliations.
+
+
+
+
+                                                                                                                                               13
+

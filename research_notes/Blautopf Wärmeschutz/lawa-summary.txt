@@ -1,0 +1,414 @@
+                                        MESSMETHODEN UND ÜBERWACHUNG DER GEWÄSSERTEMPERATUR
+
+
+
+ständige Berücksichtigung des Referenzloggers (M1) vor. Schöpft also E1 das thermi-
+sche Budget der Fischgemeinschaft, also die Einhaltung der vorgegebenen Tmax-
+Werte und/oder die zulässige ∆T-Regelung in stetiger Abhängigkeit zum Referenz-
+Logger, bereits vollständig aus, ist dem direkten Unterlieger (E2) keine weitere Einlei-
+tung mehr gestattet, allen weiteren erst wieder nach einer Annäherung der Temperatur
+oberhalb ihrer geplanten Einleitung an die Referenz. Dadurch werden kumulative Tem-
+peraturerhöhungen bis zum Erreichen von Tmax vermieden, und darüber hinaus eine
+Steuerung der thermischen Belastung in den Übergangsmonaten möglich gemacht,
+für die wegen ihrer hohen, temperaturbezogenen Dynamik keine kleinzeiträumig be-
+lastbaren Temperaturmaxima definiert werden können.
+
+Die Neuregelung transformiert die bisherige, eher lokal begrenzte Temperaturbewer-
+tung und den daraus resultierenden Vollzug für einen thermischen Einleiter in ein ge-
+samtheitlicheres Konzept, das die ökologischen Anforderungen einer Fischgemein-
+schaft in ihrer gesamten Längsausprägung berücksichtigt. Beim Vorliegen mehrerer
+Wärmeeinleiter in ein und demselben Wasserkörper würde bei Umsetzung dieser Re-
+gelung die Erstellung von Wärmelastplänen an Bedeutung gewinnen. Aus fachlicher
+Sicht ist diese Veränderung ausdrücklich zu begrüßen, da durch die Vermeidung anth-
+ropogener, thermischer Heterogenität im Längsverlauf der Fischgemeinschaft deren
+ökologische Durchgängigkeit unterstützt wird.
+
+
+
+
+                                                                                        58
+                                                MESSMETHODEN UND ÜBERWACHUNG DER GEWÄSSERTEMPERATUR
+
+
+
+
+                      ∆T in Relation zu thermisch unbeeinflusstem Referenzwert
+
+
+
+
+                 M1         E1
+                                                                          ΔT alt:
+                                           E2
+                                                                          E1: M1 – M2
+                                                                          E2: M3 – M4
+                                     M3                                   E3: M5 – M6
+                                                                           Kumulationseffekte
+
+
+                                                        M4
+
+                           M2
+
+
+
+
+              ΔT neu:
+              M1 = Referenzwert                       M5
+              E1: M1 – M2
+              E2: M1 – M3  M4                          E3
+              E3: M1 – M5  M6
+               Keine Kumulationseffekte
+                                                                           M6
+
+
+
+
+Abbildung 24    Illustration des kumulativen Effekts einer Wärmeeinleitung nach existierender („∆T alt“)
+Regelung und der Vermeidung des Effekts in der hier erarbeiteten Neuregelung („∆T neu“), durch Berück-
+sichtigung einer Referenzmessung („M1“) oberhalb des ersten Einleiters („E1“).
+
+
+
+
+                                                                                                      59
+                                                                 EINFLUSS DES KLIMAWANDELS
+
+
+
+6       Einfluss des Klimawandels
+Die hier erarbeiteten Vorschläge basieren primär auf intensiven Literaturauswertungen
+zu Temperaturpräferenzen und -limitierungen der in Deutschland vorkommenden
+Neunaugen- und Fischarten und den daraus abgeleiteten potenziellen Effekten von
+Warm- oder Kaltwassereinleitungen. Sie berücksichtigen bisher keine Effekte des fort-
+schreitenden Klimawandels, wie zum Beispiel höhere Durschnitts- und Maximaltem-
+peraturen im Winter und Sommer, eine Verlängerung der „Sommerperiode“ bzw. eine
+schnellere Erwärmung im Frühjahr oder die Zunahme von Extremwetterereignissen.
+Mittel- bis langfristige Modellierungen künftiger Fischartenverbreitung prognostizieren
+für die meisten Arten einen Lebensraumzugewinn infolge der Temperaturerhöhung,
+während die relativ wenigen Kühl- und Kaltwasserarten eher Reduktionen der geeig-
+neten Lebensräume ausgesetzt sind (Basen 2016, Radinger et al. 2016, 2018). Ver-
+schiebungen der Fischgemeinschaften können langfristig die Anpassung von regiona-
+len Referenz-Fischzönosen oder des Bewertungsverfahrens erfordern. So weisen Ga-
+rack et al. (2021) auf die folgenden zu erwartenden Schwierigkeiten der Fließgewäs-
+serbewertung mit fiBS hin: Erstens werden die infolge des Klimawandels sich potenzi-
+ell verändernden Fisch-Biomassen (kg/ha) im auf Individuenanteile und Präsenzen der
+Arten beruhenden fiBS nicht adäquat abgebildet. Zweitens werden weder indirekte
+Einflüsse zunehmender Prädation (steigende Kormoranbestände) noch Zunahmen
+nicht einheimischer Fischarten im fiBS berücksichtigt. Lediglich bei artenarmen Ge-
+wässertypen gehen gebietsfremde Arten und Gilden negativ in die Bewertung ein. Drit-
+tens wird die für die Fische notwendige Durchgängigkeit der Gewässer für Anpas-
+sungs- bzw. Ausweichbewegungen im Kontext des Klimawandels im fiBS nicht bewer-
+tet. Auf diese möglichen Probleme wird hier nur hingewiesen, sie werden aber nicht
+weiter betrachtet.
+
+Saisonale Effekte können dagegen viel eher relevant werden. Ein Langzeitdatensatz
+von Hechten und Brachsen in Estland zeigte beispielsweise, dass die Laichzeit der
+beiden Arten in den 1990er Jahren durchschnittlich acht Tage eher einsetzt als 44
+Jahre zuvor (z. B. Ahas 1999). Aus dem kontinuierlich früheren Beginn und längeren
+Anhalten der Vegetationsperiode infolge des Klimawandels ergeben sich u. U. auch
+Erfordernisse zur Anpassung saisonaler Regelungen in der OGewV. So verkürzen sich
+sehr wahrscheinlich die Übergangsperioden oder auch die Dauer des Winters insge-
+samt. Da sich die ökologischen Zeitverschiebungen im Bereich von Tagen pro Dekade
+bewegen, z. B. acht Tage in 44 Jahren für Brachse und Hecht (Ahas 1999), müssen
+                                                                                       60
+                                                                EINFLUSS DES KLIMAWANDELS
+
+
+
+auch die monatlichen Festlegungen der OGewV dahingehend überprüft und gegebe-
+nenfalls angepasst werden, ob bestehende Zeitregelungen immer wie bisher in vollen
+Monatsschritten erfolgen sollen oder in Überganszeiten auch halb-monatlich und wö-
+chentlich.
+
+Unabhängig davon, wie schnell und stark sich die prognostizierten Temperaturan-
+stiege in Abhängigkeit vom Gewässertyp manifestieren, wird generell eine Erhöhung
+der durchschnittlichen und maximalen Wassertemperaturen erwartet, womit sich diese
+den oberen Grenzen des Vorzugs- und Toleranzbereiches der Fische annähern. Bei
+einigen temperatursensitiven Arten, wie z. B. der Bachforelle in den Rhithral-Fischge-
+meinschaften der OGewV, werden lokal auch Überschreitungen prognostiziert, ver-
+bunden mit Lebensraumverlusten und Populationsrückgängen (Garack et al. 2021).
+Wenn sich die durchschnittlichen Temperaturmaxima klimawandelbedingt in Richtung
+des oberen Orientierungswertes verschieben wird dies in Zukunft die Kapazität der
+Gewässer zur Aufnahme zusätzlicher anthropogener Prozesswärme in Form von Wär-
+meeinleitungen reduzieren. Für die Übergangsmonate, für die in diesem Projekt keine
+Regelungen zur Maximaltemperatur vorgeschlagen werden, sind die zulässigen Tem-
+peraturdifferenzen ggf. adaptiv zu reduzieren.
+
+Ein zweites Problemfeld sind die Niederschlagsprognosen. Infolge des Klimawandels
+werden zunehmend Extremwetterlagen mit Starkniederschlägen bei insgesamt gleich-
+bleibenden oder geringeren Jahresniederschlägen erwartet. Dies führt zu länger an-
+haltenden Trockenperioden und geringeren Abflüssen in den Gewässern, verbunden
+mit höheren Temperaturamplituden. Unter ansonsten gleichen Randbedingungen ver-
+ringern sich bei sinkenden Abflüssen auch die zulässigen Einleitungsmengen von
+Warm- oder Kaltwasser, um die Grenzwerte, z. B. der wasserbehördlichen Genehmi-
+gung einzuhalten. Insbesondere bei sog. Altgenehmigungen kann es erforderlich sein,
+festgesetzte Einleitmengen, Wärme- oder Volumenströme zu überprüfen und wenn
+nötig anzupassen.
+
+In Anpassung an den Klimawandel sollten grundsätzlich Wärmelastpläne erstellt wer-
+den, in denen maximale Einleittemperaturen und -volumina sowohl dynamisch an va-
+riierende Abflüsse gekoppelt, als auch kumulativ für alle in einem Gewässer/Wasser-
+körper vorhandenen Einleitungen und sonstige Beeinträchtigungen geregelt werden.
+
+
+
+
+                                                                                      61
+                                                                                  FAZIT
+
+
+
+7          Fazit
+Das Projekt hat nachfolgende Vorschläge erarbeitet, um die derzeitigen Temperatur-
+werte der OGewV (Anlage 7, Tabelle 2.1.1, hier dargestellt in Tabelle 6) für den guten
+ökologischen Zustand / das gute ökologische Potenzial (GÖZ/GÖP) zeitlich stärker zu
+differenzieren und teilweise anzupassen:
+
+i) Reduzierung der Sommer-Periode auf die Monate Juni bis September.
+
+ii) Berücksichtigung von Temperaturabsenkungen durch Kaltwassereinleitungen in
+    gleichem Maße wie Temperaturanstiege. Eine bislang ungeregelte und de facto
+    unbegrenzte Absenkung der Temperatur kann für viele Fischarten zum ernsthaften
+    Problem werden, da diese als ektotherme Organismen nur wenig wärmer sind als
+    ihre Umgebungstemperatur, und bei Kaltwassereinleitung in eine Starre fallen kön-
+    nen, die es ihnen unmöglich macht in wärmere Bereiche der Fließgewässer zu flie-
+    hen.
+
+iii) Begrenzung der zulässigen Temperaturerhöhung im Winter (Dezember bis März)
+    auf maximal 1 K (Sa-ER), 1,5 K (Sa-MR, Sa-HR) und 2 K (Cyp-R, EP, MP, HP).
+    Lokal sind geringere ΔT festzulegen, wenn regionale Anpassungen der Fischfauna
+    dies erfordern.
+
+iv) Implementierung von Übergangszeiten im April/Mai und Oktober/November für die
+    keine Temperaturmaxima festgelegt werden und Temperaturregelungen nur über
+    die zulässige Temperaturerhöhung erfolgen, die fischgemeinschaftsspezifisch 1 K
+    (Sa-ER), 1,5 K (Sa-MR, Sa-HR) bis maximal 2 K (Cyp-R, EP, MP, HP) beträgt. Eine
+    Überwachung der Maximaltemperaturüberschreitung ist in den Übergangsmonaten
+    mangels Maximaltemperaturvorgabe nicht möglich. Dies wird jedoch als unproble-
+    matisch betrachtet, da in den Übergangsmonaten witterungsbedingt keine Annä-
+    herung an fischökologisch kritische Maximaltemperaturen zu erwarten ist und die
+    Begrenzung von Wärmeeinleitungen in diesen bzgl. der natürlichen Tempera-
+    turentwicklung besonders dynamischen Monaten durch die Vorgaben zur zulässi-
+    gen Temperaturerhöhung hinreichend geregelt ist.
+
+v) Zulässige Temperaturerhöhungen oder -absenkungen werden nur noch relativ zur
+    durch thermische Einleitungen möglichst unbeeinflussten Temperaturganglinie des
+    Gewässers/Gewässertyps bestimmt, um kumulative Effekte durch die Bezug-
+    nahme auf eine möglicherweise bereits durch thermische Einleitung innerhalb der
+
+
+                                                                                    62
+                                                                               FAZIT
+
+
+
+   Fischgemeinschaft erhöhte Temperatur oberhalb der Einleitungsstelle zu vermei-
+   den. Die Orientierung der Temperaturwerte für GÖZ/GÖP an der realen, durch ther-
+   mische Einleitungen möglichst unbeeinflussten Temperaturkurve eines Gewässers
+   im Jahresverlauf wird dem ökologischen Zustand und den ökologischen Anforde-
+   rungen der Arten besser gerecht (Abbildung 19–Abbildung 21).
+
+Tabelle 7 fasst die hier beschriebenen Vorschläge zusammen, denen die aktuellen
+Regelungen der OGewV wie sie in Tabelle 6 dargestellt sind, zugrunde liegen. Da für
+die Fischfauna die Orientierungswerte gleichzeitig auch die Hintergrundwerte sind,
+muss Tabelle 7 auch die Temperaturregelungen für den sehr guten Zustand / das
+höchste ökologische Potenzial in der OGewV ersetzen.
+
+Im Rahmen eines Praxistests sollten die offen gebliebenen Fragestellungen im Zu-
+sammenhang mit der Operationalisierbarkeit der abgeleiteten Temperaturwerte sowie
+den Messmethoden geprüft werden.
+
+
+
+
+                                                                                 63
+                                                                       ZUSAMMENFASSUNG
+
+
+
+8       Zusammenfassung
+Das vorliegende Projekt hat zur Aufgabe, die bestehenden Vorgaben zu Tempera-
+turerhöhungen und Maximaltemperaturen der Gewässer nach OGewV zu überprüfen
+und ggf. Optimierungsvorschläge für existierende (Temperatur)Regeln zu erarbeiten,
+bei deren Einhaltung der gute ökologische Zustand / das gute ökologische Potenzial
+auf Basis der biologischen Qualitätskomponente Fischfauna erreicht werden kann. Zu
+diesem Zweck wurden 1.428 in den Bundesländern erarbeitete Referenz-Fischzöno-
+sen zusammengetragen, analysiert und zu sogenannten generischen Fischzönosen
+aggregiert. Die generischen Fischzönosen bestehen (wie die Referenz-Fischzönosen
+der Bundesländer) aus Leitarten (≥ 5 % relative Dominanz), sonstigen typspezifische
+Arten (1 – < 5 % Dominanz) und Begleitarten (< 1 % Dominanz). Die generischen
+Zönosen gelten für die Fließgewässertypen und Fischgemeinschaften der OGewV
+(Salmoniden-Epirhithral, Salmoniden-Metarhithral, Salmoniden-Hyporhithral, Cyprini-
+den-Rhithral, Epipotamal, Metapotamal und Hypopotamal). Sie dienen als deutsch-
+landweit einheitliche Grundlage zur Ableitung von Orientierungswerten für ein fisch-
+und gewässertypbasiertes Temperaturmanagement. Die Referenz-Fischzönosen der
+Bundesländer nennen insgesamt 63 einheimische Neunaugen- und Fischarten, für die
+in einer umfangreichen Literaturrecherche Temperaturdaten ermittelt wurden, wie z. B.
+art- und lebensstadienspezifische Vorzugs- und Letalwerte, Entwicklungstemperatu-
+ren und -dauer.
+
+Insgesamt wurden 168 Studien recherchiert und 1.006 Temperaturdatensätze mit bis
+zu zehn Einzelparametern für 68 in deutschen Fließgewässern vorkommende Neun-
+augen- und Fischarten ausgewertet. Mittels statistischer Methoden wurden die Arten
+dann nach ihrer relativen Temperatursensitivität gereiht. Mit diesem Schritt wurden 17
+Schirmarten ausgewiesen, deren letales Temperaturmaximum als adulter Fisch bei
+≤ 30 °C liegt und die deshalb im Gesamtvergleich aller Arten besonders temperatur-
+sensitiv sind. Diese temperatursensitiven Schirmarten wurden mit den Leitarten der
+generischen Fischzönosen verschnitten und dadurch weiter reduziert. Der resultie-
+rende Pool beinhaltet konzeptionell die besonders bewertungsrelevanten Arten im Hin-
+blick auf Temperatureffekte im Rahmen der fiBS-Bewertung. Obwohl es immer regio-
+nale und lokale Besonderheiten in einem Gewässer geben kann, die bei der Umset-
+zung der WRRL zu berücksichtigen sind, eignen sich die generischen Zönosen über-
+regional zur Ableitung von allgemeinen Temperaturregelungen.
+
+
+                                                                                    64
+                                                                       ZUSAMMENFASSUNG
+
+
+
+Für die Salmoniden-Rhithrale und das Cypriniden-Rhithral qualifiziert sich die Bachfo-
+relle als temperatursensitive Indikatorart mit sehr großer Häufigkeit in den Referenz-
+Fischzönosen (Abbildung 12–Abbildung 15). Als Herbstlaicher beginnt die Bachforelle
+im Oktober mit dem Laichgeschäft, wobei laut OGewV bis Anfang Dezember eine Ma-
+ximaltemperatur des Gewässers von 20 °C (Sa-ER, Sa-MR), 21,5 °C (Sa-HR) und 23
+°C (Cyp-R) zulässig ist. Die obere Präferenztemperatur der Bachforelle zum Laichen
+beträgt jedoch lediglich 11 °C, und die obere Letaltemperatur der Eier nur 14 °C (Ab-
+bildung 19 und Abbildung 20), weshalb beispielsweise für die Übergangsperiode von
+Sommer zu Winter eine Neuregelung erforderlich ist. Die Sommertemperaturmaxima
+der OGewV sollten aus fischökologischer Sicht nicht über Ende September hinaus
+gelten, und auch dann nicht wie bisher übergangslos in die Wintertemperaturmaxima
+übergehen, sondern sich an einer naturnahen Temperaturkurve des jeweiligen Ge-
+wässertyps der OGewV orientieren. Solche Temperaturkurven sind unter anderem für
+das Bundesland NRW beschrieben und könnten überregional exemplarisch zur Annä-
+herung an einen durch thermische Einleitung unbeeinflussten Wasserkörper genutzt
+werden. Eine dem natürlichen Temperaturverlauf im Gewässer entsprechende Tem-
+peraturregelung trägt der variablen Temperaturentwicklung und damit auch den öko-
+logischen Prozessen in den Übergangsperioden Frühjahr und Herbst besser Rech-
+nung. Deshalb wird empfohlen, dass in den Monaten April/Mai und Oktober/November
+eine Regelung nur über die Differenz der unterhalb eines Einleiters gemessenen Tem-
+peratur zu einer durch thermische Einleitungen möglichst unbeeinflussten Bezugstem-
+peratur (oberhalb des ersten Einleiters) erfolgt, je nach Fischgemeinschaft der OGewV
+±1, 1,5 oder 2 K. Für die Übergangsperioden werden keine Temperaturmaximalwerte
+empfohlen, weil diese sinnvollerweise auch nur in Relation zum gewässertypischen,
+nicht thermisch belasteten Temperaturverlauf festzulegen sind. Hier einen dynami-
+schen Maximalwert, z. B. 5 K oder 10 K über dem natürlichen Temperaturwert festzu-
+legen erscheint relativ willkürlich, weshalb darauf verzichtet wurde. Dagegen lassen
+sich die empfohlenen zulässigen geringen Abweichungen vom natürlichen Tempera-
+turverlauf aus den ökologischen Anforderungen der Fischarten (Laichen und Eient-
+wicklung) plausibilisieren.
+
+Insgesamt sollte die Sommerperiode auf die Monate Juni bis September reduziert wer-
+den. Die Übergangsbereiche im April-Mai und Oktober-November sollten sich aus-
+schließlich an Temperaturerhöhungen von 1–1,5 K in den Salmoniden-Rhithralen und
+
+
+
+                                                                                    65
+                                                                                  ZUSAMMENFASSUNG
+
+
+
+2 K in den übrigen Fischgemeinschaften der OGewV gegenüber dem natürlichen Tem-
+peraturverlauf im Gewässer orientieren. Gleiches gilt für die Temperaturerhöhung im
+Winter: auch diese sollte am natürlichen Temperaturverlauf an einer durch thermische
+Einleitungen unbeeinflussten Stelle bemessen werden, um das kumulative Aufheizen
+eines Gewässers zu vermeiden.
+
+Die Regelung zur Temperaturdifferenz im Sommer, Frühjahr und Herbst ist außerdem
+um das Absenken der Temperatur im Zuge von Kaltwassereinleitungen zu ergänzen.
+Nicht nur, da Vorhaben zur Einleitung kühlerer Prozesswässer in die Gewässer zuneh-
+men, sondern auch, weil rasche Temperaturabsenkungen deutlich stärkere Auswir-
+kungen auf Fische haben als vergleichbar große Temperaturschritte zur Erwärmung.
+Der Betrag der Verringerung der Temperatur kann vorerst analog zur Temperaturer-
+höhung festgesetzt werden.
+
+Zur Klärung der offen gebliebenen Fragestellungen bezüglich der Operationalisierbar-
+keit der abgeleiteten Temperaturwerte sowie der Messmethoden wird die Durchfüh-
+rung eines Praxisversuchs empfohlen, indem das Regelungskonzept durch die Be-
+stimmung der Abweichung zwischen Referenz und IST-Temperatur systematisch ge-
+testet werden kann.
+
+Tabelle 6       Bisherige Werte für Maximaltemperatur und Temperaturerhöhung im guten ökologischen
+Zustand / Potenzial für die Fischgemeinschaften der OGewV 2016, Anlage 7, Tabelle 2.1.1..
+
+                                                    Fischgemeinschaft
+                              ff/tempff     Sa-    Sa-       Sa-      Cyp-    EP     MP      HP
+                                            ER     MR        HR        R
+                                          Anforderungen
+ Tmax Sommer                                ≤ 20    ≤ 20    ≤ 21,5    ≤ 23    ≤ 25   ≤ 28   ≤ 28
+ (April bis November)
+ [°C]
+ Temperaturerhöhung                        ≤ 1,5   ≤ 1,5     ≤ 1,5     ≤2     ≤3      ≤3     ≤3
+ Sommer [∆T in K]
+ Tmax Winter                                ≤8      ≤ 10     ≤ 10     ≤ 10    ≤ 10   ≤ 10   ≤ 10
+ (Dezember bis März)
+ [°C]
+ Temperaturerhöhung                         ≤1     ≤ 1,5     ≤ 1,5     ≤2     ≤3      ≤3     ≤3
+ Winter [∆T in K]
+
+
+
+
+                                                                                                66
+                                                                                     ZUSAMMENFASSUNG
+
+
+Tabelle 7      In diesem Projekt erarbeitete Vorschläge zur Modifikation von Tabelle 6 für den guten
+ökologischen Zustand / das gute ökologische Potenzial. Veränderungen gegenüber der bisherigen Rege-
+lung in der OGewV sind fett hervorgehoben.
+
+
+                                                             Fischgemeinschaft
+                                             Sa-     Sa-      Sa-   Cyp EP             MP      HP
+                                             ER      MR       HR     -R
+                                         Anforderungen
+ Tmax Sommer                                 ≤ 20    ≤ 20    ≤ 21,5    ≤ 23   ≤ 25    ≤ 28    ≤ 28
+ (Juni bis September) [°C]
+ Temperaturerhöhung und                     ≤ 1,5    ≤ 1,5    ≤ 1,5    ≤2      ≤3      ≤3      ≤3
+ -absenkung Sommer
+ (Juni bis September) [∆T in K]*
+ Temperaturerhöhung und                      ≤1      ≤ 1,5    ≤ 1,5    ≤2      ≤2      ≤2      ≤2
+ -absenkung Herbst
+ (Oktober bis November) [∆T in K]*
+ Tmax Winter                                 ≤8      ≤ 10     ≤ 10     ≤ 10   ≤ 10    ≤ 10    ≤ 10
+ (Dezember bis März) [°C]
+ Temperaturerhöhung und            ≤1     ≤ 1,5 ≤ 1,5  ≤2    ≤2    ≤2   ≤2
+ -absenkung Winter
+ (Dezember bis März) [∆T in K]*
+ Temperaturerhöhung und            ≤1     ≤ 1,5 ≤ 1,5  ≤2    ≤2    ≤2   ≤2
+ -absenkung Frühjahr
+ (April bis Mai) [∆T in K]*
+* ΔT in Bezug zur durch thermische Einleitungen innerhalb der Fischgemein-
+schaft möglichst unbeeinflussten, aktuellen Gewässertemperatur.
+Tmax und ΔT können lokal weiter verringert werden, wenn regionale Anpassun-
+gen der Fischgemeinschaft dies erfordern.
+Im Rahmen dieses Projektes wurden die Temperaturansprüche der Arten und Lebens-
+stadien aus umfangreichen Literaturanalysen abgeleitet, mit dem Ziel einer bundesweit
+einheitlichen Regelung. Dabei wurden potenziell vorhandene lokale Temperaturan-
+passungen von Subpopulationen und Arten nicht im Detail berücksichtigt. Aus diesem
+Grund sollte der Vollzugsbehörde die Möglichkeit gegeben werden, ihre Kenntnis bzgl.
+regionaler Anpassungen bei der Festlegung gewässerspezifischer Tmax- und ΔT-Werte
+einzubringen. Neben den Anpassungen der Orientierungswerte wird deshalb empfoh-
+len, in der OGewV einen Passus vorzusehen, dass zur Bewertung der Temperaturver-
+hältnisse, wenn vorhanden, lokale Kenntnisse ergänzend zu berücksichtigen sind. Auf
+diese Weise können die bundesweiten Vorgaben anlassbezogen geprüft und bei der
+Festlegung gewässerspezifisch gültiger Temperaturorientierungswerte erforderlichen-
+falls verschärft werden.
+
+
+
+
+                                                                                                    67
+                                                                                                                                           ZUSAMMENFASSUNG
+
+
+
+
+Abbildung 25   Vorschlag für saisonale Entzerrung und Neuregelung der Temperaturerhöhung in Fließgewässern am Beispiel des Salmoniden-Rhithrals.
+
+
+
+                                                                                                68
+
