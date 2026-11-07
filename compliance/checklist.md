@@ -29,7 +29,7 @@ Regelstand und Prüfverfahren: `compliance/regeln.md`, offizielle Dokumente von 
 | Fertige Präsentation | 10 PDF-Folien und editierbare LaTeX-Quelle | `output/presentation/Blautopf_Finale.pdf` | erfüllt |
 | Animation erlaubt | Vollständig aus Folien erzeugtes Video | MP4 und Buildskript | erfüllt |
 | Sprechtext und Quellen | `presentation/speaker_notes.md` | Folienzeiten und Quellen je Folie | erfüllt |
-| Dokumentierte Zeitprobe | `presentation/rehearsal.md`, reale Audiodauer und MP4-Dauer | Zeitentabelle und Echtzeitprobe | in Arbeit |
+| Dokumentierte Zeitprobe | `presentation/rehearsal.md`, reale Audiodauer und MP4-Dauer | Zeitentabelle und Echtzeitprobe mit `real 289.38 s` | erfüllt |
 | Adversariale Q&A | 20 Fragen mit Antworten und Revisionszuordnung | `presentation/jury_qa.md` | erfüllt |
 | Medienrechte | Rechtenachweis ohne externe Bilder oder Musik | `presentation/rights.md` | menschliche Endfreigabe offen |
 | Technische Interoperabilität | 1920 x 1080, 16:9, H.264, AAC, yuv420p | `output/presentation/verification.json` | erfüllt, Finalisten-E-Mail prüfen |

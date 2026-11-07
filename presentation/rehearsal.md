@@ -20,4 +20,8 @@ Offizielles Maximum: 300 s. Interne Produktionsgrenze: 295 s. Ergebnis: bestande
 
 Die Zeitprobe misst die reale synthetische Sprachfassung und die kodierte Videodatei. Sie ist keine behauptete menschliche Live-Probe. Vor einer echten Finalteilnahme müssen die präsentierenden Personen eine eigene Probe mit Rollenverteilung, Technik und Fragen durchführen und dokumentieren.
 
-Die zusätzliche Echtzeit-Wiedergabe und ihre Messung werden nach dem Export in diesem Dokument ergänzt. Die Integritätsprüfung durch Decodierung steht in `output/presentation/verification.json`.
+## Echtzeit-Wiedergabeprobe
+
+Am 2026-11-07 wurde die vollständige MP4-Datei mit `/usr/bin/time -p ffmpeg -v error -re -i /Users/macbook_air_m1/.t3/scratch/2026-11-07-create-a-new-separate-github-162aa05c/planet-simtech-2025-TEST-K31pro-max/output/presentation/Blautopf_Finale.mp4 -f null -` in Echtzeit dekodiert. Der Befehl endete fehlerfrei. `/usr/bin/time` maß `real 289.38 s`, `user 64.65 s` und `sys 2.35 s`. Die Dateidauer beträgt 289.934 s. Die gemessene Gesamtzeit betrug 289.407 s. Die geringe Abweichung durch Start und Ende der Prozessmessung ist plausibel. Ergebnis: bestanden.
+
+Die Integritätsprüfung durch Decodierung steht zusätzlich in `output/presentation/verification.json`.

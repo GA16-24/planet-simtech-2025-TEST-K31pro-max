@@ -1,0 +1,46 @@
+{
+  "created_utc": "2026-11-07T16:17:02.343707+00:00",
+  "report": {
+    "physical_pages": 16,
+    "main_pages": 10,
+    "bibliography_and_appendix_pages": 5,
+    "main_limit": 10,
+    "back_limit": 5
+  },
+  "model_validation": {
+    "energy_balance_error_mw": 0.0,
+    "stage_split_error_mw": 0.0,
+    "heat_sink_balance_error_mw": 1.4210854715202004e-14,
+    "evaporation_balance_error_mw": 0.0,
+    "dilution_mixing_error_c": 1.7763568394002505e-15,
+    "ode_max_error_k": 8.031904030758596e-10,
+    "pool_time_constant_h": 3.019323671497585,
+    "failure_time_to_20c_h": 0.3889881396224893,
+    "staged_npv_lower_than_upfront": true,
+    "all_checks_passed": true
+  },
+  "presentation": {
+    "duration_s": 289.933594,
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "width": 1920,
+    "height": 1080,
+    "slide_count": 10,
+    "segment_count": 10,
+    "full_decode_passed": true,
+    "rendered_frames_checked": 5,
+    "live_human_delivery_verified": false,
+    "all_automated_checks_passed": true
+  },
+  "playback": {
+    "date": "2026-11-07",
+    "command": "/usr/bin/time -p ffmpeg -v error -re -i /Users/macbook_air_m1/.t3/scratch/2026-11-07-create-a-new-separate-github-162aa05c/planet-simtech-2025-TEST-K31pro-max/output/presentation/Blautopf_Finale.mp4 -f null -",
+    "duration_s": 289.933594,
+    "elapsed_s": 289.40652550011873,
+    "real_s": 289.38,
+    "user_s": 64.65,
+    "sys_s": 2.35,
+    "decode_exit_code": 0,
+    "live_human_delivery": false
+  }
+}
