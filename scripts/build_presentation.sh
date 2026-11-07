@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+export SOURCE_DATE_EPOCH="${SOURCE_DATE_EPOCH:-1794009600}"
 cd "$(dirname "$0")/.."
 .venv/bin/python model/run_all.py
 cd presentation
