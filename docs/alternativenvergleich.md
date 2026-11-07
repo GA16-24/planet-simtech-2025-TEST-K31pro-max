@@ -19,14 +19,16 @@ Alle Geldbeträge sind Szenario-Schätzungen in Euro von 2026, keine Angebote. D
 | Größe im zehnten Jahr | H1 Hybride Vollstromkühlung | H2 Geschlossene Verdunstungskühlung | H3 Kaltwasserzumischung |
 | --- | ---: | ---: | ---: |
 | Wärmeabfuhr | 877,8 MW | 877,8 MW | 877,8 MW |
-| Investition einschließlich Reserve | 719 Mio. € | 284 Mio. € | 120 Mio. € |
+| Investition einschließlich Reserve | 722 Mio. € | 285 Mio. € | 120 Mio. € |
 | Strombedarf | 74,2 MW | 13,5 MW | 12,8 MW |
 | Strom pro Jahr | 650 GWh | 118 GWh | 112 GWh |
 | Wasserbedarf pro Jahr | 0 m³ | 11,30 Mio. m³ | 1650 Mio. m³ |
-| Betriebskosten im zehnten Jahr | 137,9 Mio. € | 35,8 Mio. € | 848,8 Mio. € |
-| Barwert über 25 Jahre | 2,90 Mrd. € | 0,78 Mrd. € | 11,48 Mrd. € |
+| Betriebskosten im zehnten Jahr | 138,0 Mio. € | 35,9 Mio. € | 848,8 Mio. € |
+| Barwert über 25 Jahre | 2,938 Mrd. € | 0,792 Mrd. € | 11,480 Mrd. € |
 
 H1 verteilt die Wärmeabfuhr auf 578,8 MW direkte Trockenkühlung und 299,0 MW Kältemaschinen. Die Kondensatoren geben 358,8 MW ab. Zusammen mit Hilfsantrieben müssen die Luftkühler und Kondensatoren 952,0 MW an die Umgebung abgeben. Diese Summe entspricht der entzogenen Wärme plus sämtlicher elektrischer Antriebsleistung.
+
+Für die Luftsenke werden 2 m/s Face-Geschwindigkeit und 15 K Lufterwärmung angesetzt. Daraus folgen 26.313 m² Face-Fläche und mit 50 % Zuschlag 3,95 ha Betriebs- und Servicefläche. Rückverwirbelung, Lärm und lokale Erwärmung bleiben offen. Die Stromemissionen betragen im Referenzjahr rund 236,0 Kilotonnen CO₂ gegenüber 42,9 Kilotonnen bei H2, nach dem UBA-Faktor 363 g/kWh für 2024 [23].
 
 H2 ist die günstigste physikalisch wirksame Variante. Sie verdunstet jedoch 358 kg/s beziehungsweise 15,6 % des mittleren Quellstroms. Die fehlende Wassermenge wirkt direkt auf die Blau. Hinzu kommen Aerosol- und Legionellenrisiken, die Kontroll-, Labor-, Protokoll- und Prüfpflichten der 42. BImSchV sowie Schaum- und Sichtwirkungen an einem touristisch sichtbaren Ort. H2 bleibt als Notfall- oder Spitzenlastoption denkbar, ist aber nicht die bevorzugte Dauerlösung.
 
@@ -45,7 +47,7 @@ H3 verlangt bei 5 °C kaltem Zusatzwasser 52,3 m³/s. Das ist das 22,75-fache de
 
 H1 ist die kostengünstigste der geprüften Varianten, die ohne zusätzlichen Wasserverbrauch und ohne offenes Verdunstungssystem den Normalzustand dauerhaft halten kann. Der höhere Strom- und Kapitalaufwand ist der Preis für den Erhalt des Wasserhaushalts und die geringere hygienische und ökologische Belastung.
 
-Der Referenzentwurf hat sechs Module. Fünf Module zu je 175,6 MW decken die Last, das sechste bildet die Reserve. Jedes betriebsbereite Modul führt etwa 0,46 m³/s. Bei 1,2 m/s ergibt sich ein rechnerischer Rohrdurchmesser von 0,70 m. Ein 8280 m³ großer Misch- und Pufferspeicher entspricht einer Stunde mittleren Quellstroms. Dort wird die Rückführung so geregelt, dass die Temperaturänderung am ökologischen Kontrollpunkt 1 K/h nicht überschreitet.
+Der Referenzentwurf hat sechs Module. Fünf Module zu je 175,6 MW decken die Last, das sechste bildet die Reserve. Jedes betriebsbereite Modul führt etwa 0,46 m³/s. Bei 1,2 m/s ergibt sich ein rechnerischer Rohrdurchmesser von 0,70 m. Ein 8280 m³ großer Misch- und Pufferspeicher entspricht einer Stunde mittleren Quellstroms. Er allein garantiert keine Temperaturrampe. Die geplante Inbetriebnahme senkt den Kälteauslass mit höchstens 1 K/h. Der rechnerische Stresstest von 100 auf 9 °C dauert 91 Stunden und ist kein Wiederanlauf- oder Notfallnachweis. Ein Sensor stoppt die Rampe bei Überschreitung am Kontrollpunkt. Zwei Netzeinspeisungen und 48 Stunden Notstrom sind vorgesehen. Bei 40 % Wirkungsgrad und 9,8 kWh/L ergibt sich ein Diesel vorrat von rund 909.000 Litern.
 
 Die Trockenkühler arbeiten bei heißem Quellwasser zuerst. Kältemaschinen senken danach die Temperatur auf 9 °C. Die Leistung wird erst mit gemessener Temperatur und erfasstem Durchfluss ausgebaut. Gegenüber dem sofortigen Bau der Endstufe spart dieser Stufenplan im Modell 112 Mio. € Barwert. Die Einsparung ist keine Freigabe für verzögerten Sicherheitsbau. Jedes Modul muss vor dem prognostizierten Lastjahr betriebsbereit und getestet sein.
 
@@ -53,7 +55,7 @@ Die Trockenkühler arbeiten bei heißem Quellwasser zuerst. Kältemaschinen senk
 
 | Erfasster Anteil des mittleren Quellstroms | Kühlleistung | Strombedarf | Investition | Barwert 25 Jahre |
 | --- | ---: | ---: | ---: | ---: |
-| 100 % | 877,8 MW | 74,2 MW | 719 Mio. € | 2,90 Mrd. € |
+| 100 % | 877,8 MW | 74,2 MW | 722 Mio. € | 2,938 Mrd. € |
 | 10 % | 87,8 MW | 7,4 MW | 85 Mio. € | 0,31 Mrd. € |
 | 1 % | 8,8 MW | 0,74 MW | 12 Mio. € | 0,036 Mrd. € |
 | 0,1 % | 0,88 MW | 0,074 MW | 2,0 Mio. € | 0,0049 Mrd. € |

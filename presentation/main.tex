@@ -65,12 +65,12 @@
 
 \begin{frame}{Zwei Kontrollvolumen}
   \begin{columns}[T]
-    \column{0.65\textwidth}
-      \includegraphics[width=\textwidth,height=32mm,keepaspectratio]{../report/figures/fig06_teilstrom.png}
-    \column{0.31\textwidth}
-      \bignumber{0,0303 MW}{Speicherrechnung ohne Abfluss}
+    \column{0.63\textwidth}
+      \includegraphics[width=\textwidth,height=36mm,keepaspectratio]{../report/figures/fig06_teilstrom.png}
+    \column{0.33\textwidth}
+      \bignumber{29.000-fach}{Verhältnis von Vollstrom zu isolierter Speicherrechnung}
       \vspace{1mm}
-      {\fontsize{12}{15}\selectfont Der Unterschied entscheidet die Anlagengröße. Ein 1-\%-Teilstrom senkt die Last auf 8,8 MW.\par}
+      {\fontsize{12}{15}\selectfont Vollstrom 877,8 MW, Speicher 0,0303 MW. Ein 1-\%-Teilstrom senkt die Last auf 8,8 MW.\par}
   \end{columns}
   \slidefoot{Eigene Rechnung mit Python und Kimi K3.1 Pro, Volumenannahme 25.000 m³.}
 \end{frame}
@@ -78,7 +78,7 @@
 \begin{frame}{Sieben physikalische Wege}
   \renewcommand{\arraystretch}{1.0}
   {\fontsize{11.5}{14}\selectfont
-  \begin{tabular}{@{}p{11mm}p{91mm}p{35mm}@{}}
+  \begin{tabular}{@{}p{11mm}p{90mm}p{35mm}@{}}
     \toprule
     Weg & Entscheidender Befund & Urteil \\
     \midrule
@@ -104,13 +104,13 @@
     \node[stage] (source) {Tiefenwasser\\100 °C};
     \node[stage,right=12mm of source] (dry) {Trockenkühler\\100 auf 40 °C\\578,8 MW};
     \node[stage,right=12mm of dry] (chiller) {Kältemaschine\\40 auf 9 °C\\299,0 MW};
-    \node[stage,right=12mm of chiller] (buffer) {Puffer\\8280 m³\\höchstens 1 K/h};
+    \node[stage,right=12mm of chiller] (buffer) {Puffer\\8280 m³\\Rampe 91 h};
     \node[stage,above=15mm of dry,text width=46mm] (air) {Luft als externe Wärmesenke\\952,0 MW};
     \draw[flow] (source) -- (dry);
     \draw[flow] (dry) -- (chiller);
     \draw[flow] (chiller) -- (buffer);
-    \draw[heat] (dry.north) -- (air.south -| dry.north);
-    \draw[heat] (chiller.north) -- (air.south -| chiller.north);
+    \draw[heat] (dry.north) -- (air.south);
+    \draw[heat] (chiller.north) -- (air.south);
   \end{tikzpicture}}
   \vspace{1mm}
 
@@ -123,14 +123,14 @@
     \column{0.40\textwidth}
       \bignumber{23 min}{bis 20 °C nach vollständigem Kühlungsausfall im zehnten Jahr}
       \vspace{2mm}
-      {\fontsize{12.5}{15}\selectfont Ökologische Alarmschwelle, nicht die Siedezeit.\par}
+      {\fontsize{12.5}{15}\selectfont Interne Alarmschwelle, keine behördliche Blau-Grenze und keine Siedezeit.\par}
     \column{0.55\textwidth}
       {\fontsize{13.5}{16}\selectfont
       \begin{itemize}
         \item sechs Stränge mit N+1-Reserve in jeder Ausbaustufe
-        \item zwei Netzeinspeisungen und Notstromreserve
+        \item zwei Netzeinspeisungen und 48 Stunden Notstromreserve
         \item unabhängige Temperatur- und Druckmessung
-        \item Mischpuffer für höchstens 1 K/h am Rücklauf
+        \item Sollwert rampe am Kälteauslass, 91-h-Stresstest
       \end{itemize}\par}
   \end{columns}
   \slidefoot{Beckenvolumen 25.000 m³ als Rechenannahme, Zeitkonstante 3,02 h.}
@@ -141,41 +141,39 @@
     \column{0.62\textwidth}
       \includegraphics[width=\textwidth,height=44mm,keepaspectratio]{../report/figures/fig03_kostenpfad.png}
     \column{0.34\textwidth}
+      \compactnumber{722 Mio. €}{Investition mit Reserve}
       \vspace{1mm}
-      \compactnumber{719 Mio. €}{Investition einschließlich Reserve}
-      \vspace{2mm}
-      \compactnumber{2,90 Mrd. €}{Barwertkosten über 25 Jahre}
-      \vspace{2mm}
-      {\fontsize{12}{15}\selectfont Verdunstung kostet 0,78 Mrd. €, verbraucht aber 15,6 \% des Quellstroms.\par}
+      \compactnumber{2,94 Mrd. €}{Barwert über 25 Jahre}
+      \vspace{1mm}
+      {\fontsize{12}{15}\selectfont Verdunstung: 0,79 Mrd. €, 11,3 Mio. m³/a Wasser. H1: 193,0 kt CO$_2$/a mehr Stromemissionen [23].\par}
   \end{columns}
   \slidefoot{Szenario-Schätzungen in Euro von 2026, keine Angebote [13,16,18,19].}
 \end{frame}
 
 \begin{frame}{Die Hülle begrenzt das Versprechen}
   \begin{columns}[T]
-    \column{0.63\textwidth}
-      \includegraphics[width=\textwidth,height=44mm,keepaspectratio]{../report/figures/fig04_sensitivitaet.png}
-    \column{0.33\textwidth}
+    \column{0.64\textwidth}
+      \includegraphics[width=\textwidth,height=32mm,keepaspectratio]{../report/figures/fig04_sensitivitaet.png}
+    \column{0.32\textwidth}
+      \compactnumber{12,48 GW}{Hochwasser-Stresstest bei 32,7 m³/s}
       \vspace{1mm}
-      \bignumber{12,48 GW}{Hochwasser-Stresstest bei 32,7 m³/s}
-      \vspace{2mm}
-      {\fontsize{12.5}{15}\selectfont Dieser Fall ist nicht abgedeckt. Auch weiter steigende Temperaturen erfordern einen neuen Entwurf.\par}
+      {\fontsize{11.5}{14}\selectfont Nicht abgedeckt. Mehr Wärme erfordert einen neuen Entwurf.\par}
   \end{columns}
-  \slidefoot{Abflussvarianten [2,3]. Der Referenzfall umfasst höchstens 2,3 m³/s betroffenen Strom.}
+  \slidefoot{Varianten [2,3]. Referenz: höchstens 2,3 m³/s betroffener Strom.}
 \end{frame}
 
 \begin{frame}{Messung und Kühlentscheidung}
   \renewcommand{\arraystretch}{1.0}
   {\fontsize{12}{14.5}\selectfont
-  \begin{tabular}{@{}p{70mm}p{72mm}@{}}
+  \begin{tabular}{@{}p{70mm}p{69mm}@{}}
     \toprule
     Messung & Konsequenz \\
     \midrule
     Temperatur und Druck in beiden Karstästen & Ort und Verlauf der Anomalie \\
     Durchfluss und Tracer & betroffener Anteil des Quellstroms \\
     verteilte Temperatursonden & Tiefenprofile statt Oberflächenbild \\
-    abgestufte Kühlversuche & gemessene statt angenommene Leistung \\
-    Wärme- und Stromzähler am Luftkühler & kein Wärmerückfluss ins Gewässer \\
+    Kühlversuche & gemessene statt angenommene Leistung \\
+    Energiezähler an der Luftseite & kein Wärmerückfluss ins Gewässer \\
     \bottomrule
   \end{tabular}\par}
   \slidefoot{Nur ein nachweisbar kleiner Teilstrom rechtfertigt eine kleine Anlage. Messprogramm [3,11,12].}

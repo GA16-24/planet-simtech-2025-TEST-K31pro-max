@@ -44,15 +44,15 @@ Beleg: `output/model/sensitivity.csv` und `hybrid_schedule.csv`.
 
 ### 7. Warum nicht die deutlich günstigere Verdunstungskühlung?
 
-H2 kostet im Modell 0,78 statt 2,90 Mrd. € Barwert, verbraucht aber 11,3 Mio. m³ Wasser pro Jahr. Das sind 15,6 % des mittleren Quellstroms. Hinzu kommen Aerosol- und Legionellenmanagement nach der 42. BImSchV. H1 kauft mit höheren Kosten den Erhalt des Wasserhaushalts und weniger hygienische und ökologische Risiken.
+H2 kostet im Modell 0,792 statt 2,938 Mrd. € Barwert, verbraucht aber 11,3 Mio. m³ Wasser pro Jahr. Das sind 15,6 % des mittleren Quellstroms. Hinzu kommen Aerosol- und Legionellenmanagement nach der 42. BImSchV. H1 kauft mit höheren Kosten den Erhalt des Wasserhaushalts und weniger hygienische und ökologische Risiken. Die Stromemissionen von H1 sind um 193,0 Kilotonnen pro Jahr höher [23].
 
 Beleg: `docs/alternativenvergleich.md`, `fig03_kostenpfad`, Folie 7. Entscheidung: Der höhere Preis wird bewusst akzeptiert, H2 bleibt als mögliche Notfalloption dokumentiert.
 
 ### 8. Ist 9 °C Rücklauf nicht selbst ein Kälteschock?
 
-Der Normalzustand liegt bei etwa 9 °C. Der Rücklauf wird über einen 8280-m³-Puffer und einen Diffusor so gemischt, dass der ökologische Kontrollpunkt höchstens 1 K/h ändert. LAWA behandelt schnelle Abkühlung als mögliche Belastung. Die konkrete Gewässertyp- und Artenschutzprüfung bleibt behördliche Restaufgabe.
+Der Normalzustand liegt bei etwa 9 °C. Bei geplanter Inbetriebnahme senkt die Regelung den Auslass der Kältemaschinen vom gemessenen Ausgangswert mit höchstens 1 K/h. Der volle betroffene Strom bleibt dabei erfasst. Für den rechnerischen Stresstest von 100 auf 9 °C dauert die Sollwert rampe 91 Stunden. Unabhängige Sensoren stoppen die Rampe, wenn die gemessene Änderung am ökologischen Kontrollpunkt den Grenzwert überschreitet. Der 8280-m³-Puffer allein und ein linear geöffnetes Zulaufventil wären dafür kein Nachweis. Die Rampe wird vor kritischen Temperaturen eingefahren und ist kein Wiederanlauf- oder Notfallnachweis. LAWA behandelt schnelle Abkühlung als mögliche Belastung. Die konkrete Gewässertyp- und Artenschutzprüfung bleibt behördliche Restaufgabe.
 
-Beleg: LAWA [10], `return_buffer_m3` und `ecology.maximum_return_rate_k_h`. Revision: Puffer und Ratenkriterium ergänzt.
+Beleg: LAWA [10], `return_ramp_hours` und `return_ramp_max_rate_k_h`. Revision: Die Sollwert rampe am Kälteauslass ersetzt die physikalisch unzureichende Ventil rampe. Ein eigener Wiederanlaufplan bleibt erforderlich.
 
 ### 9. Deckt N+1 nur das letzte Jahr ab?
 
@@ -62,9 +62,9 @@ Beleg: `reserve_fraction` in `data/parameters.yml`, Folie 6. Revision: Formulier
 
 ### 10. Was passiert bei einem Stromausfall?
 
-Zwei unabhängige Netzeinspeisungen und eine Notstromreserve sind Teil des Entwurfs. Nach einem vollständigen Kühlungsausfall erreicht das angenommene Becken im zehnten Jahr in etwa 23 Minuten 20 °C. Diese Schwelle ist ökologisch, nicht der Siedepunkt. Die Notfallplanung muss diesen Zeitraum für Alarm und Lastzuschaltung nutzen.
+Zwei unabhängige Netzeinspeisungen und 48 Stunden Notstromreserve sind Teil des Entwurfs. Nach einem vollständigen Kühlungsausfall erreicht das angenommene Becken im zehnten Jahr in etwa 23 Minuten 20 °C. Diese Schwelle ist intern und ökologisch motiviert, keine behördliche Blau-Grenze und nicht der Siedepunkt. Die Notfallplanung muss diesen Zeitraum für Alarm und Lastzuschaltung nutzen.
 
-Beleg: `validation.failure_time_to_20c_h`, Folie 6. Revision: Die Folie unterscheidet ausdrücklich ökologische Alarmzeit und Siedezeit.
+Beleg: `validation.failure_time_to_20c_h`, `backup_duration_hours`, Folie 6. Revision: Interne Alarmschwelle und Notstromdauer präzisiert.
 
 ### 11. Wie wird sichergestellt, dass wirklich der gesamte betroffene Strom erfasst wird?
 
@@ -92,7 +92,7 @@ Dauerhaft bedeutet unbegrenzter Betrieb mit Wartung innerhalb der erklärten Hü
 
 Beleg: `scenario.premise`, `docs/alternativenvergleich.md`.
 
-### 15. Sind 719 Mio. € nicht völlig unbelegt?
+### 15. Sind 722 Mio. € nicht völlig unbelegt?
 
 Der Wert ist eine Szenario-Schätzung, kein Angebot. Ein Händlerpreis für Plattenwärmetauscher und Literatur zu Kältemaschinen dienen nur als Anker. Trockenkühler, Tiefbau, Notstrom und Zuschläge sind ausdrücklich eigene Annahmen. Monte-Carlo-Läufe variieren COP und Investitionskosten. Die Entscheidung zwischen H1 und H2 wird zusätzlich anhand physischer Größen geführt, damit sie nicht nur auf unsicheren Eurobeträgen beruht.
 
@@ -112,13 +112,13 @@ Beleg: WHG [14], Stadt Blaubeuren [15]. Diese Einschränkung ist eine menschlich
 
 ### 18. Warum soll eine synthetische Präsentation finaltauglich sein?
 
-Das Paket enthält echte Folien, ein echtes Video, gemessene Audiodauer und dokumentierte Fragen. Es behauptet keine menschliche Live-Darbietung. Vor dem Finale müssen die Teilnehmenden Rechte, Vertonung, Rollen und ihre eigene Live-Probe freigeben. Die synthetische Fassung ist eine fertige animierte Alternative, kein Ersatznachweis für menschliche Proben.
+Das Paket enthält echte Folien, ein echtes Video, gemessene Audiodauer und dokumentierte Fragen. Es behauptet keine menschliche Live-Darbietung. Vor dem Finale müssen die Teilnehmenden Rechte, Vertonung, Rollen und ihre eigene Live-Probe freigeben. Der synthetische Slidecast ist eine fertige Alternative, kein Ersatznachweis für menschliche Proben.
 
 Beleg: `presentation/timings.json`, `presentation/rehearsal.md`, `output/presentation/verification.json`.
 
 ### 19. Entspricht das Layout nicht D4RT nur oberflächlich?
 
-Der Vergleich betrifft gezielt messbare Gestaltungsmerkmale: Zweispaltigkeit, Times-Hierarchie, Tabellenlinien, Bildunterschriften und numerische Verweise. Abweichende Vorgaben bleiben übergeordnet. Der Bericht verwendet A4, 25 mm Rand und 12 pt statt D4RTs Letterformat und kleineren Schriftgraden.
+Der Vergleich betrifft gezielt messbare Gestaltungsmerkmale: Zweispaltigkeit, Times-Hierarchie, Tabellenlinien, Bildunterschriften und numerische Verweise. Abweichende Vorgaben bleiben übergeordnet. Der Bericht verwendet A4, mindestens 25 mm Rand und 12 pt statt D4RTs Letterformat und kleineren Schriftgraden.
 
 Beleg: `compliance/layout_referenz.md`, gerenderter Bericht.
 

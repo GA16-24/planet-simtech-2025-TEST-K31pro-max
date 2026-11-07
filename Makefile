@@ -15,6 +15,7 @@ presentation:
 verify: test
 	.venv/bin/python scripts/verify_report.py
 	.venv/bin/python scripts/verify_presentation.py
+	.venv/bin/python scripts/verification_summary.py
 	.venv/bin/python scripts/verify_repository.py
 
 review-package:

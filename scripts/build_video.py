@@ -78,7 +78,7 @@ def main() -> None:
         segment = BUILD / f"segment_{index:02d}.mp4"
         run([
             "ffmpeg", "-y", "-v", "error", "-loop", "1", "-i", str(image), "-i", str(processed_audio),
-            "-vf", "scale=1920:1080,format=yuv420p", "-r", "30",
+            "-vf", "scale=1920:1080:force_original_aspect_ratio=decrease,pad=1920:1080:(ow-iw)/2:(oh-ih)/2:white,setsar=1,format=yuv420p", "-r", "30",
             "-af", "apad=pad_dur=0.35", "-t", f"{segment_duration:.6f}",
             "-c:v", "libx264", "-preset", "medium", "-crf", "18",
             "-c:a", "aac", "-b:a", "160k", "-ar", "48000",

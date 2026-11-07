@@ -26,25 +26,25 @@
   {
     "slide": 5,
     "title": "Die zweistufige Kühlung",
-    "narration": "Unsere Anlage nutzt die hohe Temperatur zuerst ohne Kältemaschine. Trockenkühler senken das Wasser von 100 auf 40 Grad und führen 579 Megawatt an die Luft ab. Danach kühlen Kältemaschinen auf 9 Grad und übernehmen 299 Megawatt. Ihre Kondensatoren geben zusätzlich die Antriebsenergie ab. Mit Ventilatoren und Pumpen muss die Luft 952 Megawatt aufnehmen. Sechs getrennte Module sind geplant. Fünf arbeiten, das sechste ist Reserve. Ein Puffer von 8280 Kubikmetern begrenzt die Rücklaufänderung auf ein Kelvin pro Stunde.",
+    "narration": "Unsere Anlage nutzt die hohe Temperatur zuerst ohne Kältemaschine. Trockenkühler senken das Wasser von 100 auf 40 Grad und führen 579 Megawatt an die Luft ab. Danach kühlen Kältemaschinen auf 9 Grad und übernehmen 299 Megawatt. Ihre Kondensatoren geben zusätzlich die Antriebsenergie ab. Mit Ventilatoren und Pumpen muss die Luft 952 Megawatt aufnehmen. Sechs getrennte Stränge sind in jeder Ausbaustufe geplant, fünf arbeiten, einer ist Reserve. Bei der geplanten Inbetriebnahme senkt die Regelung den Kälteauslass mit höchstens einem Kelvin pro Stunde. Der Stresstest von 100 auf 9 Grad dauert deshalb 91 Stunden. Ein Puffer allein wäre dafür kein Nachweis. Nach einem Ausfall ist eine eigene sichere Wiederanlaufplanung erforderlich.",
     "sources": ["OpenStax Kondensatorbilanz [8]", "LAWA [10]", "output/model/results.json"]
   },
   {
     "slide": 6,
     "title": "Bei Ausfall zählen Minuten",
-    "narration": "Ein Ausfall ist kein ferner Zufall. Im zehnten Jahr erreicht das ungekühlte Becken unserem Modell nach etwa 23 Minuten die ökologische Alarmschwelle von 20 Grad. Bis zum Sieden bleibt mehr Zeit, aber das Ökosystem hat nicht so viel Zeit. Deshalb gehören ein freies Modul, zwei Netzeinspeisungen und Notstrom zum Entwurf. Unabhängige Sensoren messen Temperatur und Druck. Die Anlage gilt nur dann als erfolgreich, wenn auch Tiefe und Fluss kalt bleiben, nicht nur die sichtbare Oberfläche.",
+    "narration": "Ein Ausfall ist kein ferner Zufall. Im zehnten Jahr erreicht das ungekühlte Becken nach unserem Modell in etwa 23 Minuten die interne Alarmschwelle von 20 Grad. Diese Schwelle ist keine behördliche Blau-Grenze und keine Siedezeit. Deshalb gehören ein freier Strang, zwei Netzeinspeisungen und 48 Stunden Notstrom zum Entwurf. Unabhängige Sensoren messen Temperatur und Druck. Die Anlage gilt nur dann als erfolgreich, wenn auch Tiefe und Fluss kalt bleiben, nicht nur die sichtbare Oberfläche.",
     "sources": ["Validierung failure_time_to_20c_h", "LAWA [10]", "OGewV [9]"]
   },
   {
     "slide": 7,
     "title": "Der Preis des trockenen Weges",
-    "narration": "Die trockene Lösung ist bewusst nicht die billigste. Wir schätzen 719 Millionen Euro Investition und 138 Millionen Euro jährlichen Betrieb im zehnten Jahr. Über 25 Jahre ergibt sich ein Barwert von 2,90 Milliarden Euro. Verdunstung käme mit 0,78 Milliarden aus. Diese Differenz kauft den Erhalt des Wasserhaushalts und vermeidet das offene Aerosolsystem am Blautopf. Alle Kosten sind Szenarien in Euro von 2026, keine Angebote. Ein belegter kleiner Teilstrom würde die Kosten drastisch senken.",
+    "narration": "Die trockene Lösung ist bewusst nicht die billigste. Wir schätzen 722 Millionen Euro Investition und 138 Millionen Euro jährlichen Betrieb im zehnten Jahr. Über 25 Jahre ergibt sich ein Barwert von 2,94 Milliarden Euro. Verdunstung käme mit 0,79 Milliarden aus. Diese Differenz kauft den Erhalt des Wasserhaushalts und vermeidet das offene Aerosolsystem am Blautopf. Der Emissionsunterschied beträgt 193 Kilotonnen CO2 pro Jahr. Alle Kosten sind Szenarien in Euro von 2026, keine Angebote. Ein belegter kleiner Teilstrom würde die Kosten drastisch senken.",
     "sources": ["BDEW [16]", "Kostenannahmen in data/parameters.yml", "42. BImSchV [13]"]
   },
   {
     "slide": 8,
     "title": "Die Hülle begrenzt das Versprechen",
-    "narration": "Dauerhaft heißt bei uns nicht grenzenlos. Unsere Auslegung gilt bis 100 Grad am tiefen Zufluss und bis 2,3 Kubikmeter pro Sekunde betroffenem Strom. Der gemessene Hochwasserwert liegt bei 32,7 Kubikmetern. Wenn die Anomalie diesen gesamten Strom erfasst, wären 12,48 Gigawatt nötig. Das kann unsere Referenzanlage nicht. Auch eine Erwärmung nach dem zehnten Jahr erfordert Nachrüstung. Diese Grenzen offen zu nennen ist Teil der Lösung, kein Fußnotenfehler.",
+    "narration": "Dauerhaft heißt bei uns nicht grenzenlos. Unsere Auslegung gilt bis 100 Grad am tiefen Zufluss und bis 2,3 Kubikmeter pro Sekunde betroffenem Strom. Der gemessene Hochwasserwert liegt bei 32,7 Kubikmetern pro Sekunde. Wenn die Anomalie diesen gesamten Strom erfasst, wären 12,48 Gigawatt nötig. Das kann unsere Referenzanlage nicht. Auch ein Temperaturanstieg nach dem zehnten Jahr erfordert Nachrüstung. Diese Grenzen offen zu nennen ist Teil der Lösung, kein Fußnotenfehler.",
     "sources": ["LGRB [3]", "Fan et al. [2]", "Sensitivitätsrechnung"]
   },
   {

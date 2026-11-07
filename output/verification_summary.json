@@ -1,5 +1,5 @@
 {
-  "created_utc": "2026-11-07T16:17:02.343707+00:00",
+  "created_utc": "2026-11-07T18:44:23.743040+00:00",
   "report": {
     "physical_pages": 16,
     "main_pages": 10,
@@ -8,6 +8,10 @@
     "back_limit": 5
   },
   "model_validation": {
+    "replacement_error_eur": 0.0,
+    "return_ramp_hours": 91.0,
+    "return_ramp_max_rate_k_h": 1.0000000000001066,
+    "backup_fuel_liters": 908657.1869030808,
     "energy_balance_error_mw": 0.0,
     "stage_split_error_mw": 0.0,
     "heat_sink_balance_error_mw": 1.4210854715202004e-14,
@@ -17,10 +21,11 @@
     "pool_time_constant_h": 3.019323671497585,
     "failure_time_to_20c_h": 0.3889881396224893,
     "staged_npv_lower_than_upfront": true,
-    "all_checks_passed": true
+    "all_checks_passed": true,
+    "coupled_npv_error_eur": 0.0
   },
   "presentation": {
-    "duration_s": 289.933594,
+    "duration_s": 290.131706,
     "video_codec": "h264",
     "audio_codec": "aac",
     "width": 1920,
@@ -35,11 +40,11 @@
   "playback": {
     "date": "2026-11-07",
     "command": "/usr/bin/time -p ffmpeg -v error -re -i /Users/macbook_air_m1/.t3/scratch/2026-11-07-create-a-new-separate-github-162aa05c/planet-simtech-2025-TEST-K31pro-max/output/presentation/Blautopf_Finale.mp4 -f null -",
-    "duration_s": 289.933594,
-    "elapsed_s": 289.40652550011873,
-    "real_s": 289.38,
-    "user_s": 64.65,
-    "sys_s": 2.35,
+    "duration_s": 290.131706,
+    "elapsed_s": 289.5840782080777,
+    "real_s": 289.58,
+    "user_s": 62.14,
+    "sys_s": 2.23,
     "decode_exit_code": 0,
     "live_human_delivery": false
   }

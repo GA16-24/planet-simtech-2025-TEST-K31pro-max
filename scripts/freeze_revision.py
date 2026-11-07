@@ -19,12 +19,18 @@ def main() -> None:
         raise SystemExit(f"Einfrieren verlangt einen sauberen Commit:\n{status}")
     subprocess.run(["make", "verify"], cwd=ROOT, check=True)
     commit = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT, check=True, capture_output=True, text=True).stdout.strip()
-    tracked = subprocess.run(["git", "ls-files"], cwd=ROOT, check=True, capture_output=True, text=True).stdout.splitlines()
+    tracked_raw = subprocess.run(["git", "ls-files", "-z"], cwd=ROOT, check=True, capture_output=True).stdout
+    tracked = [part.decode("utf-8") for part in tracked_raw.split(b"\0") if part]
+    tree_raw = subprocess.run(["git", "ls-tree", "-r", "-z", "--name-only", commit], cwd=ROOT, check=True, capture_output=True).stdout
+    tree_files = {part.decode("utf-8") for part in tree_raw.split(b"\0") if part}
+    if set(tracked) != tree_files:
+        raise SystemExit(f"Dateimenge oder Pfade stimmen nicht mit dem Commit überein: {len(tracked)} gegen {len(tree_files)}")
     hashes = {}
     for relative in tracked:
         path = ROOT / relative
-        if path.is_file():
-            hashes[relative] = hashlib.sha256(path.read_bytes()).hexdigest()
+        if not path.is_file():
+            raise SystemExit(f"Versionierte Datei fehlt: {relative}")
+        hashes[relative] = hashlib.sha256(path.read_bytes()).hexdigest()
     destination = ROOT / "review" / "rounds" / round_name
     destination.mkdir(parents=True, exist_ok=True)
     revision = {

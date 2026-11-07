@@ -36,6 +36,7 @@ hydrology:
 ecology:
   maximum_return_rate_k_h: 1.0
   return_buffer_hours: 1.0
+  ramp_stress_start_c: 100.0
   design_temperature_c: 9.0
   note: "Der Normzustand ist strenger als ein reines Siedeverbot. Die konkrete OGewV-Typzuordnung der Blau bleibt behördlich zu bestätigen."
 
@@ -60,6 +61,24 @@ plant:
   heat_recovery_hours: 4000.0
   heat_value_eur_mwh: 60.0
   gravity_m_s2: 9.81
+  availability: 1.0
+  grid_feeds: 2
+  backup_duration_hours: 48.0
+  backup_thermal_efficiency: 0.40
+  diesel_energy_kwh_l: 9.8
+  diesel_price_eur_l: 1.50
+  intake_design_pressure_bar: 3.5
+
+air:
+  density_kg_m3: 1.2
+  specific_heat_j_kgk: 1005.0
+  face_velocity_m_s: 2.0
+  temperature_rise_k: 15.0
+  service_area_factor: 1.5
+
+emissions:
+  carbon_intensity_tco2_mwh: 0.363
+  source: "Umweltbundesamt, Strommix 2024, 363 g CO2/kWh, 09.04.2025"
 
 cost:
   price_year: 2026

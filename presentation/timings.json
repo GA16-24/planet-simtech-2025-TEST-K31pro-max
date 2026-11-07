@@ -1,14 +1,14 @@
 {
   "video": "output/presentation/Blautopf_Finale.mp4",
-  "duration_s": 289.933594,
+  "duration_s": 290.131706,
   "maximum_allowed_s": 300.0,
   "internal_limit_s": 295.0,
   "slides": [
     {
       "slide": 1,
       "title": "Die 878-Megawatt-Aufgabe",
-      "audio_duration_s": 18.155,
-      "segment_duration_s": 18.505000000000003,
+      "audio_duration_s": 17.045917,
+      "segment_duration_s": 17.395917,
       "narration": "Der Blautopf soll in zehn Jahren kochen. Diese Zahl und die vulkanische Ursache sind die Prämissen unseres Szenarios, keine neuen Messungen von uns. Unsere Antwort beginnt mit einer unbequemen Energiebilanz. Wer das Becken dauerhaft kalt halten will, muss im Extremfall 878 Megawatt abführen.",
       "sources": [
         "Aufgabenprämisse",
@@ -17,13 +17,13 @@
       "image": "tmp/presentation_pages/slide-01.png",
       "audio": "presentation/audio/slide_01.wav",
       "start_s": 0.0,
-      "end_s": 18.505000000000003
+      "end_s": 17.395917
     },
     {
       "slide": 2,
       "title": "Ein Kelvin entscheidet",
-      "audio_duration_s": 30.303417,
-      "segment_duration_s": 30.653417,
+      "audio_duration_s": 28.453167,
+      "segment_duration_s": 28.803167000000002,
       "narration": "Im Mittel fließen jede Sekunde 2,3 Kubikmeter Wasser durch den Blautopf. Jedes Kilogramm speichert etwa 4,2 Kilojoule pro Kelvin. Deshalb transportiert der Strom 9,646 Megawatt pro Kelvin. Zwischen dem kalten Normalzustand und dem Sieden liegen hier 91 Kelvin. Multipliziert ergibt das 877,8 Megawatt. Das ist der zentrale Unterschied zwischen einer kleinen Kühlung am Beckenrand und einer Anlage, die den ganzen Quellstrom behandelt.",
       "sources": [
         "Fan et al. [2]",
@@ -32,14 +32,14 @@
       ],
       "image": "tmp/presentation_pages/slide-02.png",
       "audio": "presentation/audio/slide_02.wav",
-      "start_s": 18.505000000000003,
-      "end_s": 49.158417
+      "start_s": 17.395917,
+      "end_s": 46.199084
     },
     {
       "slide": 3,
       "title": "Zwei Kontrollvolumen",
-      "audio_duration_s": 29.816667,
-      "segment_duration_s": 30.166667,
+      "audio_duration_s": 27.995417,
+      "segment_duration_s": 28.345417,
       "narration": "Man kann die Aufgabe mit 30 Kilowatt beantworten, wenn man nur das Beckenvolumen in zehn Jahren aufheizt und den Abfluss vergisst. Unsere Speicherrechnung zeigt genau diese 0,0303 Megawatt. Aber der Blautopf ist keine verschlossene Thermoskanne. Wenn der gesamte Zufluss warm wird, muss die gleiche Wärmemenge wieder aus dem Strom heraus. Erhitzt die Anomalie dagegen nur ein Prozent des Flusses, genügen 8,8 Megawatt. Die Messtechnik entscheidet also zuerst, welches Kontrollvolumen stimmt.",
       "sources": [
         "Eigene Speicher- und Teilstromrechnung",
@@ -47,14 +47,14 @@
       ],
       "image": "tmp/presentation_pages/slide-03.png",
       "audio": "presentation/audio/slide_03.wav",
-      "start_s": 49.158417,
-      "end_s": 79.325084
+      "start_s": 46.199084,
+      "end_s": 74.544501
     },
     {
       "slide": 4,
       "title": "Sieben physikalische Wege",
-      "audio_duration_s": 28.623708,
-      "segment_duration_s": 28.973708000000002,
+      "audio_duration_s": 26.876125,
+      "segment_duration_s": 27.226125,
       "narration": "Wir haben sieben Wege mit derselben Last verglichen. Druck verschiebt nur das Sieden und schützt die Organismen nicht. Ein Bypass lässt das Becken weiter heiß werden. Passive Kühlflächen scheitern an Fläche und Sommerluft. Kaltwasserzumischung braucht mehr als das Zwanzigfache des natürlichen Abflusses. Verdunstung ist billig, entzieht der Blau aber elf Millionen Kubikmeter im Jahr. Ein Karsteingriff wäre ursächlich, kennt jedoch die Fließwege nicht sicher genug. Deshalb bleibt die trockene Hybridkühlung.",
       "sources": [
         "Alternativenvergleich",
@@ -63,15 +63,15 @@
       ],
       "image": "tmp/presentation_pages/slide-04.png",
       "audio": "presentation/audio/slide_04.wav",
-      "start_s": 79.325084,
-      "end_s": 108.298792
+      "start_s": 74.544501,
+      "end_s": 101.770626
     },
     {
       "slide": 5,
       "title": "Die zweistufige Kühlung",
-      "audio_duration_s": 36.646417,
-      "segment_duration_s": 36.996417,
-      "narration": "Unsere Anlage nutzt die hohe Temperatur zuerst ohne Kältemaschine. Trockenkühler senken das Wasser von 100 auf 40 Grad und führen 579 Megawatt an die Luft ab. Danach kühlen Kältemaschinen auf 9 Grad und übernehmen 299 Megawatt. Ihre Kondensatoren geben zusätzlich die Antriebsenergie ab. Mit Ventilatoren und Pumpen muss die Luft 952 Megawatt aufnehmen. Sechs getrennte Module sind geplant. Fünf arbeiten, das sechste ist Reserve. Ein Puffer von 8280 Kubikmetern begrenzt die Rücklaufänderung auf ein Kelvin pro Stunde.",
+      "audio_duration_s": 44.941708,
+      "segment_duration_s": 45.291708,
+      "narration": "Unsere Anlage nutzt die hohe Temperatur zuerst ohne Kältemaschine. Trockenkühler senken das Wasser von 100 auf 40 Grad und führen 579 Megawatt an die Luft ab. Danach kühlen Kältemaschinen auf 9 Grad und übernehmen 299 Megawatt. Ihre Kondensatoren geben zusätzlich die Antriebsenergie ab. Mit Ventilatoren und Pumpen muss die Luft 952 Megawatt aufnehmen. Sechs getrennte Stränge sind in jeder Ausbaustufe geplant, fünf arbeiten, einer ist Reserve. Bei der geplanten Inbetriebnahme senkt die Regelung den Kälteauslass mit höchstens einem Kelvin pro Stunde. Der Stresstest von 100 auf 9 Grad dauert deshalb 91 Stunden. Ein Puffer allein wäre dafür kein Nachweis. Nach einem Ausfall ist eine eigene sichere Wiederanlaufplanung erforderlich.",
       "sources": [
         "OpenStax Kondensatorbilanz [8]",
         "LAWA [10]",
@@ -79,15 +79,15 @@
       ],
       "image": "tmp/presentation_pages/slide-05.png",
       "audio": "presentation/audio/slide_05.wav",
-      "start_s": 108.298792,
-      "end_s": 145.295209
+      "start_s": 101.770626,
+      "end_s": 147.062334
     },
     {
       "slide": 6,
       "title": "Bei Ausfall zählen Minuten",
-      "audio_duration_s": 29.90175,
-      "segment_duration_s": 30.25175,
-      "narration": "Ein Ausfall ist kein ferner Zufall. Im zehnten Jahr erreicht das ungekühlte Becken unserem Modell nach etwa 23 Minuten die ökologische Alarmschwelle von 20 Grad. Bis zum Sieden bleibt mehr Zeit, aber das Ökosystem hat nicht so viel Zeit. Deshalb gehören ein freies Modul, zwei Netzeinspeisungen und Notstrom zum Entwurf. Unabhängige Sensoren messen Temperatur und Druck. Die Anlage gilt nur dann als erfolgreich, wenn auch Tiefe und Fluss kalt bleiben, nicht nur die sichtbare Oberfläche.",
+      "audio_duration_s": 28.388208,
+      "segment_duration_s": 28.738208,
+      "narration": "Ein Ausfall ist kein ferner Zufall. Im zehnten Jahr erreicht das ungekühlte Becken nach unserem Modell in etwa 23 Minuten die interne Alarmschwelle von 20 Grad. Diese Schwelle ist keine behördliche Blau-Grenze und keine Siedezeit. Deshalb gehören ein freier Strang, zwei Netzeinspeisungen und 48 Stunden Notstrom zum Entwurf. Unabhängige Sensoren messen Temperatur und Druck. Die Anlage gilt nur dann als erfolgreich, wenn auch Tiefe und Fluss kalt bleiben, nicht nur die sichtbare Oberfläche.",
       "sources": [
         "Validierung failure_time_to_20c_h",
         "LAWA [10]",
@@ -95,15 +95,15 @@
       ],
       "image": "tmp/presentation_pages/slide-06.png",
       "audio": "presentation/audio/slide_06.wav",
-      "start_s": 145.295209,
-      "end_s": 175.54695900000002
+      "start_s": 147.062334,
+      "end_s": 175.800542
     },
     {
       "slide": 7,
       "title": "Der Preis des trockenen Weges",
-      "audio_duration_s": 34.962667,
-      "segment_duration_s": 35.312667000000005,
-      "narration": "Die trockene Lösung ist bewusst nicht die billigste. Wir schätzen 719 Millionen Euro Investition und 138 Millionen Euro jährlichen Betrieb im zehnten Jahr. Über 25 Jahre ergibt sich ein Barwert von 2,90 Milliarden Euro. Verdunstung käme mit 0,78 Milliarden aus. Diese Differenz kauft den Erhalt des Wasserhaushalts und vermeidet das offene Aerosolsystem am Blautopf. Alle Kosten sind Szenarien in Euro von 2026, keine Angebote. Ein belegter kleiner Teilstrom würde die Kosten drastisch senken.",
+      "audio_duration_s": 38.468125,
+      "segment_duration_s": 38.818125,
+      "narration": "Die trockene Lösung ist bewusst nicht die billigste. Wir schätzen 722 Millionen Euro Investition und 138 Millionen Euro jährlichen Betrieb im zehnten Jahr. Über 25 Jahre ergibt sich ein Barwert von 2,94 Milliarden Euro. Verdunstung käme mit 0,79 Milliarden aus. Diese Differenz kauft den Erhalt des Wasserhaushalts und vermeidet das offene Aerosolsystem am Blautopf. Der Emissionsunterschied beträgt 193 Kilotonnen CO2 pro Jahr. Alle Kosten sind Szenarien in Euro von 2026, keine Angebote. Ein belegter kleiner Teilstrom würde die Kosten drastisch senken.",
       "sources": [
         "BDEW [16]",
         "Kostenannahmen in data/parameters.yml",
@@ -111,15 +111,15 @@
       ],
       "image": "tmp/presentation_pages/slide-07.png",
       "audio": "presentation/audio/slide_07.wav",
-      "start_s": 175.54695900000002,
-      "end_s": 210.85962600000002
+      "start_s": 175.800542,
+      "end_s": 214.61866700000002
     },
     {
       "slide": 8,
       "title": "Die Hülle begrenzt das Versprechen",
-      "audio_duration_s": 29.631917,
-      "segment_duration_s": 29.981917000000003,
-      "narration": "Dauerhaft heißt bei uns nicht grenzenlos. Unsere Auslegung gilt bis 100 Grad am tiefen Zufluss und bis 2,3 Kubikmeter pro Sekunde betroffenem Strom. Der gemessene Hochwasserwert liegt bei 32,7 Kubikmetern. Wenn die Anomalie diesen gesamten Strom erfasst, wären 12,48 Gigawatt nötig. Das kann unsere Referenzanlage nicht. Auch eine Erwärmung nach dem zehnten Jahr erfordert Nachrüstung. Diese Grenzen offen zu nennen ist Teil der Lösung, kein Fußnotenfehler.",
+      "audio_duration_s": 29.05275,
+      "segment_duration_s": 29.40275,
+      "narration": "Dauerhaft heißt bei uns nicht grenzenlos. Unsere Auslegung gilt bis 100 Grad am tiefen Zufluss und bis 2,3 Kubikmeter pro Sekunde betroffenem Strom. Der gemessene Hochwasserwert liegt bei 32,7 Kubikmetern pro Sekunde. Wenn die Anomalie diesen gesamten Strom erfasst, wären 12,48 Gigawatt nötig. Das kann unsere Referenzanlage nicht. Auch ein Temperaturanstieg nach dem zehnten Jahr erfordert Nachrüstung. Diese Grenzen offen zu nennen ist Teil der Lösung, kein Fußnotenfehler.",
       "sources": [
         "LGRB [3]",
         "Fan et al. [2]",
@@ -127,14 +127,14 @@
       ],
       "image": "tmp/presentation_pages/slide-08.png",
       "audio": "presentation/audio/slide_08.wav",
-      "start_s": 210.85962600000002,
-      "end_s": 240.84154300000003
+      "start_s": 214.61866700000002,
+      "end_s": 244.021417
     },
     {
       "slide": 9,
       "title": "Messung und Kühlentscheidung",
-      "audio_duration_s": 27.413625,
-      "segment_duration_s": 27.763625,
+      "audio_duration_s": 25.73975,
+      "segment_duration_s": 26.089750000000002,
       "narration": "Vor dem Bau messen verteilte Sonden Temperatur und Druck in beiden Karstästen und über die Tiefe. Tracer und Durchflussmessungen zeigen, welcher Ast die Wärme trägt. Abgestufte Kühlversuche prüfen die berechnete Leistung direkt. Wärme- und Stromzähler an der Luftseite verhindern, dass wir die abgegebene Energie nur scheinbar beseitigen. Erst diese Daten legen Modulzahl und Kosten fest. Ein kleiner betroffener Teilstrom ist die einzige ehrliche Abkürzung zur kleinen Anlage.",
       "sources": [
         "Lauber et al. [11]",
@@ -143,14 +143,14 @@
       ],
       "image": "tmp/presentation_pages/slide-09.png",
       "audio": "presentation/audio/slide_09.wav",
-      "start_s": 240.84154300000003,
-      "end_s": 268.60516800000005
+      "start_s": 244.021417,
+      "end_s": 270.111167
     },
     {
       "slide": 10,
       "title": "Schlussfolgerung",
-      "audio_duration_s": 20.878125,
-      "segment_duration_s": 21.228125000000002,
+      "audio_duration_s": 19.603917,
+      "segment_duration_s": 19.953917,
       "narration": "Die 878 Megawatt folgen zwingend aus dem Vollstromszenario. Unsere Antwort ist deshalb eine zweistufige Kühlung mit Reserve, externer Wärmesenke und einem Ausbaupfad, der auf echten Messungen beruht. Sie hält den Normalzustand innerhalb ihrer ausgewiesenen Hülle. Damit wird aus der Katastrophenprognose eine prüfbare Ingenieuraufgabe.",
       "sources": [
         "Gesamtergebnis",
@@ -158,8 +158,8 @@
       ],
       "image": "tmp/presentation_pages/slide-10.png",
       "audio": "presentation/audio/slide_10.wav",
-      "start_s": 268.60516800000005,
-      "end_s": 289.833293
+      "start_s": 270.111167,
+      "end_s": 290.065084
     }
   ]
 }

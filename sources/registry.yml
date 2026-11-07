@@ -6,7 +6,7 @@
   use: Basistemperatur etwa 9 °C, Tiefe etwa 22 m, kommunale Einordnung
 - id: 2
   author: Fan et al.
-  title: Hydrological functioning of a karst system with multiple recharge pathways
+  title: Quantifying the historic and future response of karst spring discharge to climate variability and change at a snow-influenced temperate catchment in central Europe
   year: 2023
   doi: 10.1007/s10040-023-02703-9
   url: https://publikationen.bibliothek.kit.edu/1000163518/151549041
@@ -32,7 +32,7 @@
   use: Siededruck und temperaturabhängige Stoffwerte
 - id: 6
   author: Ouellet und Caissie
-  title: River water temperature and heat exchange modelling
+  title: Towards a better understanding of the evaporative cooling of rivers
   year: 2023
   doi: 10.1080/07011784.2023.2177196
   url: https://repository.library.noaa.gov/view/noaa/49285/noaa_49285_DS1.pdf
@@ -65,7 +65,7 @@
   use: Kalt- und Warmstress, Empfehlung höchstens 1 K/h, Referenzmessung
 - id: 11
   author: Lauber et al.
-  title: Flow and transport in the Blau karst system
+  title: Spatially resolved information on karst conduit flow from in-cave dye tracing
   year: 2014
   doi: 10.5194/hess-18-435-2014
   url: https://doi.org/10.5194/hess-18-435-2014
@@ -139,3 +139,9 @@
   url: https://storage.googleapis.com/d4rt_assets/D4RT_paper.pdf
   accessed: 07.11.2026
   use: Ausschließlich visueller Layoutvergleich gemäß Nutzervorgabe, keine Fachquelle
+- id: 23
+  author: Umweltbundesamt
+  title: CO₂-Emissionen pro Kilowattstunde Strom 2024 gesunken
+  url: https://www.umweltbundesamt.de/themen/co2-emissionen-pro-kilowattstunde-strom-2024
+  accessed: 07.11.2026
+  use: 363 g CO2/kWh im deutschen Strommix 2024, Emissionsszenarien

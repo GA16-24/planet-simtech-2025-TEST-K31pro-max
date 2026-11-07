@@ -45,8 +45,12 @@ def main() -> None:
     source = (ROOT / "report" / "main.tex").read_text(encoding="utf-8")
     figure_numbers = [int(number) for number in re.findall(r"\\caption\{Abbildung\s+(\d+)", source)]
     table_numbers = [int(number) for number in re.findall(r"\\caption\{Tabelle\s+(\d+)", source)]
-    require(figure_numbers == list(range(1, len(figure_numbers) + 1)), f"Abbildungsnummern sind nicht fortlaufend: {figure_numbers}")
-    require(table_numbers == list(range(1, len(table_numbers) + 1)), f"Tabellennummern sind nicht fortlaufend: {table_numbers}")
+    require(not figure_numbers, f"Manuell doppelte Abbildungslabels gefunden: {figure_numbers}")
+    require(not table_numbers, f"Manuell doppelte Tabellenlabels gefunden: {table_numbers}")
+    labels = set(re.findall(r"\\label\{((?:fig|tab):[^}]+)\}", source))
+    references = set(re.findall(r"\\ref\{((?:fig|tab):[^}]+)\}", source))
+    missing_references = sorted(labels - references)
+    require(not missing_references, f"Marken ohne Textverweis: {missing_references}")
 
     bibliography_pages = [index for index, text in enumerate(page_texts) if "Literaturverzeichnis" in text]
     require(bool(bibliography_pages), "Beginn des Literaturverzeichnisses nicht bestimmbar")
@@ -62,12 +66,16 @@ def main() -> None:
         sizes = []
         for index, page in enumerate(pdf.pages):
             require(abs(page.width - 595.276) < 1.0 and abs(page.height - 841.89) < 1.0, f"Seite {index + 1} ist nicht A4")
-            body_chars = [char for char in page.chars if 72.0 < char["top"] < 770.0 and char["text"].strip()]
+            body_chars = [char for char in page.chars if char["text"].strip()]
             if body_chars:
                 min_x = min(char["x0"] for char in body_chars)
                 max_x = max(char["x1"] for char in body_chars)
+                min_top = min(char["top"] for char in body_chars)
+                max_bottom = max(char["bottom"] for char in body_chars)
                 require(min_x >= 70.0, f"Seite {index + 1}: Inhalt links unter 25 mm")
                 require(max_x <= page.width - 70.0, f"Seite {index + 1}: Inhalt rechts über 25 mm")
+                require(min_top >= 70.0, f"Seite {index + 1}: Inhalt oben unter 25 mm")
+                require(max_bottom <= page.height - 70.0, f"Seite {index + 1}: Inhalt unten über 25 mm")
             sizes.extend(float(char["size"]) for char in body_chars if char["text"].isalpha())
         if sizes:
             sizes.sort()

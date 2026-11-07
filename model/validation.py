@@ -8,12 +8,15 @@ from scipy.integrate import solve_ivp
 from core import (
     HOURS_PER_YEAR,
     SECONDS_PER_YEAR,
+    backup_fuel_liters,
+    variable_capex_eur,
     cooling_stage,
     dilution_flow_m3_s,
     economic_schedule,
     evaporation_kg_s,
     heating_rate_k_per_year,
     npv,
+    planned_return_temperature_c,
     required_cooling_mw,
     source_temperature_c,
     storage_heating_power_mw,
@@ -73,8 +76,24 @@ def run_validation(p: dict[str, Any]) -> dict[str, float | bool]:
     assert npv(hybrid_upfront) > npv(hybrid_staged)
     assert hybrid_staged[-1]["required_cooling_mw"] == expected_q
     assert abs(hybrid_staged[10]["electricity_mwh"] / HOURS_PER_YEAR - hybrid_staged[10]["electricity_mw"]) < 1e-9
+    expected_replacement = p["plant"]["replacement_fraction"] * (1.0 + p["cost"]["engineering_contingency_fraction"]) * sum(variable_capex_eur(final_year, p).values())
+    assert abs(hybrid_staged[p["plant"]["replacement_year"]]["replacement_eur"] - expected_replacement) < 1e-6
+    e = p["ecology"]
+    ramp_hours = (e["ramp_stress_start_c"] - s["target_temperature_c"]) / e["maximum_return_rate_k_h"]
+    ramp_time_h = np.linspace(0.0, ramp_hours + 1.0, 921)
+    ramp_temperature_c = planned_return_temperature_c(ramp_time_h, p)
+    ramp_max_rate_k_h = float(np.max(np.abs(np.diff(ramp_temperature_c) / np.diff(ramp_time_h))))
+    assert abs(ramp_hours - 91.0) < 1e-12
+    assert ramp_max_rate_k_h <= e["maximum_return_rate_k_h"] + 1e-12
+    assert ramp_temperature_c[-1] == s["target_temperature_c"]
+    expected_fuel = stage.electricity_mw * 1000.0 * p["plant"]["backup_duration_hours"] / (p["plant"]["backup_thermal_efficiency"] * p["plant"]["diesel_energy_kwh_l"])
+    assert abs(backup_fuel_liters(p) - expected_fuel) < 1e-9
 
     return {
+        "replacement_error_eur": abs(hybrid_staged[p["plant"]["replacement_year"]]["replacement_eur"] - expected_replacement),
+        "return_ramp_hours": ramp_hours,
+        "return_ramp_max_rate_k_h": ramp_max_rate_k_h,
+        "backup_fuel_liters": backup_fuel_liters(p),
         "energy_balance_error_mw": abs(final_q - expected_q),
         "stage_split_error_mw": abs(stage.dry_mw + stage.chiller_mw - stage.total_mw),
         "heat_sink_balance_error_mw": abs(stage.air_rejection_mw - stage.total_mw - stage.electricity_mw),

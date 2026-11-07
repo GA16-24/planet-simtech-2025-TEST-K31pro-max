@@ -7,7 +7,7 @@
 | Bericht und Folientext | Eigene Synthese aus Aufgabenprämissen, registrierten Fachquellen und Modellrechnungen mit Kimi K3.1 Pro | Keine früheren Wettbewerbsbeiträge oder deren Texte verwendet |
 | Datenabbildungen | `model/run_all.py`, Python, NumPy und Matplotlib | Eigene Darstellung aus versionierten Eingaben, keine externen Bilddateien |
 | Anlagenschema | LaTeX/TikZ in `presentation/main.tex` | Eigene technische Zeichnung |
-| Schrift und Satz | Tectonic, TeX Gyre Termes, NewTX und Helvetica | Verwendung der LaTeX-Pakete ohne eingebettete externe Markenlogos |
+| Schrift und Satz | Tectonic, TeX Gyre Termes, NewTX, Helvetica und Arial | Verwendung der LaTeX-Pakete und Systemschriftarten ohne eingebettete externe Markenlogos |
 | Sprechtext | `presentation/narration.json` | Eigener Text aus dem Bericht |
 | Vertonung | eSpeak NG 1.52.0, deutsche Stimme, anschließend FFmpeg-Loudnessnormalisierung | Synthetische Ausgabe aus eigenem Text, keine Sprach- oder Musikaufnahme Dritter |
 | Musik und Soundeffekte | Nicht verwendet | Keine Musik- oder Tonrechte Dritter erforderlich |

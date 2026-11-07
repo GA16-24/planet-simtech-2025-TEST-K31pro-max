@@ -30,6 +30,12 @@ def source_temperature_c(year: float | np.ndarray, p: dict[str, Any]) -> float |
     return np.minimum(temperature, s["source_temperature_cap_c"])
 
 
+def planned_return_temperature_c(time_hours: float | np.ndarray, p: dict[str, Any]) -> np.ndarray:
+    e = p["ecology"]
+    temperature = e["ramp_stress_start_c"] - e["maximum_return_rate_k_h"] * np.asarray(time_hours)
+    return np.maximum(temperature, p["scenario"]["target_temperature_c"])
+
+
 def thermal_capacitance_mw_per_k(p: dict[str, Any], affected_fraction: float | None = None) -> float:
     w = p["water"]
     fraction = p["scenario"]["affected_flow_fraction"] if affected_fraction is None else affected_fraction
@@ -91,12 +97,22 @@ def passive_area_m2(cooling_mw: float, p: dict[str, Any]) -> float:
     return cooling_mw * 1e6 / (passive["heat_transfer_w_m2k"] * passive["driving_temperature_k"])
 
 
+def backup_fuel_liters(p: dict[str, Any]) -> float:
+    plant = p["plant"]
+    final_electricity_mw = cooling_stage(p["scenario"]["forecast_years"], p).electricity_mw
+    return final_electricity_mw * 1000.0 * plant["backup_duration_hours"] / (plant["backup_thermal_efficiency"] * plant["diesel_energy_kwh_l"])
+
+
+def backup_fuel_cost_eur(p: dict[str, Any]) -> float:
+    return backup_fuel_liters(p) * p["plant"]["diesel_price_eur_l"]
+
+
 def variable_capex_eur(year: float, p: dict[str, Any], technology: str = "hybrid") -> dict[str, float]:
     c = p["cost"]
     stage = cooling_stage(year, p)
     reserve = 1.0 + p["plant"]["reserve_fraction"]
     fraction = p["scenario"]["affected_flow_fraction"]
-    backup = c["backup_power_eur"] * fraction ** c["backup_scale_exponent"]
+    backup = (c["backup_power_eur"] + backup_fuel_cost_eur(p)) * fraction ** c["backup_scale_exponent"]
     if technology == "hybrid":
         return {
             "exchanger": stage.total_mw * 1000.0 * c["exchanger_eur_kw"] * reserve,
@@ -147,7 +163,7 @@ def annual_operation(year: int, p: dict[str, Any], technology: str = "hybrid") -
         hygiene_eur = 0.0
     else:
         raise ValueError(f"Unknown technology: {technology}")
-    electricity_mwh = electricity_mw * HOURS_PER_YEAR
+    electricity_mwh = electricity_mw * HOURS_PER_YEAR * plant["availability"]
     energy_cost = electricity_mwh * plant["electricity_price_eur_mwh"]
     water_cost = water_m3 * p["cost"]["water_price_eur_m3"]
     heat_credit = plant["heat_recovery_mw"] * plant["heat_recovery_hours"] * plant["heat_value_eur_mwh"] if technology == "hybrid" and stage.total_mw >= plant["heat_recovery_mw"] else 0.0
@@ -178,7 +194,7 @@ def economic_schedule(p: dict[str, Any], technology: str = "hybrid", upfront: bo
         operation = annual_operation(year, p, technology)
         replacement = 0.0
         if year == p["plant"]["replacement_year"]:
-            replacement = p["plant"]["replacement_fraction"] * sum(variable_capex_eur(p["scenario"]["forecast_years"], p, technology).values())
+            replacement = p["plant"]["replacement_fraction"] * (1.0 + p["cost"]["engineering_contingency_fraction"]) * sum(variable_capex_eur(p["scenario"]["forecast_years"], p, technology).values())
         maintenance = p["plant"]["maintenance_fraction"] * installed
         net_operation = operation["energy_cost_eur"] + operation["water_cost_eur"] + operation["hygiene_eur"] + maintenance - operation["heat_credit_eur"]
         total = investment + replacement + net_operation

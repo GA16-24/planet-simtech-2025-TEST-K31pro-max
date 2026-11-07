@@ -38,6 +38,9 @@ def main() -> None:
     with pdfplumber.open(PDF) as pdf:
         for index, page in enumerate(pdf.pages):
             require(abs(page.width / page.height - 16 / 9) < 0.01, f"Folie {index + 1} ist nicht 16:9")
+            for char in page.chars:
+                if char["text"].strip():
+                    require(char["x0"] >= -0.5 and char["x1"] <= page.width + 0.5 and char["top"] >= -0.5 and char["bottom"] <= page.height + 0.5, f"Folie {index + 1}: Text außerhalb der Seitenfläche bei x={char['x0']:.1f}, y={char['top']:.1f}")
 
     probe = subprocess.run([
         "ffprobe", "-v", "error", "-show_streams", "-show_format", "-of", "json", str(VIDEO)
@@ -53,6 +56,8 @@ def main() -> None:
     require(audio["codec_name"] == "aac", f"Audiocodec {audio['codec_name']} statt AAC")
     require(video["width"] == 1920 and video["height"] == 1080, "Video ist nicht 1920 x 1080")
     require(video["pix_fmt"] == "yuv420p", "Video-Pixelformat ist nicht yuv420p")
+    require(video["sample_aspect_ratio"] == "1:1", f"Sample-Seitenverhältnis {video['sample_aspect_ratio']} statt 1:1")
+    require(video["display_aspect_ratio"] == "16:9", f"Darstellungsseitenverhältnis {video['display_aspect_ratio']} statt 16:9")
     duration = float(media["format"]["duration"])
     require(0.0 < duration <= 300.0, f"Videodauer {duration:.3f}s überschreitet 300s")
     require(duration <= 295.0, f"Videodauer {duration:.3f}s überschreitet interne 295s")
@@ -61,6 +66,10 @@ def main() -> None:
     require(abs(timings["duration_s"] - duration) < 0.05, "timings.json weicht von MP4 ab")
     require(len(timings["slides"]) == 10, "timings.json enthält nicht zehn Segmente")
     require(abs(timings["slides"][-1]["end_s"] - duration) < 0.20, "Segmentsumme weicht um mehr als die Zeitbasisrundung von MP4 ab")
+    playback = json.loads((OUT / "playback.json").read_text(encoding="utf-8"))
+    require(abs(playback["duration_s"] - duration) < 0.05, "Echtzeitprobe gehört zu einer anderen Videodatei")
+    require(abs(playback["real_s"] - duration) < 3.0, "Echtzeitprobe weicht von der Videodauer ab")
+    require(playback["decode_exit_code"] == 0 and not playback["live_human_delivery"], "Wiedergabeprobe oder Live-Status ist falsch dokumentiert")
 
     subprocess.run(["ffmpeg", "-v", "error", "-i", str(VIDEO), "-f", "null", "-"], check=True)
     frames = ROOT / "tmp" / "video_frames"

@@ -2,7 +2,7 @@
 
 Unabhängig erstelltes Wettbewerbspaket für die vom Nutzer übergebene Blautopf-Aufgabe. Vulkanische Aktivität und die Zehnjahresprognose sind Szenarioprämissen, keine durch dieses Repository bestätigten Messbefunde.
 
-Das private Repository enthält einen deutschen Bericht, das vollständige Rechenmodell, Sensitivitäts- und Wirtschaftlichkeitsanalysen, eine animierte Finalpräsentation mit Video, Sprechtext, Zeitprobe, adversariale Juryfragen sowie Herkunfts-, Prüf- und Reviewnachweise. Eine Einreichung oder öffentliche Veröffentlichung hat nicht stattgefunden.
+Das private Repository enthält einen deutschen Bericht, das vollständige Rechenmodell, Sensitivitäts- und Wirtschaftlichkeitsanalysen, einen Slidecast mit synthetischer Sprachausgabe, Sprechtext, Zeitprobe, adversariale Juryfragen sowie Herkunfts-, Prüf- und Reviewnachweise. Eine Einreichung oder öffentliche Veröffentlichung hat nicht stattgefunden.
 
 ## Zentrale Antwort
 
