@@ -27,9 +27,12 @@ Die Datei `review/rounds/RUNDE/revision.json` enthält die SHA-256-Hashes der ve
 - Gerenderte Berichtsseiten, Folien und Videoframes: `review/rendered/`
 - Regeln und Layoutvergleich: `compliance/regeln.md`, `compliance/checklist.md`, `compliance/layout_referenz.md`
 - Herkunft und Unabhängigkeit: `PROVENANCE.md`, `EXCLUSION_LOG.md`, `decisions.tsv`, `sources/registry.yml`, `docs/hypothesen.md`, `docs/alternativenvergleich.md`
-- Reproduktion: `README.md`, `Makefile`, `scripts/`
+- Reproduktion: `README.md`, `Makefile`, `scripts/`, `review/rounds/RUNDE/reproduction.md`
+- Befundzuordnung und Reviewkonfiguration: `review/revisions.md`, `review/model_configuration.md`
 
 Prüfe den tatsächlich gerenderten Bericht und die Präsentation, nicht nur LaTeX oder JSON. Öffne die Kontaktübersichten und einzelne Seiten beziehungsweise Folien. Prüfe das Video anhand der Datei, ihrer Streams, Frames und Zeitmessung. Du darfst read-only Prüfbefehle ausführen, sofern dein Modus dies zulässt. Behaupte keine menschliche Live-Darbietung, die nicht stattgefunden hat.
+
+Lies keine Rohberichte oder Scorecards aus früheren Runden. Vermeide auch rekursive Suchen im Verzeichnis `review/rounds/`, damit alte Bewertungen nicht versehentlich in deinen Kontext gelangen. Die Befundzuordnung enthält frühere Mängel ohne Punktzahlen. Prüfe deren Behebung an der aktuellen Revision selbst.
 
 ## Kriterien
 

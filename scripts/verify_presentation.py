@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -34,6 +35,15 @@ def main() -> None:
         require(required in text, f"Folieninhalt fehlt: {required}")
     for forbidden in ["TODO", "TBD", "???", "—"]:
         require(forbidden not in text, f"Unerwünschter Folientext: {forbidden}")
+    require("1053,3" in text, "Alte Kapazitätsbezugsgröße fehlt auf der Sensitivitätsfolie")
+    require("16,2" in text, "p90-Ausfallwert fehlt auf der Ausfallfolie")
+
+    vtt = (OUT / "Blautopf_Finale.vtt").read_text(encoding="utf-8")
+    timestamps = re.findall(r"^\d{2}:\d{2}:\d{2}\.\d{3} --> \d{2}:\d{2}:\d{2}\.\d{3}$", vtt, flags=re.MULTILINE)
+    require(timestamps, "VTT enthält keine gültigen WebVTT-Zeitstempel")
+    parsed = subprocess.run(["ffmpeg", "-v", "info", "-i", str(OUT / "Blautopf_Finale.vtt"), "-f", "webvtt", "-"], check=True, capture_output=True, text=True)
+    parsed_timestamps = re.findall(r"^\d{2}:\d{2}\.\d{3} --> \d{2}:\d{2}\.\d{3}$", parsed.stdout, flags=re.MULTILINE)
+    require(len(parsed_timestamps) == len(timestamps), "FFmpeg-Cues weichen von den VTT-Zeitstempeln ab")
 
     with pdfplumber.open(PDF) as pdf:
         for index, page in enumerate(pdf.pages):

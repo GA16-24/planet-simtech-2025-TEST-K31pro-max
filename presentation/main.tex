@@ -122,9 +122,9 @@
 \begin{frame}{Der gerechnete Wiederanlauf}
   \begin{columns}[T]
     \column{0.40\textwidth}
-      \bignumber{\RecoveryPeak\ °C}{Höchstwert im dynamischen Ausfall-Szenario}
+      \bignumber{\RecoveryPeakNinety\ °C}{Höchstwert im p90-Ausfall-Szenario}
       \vspace{2mm}
-      {\fontsize{12.5}{15}\selectfont Ohne Kühlung wären 20 °C nach \FailureMinutes\ Minuten erreicht.\par}
+      {\fontsize{12.5}{15}\selectfont Ohne Kühlung wären 20 °C nach \FailureMinutesNinety\ Minuten erreicht.\par}
     \column{0.55\textwidth}
       {\fontsize{13.5}{16}\selectfont
       \begin{itemize}
@@ -154,11 +154,11 @@
 \begin{frame}{Die Hülle begrenzt das Versprechen}
   \begin{columns}[T]
     \column{0.64\textwidth}
-      \includegraphics[width=\textwidth,height=32mm,keepaspectratio]{../report/figures/fig04_sensitivitaet.png}
+      \includegraphics[width=\textwidth,height=32mm,keepaspectratio]{../report/figures/fig05_unsicherheit.png}
     \column{0.32\textwidth}
       \compactnumber{2,15 GW}{p90-Kapazität für 9 °C mit Reserve}
       \vspace{1mm}
-      {\fontsize{11.5}{14}\selectfont Begrenzte Stichprobe ohne Überlast. 32,7 m³/s: 12,48 GW für 9 °C, nicht abgedeckt.\par}
+      {\fontsize{11.5}{14}\selectfont Mittelstrom + 20 \%: \MeanCapacity\ MW, \MeanOverloadPercent\ \% Überlast. p90 deckt die begrenzte Stichprobe. 32,7 m³/s: \QFloodStress\ GW für 9 °C, nicht abgedeckt.\par}
   \end{columns}
   \slidefoot{Kein Extremwertnachweis. Höchstens 4,7 m³/s betroffener Strom.}
 \end{frame}

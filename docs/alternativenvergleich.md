@@ -54,7 +54,7 @@ Der Endausbau besitzt zwölf Stränge. Im p90-Fall tragen elf die Last, einer is
 
 Ein Puffer von 8280 m³ entspricht einer Stunde Erwartungsstrom und erzwingt keine Temperaturrampe. Die geplante Inbetriebnahme senkt den Kälteauslass mit höchstens 1 K/h. Der Stresstest von 100 auf 9 °C dauert 91 Stunden und ist kein Wiederanlauf- oder Notfallnachweis. Sensoren stoppen die Rampe bei Überschreitung am Kontrollpunkt.
 
-Ohne Kühlung erreicht das Beckenmodell nach 23 Minuten 20 °C. Die dynamische Rechnung verwendet 0,5 min Detektion, 5 min Generatorstart und 10 min bis voller Kühlleistung. Der Höchstwert beträgt 12,6 °C. Sechs Aggregate liefern die p90-Leistung, ein siebtes ist Reserve. Für 48 Stunden ergibt sich bei 40 % Wirkungsgrad und 9,8 kWh/L ein Dieselvorrat von 2,237 Mio. Litern, also 2.237 m³. Diese Werte sind Szenarioannahmen, keine Hersteller- oder Zuschaltnachweise.
+Ohne Kühlung erreicht das Beckenmodell im Mittelstrom nach 23,34 Minuten 20 °C, im p90-Fall bereits nach 11,42 Minuten. Die dynamische Rechnung verwendet 0,5 min Detektion, 5 min Generatorstart und 10 min bis voller Kühlleistung. Der Höchstwert beträgt 12,64 °C im Mittelstrom und 16,20 °C im p90-Fall. Die Differenz zwischen ungekühlter 20-°C-Zeit und voller Kühlleistung beträgt 13,34 beziehungsweise 1,42 Minuten. Sie ist keine freie Wartezeit. Zwei Toleranz- und Zeitschrittstufen bestätigen den p90-Verlauf mit einem Fehler unter 0,000001 K. Sechs Aggregate liefern die p90-Leistung, ein siebtes ist Reserve. Für 48 Stunden ergibt sich bei 40 % Wirkungsgrad und 9,8 kWh/L ein Dieselvorrat von 2,237 Mio. Litern, also 2.237 m³. Diese Werte sind Szenarioannahmen, keine Hersteller- oder Zuschaltnachweise.
 
 ## Standort und Falsifikation
 

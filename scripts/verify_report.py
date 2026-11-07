@@ -42,7 +42,13 @@ def main() -> None:
     require("Kimi K3.1 Pro" in full_text, "KI-Offenlegung fehlt")
     require("Vulkan" in full_text or "vulkan" in full_text, "Szenarioprämisse fehlt")
     require("877" in full_text and "MW" in full_text, "Zentrale Modellgröße fehlt")
+    summary_text = re.sub(r"\s+", " ", page_texts[1].split("1. Einführung", 1)[0].replace("-\n", "").replace("\n", " "))
+    require("Für stärkeren Wasserfluss wird die Anlage größer ausgelegt" in summary_text, "Zusammenfassung ist unvollständig")
+    require("p90" not in summary_text and "Barwert" not in summary_text and "H1" not in summary_text, "Zusammenfassung verwendet unerklärte Fachkürzel")
+    require("1053,3" in full_text, "Bezugsgröße der alten Mittelwertkapazität fehlt")
     source = (ROOT / "report" / "main.tex").read_text(encoding="utf-8")
+    source_without_urls = re.sub(r"\\(?:url|href)\{[^{}]*\}", "", source)
+    require(not re.search(r"(?<!\\)%", source_without_urls), "Unmaskiertes Prozentzeichen im LaTeX-Quelltext")
     figure_numbers = [int(number) for number in re.findall(r"\\caption\{Abbildung\s+(\d+)", source)]
     table_numbers = [int(number) for number in re.findall(r"\\caption\{Tabelle\s+(\d+)", source)]
     require(not figure_numbers, f"Manuell doppelte Abbildungslabels gefunden: {figure_numbers}")

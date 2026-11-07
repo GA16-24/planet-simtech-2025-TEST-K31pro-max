@@ -35,7 +35,7 @@ def timestamp(seconds: float, vtt: bool = True) -> str:
     hours, remainder = divmod(millis, 3600000)
     minutes, remainder = divmod(remainder, 60000)
     secs, ms = divmod(remainder, 1000)
-    separator = "," if vtt else "."
+    separator = "." if vtt else ","
     return f"{hours:02d}:{minutes:02d}:{secs:02d}{separator}{ms:03d}"
 
 

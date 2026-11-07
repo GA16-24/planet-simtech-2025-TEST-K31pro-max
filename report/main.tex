@@ -27,13 +27,13 @@
 \setcounter{page}{1}
 \section*{Zusammenfassung}
 
-Der betroffene Quellstrom muss vor dem offenen Becken geschlossen gekühlt und die entzogene Wärme dauerhaft aus dem verbundenen Wassersystem entfernt werden. Der unabhängig entwickelte Referenzentwurf H1 nutzt zuerst Trockenkühler, danach Kältemaschinen. Er hält im Erwartungsfall 2,3 m³/s auf 9 °C und wird für das historische 90-Prozent-Abflussquantil von 4,7 m³/s mit weiteren 20 % Kapazitätsreserve ausgelegt. Diese Trennung von Jahresbetrieb und installierter Kapazität verhindert, dass eine Mittelwertrechnung als Hochwassernachweis missverstanden wird.
+Das Wasser soll vor dem offenen Becken durch geschlossene Kühler fließen. Diese geben die Wärme an die Luft ab, nicht an Fluss oder Grundwasser. Zuerst nutzen große Luftkühler die hohe Temperatur. Danach senken elektrische Kältemaschinen das Wasser auf 9 °C. So soll der Fluss in seinem normalen Zustand erhalten bleiben.
 
-Im zehnten Jahr beträgt die erwartete Kühlleistung \textbf{\QFinal\ MW}. Für 4,7 m³/s sind \DesignCooling\ MW erforderlich; installiert werden \QReserve\ MW. Zwölf Stränge sehen im p90-Fall elf aktive und einen reservierten Strang vor. Im Mittelbetrieb modulieren fünf Stränge, die übrigen stehen bereit. Ein Puffer, eine geregelte Sollwertrampe, zwei Netzeinspeisungen und ein zeitlich berechneter Notlauf sichern den Übergang. Luft, nicht Blau oder Grundwasser, nimmt die Antriebswärme auf.
+Im zehnten Jahr wären dafür \textbf{\QFinal\ Megawatt Wärmeabfuhr} nötig. Für stärkeren Wasserfluss wird die Anlage größer ausgelegt. Bei 4,7 m³/s wären \DesignCooling\ MW nötig; installiert werden \QReserve\ MW. Im üblichen Betrieb arbeiten fünf Gerätestränge, im stärkeren Fall elf plus ein Ersatzstrang. Ein Puffer und eine geregelte Rücklaufänderung von höchstens einem Grad pro Stunde begrenzen die Belastung für das Gewässer.
 
-Die Szenarioschätzung ergibt \CapexFinal\ Mio. € Investition, \OpexFinal\ Mio. € Betriebskosten im zehnten Jahr und \NpvHybridFull\ Mrd. € Barwert über 25 Jahre. Verdunstung mit ergänzender Kältestufe ist billiger, verbraucht aber \EvapAnnual\ Mio. m³ Wasser pro Jahr und verursacht Hygienepflichten. Kaltwasserzumischung scheitert an der nicht nachgewiesenen Wasserquelle. Alle Geldbeträge sind Schätzungen in Euro von 2026, keine Angebote.
+Die Schätzung ergibt \CapexFinal\ Mio. € Investition und \OpexFinal\ Mio. € Betriebskosten im zehnten Jahr. Über 25 Jahre ergeben sich \NpvHybridFull\ Mrd. €. Eine andere Möglichkeit, Wasser verdunsten zu lassen, wäre billiger, verbraucht aber \EvapAnnual\ Mio. m³ Wasser pro Jahr und benötigt Hygienemaßnahmen. Alle Kosten sind Schätzungen in Euro von 2026, keine Angebote.
 
-Die Aussage gilt nur für höchstens 4,7 m³/s betroffenen Strom, höchstens 100 °C am tiefen Zufluss und eine nachgewiesene externe Wärmesenke. Der Hochwasserfall mit 32,7 m³/s ist für das 9-°C-Ziel nicht abgedeckt. Standort, Netzanschluss, Luftführung, Genehmigung und Karsterfassung bleiben zu prüfen. Eine Baufreigabe, menschliche Fachprüfung oder Einreichung wird nicht behauptet.
+Die Lösung gilt nur für höchstens 4,7 m³/s betroffenen Wasserfluss und höchstens 100 °C am tiefen Zufluss. Für 32,7 m³/s reicht sie nicht aus. Vor einem Bau müssen die Höhlenwege, ein geeigneter Standort, Stromversorgung, Luftführung und Genehmigung geprüft werden. Eine Baufreigabe, menschliche Fachprüfung oder Einreichung wird nicht behauptet.
 
 \section{Einführung und Zielgrenzen}
 
@@ -62,7 +62,7 @@ Beckenvolumen & 25.000 m³ & Rechenannahme \\
 Quelltemperatur & 9 bis 100 °C & Szenario, danach gedeckelt \\
 Rückführziel & 9 °C, 1 K/h & eigenes Regelziel [1,10] \\
 Sommerluft, Feuchtkugel & 35 °C, 28 °C & technische Annahmen \\
-Trocken-/Feuchtannäherung & 5 K, 4 K & technische Annahmen \\
+Trocken- und feuchte Annäherung & 5 K, 4 K & technische Annahmen \\
 Kälte-COP, Strompreis & 4,0; 138 €/MWh & Szenarien [16] \\
 \bottomrule
 \end{tabular}
@@ -147,7 +147,7 @@ Für den p90-Spitzenfall sind \DesignElectric\ MW Antriebsleistung und \DesignAi
 
 \subsection{Stufenplan und Kosten}
 
-Die Investition enthält die p90-Reserve und beträgt \CapexFinal\ Mio. €. Im Erwartungsjahr kosten Strom \EnergyCostFinal\ Mio. € und Wartung \MaintenanceFinal\ Mio. €, zusammen \OpexFinal\ Mio. €. Der Barwert beträgt \NpvHybridFull\ Mrd. €; sofortiger Endausbau kostet \NpvUpfront\ Mrd. €. Der Stufenplan spart \NpvSaving\ Mio. €, sofern jede Stufe vor ihrem Lastjahr geprüft ist. Bei dauerhaftem p90-Betrieb steigen Betrieb und Barwert auf \DesignOpex\ Mio. € beziehungsweise \DesignNpv\ Mrd. €. Abbildung \ref{fig:stufen} zeigt den Ausbau. Tabelle \ref{tab:alternativen} und Abbildung \ref{fig:kosten} vergleichen die Alternativen mit derselben Kapazitäts- und Kostenregel.
+Die Investition enthält die p90-Reserve und beträgt \CapexFinal\ Mio. €. Im Erwartungsjahr kosten Strom \EnergyCostFinal\ Mio. € und Wartung \MaintenanceFinal\ Mio. €, zusammen \OpexFinal\ Mio. €. Der Barwert beträgt \NpvHybridFull\ Mrd. €; sofortiger Endausbau kostet \NpvUpfront\ Mrd. €. Der Stufenplan spart \NpvSaving\ Mio. €, sofern jede Stufe vor ihrem Lastjahr geprüft ist. Bei dauerhaftem p90-Betrieb steigen Betrieb und Barwert auf \DesignOpex\ Mio. € beziehungsweise \DesignNpv\ Mrd. €. Tabelle \ref{tab:alternativen} und Abbildung \ref{fig:kosten} vergleichen die Alternativen mit derselben Kapazitäts- und Kostenregel.
 
 \begin{table*}[t]
 \centering
@@ -179,7 +179,7 @@ Ohne Kühlung erreicht ein ideal gemischtes Becken mit \PoolTau\ h Zeitkonstante
 \begin{equation}
 \frac{\dd T}{\dd t}=\frac{100-T}{\tau}-\frac{Q_{Kuehl}(t)}{\rho Vc_p}.
 \end{equation}
-Detektion dauert angenommen 0,5 min, der Generatorstart 5 min, die volle Kühlleistung steht nach 10 min bereit. Die Steuerung ist für 15 min unterbrechungsfrei. Im Szenario bleibt das Maximum bei \RecoveryPeak\ °C; bis zur 20-°C-Schwelle bleiben \RecoveryMargin\ min Reserve. Dies ist ein Rechennachweis unter Annahmen, kein Lastabwurf- oder Zuschaltversuch. Gemeinsame Ausfallursachen und reale Anlaufkurven bleiben zu prüfen.
+Detektion dauert angenommen 0,5 min, der Generatorstart 5 min, die volle Kühlleistung steht nach 10 min bereit. Die Steuerung ist für 15 min unterbrechungsfrei. Im Mittelstrom bleibt das Maximum bei \RecoveryPeak\ °C. Im p90-Fall erreicht das Becken ohne Kühlung 20 °C bereits nach \FailureMinutesNinety\ Minuten; mit demselben Wiederanlauf liegt der Höchstwert bei \RecoveryPeakNinety\ °C. Die Differenz zur vollen Kühlleistung beträgt dann \RecoveryMarginNinety\ Minuten und ist keine frei verfügbare Wartezeit. Zwei Toleranz- und Zeitschrittstufen bestätigen den p90-Verlauf. Dies sind Rechennachweise unter Annahmen, keine Lastabwurf- oder Zuschaltversuche. Gemeinsame Ausfallursachen und reale Anlaufkurven bleiben zu prüfen.
 
 Sechs Aggregate decken \DesignElectric\ MW im p90-Fall, ein siebtes ist Reserve. Zwei unabhängige Netzeinspeisungen sind ebenfalls Szenarioannahmen. Für 48 Stunden bei 40 \% Wirkungsgrad und 9,8 kWh/L werden \FuelReserve\ Mio. Liter Diesel benötigt. Ein Ausfall eines Moduls oder Aggregats ist abgedeckt; gemeinsame Fehler, Kraftstofflogistik und Brandereignisse sind nicht nachgewiesen.
 
@@ -193,7 +193,7 @@ Damit ist H1 ein bedingter Szenarioentwurf, keine Baufreigabe. Vor der Auswahl s
 
 Das reine Siedeverbot ist vom ökologischen Normalziel zu unterscheiden. Mit 5 K Abstand zum Oberflächensiedepunkt ergibt sich eine Schutzmarke von \GuardTarget\ °C. Beim Erwartungsstrom genügen dafür \GuardCooling\ MW Kühlleistung und \GuardElectric\ MW Antriebsleistung; die Szenariokosten betragen \GuardCapex\ Mio. € Investition und \GuardNpv\ Mrd. € Barwert. Diese Variante verhindert nur Sieden und bewahrt nicht das Ökosystem. Sie wird daher nicht als normaler Dauerzustand gewählt, sondern zeigt den Preis der strengeren 9-°C-Zielsetzung.
 
-Die 10.000 Monte-Carlo-Ziehungen variieren Abfluss, COP und Investitionsfaktor gekoppelt über alle Jahresreihen. Eine Auslegung nur auf den Mittelstrom überschreitet in \MeanOverloadPercent\ \% der Fälle die 9-°C-Kapazität. Die p90-Reserve überschreitet in der auf 4,7 m³/s begrenzten Verteilung keinen Fall. Das ist eine Folge der bewussten Kapazitätswahl, keine Garantie für Extremhochwasser oder andere Wärmequellen. Die Kostenquantile reichen von \NpvSampleLow\ bis \NpvSampleHigh\ Mrd. € und sind in Abbildung \ref{fig:unsicherheit} dargestellt. Ein Tarif von 179 €/MWh ergibt \TariffHighNpv\ Mrd. €. Bei 95 \% Netzverfügbarkeit steigt der Barwert mit vollständigem Dieselersatz auf \AvailabilityLowNpv\ statt \AvailabilityHighNpv\ Mrd. €. Geringere Verfügbarkeit ist somit kein Kostenvorteil mehr.
+Die 10.000 Monte-Carlo-Ziehungen variieren Abfluss, COP und Investitionsfaktor gekoppelt über alle Jahresreihen. Eine Auslegung auf den Mittelstrom mit 20 \% Reserve, also \MeanCapacity\ MW, überschreitet in \MeanOverloadPercent\ \% der Fälle die 9-°C-Kapazität. Die p90-Reserve überschreitet in der auf 4,7 m³/s begrenzten Verteilung keinen Fall. Das ist eine Folge der bewussten Kapazitätswahl, keine Garantie für Extremhochwasser oder andere Wärmequellen. Die Kostenquantile reichen von \NpvSampleLow\ bis \NpvSampleHigh\ Mrd. € und sind in Abbildung \ref{fig:unsicherheit} dargestellt. Ein Tarif von 179 €/MWh ergibt \TariffHighNpv\ Mrd. €. Bei 95 \% Netzverfügbarkeit steigt der Barwert mit vollständigem Dieselersatz auf \AvailabilityLowNpv\ statt \AvailabilityHighNpv\ Mrd. €. Geringere Verfügbarkeit ist somit kein Kostenvorteil mehr.
 
 Der Hochwasser-Stresstest bleibt offen. Für 32,7 m³/s wären zur Rückkehr auf 9 °C \QFloodStress\ GW erforderlich. H1 ist dafür weder hydraulisch noch thermisch ausgelegt. Auch Temperaturen über 100 °C oder weitere Wärmequellen verlangen einen neuen Entwurf. Die Sensitivitätstabellen stehen in Anhang C, Tabelle \ref{tab:sensitivitaet} und Tabelle \ref{tab:teilstrom}. Sie zeigen, dass ein bestätigter kleiner Teilstrom Kosten senken kann, während unbekannte Anteile jede feste Zusage verunsichern.
 
@@ -203,7 +203,7 @@ Vor einer Investition sind synchronisierte Temperatur-, Druck-, Leitfähigkeits-
 
 Drei Nachweise bleiben zwingend. Der Wärmetauscher muss Durchfluss und Temperaturdifferenz messen, die Antriebsenergie muss gezählt werden, und die Luft- oder Wärmenetzbilanz muss die externe Senke schließen. Zusätzlich sind Siedemarge, 9-°C-Ziel und höchstens 1 K/h am Kontrollpunkt zu belegen. Ein kühles Oberflächenbild genügt nicht. Die Anlage ist zu verwerfen oder zu erweitern, wenn mehr als 4,7 m³/s betroffen sind, die Temperatur weiter steigt, die Senke Wärme zurückführt oder Standort und Genehmigung scheitern. Ein bestätigter kleiner heißer Ast erlaubt dagegen eine kleinere Anlage.
 
-Das Python-Modell erzeugt alle berichteten Größen aus `data/parameters.yml`. Zehn Tests und interne Konsistenz- und Plausibilitätsprüfungen kontrollieren Wärme- und Mischungsbilanzen, Kosten, Rampen, p90-Kapazität und den Ausfallverlauf. Die gekoppelte Referenzkostenrechnung schließt mit Fehler null. Die ODE-Kontrolle weicht um höchstens \(8,1\times10^{-10}\) K von der analytischen Lösung ab. Diese Prüfungen sind keine externe oder feldbezogene Validierung. NIST-Werte und unabhängige Handrechnungen verankern die zentrale Leistung; Herstellerkurven und Pilotmessungen fehlen weiterhin.
+Das Python-Modell erzeugt alle berichteten Größen aus `data/parameters.yml`. Elf Tests und interne Konsistenz- und Plausibilitätsprüfungen kontrollieren Wärme- und Mischungsbilanzen, Kosten, Rampen, p90-Kapazität und den Ausfallverlauf. Die gekoppelte Referenzkostenrechnung schließt mit Fehler null. Die ODE-Kontrolle weicht um höchstens \(8,1\times10^{-10}\) K von der analytischen Lösung ab. Zwei Toleranz- und Zeitschrittstufen bestätigen den p90-Ausfallverlauf. Diese Prüfungen sind keine externe oder feldbezogene Validierung. NIST-Werte und eine dokumentierte Handrechnung stützen die zentrale Leistung; Herstellerkurven und Pilotmessungen fehlen weiterhin.
 
 \section{Schlussfolgerung}
 
@@ -211,7 +211,6 @@ Dauerhafter Schutz verlangt, den betroffenen Strom vor dem offenen Becken zu kü
 
 H1 ist damit eine begründete, wirtschaftlich anspruchsvolle Szenariolösung, kein Baubescheid. Der Maßstab wird erst durch Karstmessungen, Standort- und Netzprüfung sowie die FFH-Vorprüfung belastbar. Diese Nachweise können den Entwurf verkleinern, vergrößern oder verwerfen. Gerade diese Prüfbedingungen verhindern eine unbegründete Dauerzusage.
 
-\clearpage
 \section*{Literaturverzeichnis}
 
 \begin{description}[leftmargin=8mm,labelsep=2mm]
@@ -219,31 +218,31 @@ H1 ist damit eine begründete, wirtschaftlich anspruchsvolle Szenariolösung, ke
 \renewcommand{\bibitem}[1]{\item[]}
 \setlength{\itemsep}{2pt}
 \urlstyle{same}
-\bibitem{stadt} [1] Stadt Blaubeuren: Geopoint Blautopf. \url{https://www.blaubeuren.de/Geopoint-Blautopf}. Abruf: 07.11.2026.
-\bibitem{fan} [2] Fan, X.; Goeppert, N.; Goldscheider, N. (2023): Quantifying the historic and future response of karst spring discharge to climate variability and change at a snow-influenced temperate catchment in central Europe. Hydrogeology Journal 31, 2213-2229. \url{https://doi.org/10.1007/s10040-023-02703-9}. Abruf: 07.11.2026.
-\bibitem{lgrb} [3] Landesamt für Geologie, Rohstoffe und Bergbau Baden-Württemberg: Regionalbeschreibung Mittlere Alb, Fallbeispiele zum Blautopf. \url{https://lgrbwissen.lgrb-bw.de/hydrogeologie/regionalbeschreibung-mittlere-alb/fallbeispiele}. Abruf: 07.11.2026.
-\bibitem{nist} [4] National Institute of Standards and Technology: NIST Chemistry WebBook, Wasser, isobare Tabelle. \url{https://webbook.nist.gov/cgi/fluid.cgi?Action=Data&Wide=on&ID=C7732185&Type=IsoBar&Digits=6&P=1.01325&TLow=0&THigh=100&TInc=10&RefState=DEF&TUnit=C&PUnit=bar&DUnit=kg%2Fm3}. Abruf: 07.11.2026. Die Drucktabelle verwendet dieselbe Maske mit P=3,17007, TLow=130, THigh=140 und TInc=1. Vollständige Abfragen und Einheiten stehen im Quellenregister und im Modell.
-\bibitem{iapws} [5] International Association for the Properties of Water and Steam: Revised Release on the IAPWS Industrial Formulation 1997 for the Thermodynamic Properties of Water and Steam, IF97-Rev. \url{https://iapws.org/relguide/IF97-Rev.html}. Abruf: 07.11.2026.
-\bibitem{ouellet} [6] Ouellet, V.; Caissie, D. (2023): Towards a better understanding of the evaporative cooling of rivers. Canadian Water Resources Journal 48, 189-205. \url{https://doi.org/10.1080/07011784.2023.2177196}. Preprint: \url{https://repository.library.noaa.gov/view/noaa/49285/noaa_49285_DS1.pdf}. Abruf: 07.11.2026.
-\bibitem{bergman} [7] Bergman, T. L.; Lavine, A. S.; Incropera, F. P.; DeWitt, D. P.: Fundamentals of Heat and Mass Transfer, Kapitel 1, Wiley-Auszug. \url{https://catalogimages.wiley.com/images/db/pdf/9781119382911.excerpt.pdf}. Abruf: 07.11.2026.
-\bibitem{openstax} [8] OpenStax: University Physics Volume 2, Abschnitt 4.3, Refrigerators and Heat Pumps. \url{https://openstax.org/books/university-physics-volume-2/pages/4-3-refrigerators-and-heat-pumps}. Abruf: 07.11.2026.
-\bibitem{ogewv} [9] Bundesrepublik Deutschland: Oberflächengewässerverordnung 2016, Anlage 7. \url{https://www.gesetze-im-internet.de/ogewv_2016/anlage_7.html}. Abruf: 07.11.2026.
-\bibitem{lawa} [10] van Treeck, R.; Wolter, C. (2020): Temperaturempfindlichkeiten der Fischgemeinschaften in deutschen Fließgewässern. LAWA-Projekt O 10.20. \url{https://www.laenderfinanzierungsprogramm.de/static/LFP/Dateien/LAWA/AO/O_10.20_211119_Endbericht_O10.20_TempEmpf_Fische.pdf}. Abruf: 07.11.2026.
-\bibitem{lauber} [11] Lauber, U.; Ufrecht, W.; Goldscheider, N. (2014): Spatially resolved information on karst conduit flow from in-cave dye tracing. Hydrology and Earth System Sciences 18, 435-445. \url{https://doi.org/10.5194/hess-18-435-2014}. Abruf: 07.11.2026.
-\bibitem{epa} [12] United States Environmental Protection Agency: Fiber Optic Distributed Temperature Sensing. \url{https://www.epa.gov/environmental-geophysics/fiber-optic-distributed-temperature-sensing}. Abruf: 07.11.2026.
-\bibitem{bimschv} [13] Bundesrepublik Deutschland: 42. BImSchV. \url{https://www.gesetze-im-internet.de/bimschv_42/BJNR237900017.html}. Abruf: 07.11.2026.
-\bibitem{whg} [14] Bundesrepublik Deutschland: Wasserhaushaltsgesetz, insbesondere §§ 8, 9, 12 und 27. \url{https://www.gesetze-im-internet.de/whg_2009/}. Abruf: 07.11.2026.
-\bibitem{naturschutz} [15] Stadt Blaubeuren: Blautopf-Sanierung, Grundlagen Naturschutz. \url{https://www.blautopf-sanierung.de/willkommen/Grundlagen/Naturschutz}. Abruf: 07.11.2026.
-\bibitem{bdew} [16] Bundesverband der Energie- und Wasserwirtschaft: BDEW-Strompreisanalyse, Preisangaben 2026. \url{https://www.bdew.de/service/daten-und-grafiken/bdew-strompreisanalyse/}. Abruf: 07.11.2026.
-\bibitem{bfe} [17] Schweizerisches Bundesamt für Energie (2010): Feldmessungen großer Wärmepumpenanlagen. \url{https://pubdb.bfe.admin.ch/de/publication/download/4978}. Abruf: 07.11.2026.
-\bibitem{tga} [18] tga-shop: Buderus SL333 Plattenwärmetauscher DN100 PN16, Produktpreis und Listenpreis. \url{https://tga-shop.de/Buderus-SL333-Plattenwaermetauscher-DN100-PN16-601-700-kW-70-Platten-7738300409/70001-7738300409}. Abruf: 07.11.2026.
-\bibitem{haw} [19] HAW Hamburg (2012): Kälte- und Klimatisierungssysteme, wirtschaftlicher Vergleich. \url{https://reposit.haw-hamburg.de/bitstream/20.500.12738/5979/1/Bachelorthesis_Bez_Armin_20120618.pdf}. Abruf: 07.11.2026.
-\bibitem{waermeplanung} [20] Stadt Blaubeuren: Kommunale Wärmeplanung. \url{https://www.blaubeuren.de/de/Aktuelles/Kommunale-Waermeplanung}. Abruf: 07.11.2026.
-\bibitem{planetbericht} [21] PlaNeT SimTech: Vorgaben für den Bericht, Stand 10/2026. \url{https://www.planet-simtech.de/wp-content/uploads/2023/05/PlaNeT_Vorgaben-Bericht.pdf}. Abruf: 07.11.2026.
-\bibitem{d4rt} [22] Zhang et al.: Efficiently Reconstructing Dynamic Scenes One D4RT at a Time. \url{https://storage.googleapis.com/d4rt_assets/D4RT_paper.pdf}. Abruf: 07.11.2026. Ausschließlich Layoutvergleich.
-\bibitem{uba} [23] Umweltbundesamt (2025): CO₂-Emissionen pro Kilowattstunde Strom 2024 gesunken. \url{https://www.umweltbundesamt.de/themen/co2-emissionen-pro-kilowattstunde-strom-2024}. Abruf: 07.11.2026.
-\bibitem{bnatschg} [24] Bundesrepublik Deutschland: Bundesnaturschutzgesetz, § 34, Verträglichkeitsprüfung. \url{https://www.gesetze-im-internet.de/bnatschg_2009/__34.html}. Abruf: 07.11.2026.
-\bibitem{awsv} [25] Bundesrepublik Deutschland: Verordnung über Anlagen zum Umgang mit wassergefährdenden Stoffen, § 18, Rückhaltung. \url{https://www.gesetze-im-internet.de/awsv/__18.html}. Abruf: 07.11.2026.
+\bibitem{stadt} [1] Stadt Blaubeuren: Geopoint Blautopf. \href{https://www.blaubeuren.de/Geopoint-Blautopf}{blaubeuren.de}. Abruf: 07.11.2026.
+\bibitem{fan} [2] Fan, X.; Goeppert, N.; Goldscheider, N. (2023): Quantifying the historic and future response of karst spring discharge to climate variability and change at a snow-influenced temperate catchment in central Europe. Hydrogeology Journal 31, 2213-2229. \href{https://doi.org/10.1007/s10040-023-02703-9}{doi.org}. Abruf: 07.11.2026.
+\bibitem{lgrb} [3] Landesamt für Geologie, Rohstoffe und Bergbau Baden-Württemberg: Regionalbeschreibung Mittlere Alb, Fallbeispiele zum Blautopf. \href{https://lgrbwissen.lgrb-bw.de/hydrogeologie/regionalbeschreibung-mittlere-alb/fallbeispiele}{lgrbwissen.lgrb-bw.de}. Abruf: 07.11.2026.
+\bibitem{nist} [4] National Institute of Standards and Technology: NIST Chemistry WebBook, Wasser, isobare Tabelle. \href{https://webbook.nist.gov/cgi/fluid.cgi?Action=Data&Wide=on&ID=C7732185&Type=IsoBar&Digits=6&P=1.01325&TLow=0&THigh=100&TInc=10&RefState=DEF&TUnit=C&PUnit=bar&DUnit=kg%2Fm3}{webbook.nist.gov}. Abruf: 07.11.2026. Abfrage: 1,01325 bar, 0 bis 100 °C, Schritt 10 °C. Drucktabelle: 3,17007 bar, 130 bis 140 °C, Schritt 1 °C. Vollständige Abfragen stehen im Quellenregister und im Modell.
+\bibitem{iapws} [5] International Association for the Properties of Water and Steam: Revised Release on the IAPWS Industrial Formulation 1997 for the Thermodynamic Properties of Water and Steam, IF97-Rev. \href{https://iapws.org/relguide/IF97-Rev.html}{iapws.org}. Abruf: 07.11.2026.
+\bibitem{ouellet} [6] Ouellet, V.; Caissie, D. (2023): Towards a better understanding of the evaporative cooling of rivers. Canadian Water Resources Journal 48, 189-205. \href{https://doi.org/10.1080/07011784.2023.2177196}{doi.org}. Preprint: \href{https://repository.library.noaa.gov/view/noaa/49285/noaa_49285_DS1.pdf}{repository.library.noaa.gov}. Abruf: 07.11.2026.
+\bibitem{bergman} [7] Bergman, T. L.; Lavine, A. S.; Incropera, F. P.; DeWitt, D. P.: Fundamentals of Heat and Mass Transfer, Kapitel 1, Wiley-Auszug. \href{https://catalogimages.wiley.com/images/db/pdf/9781119382911.excerpt.pdf}{catalogimages.wiley.com}. Abruf: 07.11.2026.
+\bibitem{openstax} [8] OpenStax: University Physics Volume 2, Abschnitt 4.3, Refrigerators and Heat Pumps. \href{https://openstax.org/books/university-physics-volume-2/pages/4-3-refrigerators-and-heat-pumps}{openstax.org}. Abruf: 07.11.2026.
+\bibitem{ogewv} [9] Bundesrepublik Deutschland: Oberflächengewässerverordnung 2016, Anlage 7. \href{https://www.gesetze-im-internet.de/ogewv_2016/anlage_7.html}{gesetze-im-internet.de}. Abruf: 07.11.2026.
+\bibitem{lawa} [10] van Treeck, R.; Wolter, C. (2020): Temperaturempfindlichkeiten der Fischgemeinschaften in deutschen Fließgewässern. LAWA-Projekt O 10.20. \href{https://www.laenderfinanzierungsprogramm.de/static/LFP/Dateien/LAWA/AO/O_10.20_211119_Endbericht_O10.20_TempEmpf_Fische.pdf}{laenderfinanzierungsprogramm.de}. Abruf: 07.11.2026.
+\bibitem{lauber} [11] Lauber, U.; Ufrecht, W.; Goldscheider, N. (2014): Spatially resolved information on karst conduit flow from in-cave dye tracing. Hydrology and Earth System Sciences 18, 435-445. \href{https://doi.org/10.5194/hess-18-435-2014}{doi.org}. Abruf: 07.11.2026.
+\bibitem{epa} [12] United States Environmental Protection Agency: Fiber Optic Distributed Temperature Sensing. \href{https://www.epa.gov/environmental-geophysics/fiber-optic-distributed-temperature-sensing}{epa.gov}. Abruf: 07.11.2026.
+\bibitem{bimschv} [13] Bundesrepublik Deutschland: 42. BImSchV. \href{https://www.gesetze-im-internet.de/bimschv_42/BJNR237900017.html}{gesetze-im-internet.de}. Abruf: 07.11.2026.
+\bibitem{whg} [14] Bundesrepublik Deutschland: Wasserhaushaltsgesetz, insbesondere §§ 8, 9, 12 und 27. \href{https://www.gesetze-im-internet.de/whg_2009/}{gesetze-im-internet.de}. Abruf: 07.11.2026.
+\bibitem{naturschutz} [15] Stadt Blaubeuren: Blautopf-Sanierung, Grundlagen Naturschutz. \href{https://www.blautopf-sanierung.de/willkommen/Grundlagen/Naturschutz}{blautopf-sanierung.de}. Abruf: 07.11.2026.
+\bibitem{bdew} [16] Bundesverband der Energie- und Wasserwirtschaft: BDEW-Strompreisanalyse, Preisangaben 2026. \href{https://www.bdew.de/service/daten-und-grafiken/bdew-strompreisanalyse/}{bdew.de}. Abruf: 07.11.2026.
+\bibitem{bfe} [17] Schweizerisches Bundesamt für Energie (2010): Feldmessungen großer Wärmepumpenanlagen. \href{https://pubdb.bfe.admin.ch/de/publication/download/4978}{pubdb.bfe.admin.ch}. Abruf: 07.11.2026.
+\bibitem{tga} [18] tga-shop: Buderus SL333 Plattenwärmetauscher DN100 PN16, Produktpreis und Listenpreis. \href{https://tga-shop.de/Buderus-SL333-Plattenwaermetauscher-DN100-PN16-601-700-kW-70-Platten-7738300409/70001-7738300409}{tga-shop.de}. Abruf: 07.11.2026.
+\bibitem{haw} [19] HAW Hamburg (2012): Kälte- und Klimatisierungssysteme, wirtschaftlicher Vergleich. \href{https://reposit.haw-hamburg.de/bitstream/20.500.12738/5979/1/Bachelorthesis_Bez_Armin_20120618.pdf}{reposit.haw-hamburg.de}. Abruf: 07.11.2026.
+\bibitem{waermeplanung} [20] Stadt Blaubeuren: Kommunale Wärmeplanung. \href{https://www.blaubeuren.de/de/Aktuelles/Kommunale-Waermeplanung}{blaubeuren.de}. Abruf: 07.11.2026.
+\bibitem{planetbericht} [21] PlaNeT SimTech: Vorgaben für den Bericht, Stand 10/2026. \href{https://www.planet-simtech.de/wp-content/uploads/2023/05/PlaNeT_Vorgaben-Bericht.pdf}{planet-simtech.de}. Abruf: 07.11.2026.
+\bibitem{d4rt} [22] Zhang et al.: Efficiently Reconstructing Dynamic Scenes One D4RT at a Time. \href{https://storage.googleapis.com/d4rt_assets/D4RT_paper.pdf}{storage.googleapis.com}. Abruf: 07.11.2026. Ausschließlich Layoutvergleich.
+\bibitem{uba} [23] Umweltbundesamt (2025): CO₂-Emissionen pro Kilowattstunde Strom 2024 gesunken. \href{https://www.umweltbundesamt.de/themen/co2-emissionen-pro-kilowattstunde-strom-2024}{umweltbundesamt.de}. Abruf: 07.11.2026.
+\bibitem{bnatschg} [24] Bundesrepublik Deutschland: Bundesnaturschutzgesetz, § 34, Verträglichkeitsprüfung. \href{https://www.gesetze-im-internet.de/bnatschg_2009/__34.html}{gesetze-im-internet.de/bnatschg\_2009}. Abruf: 07.11.2026.
+\bibitem{awsv} [25] Bundesrepublik Deutschland: Verordnung über Anlagen zum Umgang mit wassergefährdenden Stoffen, § 18, Rückhaltung. \href{https://www.gesetze-im-internet.de/awsv/__18.html}{gesetze-im-internet.de/awsv}. Abruf: 07.11.2026.
 \end{description}
 
 \onecolumn
@@ -257,19 +256,22 @@ Keine menschliche Fachprüfung hat stattgefunden. Vor einer echten Abgabe müsse
 
 \section*{Anhang B: Reproduktion, Layout und Prüfgrenzen}
 
+\begin{flushleft}
 Mit Python 3.14, NumPy, SciPy, Matplotlib und PyYAML erzeugt \texttt{python model/run\_all.py} alle Zahlen, Jahresreihen, Stichproben, Tabellen und Abbildungen. \texttt{python -m unittest discover -s model} führt die Tests aus. \texttt{scripts/verify\_report.py} prüft Seitenbudget, Geometrie, Inhalt, Anonymität und Renderbilder. Das Manifest enthält SHA-256-Hashes der Eingaben, Programme und Ergebnisse. Vollständige Befehle stehen in der README.
 
-Das Layout folgt D4RT bei Zweispaltigkeit, Times-Hierarchie, Tabellenlinien, erklärenden Unterschriften und numerischen Verweisen [22]. D4RT verwendet US Letter, kleinere Ränder und Schriftgrade. Diese Maße werden nicht übernommen. Der Bericht nutzt A4, 26 mm Rand und 12 pt, auch für Tabellen und Literatur [21]. Die lokale D4RT-PDF und gerasterte Seiten 1, 2 und 6 liegen dem Reviewpaket bei. Damit ist der Bildvergleich prüfbar, nicht nur beschrieben.
+Als arithmetische Kontrolle ohne Modellfunktion dient die Handrechnung \(\frac{999,702\cdot2,3\cdot4195,14\cdot91}{10^6}=\QFinalFull\ \mathrm{MW}\). Sie verwendet NIST-Stoffwerte und keine externe Feldvalidierung [4].
 
-\clearpage
-\section*{Anhang C: Ergänzende Ergebnisse}
+Das Layout folgt D4RT bei Zweispaltigkeit, Times-Hierarchie, Tabellenlinien, erklärenden Unterschriften und numerischen Verweisen [22]. D4RT verwendet US Letter, kleinere Ränder und Schriftgrade. Diese Maße werden nicht übernommen. Der Bericht nutzt A4, 26 mm Rand und 12 pt, auch für Tabellen und Literatur [21]. Die lokale D4RT-PDF und gerasterte Seiten 1, 2 und 6 liegen dem Reviewpaket bei. Damit ist der Bildvergleich prüfbar, nicht nur beschrieben.
+\end{flushleft}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.88\textwidth]{figures/fig02_stufenplan.pdf}
-\caption{Modularer Ausbau der Vollstromkühlung. Die gestrichelte Linie enthält 20 \% Reserve; die p90-Kapazität wird zusätzlich skaliert. Eigene Rechnung mit Kimi K3.1 Pro.}
-\label{fig:stufen}
+\includegraphics[width=0.78\textwidth]{figures/fig05_unsicherheit.pdf}
+\caption{Gekoppelte Unsicherheit von Abfluss, COP und Investitionsfaktor. Die Verteilung endet bei 4,7 m³/s und ist kein Extremwertmodell. Eigene Rechnung mit Kimi K3.1 Pro.}
+\label{fig:unsicherheit}
 \end{figure}
+
+\section*{Anhang C: Ergänzende Ergebnisse}
 
 \begin{table}[H]
 \centering
@@ -300,12 +302,5 @@ H7 Passive Wärmerohre & Bei 10 W/(m² K) und 20 K wären \PassiveArea\ km² nö
 \caption{Verworfene Ansätze und ihre physikalischen Ausschlussgründe.}
 \label{tab:verworfen}
 \end{table}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.88\textwidth]{figures/fig05_unsicherheit.pdf}
-\caption{Gekoppelte Unsicherheit von Abfluss, COP und Investitionsfaktor. Die Verteilung endet bei 4,7 m³/s und ist kein Extremwertmodell. Eigene Rechnung mit Kimi K3.1 Pro.}
-\label{fig:unsicherheit}
-\end{figure}
 
 \end{document}

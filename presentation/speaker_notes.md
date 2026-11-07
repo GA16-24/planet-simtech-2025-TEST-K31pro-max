@@ -1,10 +1,10 @@
 # Sprechtext und Quellen
 
-Die Vertonung verwendet eSpeak NG 1.52.0 mit deutscher Stimme. Der Tempofaktor nach der Laufzeitmessung beträgt 1.0457. Es handelt sich nicht um eine menschliche Live-Präsentation.
+Die Vertonung verwendet eSpeak NG 1.52.0 mit deutscher Stimme. Der Tempofaktor nach der Laufzeitmessung beträgt 1.0757. Es handelt sich nicht um eine menschliche Live-Präsentation.
 
 ## Folie 1. Die 878-Megawatt-Aufgabe
 
-Zeit 00:00:00.000 bis 00:00:20.922, effektive Dauer 20.92 s.
+Zeit 00:00:00,000 bis 00:00:20,347, effektive Dauer 20.35 s.
 
 Der Blautopf soll in zehn Jahren kochen. Diese Zahl und die vulkanische Ursache sind Szenarioprämissen, keine neuen Messungen. Unsere Antwort beginnt mit einer Energiebilanz. Wer das Becken dauerhaft kalt halten will, muss im Erwartungsfall 878 Megawatt abführen. Für das 90-Prozent-Abflussquantil wird die Kapazität größer ausgelegt.
 
@@ -14,7 +14,7 @@ Quellen und Belege:
 
 ## Folie 2. Ein Kelvin entscheidet
 
-Zeit 00:00:20.922 bis 00:00:48.867, effektive Dauer 27.95 s.
+Zeit 00:00:20,347 bis 00:00:47,522, effektive Dauer 27.18 s.
 
 Im Mittel fließen jede Sekunde 2,3 Kubikmeter Wasser durch den Blautopf. Jedes Kilogramm speichert etwa 4,2 Kilojoule pro Kelvin. Deshalb transportiert der erwartete Strom 9,646 Megawatt pro Kelvin. Zwischen dem kalten Normalzustand und dem Sieden liegen 91 Kelvin. Multipliziert ergibt das 877,8 Megawatt. Diese Wärme muss dauerhaft aus dem Wasser heraus, nicht nur der Siedepunkt verschoben werden.
 
@@ -25,7 +25,7 @@ Quellen und Belege:
 
 ## Folie 3. Zwei Kontrollvolumen
 
-Zeit 00:00:48.867 bis 00:01:12.871, effektive Dauer 24.00 s.
+Zeit 00:00:47,522 bis 00:01:10,865, effektive Dauer 23.34 s.
 
 Wer nur das Beckenvolumen in zehn Jahren aufheizt und den Abfluss vergisst, erhält 0,0303 Megawatt. Der Blautopf ist aber keine verschlossene Thermoskanne. Wenn der gesamte Zufluss warm wird, muss dieselbe Wärme wieder aus dem Strom heraus. Erhitzt die Anomalie nur ein Prozent des Flusses, genügen 8,8 Megawatt. Die Messtechnik entscheidet deshalb zuerst, welches Kontrollvolumen stimmt.
 
@@ -35,7 +35,7 @@ Quellen und Belege:
 
 ## Folie 4. Sieben physikalische Wege
 
-Zeit 00:01:12.871 bis 00:01:42.625, effektive Dauer 29.75 s.
+Zeit 00:01:10,865 bis 00:01:39,799, effektive Dauer 28.93 s.
 
 Sieben Wege werden mit derselben Last verglichen. Druck verschiebt nur das Sieden und schützt die Organismen nicht. Ein Bypass lässt das Becken weiter heiß werden. Passive Kühlflächen scheitern an Fläche und Sommerluft. Kaltwasserzumischung braucht mehr als das Zwanzigfache des natürlichen Abflusses. Verdunstung mit Kältestufe ist günstiger, verbraucht aber 8,45 Millionen Kubikmeter Wasser im Jahr. Ein Karsteingriff kennt die Fließwege nicht sicher genug. Deshalb bleibt die trockene Hybridkühlung, trotz höherer Stromemissionen.
 
@@ -46,7 +46,7 @@ Quellen und Belege:
 
 ## Folie 5. Die zweistufige Kühlung
 
-Zeit 00:01:42.625 bis 00:02:17.786, effektive Dauer 35.16 s.
+Zeit 00:01:39,799 bis 00:02:13,988, effektive Dauer 34.19 s.
 
 Trockenkühler senken das Wasser zuerst von 100 auf 40 Grad und führen 579 Megawatt an die Luft ab. Danach kühlen Kältemaschinen auf 9 Grad und übernehmen 299 Megawatt. Ihre Kondensatoren geben zusätzlich die Antriebsenergie ab. Im Erwartungsfall muss die Luft 967 Megawatt aufnehmen. Für 4,7 Kubikmeter pro Sekunde werden 2,15 Gigawatt installiert. Dann arbeiten elf Stränge und einer ist Reserve. Im Mittelbetrieb modulieren fünf. Die Sollwertrampe am Kälteauslass begrenzt die Änderung auf ein Kelvin pro Stunde.
 
@@ -57,9 +57,9 @@ Quellen und Belege:
 
 ## Folie 6. Der gerechnete Wiederanlauf
 
-Zeit 00:02:17.786 bis 00:02:47.836, effektive Dauer 30.05 s.
+Zeit 00:02:13,988 bis 00:02:46,094, effektive Dauer 32.11 s.
 
-Ohne Kühlung erreicht das Becken im Modell nach 23 Minuten die interne Alarmschwelle von 20 Grad. Deshalb rechnen wir den Wiederanlauf zeitlich nach. Detektion dauert eine halbe Minute, der Generatorstart fünf Minuten, volle Kühlleistung steht nach zehn Minuten bereit. Der Höchstwert bleibt bei 12,6 Grad. Sechs Aggregate liefern die p90-Leistung, ein siebtes ist Reserve. Der Dieseltank ist auf 48 Stunden ausgelegt. Das ist ein Rechenszenario, kein erfolgter Zuschaltversuch.
+Im p90-Fall erreicht das Becken ohne Kühlung nach 11,4 Minuten die interne Alarmschwelle von 20 Grad. Deshalb rechnen wir den Wiederanlauf zeitlich nach. Detektion dauert eine halbe Minute, der Generatorstart fünf Minuten, volle Kühlleistung steht nach zehn Minuten bereit. Der Höchstwert bleibt bei 16,2 Grad, im Mittelstrom bei 12,6 Grad. Sechs Aggregate liefern die p90-Leistung, ein siebtes ist Reserve. Der Dieseltank ist auf 48 Stunden ausgelegt. Das ist ein Rechenszenario, kein erfolgter Zuschaltversuch.
 
 Quellen und Belege:
 - Validierung recovery_peak_temperature_c
@@ -67,7 +67,7 @@ Quellen und Belege:
 
 ## Folie 7. Der Preis des trockenen Weges
 
-Zeit 00:02:47.836 bis 00:03:24.038, effektive Dauer 36.20 s.
+Zeit 00:02:46,094 bis 00:03:21,294, effektive Dauer 35.20 s.
 
 Die p90-Reserve kostet 1,28 Milliarden Euro Investition. Im erwarteten zehnten Jahr fallen 146,5 Millionen Euro Betriebskosten an, der Barwert liegt bei 3,67 Milliarden. Verdunstung mit Kältestufe kommt auf 2,99 Milliarden, verbraucht aber 8,45 Millionen Kubikmeter Wasser pro Jahr. H1 verursacht 62,3 Kilotonnen mehr Stromemissionen. Der Tarif von 138 Euro pro Megawattstunde ist nur ein Proxy. Alle Kosten sind Szenarien in Euro von 2026, keine Angebote.
 
@@ -78,9 +78,9 @@ Quellen und Belege:
 
 ## Folie 8. Die Hülle begrenzt das Versprechen
 
-Zeit 00:03:24.038 bis 00:03:54.617, effektive Dauer 30.58 s.
+Zeit 00:03:21,294 bis 00:03:56,246, effektive Dauer 34.95 s.
 
-Eine Auslegung auf den Mittelstrom überschreitet in 38,57 Prozent der Ziehungen die 9-Grad-Kapazität. Die p90-Reserve deckt die begrenzte Verteilung vollständig ab. Das ist kein Extremwertnachweis. Für 32,7 Kubikmeter pro Sekunde wären 12,48 Gigawatt nötig. Ein reiner Siedeschutz auf etwa 95 Grad braucht beim Mittelstrom dagegen nur 48,5 Megawatt, schützt aber das Ökosystem nicht. Diese Zielkonflikte gehören zur Antwort.
+Die alte Auslegung auf den Mittelstrom mit 20 Prozent Reserve, also 1053,3 Megawatt, überschreitet in 38,57 Prozent der Ziehungen die 9-Grad-Kapazität. Die p90-Reserve deckt die begrenzte Verteilung vollständig ab. Das ist kein Extremwertnachweis. Für 32,7 Kubikmeter pro Sekunde wären 12,48 Gigawatt nötig. Ein reiner Siedeschutz auf etwa 95 Grad braucht beim Mittelstrom dagegen nur 48,5 Megawatt, schützt aber das Ökosystem nicht. Diese Zielkonflikte gehören zur Antwort.
 
 Quellen und Belege:
 - LGRB [3]
@@ -89,7 +89,7 @@ Quellen und Belege:
 
 ## Folie 9. Messung, Standort und Nachweis
 
-Zeit 00:03:54.617 bis 00:04:24.618, effektive Dauer 30.00 s.
+Zeit 00:03:56,246 bis 00:04:25,417, effektive Dauer 29.17 s.
 
 Vor dem Bau müssen Sonden Temperatur und Druck in beiden Karstästen messen. Tracer und Durchfluss zeigen, welcher Ast die Wärme trägt. Für die Luftsenke sind 8,19 Hektar einzuplanen, außerdem Netzleistung von 182,7 Megawatt und 2.237 Kubikmeter Diesellager. Schall, Plume, Rückverwirbelung und die FFH-Prüfung können den Standort verwerfen. Ein Pilotkreislauf muss Mischung und COP messen. Auch der Wiederanlauf ist praktisch zu beweisen.
 
@@ -101,7 +101,7 @@ Quellen und Belege:
 
 ## Folie 10. Schlussfolgerung
 
-Zeit 00:04:24.618 bis 00:04:49.954, effektive Dauer 25.34 s.
+Zeit 00:04:25,417 bis 00:04:50,056, effektive Dauer 24.64 s.
 
 Sieden verhindern heißt Wärme abführen, nicht nur den Siedepunkt erhöhen. Unsere Antwort ist eine zweistufige Kühlung mit 878 Megawatt Erwartungslast und 2,15 Gigawatt p90-Kapazität. Sie hält den Normalzustand innerhalb ihrer angenommenen Hülle. Erst Messungen und ein geeigneter Standort dürfen den Ausbaupfad festlegen. Davor bleibt dies ein prüfbarer Szenarioentwurf, keine Baufreigabe.
 

@@ -1,5 +1,5 @@
 {
-  "model_version": "2.0.0",
+  "model_version": "2.1.0",
   "parameters": {
     "scenario": {
       "initial_temperature_c": 9.0,
@@ -2123,6 +2123,29 @@
     "failure_time_to_20c_h": 0.3889881396224893,
     "recovery_peak_temperature_c": 12.644763691135058,
     "recovery_margin_minutes": 13.339288377349359,
+    "failure_mean": {
+      "flow_ratio": 1.0,
+      "pool_time_constant_h": 3.019323671497585,
+      "failure_time_to_20c_h": 0.3889881396224893,
+      "recovery_peak_temperature_c": 12.644763691135058,
+      "recovery_margin_minutes": 13.339288377349359,
+      "detection_minutes": 0.5,
+      "generator_start_minutes": 5.0,
+      "full_cooling_minutes": 10.0,
+      "evaluation_points": 1001
+    },
+    "failure_p90": {
+      "flow_ratio": 2.0434782608695654,
+      "pool_time_constant_h": 1.4775413711583922,
+      "failure_time_to_20c_h": 0.19035589811313303,
+      "recovery_peak_temperature_c": 16.204464338666547,
+      "recovery_margin_minutes": 1.4213538867879816,
+      "detection_minutes": 0.5,
+      "generator_start_minutes": 5.0,
+      "full_cooling_minutes": 10.0,
+      "evaluation_points": 1001
+    },
+    "failure_p90_convergence_error_k": 7.398218180298954e-07,
     "staged_npv_lower_than_upfront": true,
     "all_checks_passed": true,
     "coupled_npv_error_eur": 0.0

@@ -62,15 +62,15 @@ Beleg: `module_count`, `required_modules`, `reserve_fraction` und `design` in `o
 
 ### 10. Was passiert bei einem Stromausfall?
 
-Ohne Kühlung erreicht das angenommene Becken im zehnten Jahr nach 23 Minuten 20 °C. Diese Schwelle ist intern, keine behördliche Blau-Grenze und keine Siedezeit. Das dynamische Modell nutzt 0,5 min Detektion, 5 min Generatorstart und 10 min bis voller Kühlleistung. Der Höchstwert beträgt 12,6 °C. Zwei Netzeinspeisungen, sechs Aggregate und eine Reserve gehören zum Szenario, nicht zu einem erfolgten Feldtest.
+Ohne Kühlung erreicht das angenommene Becken im Mittelstrom nach 23 Minuten 20 °C, im p90-Fall bereits nach 11,4 Minuten. Diese Schwelle ist intern, keine behördliche Blau-Grenze und keine Siedezeit. Das dynamische Modell nutzt 0,5 min Detektion, 5 min Generatorstart und 10 min bis voller Kühlleistung. Der Höchstwert beträgt 12,6 °C im Mittelstrom und 16,2 °C im p90-Fall. Die Differenz zur vollen Leistung beträgt dort 1,4 Minuten und ist keine freie Wartezeit. Zwei Netzeinspeisungen, sechs Aggregate und eine Reserve gehören zum Szenario, nicht zu einem erfolgten Feldtest.
 
-Beleg: `validation.recovery_peak_temperature_c` und `recovery_margin_minutes`, Folie 6. Revision: Zeitlicher Zuschaltverlauf statt pauschaler Notstrombehauptung.
+Beleg: `validation.failure_mean` und `failure_p90`, Folie 6. Revision: Beide Abflussfälle und eine Konvergenzprüfung ergänzt.
 
 ### 11. Wie wird sichergestellt, dass wirklich der gesamte betroffene Strom erfasst wird?
 
-Das Tiefenwasser wird vor dem Austritt durch getrennte Leitungen gefasst und nach der Kühlung über Puffer und Diffusor zurückgeführt. Tracer und Durchflussmessungen an Zufluss, Rücklauf und Blau prüfen die Vollständigkeit. Ein thermischer Kurzschluss zwischen Entnahme und Rückführung wird durch gestufte Versuche erkannt. Die endgültige Ansaug- und Diffusorgeometrie folgt erst danach.
+Das Konzept soll das betroffene Tiefenwasser vor dem Austritt erfassen und nach der Kühlung zurückführen. Leitungen, Ansaug- und Diffusorgeometrie sind noch nicht konstruiert. Sie müssen nach Tracer-, Durchfluss- und Druckmessungen entworfen werden. Erst Messungen an Zufluss, Rücklauf und Blau können die vollständige Erfassung bestätigen. Gestufte Versuche müssen auch einen thermischen Kurzschluss zwischen Entnahme und Rückführung ausschließen. Der Messplan ist ein Prüfkonzept, kein Nachweis der Erfassung.
 
-Beleg: Messplan in Bericht und Folie 9. Offene technische Detailplanung: Geometrie und hydraulische Verluste nach Feldversuch.
+Beleg: Messplan in Bericht und Folie 9. Revision: Die nicht konstruierte Geometrie wird nicht mehr als fertige Anlagenplanung dargestellt.
 
 ### 12. Warum ist keine Wärmevermarktung eingerechnet?
 
@@ -148,9 +148,9 @@ Beleg: BDEW [16], `tariff_scenarios`. Revision: Tarifklasse und Sensitivität ko
 
 ### 24. Ist der Wiederanlauf nach zehn Minuten bewiesen?
 
-Nein. Es ist ein dynamisches Rechenszenario mit expliziten Annahmen. Detektion, Generatorstart und Lastzuschaltung werden gegen das Beckenaufheizen gerechnet. Der Höchstwert beträgt 12,6 °C, während 20 °C ohne Kühlung nach 23 Minuten erreicht würden. Herstellerdaten, Netzschutz, Aggregatanlauf, gemeinsame Fehler und ein realer Lastabwurf- und Zuschaltversuch fehlen weiterhin.
+Nein. Es ist ein dynamisches Rechenszenario mit expliziten Annahmen. Detektion, Generatorstart und Lastzuschaltung werden gegen das Beckenaufheizen gerechnet. Im Mittelstrom liegt der Höchstwert bei 12,6 °C, im p90-Fall bei 16,2 °C. Ohne Kühlung wären 20 °C dort nach 11,4 Minuten erreicht. Die Differenz zur vollen Leistung beträgt dort 1,4 Minuten und ist keine freie Wartezeit. Zwei Toleranz- und Zeitschrittstufen bestätigen den Verlauf. Herstellerdaten, Netzschutz, Aggregatanlauf, gemeinsame Fehler und ein realer Lastabwurf- und Zuschaltversuch fehlen weiterhin.
 
-Beleg: `failure` in `data/parameters.yml`, `validation.recovery_peak_temperature_c`. Revision: Dynamischer Test ergänzt, keine Feldvalidierung behauptet.
+Beleg: `failure` in `data/parameters.yml`, `validation.failure_mean`, `failure_p90` und `failure_p90_convergence_error_k`. Revision: Auslegungsfall und Konvergenzprüfung ergänzt, keine Feldvalidierung behauptet.
 
 ### 25. Warum nicht nur das Sieden statt des 9-°C-Zustands verhindern?
 

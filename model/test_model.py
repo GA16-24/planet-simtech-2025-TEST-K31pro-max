@@ -70,6 +70,14 @@ class ModelTests(unittest.TestCase):
         self.assertGreater(rows[10]["backup_fuel_liters"], 0.0)
         self.assertEqual(rows[10]["backup_cost_eur"], rows[10]["backup_fuel_liters"] * self.p["plant"]["diesel_price_eur_l"])
 
+    def test_failure_p90_and_convergence(self) -> None:
+        result = run_validation(self.p)
+        self.assertAlmostEqual(result["failure_mean"]["recovery_peak_temperature_c"], 12.6447637, places=5)
+        self.assertAlmostEqual(result["failure_p90"]["recovery_peak_temperature_c"], 16.2044656, places=4)
+        self.assertAlmostEqual(result["failure_p90"]["failure_time_to_20c_h"] * 60.0, 11.4213539, places=5)
+        self.assertAlmostEqual(result["failure_p90"]["recovery_margin_minutes"], 1.4213539, places=5)
+        self.assertLess(result["failure_p90_convergence_error_k"], 1e-6)
+
     def test_validation_suite(self) -> None:
         result = run_validation(self.p)
         self.assertTrue(result["all_checks_passed"])

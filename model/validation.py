@@ -24,6 +24,46 @@ from core import (
 )
 
 
+def simulate_failure(p: dict[str, Any], flow_ratio: float, rtol: float = 1e-9, atol: float = 1e-9, max_step_s: float | None = None) -> dict[str, float | int]:
+    s = p["scenario"]
+    w = p["water"]
+    f = p["failure"]
+    tau_s = s["pool_volume_m3"] / (w["discharge_m3_s"] * s["affected_flow_fraction"] * flow_ratio)
+    cooling_mw = float(required_cooling_mw(s["forecast_years"], p, affected_fraction=flow_ratio))
+    source = s["boiling_temperature_c"]
+    initial = s["initial_temperature_c"]
+    start_s = f["generator_start_minutes"] * 60.0
+    full_s = f["full_cooling_minutes"] * 60.0
+    assert f["detection_minutes"] * 60.0 <= start_s < full_s <= f["controls_ups_minutes"] * 60.0
+    failure_time_h = -tau_s * np.log((source - 20.0) / (source - initial)) / 3600.0
+
+    def recovered_cooling(time_s: float, temperature: list[float]) -> list[float]:
+        fraction = min(max((time_s - start_s) / (full_s - start_s), 0.0), 1.0)
+        source_gain = (source - temperature[0]) / tau_s
+        cooling_loss = cooling_mw * 1e6 / (w["density_kg_m3"] * s["pool_volume_m3"] * w["specific_heat_j_kgk"]) * fraction
+        return [source_gain - cooling_loss]
+
+    end_s = failure_time_h * 3600.0 * 1.2
+    time_s = np.linspace(0.0, end_s, 1001)
+    options: dict[str, Any] = {"rtol": rtol, "atol": atol}
+    if max_step_s is not None:
+        options["max_step"] = max_step_s
+    recovery = solve_ivp(recovered_cooling, (0.0, end_s), [initial], t_eval=time_s, **options)
+    if not recovery.success:
+        raise RuntimeError(f"Ausfallintegration fehlgeschlagen: {recovery.message}")
+    return {
+        "flow_ratio": flow_ratio,
+        "pool_time_constant_h": tau_s / 3600.0,
+        "failure_time_to_20c_h": float(failure_time_h),
+        "recovery_peak_temperature_c": float(np.max(recovery.y[0])),
+        "recovery_margin_minutes": float(failure_time_h * 60.0 - f["full_cooling_minutes"]),
+        "detection_minutes": f["detection_minutes"],
+        "generator_start_minutes": f["generator_start_minutes"],
+        "full_cooling_minutes": f["full_cooling_minutes"],
+        "evaluation_points": len(time_s),
+    }
+
+
 def run_validation(p: dict[str, Any]) -> dict[str, float | bool]:
     s = p["scenario"]
     w = p["water"]
@@ -67,26 +107,18 @@ def run_validation(p: dict[str, Any]) -> dict[str, float | bool]:
     ode_error_k = float(np.max(np.abs(numerical.y[0] - analytical)))
     assert ode_error_k < 1e-6
 
-    failure_source = s["boiling_temperature_c"]
-    failure_time_20c_h = -tau_s * np.log((failure_source - 20.0) / (failure_source - initial)) / 3600.0
-    assert failure_time_20c_h > 0.0
     f = p["failure"]
-    start_s = f["generator_start_minutes"] * 60.0
-    full_s = f["full_cooling_minutes"] * 60.0
-    assert f["detection_minutes"] * 60.0 <= start_s < full_s <= f["controls_ups_minutes"] * 60.0
-
-    def recovered_cooling(time_s: float, temperature: list[float]) -> list[float]:
-        fraction = min(max((time_s - start_s) / (full_s - start_s), 0.0), 1.0)
-        source_gain = (failure_source - temperature[0]) / tau_s
-        cooling_loss = final_q * 1e6 / (w["density_kg_m3"] * s["pool_volume_m3"] * w["specific_heat_j_kgk"]) * fraction
-        return [source_gain - cooling_loss]
-
-    recovery_time_s = np.linspace(0.0, failure_time_20c_h * 3600.0 * 1.2, 1001)
-    recovery = solve_ivp(recovered_cooling, (0.0, float(recovery_time_s[-1])), [initial], t_eval=recovery_time_s, rtol=1e-9, atol=1e-9)
-    recovery_peak_c = float(np.max(recovery.y[0]))
-    recovery_margin_minutes = failure_time_20c_h * 60.0 - f["full_cooling_minutes"]
-    assert recovery_peak_c < 20.0 and recovery_margin_minutes > 0.0
     assert f["backup_installed_aggregates"] > f["backup_required_aggregates"]
+    design_ratio = p["hydrology"]["design_discharge_m3_s"] / w["discharge_m3_s"]
+    failure_mean = simulate_failure(p, 1.0)
+    failure_p90 = simulate_failure(p, design_ratio, rtol=1e-11, atol=1e-11, max_step_s=5.0)
+    failure_p90_coarse = simulate_failure(p, design_ratio, rtol=1e-9, atol=1e-9, max_step_s=30.0)
+    failure_p90_convergence_error_k = abs(failure_p90["recovery_peak_temperature_c"] - failure_p90_coarse["recovery_peak_temperature_c"])
+    for failure_case in (failure_mean, failure_p90):
+        assert failure_case["failure_time_to_20c_h"] > 0.0
+        assert failure_case["recovery_peak_temperature_c"] < 20.0
+        assert failure_case["recovery_margin_minutes"] > 0.0
+    assert failure_p90_convergence_error_k < 1e-6
 
     hybrid_staged = economic_schedule(p, "hybrid", upfront=False)
     hybrid_upfront = economic_schedule(p, "hybrid", upfront=True)
@@ -123,9 +155,12 @@ def run_validation(p: dict[str, Any]) -> dict[str, float | bool]:
         "dilution_mixing_error_c": abs(mixed - s["target_temperature_c"]),
         "ode_max_error_k": ode_error_k,
         "pool_time_constant_h": tau_s / 3600.0,
-        "failure_time_to_20c_h": float(failure_time_20c_h),
-        "recovery_peak_temperature_c": recovery_peak_c,
-        "recovery_margin_minutes": recovery_margin_minutes,
+        "failure_time_to_20c_h": failure_mean["failure_time_to_20c_h"],
+        "recovery_peak_temperature_c": failure_mean["recovery_peak_temperature_c"],
+        "recovery_margin_minutes": failure_mean["recovery_margin_minutes"],
+        "failure_mean": failure_mean,
+        "failure_p90": failure_p90,
+        "failure_p90_convergence_error_k": failure_p90_convergence_error_k,
         "staged_npv_lower_than_upfront": npv(hybrid_staged) < npv(hybrid_upfront),
         "all_checks_passed": True,
     }

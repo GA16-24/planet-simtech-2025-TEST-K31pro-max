@@ -32,7 +32,7 @@
   {
     "slide": 6,
     "title": "Der gerechnete Wiederanlauf",
-    "narration": "Ohne Kühlung erreicht das Becken im Modell nach 23 Minuten die interne Alarmschwelle von 20 Grad. Deshalb rechnen wir den Wiederanlauf zeitlich nach. Detektion dauert eine halbe Minute, der Generatorstart fünf Minuten, volle Kühlleistung steht nach zehn Minuten bereit. Der Höchstwert bleibt bei 12,6 Grad. Sechs Aggregate liefern die p90-Leistung, ein siebtes ist Reserve. Der Dieseltank ist auf 48 Stunden ausgelegt. Das ist ein Rechenszenario, kein erfolgter Zuschaltversuch.",
+    "narration": "Im p90-Fall erreicht das Becken ohne Kühlung nach 11,4 Minuten die interne Alarmschwelle von 20 Grad. Deshalb rechnen wir den Wiederanlauf zeitlich nach. Detektion dauert eine halbe Minute, der Generatorstart fünf Minuten, volle Kühlleistung steht nach zehn Minuten bereit. Der Höchstwert bleibt bei 16,2 Grad, im Mittelstrom bei 12,6 Grad. Sechs Aggregate liefern die p90-Leistung, ein siebtes ist Reserve. Der Dieseltank ist auf 48 Stunden ausgelegt. Das ist ein Rechenszenario, kein erfolgter Zuschaltversuch.",
     "sources": ["Validierung recovery_peak_temperature_c", "failure in data/parameters.yml"]
   },
   {
@@ -44,7 +44,7 @@
   {
     "slide": 8,
     "title": "Die Hülle begrenzt das Versprechen",
-    "narration": "Eine Auslegung auf den Mittelstrom überschreitet in 38,57 Prozent der Ziehungen die 9-Grad-Kapazität. Die p90-Reserve deckt die begrenzte Verteilung vollständig ab. Das ist kein Extremwertnachweis. Für 32,7 Kubikmeter pro Sekunde wären 12,48 Gigawatt nötig. Ein reiner Siedeschutz auf etwa 95 Grad braucht beim Mittelstrom dagegen nur 48,5 Megawatt, schützt aber das Ökosystem nicht. Diese Zielkonflikte gehören zur Antwort.",
+    "narration": "Die alte Auslegung auf den Mittelstrom mit 20 Prozent Reserve, also 1053,3 Megawatt, überschreitet in 38,57 Prozent der Ziehungen die 9-Grad-Kapazität. Die p90-Reserve deckt die begrenzte Verteilung vollständig ab. Das ist kein Extremwertnachweis. Für 32,7 Kubikmeter pro Sekunde wären 12,48 Gigawatt nötig. Ein reiner Siedeschutz auf etwa 95 Grad braucht beim Mittelstrom dagegen nur 48,5 Megawatt, schützt aber das Ökosystem nicht. Diese Zielkonflikte gehören zur Antwort.",
     "sources": ["LGRB [3]", "Fan et al. [2]", "uncertainty und boil_guard in output/model/results.json"]
   },
   {

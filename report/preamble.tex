@@ -10,6 +10,7 @@
 \usepackage{array}
 \usepackage{graphicx}
 \usepackage{float}
+\usepackage{balance}
 \usepackage{caption}
 \usepackage{titlesec}
 \usepackage{fancyhdr}
@@ -33,8 +34,8 @@
 \renewcommand{\arraystretch}{1.12}
 \setlist{nosep,leftmargin=1.4em}
 
-\titleformat{\section}{\fontsize{14}{16.8}\selectfont\bfseries}{\thesection.}{0.5em}{}
-\titleformat{\subsection}{\fontsize{12}{14.4}\selectfont\bfseries}{\thesubsection.}{0.5em}{}
+\titleformat{\section}{\raggedright\hyphenpenalty=10000\fontsize{14}{16.8}\selectfont\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\raggedright\hyphenpenalty=10000\fontsize{12}{14.4}\selectfont\bfseries}{\thesubsection.}{0.5em}{}
 \titlespacing*{\section}{0pt}{10pt}{5pt}
 \titlespacing*{\subsection}{0pt}{8pt}{4pt}
 

@@ -1,9 +1,9 @@
 {
-  "artifact_sha256": "072df55893f72ced14bd704b0becd38b3e28d4d9a16527e2664203a79656b4b3",
+  "artifact_sha256": "53059a6393a93b2a192d2d3b13cdccaa8dd7767c1ac63a8582e304e7cd9dc1ef",
   "report": {
-    "physical_pages": 13,
-    "main_pages": 7,
-    "bibliography_and_appendix_pages": 5,
+    "physical_pages": 11,
+    "main_pages": 6,
+    "bibliography_and_appendix_pages": 4,
     "main_limit": 10,
     "back_limit": 5
   },
@@ -23,12 +23,35 @@
     "failure_time_to_20c_h": 0.3889881396224893,
     "recovery_peak_temperature_c": 12.644763691135058,
     "recovery_margin_minutes": 13.339288377349359,
+    "failure_mean": {
+      "flow_ratio": 1.0,
+      "pool_time_constant_h": 3.019323671497585,
+      "failure_time_to_20c_h": 0.3889881396224893,
+      "recovery_peak_temperature_c": 12.644763691135058,
+      "recovery_margin_minutes": 13.339288377349359,
+      "detection_minutes": 0.5,
+      "generator_start_minutes": 5.0,
+      "full_cooling_minutes": 10.0,
+      "evaluation_points": 1001
+    },
+    "failure_p90": {
+      "flow_ratio": 2.0434782608695654,
+      "pool_time_constant_h": 1.4775413711583922,
+      "failure_time_to_20c_h": 0.19035589811313303,
+      "recovery_peak_temperature_c": 16.204464338666547,
+      "recovery_margin_minutes": 1.4213538867879816,
+      "detection_minutes": 0.5,
+      "generator_start_minutes": 5.0,
+      "full_cooling_minutes": 10.0,
+      "evaluation_points": 1001
+    },
+    "failure_p90_convergence_error_k": 7.398218180298954e-07,
     "staged_npv_lower_than_upfront": true,
     "all_checks_passed": true,
     "coupled_npv_error_eur": 0.0
   },
   "presentation": {
-    "duration_s": 290.025458,
+    "duration_s": 290.174958,
     "video_codec": "h264",
     "audio_codec": "aac",
     "width": 1920,
@@ -43,11 +66,11 @@
   "playback": {
     "date": "2026-11-07",
     "command": "/usr/bin/time -p ffmpeg -v error -re -i /Users/macbook_air_m1/.t3/scratch/2026-11-07-create-a-new-separate-github-162aa05c/planet-simtech-2025-TEST-K31pro-max/output/presentation/Blautopf_Finale.mp4 -f null -",
-    "duration_s": 290.025458,
-    "elapsed_s": 289.46913629211485,
-    "real_s": 289.46,
-    "user_s": 63.68,
-    "sys_s": 2.27,
+    "duration_s": 290.174958,
+    "elapsed_s": 289.63734383299015,
+    "real_s": 289.62,
+    "user_s": 59.75,
+    "sys_s": 2.16,
     "decode_exit_code": 0,
     "live_human_delivery": false
   }

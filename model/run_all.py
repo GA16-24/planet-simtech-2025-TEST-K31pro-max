@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Any
 
 import matplotlib.pyplot as plt
+from matplotlib.ticker import FuncFormatter
 import numpy as np
 import yaml
 
@@ -279,7 +280,8 @@ def main() -> None:
     stages = [cooling_stage(float(year), p) for year in schedule_years]
     fig, ax = plt.subplots(figsize=(8.6, 3.8))
     ax.stackplot(schedule_years, [stage.dry_mw for stage in stages], [stage.chiller_mw for stage in stages], labels=["Trockenkühlung", "Kältemaschinen"], colors=[BLUE, ORANGE], alpha=0.9)
-    ax.plot(schedule_years, [stage.total_mw * 1.2 for stage in stages], color=RED, lw=1.8, ls="--", label="Auslegung mit 20 % Reserve")
+    ax.plot(schedule_years, [stage.total_mw * 1.2 for stage in stages], color=RED, lw=1.8, ls="--", label="Mittelstrom mit 20 % Reserve")
+    ax.plot(schedule_years, [stage.total_mw * 1.2 * design_flow_ratio(p) for stage in stages], color=BLUE, lw=1.8, ls="-.", label="p90 mit 20 % Reserve")
     ax.set(xlabel="Jahre seit Prognosebeginn", ylabel="Leistung in MW", title="Modularer Ausbau der Vollstromkühlung")
     ax.legend(frameon=False, ncol=3, loc="upper center", bbox_to_anchor=(0.5, -0.24))
     fig.subplots_adjust(bottom=0.34)
@@ -309,12 +311,16 @@ def main() -> None:
 
     fig, axes = plt.subplots(1, 2, figsize=(9.2, 3.5))
     axes[0].hist(q_samples, bins=45, color=BLUE, alpha=0.85)
-    axes[0].axvline(final_q, color=RED, ls="--", lw=1.4)
+    mean_line = axes[0].axvline(final_q, color=RED, ls="--", lw=1.4, label="Mittelstrom: 877,8 MW")
+    reserve_line = axes[0].axvline(final_q * (1 + p["plant"]["reserve_fraction"]), color=GRAY, ls=":", lw=1.6, label="Mittelstrom + 20 %: 1053,3 MW")
+    design_line = axes[0].axvline(design_stage.total_mw * (1 + p["plant"]["reserve_fraction"]), color=BLUE, ls="-.", lw=1.6, label="p90 + 20 %: 2152,5 MW")
     axes[0].set(xlabel="Kühlleistung in MW", ylabel="Anzahl", title="Abflussunsicherheit")
     axes[1].hist(npv_samples / 1e9, bins=45, color=ORANGE, alpha=0.85)
     axes[1].axvline(npv(hybrid_staged) / 1e9, color=RED, ls="--", lw=1.4)
     axes[1].set(xlabel="Barwertkosten in Mrd. €", ylabel="Anzahl", title="COP und Investitionskosten")
-    fig.tight_layout()
+    axes[1].xaxis.set_major_formatter(FuncFormatter(lambda value, position: f"{value:g}".replace(".", ",")))
+    fig.legend(handles=[mean_line, reserve_line, design_line], frameon=False, ncol=3, loc="lower center", fontsize=10)
+    fig.subplots_adjust(bottom=0.30, wspace=0.30)
     save_figure(fig, "fig05_unsicherheit")
 
     fractions = np.logspace(-4, 0, 200)
@@ -329,7 +335,7 @@ def main() -> None:
     save_figure(fig, "fig06_teilstrom")
 
     results = {
-        "model_version": "2.0.0",
+        "model_version": "2.1.0",
         "parameters": p,
         "baseline": {
             "heating_rate_k_year": heating_rate_k_per_year(p),
@@ -472,6 +478,10 @@ def main() -> None:
         "ReturnRampRate": (results["baseline"]["return_ramp_max_rate_k_h"], 1),
         "RecoveryPeak": (validation["recovery_peak_temperature_c"], 1),
         "RecoveryMargin": (validation["recovery_margin_minutes"], 1),
+        "RecoveryPeakNinety": (validation["failure_p90"]["recovery_peak_temperature_c"], 1),
+        "FailureMinutesNinety": (validation["failure_p90"]["failure_time_to_20c_h"] * 60, 1),
+        "RecoveryMarginNinety": (validation["failure_p90"]["recovery_margin_minutes"], 1),
+        "MeanCapacity": (results["baseline"]["mean_flow_capacity_mw"], 1),
         "NpshMargin": (results["baseline"]["npsh_design_margin_m"], 1),
         "AvailabilityLowNpv": (availability_scenarios[0]["npv_25y_eur"] / 1e9, 2),
         "AvailabilityHighNpv": (availability_scenarios[-1]["npv_25y_eur"] / 1e9, 2),
