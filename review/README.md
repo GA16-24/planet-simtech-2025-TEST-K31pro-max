@@ -17,7 +17,7 @@ Runde 1 und Runde 2 sind vollständig dokumentiert. Die Stoppregel war jeweils n
 | --- | --- | --- | --- | --- |
 | 1 | `9b3a83bcea1358184b14de6759af117a049114f5` | 7 bis 9, Kriterien 5 und 9 erreichen 9 | 7 bis 9, Kriterien 1, 5, 8, 9 und 10 erreichen 9 | Kostenkopplung, Quellen, Rampenmodell, technische Auslegung und sichtbare Renderfehler |
 | 2 | `cc25cc903681ebbc4d6865309236885f729d6d77` | 7 bis 9, Kriterien 5 und 9 erreichen 9 | 7 bis 9, Kriterien 5 und 10 erreichen 9 | Hydrologie, Alternativen, Standort, Notfall, Tarif, COP und Satzfehler |
-| 3 | wird nach vollständigen Prüfungen eingefroren | noch keine Bewertung | noch keine Bewertung | Neue Modell- und Dokumentenrevision, danach Einfrierung |
+| 3 | Endcommit in `rounds/round3/revision.json` | noch keine Bewertung | noch keine Bewertung | Neue Modell- und Dokumentenrevision, danach Einfrierung |
 
 Die vollständigen Matrizen mit Begründungen und Belegen stehen in `rounds/round1/scorecard.md` und `rounds/round2/scorecard.md`. Der erste Kimi-Lauf in Runde 1 wurde wegen blockierender Leseberechtigungen verworfen. Der Neustart arbeitete mit technisch weiteren Berechtigungen, aber einem ausdrücklich read-only Auftrag und ohne Kenntnis des DeepSeek-Reviews. Beide Runde-2-Reviews liefen read-only mit `runtimeMode=full-access`. `review/model_configuration.md` hält die tatsächlichen Einstellungen fest.
 

@@ -106,4 +106,4 @@ Diese Datei verbindet Juryfragen und Council-Befunde mit konkreten Änderungen o
 - Der Wiederanlauf ist ein Rechenszenario, keine durchgeführte Zuschaltprobe.
 - Offizielle Team-ID, menschliche Fachprüfung, Medienfreigabe, Finalisten-E-Mail und echte Live-Probe fehlen.
 
-Runde 2 wurde mit Commit `cc25cc903681ebbc4d6865309236885f729d6d77` bewertet und nicht bestanden. Runde 3 wird erst nach vollständigen Builds und Prüfungen eingefroren und unabhängig bewertet. Diese Zuordnung behauptet keine neue Punktzahl.
+Runde 2 wurde mit Commit `cc25cc903681ebbc4d6865309236885f729d6d77` bewertet und nicht bestanden. Der Runde-3-Kandidat `babe04c` wurde in einer frischen Archivkopie reproduziert; der genaue Endcommit steht in `review/rounds/round3/revision.json`. Der Reproduktionsnachweis steht in `review/rounds/round3/reproduction.md`. Eine Council-Bewertung erfolgt erst nach dem Einfrieren, diese Zuordnung behauptet keine neue Punktzahl.
