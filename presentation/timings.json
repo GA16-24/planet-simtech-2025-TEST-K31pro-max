@@ -1,6 +1,6 @@
 {
   "video": "output/presentation/Blautopf_Finale.mp4",
-  "duration_s": 290.174958,
+  "duration_s": 290.23175,
   "maximum_allowed_s": 300.0,
   "internal_limit_s": 295.0,
   "subtitle_alignment": "word-proportional, not forced alignment",
@@ -8,8 +8,8 @@
     {
       "slide": 1,
       "title": "Die 878-Megawatt-Aufgabe",
-      "audio_duration_s": 19.99725,
-      "segment_duration_s": 20.347250000000003,
+      "audio_duration_s": 19.5115,
+      "segment_duration_s": 19.861500000000003,
       "narration": "Der Blautopf soll in zehn Jahren kochen. Diese Zahl und die vulkanische Ursache sind Szenarioprämissen, keine neuen Messungen. Unsere Antwort beginnt mit einer Energiebilanz. Wer das Becken dauerhaft kalt halten will, muss im Erwartungsfall 878 Megawatt abführen. Für das 90-Prozent-Abflussquantil wird die Kapazität größer ausgelegt.",
       "sources": [
         "Aufgabenprämisse",
@@ -18,13 +18,13 @@
       "image": "tmp/presentation_pages/slide-01.png",
       "audio": "presentation/audio/slide_01.wav",
       "start_s": 0.0,
-      "end_s": 20.347250000000003
+      "end_s": 19.861500000000003
     },
     {
       "slide": 2,
       "title": "Ein Kelvin entscheidet",
-      "audio_duration_s": 26.825125,
-      "segment_duration_s": 27.175125,
+      "audio_duration_s": 26.173792,
+      "segment_duration_s": 26.523792,
       "narration": "Im Mittel fließen jede Sekunde 2,3 Kubikmeter Wasser durch den Blautopf. Jedes Kilogramm speichert etwa 4,2 Kilojoule pro Kelvin. Deshalb transportiert der erwartete Strom 9,646 Megawatt pro Kelvin. Zwischen dem kalten Normalzustand und dem Sieden liegen 91 Kelvin. Multipliziert ergibt das 877,8 Megawatt. Diese Wärme muss dauerhaft aus dem Wasser heraus, nicht nur der Siedepunkt verschoben werden.",
       "sources": [
         "Fan et al. [2]",
@@ -33,14 +33,14 @@
       ],
       "image": "tmp/presentation_pages/slide-02.png",
       "audio": "presentation/audio/slide_02.wav",
-      "start_s": 20.347250000000003,
-      "end_s": 47.522375000000004
+      "start_s": 19.861500000000003,
+      "end_s": 46.38529200000001
     },
     {
       "slide": 3,
       "title": "Zwei Kontrollvolumen",
-      "audio_duration_s": 22.992917,
-      "segment_duration_s": 23.342917,
+      "audio_duration_s": 22.433667,
+      "segment_duration_s": 22.783667,
       "narration": "Wer nur das Beckenvolumen in zehn Jahren aufheizt und den Abfluss vergisst, erhält 0,0303 Megawatt. Der Blautopf ist aber keine verschlossene Thermoskanne. Wenn der gesamte Zufluss warm wird, muss dieselbe Wärme wieder aus dem Strom heraus. Erhitzt die Anomalie nur ein Prozent des Flusses, genügen 8,8 Megawatt. Die Messtechnik entscheidet deshalb zuerst, welches Kontrollvolumen stimmt.",
       "sources": [
         "Eigene Speicher- und Teilstromrechnung",
@@ -48,14 +48,14 @@
       ],
       "image": "tmp/presentation_pages/slide-03.png",
       "audio": "presentation/audio/slide_03.wav",
-      "start_s": 47.522375000000004,
-      "end_s": 70.86529200000001
+      "start_s": 46.38529200000001,
+      "end_s": 69.168959
     },
     {
       "slide": 4,
       "title": "Sieben physikalische Wege",
-      "audio_duration_s": 28.584083,
-      "segment_duration_s": 28.934083,
+      "audio_duration_s": 27.888083,
+      "segment_duration_s": 28.238083000000003,
       "narration": "Sieben Wege werden mit derselben Last verglichen. Druck verschiebt nur das Sieden und schützt die Organismen nicht. Ein Bypass lässt das Becken weiter heiß werden. Passive Kühlflächen scheitern an Fläche und Sommerluft. Kaltwasserzumischung braucht mehr als das Zwanzigfache des natürlichen Abflusses. Verdunstung mit Kältestufe ist günstiger, verbraucht aber 8,45 Millionen Kubikmeter Wasser im Jahr. Ein Karsteingriff kennt die Fließwege nicht sicher genug. Deshalb bleibt die trockene Hybridkühlung, trotz höherer Stromemissionen.",
       "sources": [
         "Alternativenvergleich",
@@ -64,15 +64,15 @@
       ],
       "image": "tmp/presentation_pages/slide-04.png",
       "audio": "presentation/audio/slide_04.wav",
-      "start_s": 70.86529200000001,
-      "end_s": 99.79937500000001
+      "start_s": 69.168959,
+      "end_s": 97.407042
     },
     {
       "slide": 5,
       "title": "Die zweistufige Kühlung",
-      "audio_duration_s": 33.8385,
-      "segment_duration_s": 34.188500000000005,
-      "narration": "Trockenkühler senken das Wasser zuerst von 100 auf 40 Grad und führen 579 Megawatt an die Luft ab. Danach kühlen Kältemaschinen auf 9 Grad und übernehmen 299 Megawatt. Ihre Kondensatoren geben zusätzlich die Antriebsenergie ab. Im Erwartungsfall muss die Luft 967 Megawatt aufnehmen. Für 4,7 Kubikmeter pro Sekunde werden 2,15 Gigawatt installiert. Dann arbeiten elf Stränge und einer ist Reserve. Im Mittelbetrieb modulieren fünf. Die Sollwertrampe am Kälteauslass begrenzt die Änderung auf ein Kelvin pro Stunde.",
+      "audio_duration_s": 38.263583,
+      "segment_duration_s": 38.613583,
+      "narration": "Trockenkühler senken das Wasser zuerst von 100 auf 40 Grad und führen 579 Megawatt an die Luft ab. Danach kühlen Kältemaschinen auf 9 Grad und übernehmen 299 Megawatt. Ihre Kondensatoren geben zusätzlich die Antriebsenergie ab. Im Erwartungsfall muss die Luft 967 Megawatt aufnehmen. Jeder der zwölf Stränge ist für 179,4 Megawatt ausgelegt. Beim Abfluss 4,7 Kubikmeter pro Sekunde liefern elf davon je 163,1 Megawatt, der zwölfte ist Reserve. Im Mittelbetrieb modulieren fünf. Die Sollwertrampe am Kälteauslass begrenzt die Änderung auf ein Kelvin pro Stunde.",
       "sources": [
         "OpenStax Kondensatorbilanz [8]",
         "LAWA [10]",
@@ -80,29 +80,29 @@
       ],
       "image": "tmp/presentation_pages/slide-05.png",
       "audio": "presentation/audio/slide_05.wav",
-      "start_s": 99.79937500000001,
-      "end_s": 133.98787500000003
+      "start_s": 97.407042,
+      "end_s": 136.020625
     },
     {
       "slide": 6,
       "title": "Der gerechnete Wiederanlauf",
-      "audio_duration_s": 31.755667,
-      "segment_duration_s": 32.105667,
-      "narration": "Im p90-Fall erreicht das Becken ohne Kühlung nach 11,4 Minuten die interne Alarmschwelle von 20 Grad. Deshalb rechnen wir den Wiederanlauf zeitlich nach. Detektion dauert eine halbe Minute, der Generatorstart fünf Minuten, volle Kühlleistung steht nach zehn Minuten bereit. Der Höchstwert bleibt bei 16,2 Grad, im Mittelstrom bei 12,6 Grad. Sechs Aggregate liefern die p90-Leistung, ein siebtes ist Reserve. Der Dieseltank ist auf 48 Stunden ausgelegt. Das ist ein Rechenszenario, kein erfolgter Zuschaltversuch.",
+      "audio_duration_s": 32.7885,
+      "segment_duration_s": 33.1385,
+      "narration": "Im p90-Fall erreicht das Becken ohne Kühlung nach 11,4 Minuten die interne Alarmschwelle von 20 Grad. Die Detektion dauert eine halbe Minute. Danach dauert der Generatorstart fünf Minuten. Die volle Kühlleistung steht zehn Minuten nach der Detektion bereit, also 10,5 Minuten nach dem Ausfall. Der Höchstwert bleibt bei 16,7 Grad, im Mittelstrom bei 12,9 Grad. Sechs Aggregate liefern die p90-Leistung, ein siebtes ist Reserve. Der Dieseltank ist auf 48 Stunden ausgelegt. Das ist ein Rechenszenario, kein erfolgter Zuschaltversuch.",
       "sources": [
         "Validierung recovery_peak_temperature_c",
         "failure in data/parameters.yml"
       ],
       "image": "tmp/presentation_pages/slide-06.png",
       "audio": "presentation/audio/slide_06.wav",
-      "start_s": 133.98787500000003,
-      "end_s": 166.093542
+      "start_s": 136.020625,
+      "end_s": 169.159125
     },
     {
       "slide": 7,
       "title": "Der Preis des trockenen Weges",
-      "audio_duration_s": 34.850333,
-      "segment_duration_s": 35.200333,
+      "audio_duration_s": 34.003625,
+      "segment_duration_s": 34.353625,
       "narration": "Die p90-Reserve kostet 1,28 Milliarden Euro Investition. Im erwarteten zehnten Jahr fallen 146,5 Millionen Euro Betriebskosten an, der Barwert liegt bei 3,67 Milliarden. Verdunstung mit Kältestufe kommt auf 2,99 Milliarden, verbraucht aber 8,45 Millionen Kubikmeter Wasser pro Jahr. H1 verursacht 62,3 Kilotonnen mehr Stromemissionen. Der Tarif von 138 Euro pro Megawattstunde ist nur ein Proxy. Alle Kosten sind Szenarien in Euro von 2026, keine Angebote.",
       "sources": [
         "BDEW [16]",
@@ -111,14 +111,14 @@
       ],
       "image": "tmp/presentation_pages/slide-07.png",
       "audio": "presentation/audio/slide_07.wav",
-      "start_s": 166.093542,
-      "end_s": 201.293875
+      "start_s": 169.159125,
+      "end_s": 203.51274999999998
     },
     {
       "slide": 8,
       "title": "Die Hülle begrenzt das Versprechen",
-      "audio_duration_s": 34.601625,
-      "segment_duration_s": 34.951625,
+      "audio_duration_s": 33.759583,
+      "segment_duration_s": 34.109583,
       "narration": "Die alte Auslegung auf den Mittelstrom mit 20 Prozent Reserve, also 1053,3 Megawatt, überschreitet in 38,57 Prozent der Ziehungen die 9-Grad-Kapazität. Die p90-Reserve deckt die begrenzte Verteilung vollständig ab. Das ist kein Extremwertnachweis. Für 32,7 Kubikmeter pro Sekunde wären 12,48 Gigawatt nötig. Ein reiner Siedeschutz auf etwa 95 Grad braucht beim Mittelstrom dagegen nur 48,5 Megawatt, schützt aber das Ökosystem nicht. Diese Zielkonflikte gehören zur Antwort.",
       "sources": [
         "LGRB [3]",
@@ -127,14 +127,14 @@
       ],
       "image": "tmp/presentation_pages/slide-08.png",
       "audio": "presentation/audio/slide_08.wav",
-      "start_s": 201.293875,
-      "end_s": 236.24550000000002
+      "start_s": 203.51274999999998,
+      "end_s": 237.62233299999997
     },
     {
       "slide": 9,
       "title": "Messung, Standort und Nachweis",
-      "audio_duration_s": 28.821708,
-      "segment_duration_s": 29.171708000000002,
+      "audio_duration_s": 28.121,
+      "segment_duration_s": 28.471,
       "narration": "Vor dem Bau müssen Sonden Temperatur und Druck in beiden Karstästen messen. Tracer und Durchfluss zeigen, welcher Ast die Wärme trägt. Für die Luftsenke sind 8,19 Hektar einzuplanen, außerdem Netzleistung von 182,7 Megawatt und 2.237 Kubikmeter Diesellager. Schall, Plume, Rückverwirbelung und die FFH-Prüfung können den Standort verwerfen. Ein Pilotkreislauf muss Mischung und COP messen. Auch der Wiederanlauf ist praktisch zu beweisen.",
       "sources": [
         "Lauber et al. [11]",
@@ -144,14 +144,14 @@
       ],
       "image": "tmp/presentation_pages/slide-09.png",
       "audio": "presentation/audio/slide_09.wav",
-      "start_s": 236.24550000000002,
-      "end_s": 265.417208
+      "start_s": 237.62233299999997,
+      "end_s": 266.093333
     },
     {
       "slide": 10,
       "title": "Schlussfolgerung",
-      "audio_duration_s": 24.289042,
-      "segment_duration_s": 24.639042,
+      "audio_duration_s": 23.69925,
+      "segment_duration_s": 24.04925,
       "narration": "Sieden verhindern heißt Wärme abführen, nicht nur den Siedepunkt erhöhen. Unsere Antwort ist eine zweistufige Kühlung mit 878 Megawatt Erwartungslast und 2,15 Gigawatt p90-Kapazität. Sie hält den Normalzustand innerhalb ihrer angenommenen Hülle. Erst Messungen und ein geeigneter Standort dürfen den Ausbaupfad festlegen. Davor bleibt dies ein prüfbarer Szenarioentwurf, keine Baufreigabe.",
       "sources": [
         "Gesamtergebnis",
@@ -159,8 +159,8 @@
       ],
       "image": "tmp/presentation_pages/slide-10.png",
       "audio": "presentation/audio/slide_10.wav",
-      "start_s": 265.417208,
-      "end_s": 290.05625000000003
+      "start_s": 266.093333,
+      "end_s": 290.14258299999995
     }
   ]
 }

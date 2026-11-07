@@ -13,9 +13,9 @@ Regelstand und Prüfverfahren: `compliance/regeln.md`, offizielle Dokumente von 
 | Zusammenfassung höchstens eine Seite | Zusammenfassung beginnt auf Haupttextseite 1 | gerenderte Seite | erfüllt |
 | Pflichtaufbau | Zusammenfassung, Einführung, Methode, Ergebnisse, Diskussion, Schlussfolgerung | PDF-Textprüfung | erfüllt |
 | Haupttext höchstens 10 Seiten | 6 Haupttextseiten ab Deckblatt bis Literaturbeginn | automatische Seitenzählung | erfüllt |
-| Literatur und Anhang höchstens 5 Seiten | 4 Seiten gemeinsamer Zählbereich ab Literaturbeginn | automatische Seitenzählung | erfüllt |
+| Literatur und Anhang höchstens 5 Seiten | 5 Seiten gemeinsamer Zählbereich ab Literaturbeginn | automatische Seitenzählung | erfüllt |
 | A4 und 25 mm Rand | LaTeX-Geometrie, gemessen mindestens 25,85 mm | `report/preamble.tex`, `verify_report.py` | erfüllt |
-| 12 pt und Zeilenabstand mindestens 1,0 | 12 pt auf 14,4 pt, auch Tabellen und Quellen | PDF-Schriftgrößen und Sichtprüfung | erfüllt |
+| 12 pt und Zeilenabstand mindestens 1,0 | 12 pt auf 14,4 pt, auch Tabellen, Quellen und eingebettete Diagramme | PDF-Schriftgrößen und Sichtprüfung | erfüllt |
 | Numerische Quellenverweise | Einheitliche IDs 1 bis 25 im Text und Verzeichnis | Quellenregister und PDF | erfüllt |
 | Internetquellen mit Abrufdatum | Autor oder Institution, Titel, URL und 07.11.2026 | Literaturverzeichnis | erfüllt |
 | KI-Offenlegung | Anhang A und Provenienzprotokoll | PDF-Text und `PROVENANCE.md` | erfüllt |
@@ -25,11 +25,11 @@ Regelstand und Prüfverfahren: `compliance/regeln.md`, offizielle Dokumente von 
 
 | Anforderung | Umsetzung | Prüfnachweis | Status |
 | --- | --- | --- | --- |
-| Video höchstens 5:00 Minuten | MP4 mit 290,175 s | `ffprobe` und `verify_presentation.py` | erfüllt |
+| Video höchstens 5:00 Minuten | MP4 mit 290,232 s | `ffprobe` und `verify_presentation.py` | erfüllt |
 | Fertige Präsentation | 10 PDF-Folien und editierbare LaTeX-Quelle | `output/presentation/Blautopf_Finale.pdf` | erfüllt |
 | Animation erlaubt | Vollständig aus Folien erzeugtes Video | MP4 und Buildskript | erfüllt |
 | Sprechtext und Quellen | `presentation/speaker_notes.md` | Folienzeiten und Quellen je Folie | erfüllt |
-| Dokumentierte Zeitprobe | `presentation/rehearsal.md`, reale Audiodauer und MP4-Dauer | Zeitentabelle und Echtzeitprobe mit `real 289.62 s` | erfüllt |
+| Dokumentierte Zeitprobe | `presentation/rehearsal.md`, reale Audiodauer und MP4-Dauer | Zeitentabelle und Echtzeitprobe mit `real 289.67 s` | erfüllt |
 | Adversariale Q&A | 27 Fragen mit Antworten und Revisionszuordnung | `presentation/jury_qa.md` | erfüllt |
 | Medienrechte | Rechtenachweis ohne externe Bilder oder Musik | `presentation/rights.md` | menschliche Endfreigabe offen |
 | Technische Interoperabilität | 1920 x 1080, 16:9, H.264, AAC, yuv420p | `output/presentation/verification.json` | erfüllt, Finalisten-E-Mail prüfen |

@@ -35,6 +35,8 @@
       "pool_depth_m": 22.0,
       "pool_depth_pressure_bar": 3.17007,
       "pool_depth_saturation_c": 135.413,
+      "pressure_table_url": "https://webbook.nist.gov/cgi/fluid.cgi?Action=Data&Wide=on&ID=C7732185&Type=IsoBar&Digits=6&P=3.17007&TLow=130&THigh=140&TInc=1&RefState=DEF&TUnit=C&PUnit=bar&DUnit=kg%2Fm3&HUnit=kJ%2Fkg&WUnit=m%2Fs&VisUnit=uPa*s&STUnit=N%2Fm",
+      "properties_table_url": "https://webbook.nist.gov/cgi/fluid.cgi?Action=Data&Wide=on&ID=C7732185&Type=IsoBar&Digits=6&P=1.01325&TLow=0&THigh=100&TInc=10&RefState=DEF&TUnit=C&PUnit=bar&DUnit=kg%2Fm3&HUnit=kJ%2Fkg&WUnit=m%2Fs&VisUnit=uPa*s&STUnit=N%2Fm",
       "surface_saturation_c": 99.9743,
       "boiling_margin_k": 5.0,
       "affected_fraction_design_note": "Der erwartete Betrieb nutzt 2,3 m³/s. Für den 9-°C-Normalbetrieb wird die Kapazität mit dem historischen 90-Prozent-Quantil 4,7 m³/s und 20 % Reserve ausgelegt. Extremhochwasser bleibt ein separater Stresstest."
@@ -77,7 +79,8 @@
       "backup_thermal_efficiency": 0.4,
       "diesel_energy_kwh_l": 9.8,
       "diesel_price_eur_l": 1.5,
-      "intake_design_pressure_bar": 3.5
+      "intake_design_pressure_bar": 3.5,
+      "operation_year_convention": "Konservative Jahreskosten: Temperatur und Leistung am Jahresende gelten für alle 8760 Stunden des Jahres. Jahr 0 enthält Anfangsinvestition und den ersten Betriebsjahresposten ohne Diskontierung."
     },
     "failure": {
       "detection_minutes": 0.5,
@@ -86,7 +89,7 @@
       "controls_ups_minutes": 15.0,
       "backup_required_aggregates": 6,
       "backup_installed_aggregates": 7,
-      "note": "Zeit- und Aggregatwerte sind Szenarioannahmen. Sie ersetzen weder Herstellerdaten noch einen synchronisierten Lastabwurf- und Zuschaltversuch."
+      "note": "Erst 0,5 min Detektion, danach 5 min Generatorstart und 10 min bis voller Kühlung. Absolute Zeit nach Ausfall: 5,5 min Start und 10,5 min volle Kühlung. Alle Werte sind Szenarioannahmen, kein Zuschaltversuch."
     },
     "air": {
       "density_kg_m3": 1.2,
@@ -153,14 +156,15 @@
     "backup_fuel_liters": 2236544.9817894283,
     "return_ramp_hours": 91.0,
     "return_ramp_max_rate_k_h": 1.0000000000001066,
-    "npsh_design_margin_bar": 2.48675,
-    "npsh_design_margin_m": 25.3566898307765,
+    "static_overpressure_head_bar": 2.48675,
+    "static_overpressure_head_m": 25.3566898307765,
     "flood_stress_cooling_mw": 12479.758021526797,
     "return_buffer_m3": 8280.0,
     "module_pipe_diameter_m": 0.673313035637015,
     "reserve_installed_mw": 2152.4720257312274,
     "mean_flow_capacity_mw": 1053.3373742940046,
     "per_module_required_mw": 163.06606255539603,
+    "per_module_installed_mw": 179.3726688109356,
     "storage_lower_bound_mw": 0.030254627742380143,
     "evaporation_kg_s": 267.7242335799967,
     "evaporation_m3_year": 8445468.179696325,
@@ -2121,31 +2125,35 @@
     "ode_max_error_k": 8.031904030758596e-10,
     "pool_time_constant_h": 3.019323671497585,
     "failure_time_to_20c_h": 0.3889881396224893,
-    "recovery_peak_temperature_c": 12.644763691135058,
-    "recovery_margin_minutes": 13.339288377349359,
+    "recovery_peak_temperature_c": 12.882375523554131,
+    "recovery_margin_minutes": 12.839288377349359,
     "failure_mean": {
       "flow_ratio": 1.0,
       "pool_time_constant_h": 3.019323671497585,
       "failure_time_to_20c_h": 0.3889881396224893,
-      "recovery_peak_temperature_c": 12.644763691135058,
-      "recovery_margin_minutes": 13.339288377349359,
+      "recovery_peak_temperature_c": 12.882375523554131,
+      "recovery_margin_minutes": 12.839288377349359,
       "detection_minutes": 0.5,
       "generator_start_minutes": 5.0,
       "full_cooling_minutes": 10.0,
-      "evaluation_points": 1001
+      "cooling_start_absolute_minutes": 5.5,
+      "full_cooling_absolute_minutes": 10.5,
+      "evaluation_points": 1003
     },
     "failure_p90": {
       "flow_ratio": 2.0434782608695654,
       "pool_time_constant_h": 1.4775413711583922,
       "failure_time_to_20c_h": 0.19035589811313303,
-      "recovery_peak_temperature_c": 16.204464338666547,
-      "recovery_margin_minutes": 1.4213538867879816,
+      "recovery_peak_temperature_c": 16.663775976958103,
+      "recovery_margin_minutes": 0.9213538867879816,
       "detection_minutes": 0.5,
       "generator_start_minutes": 5.0,
       "full_cooling_minutes": 10.0,
-      "evaluation_points": 1001
+      "cooling_start_absolute_minutes": 5.5,
+      "full_cooling_absolute_minutes": 10.5,
+      "evaluation_points": 1003
     },
-    "failure_p90_convergence_error_k": 7.398218180298954e-07,
+    "failure_p90_convergence_error_k": 1.7905676941154525e-12,
     "staged_npv_lower_than_upfront": true,
     "all_checks_passed": true,
     "coupled_npv_error_eur": 0.0

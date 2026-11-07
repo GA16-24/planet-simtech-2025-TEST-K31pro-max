@@ -26,13 +26,13 @@
   {
     "slide": 5,
     "title": "Die zweistufige Kühlung",
-    "narration": "Trockenkühler senken das Wasser zuerst von 100 auf 40 Grad und führen 579 Megawatt an die Luft ab. Danach kühlen Kältemaschinen auf 9 Grad und übernehmen 299 Megawatt. Ihre Kondensatoren geben zusätzlich die Antriebsenergie ab. Im Erwartungsfall muss die Luft 967 Megawatt aufnehmen. Für 4,7 Kubikmeter pro Sekunde werden 2,15 Gigawatt installiert. Dann arbeiten elf Stränge und einer ist Reserve. Im Mittelbetrieb modulieren fünf. Die Sollwertrampe am Kälteauslass begrenzt die Änderung auf ein Kelvin pro Stunde.",
+    "narration": "Trockenkühler senken das Wasser zuerst von 100 auf 40 Grad und führen 579 Megawatt an die Luft ab. Danach kühlen Kältemaschinen auf 9 Grad und übernehmen 299 Megawatt. Ihre Kondensatoren geben zusätzlich die Antriebsenergie ab. Im Erwartungsfall muss die Luft 967 Megawatt aufnehmen. Jeder der zwölf Stränge ist für 179,4 Megawatt ausgelegt. Beim Abfluss 4,7 Kubikmeter pro Sekunde liefern elf davon je 163,1 Megawatt, der zwölfte ist Reserve. Im Mittelbetrieb modulieren fünf. Die Sollwertrampe am Kälteauslass begrenzt die Änderung auf ein Kelvin pro Stunde.",
     "sources": ["OpenStax Kondensatorbilanz [8]", "LAWA [10]", "output/model/results.json"]
   },
   {
     "slide": 6,
     "title": "Der gerechnete Wiederanlauf",
-    "narration": "Im p90-Fall erreicht das Becken ohne Kühlung nach 11,4 Minuten die interne Alarmschwelle von 20 Grad. Deshalb rechnen wir den Wiederanlauf zeitlich nach. Detektion dauert eine halbe Minute, der Generatorstart fünf Minuten, volle Kühlleistung steht nach zehn Minuten bereit. Der Höchstwert bleibt bei 16,2 Grad, im Mittelstrom bei 12,6 Grad. Sechs Aggregate liefern die p90-Leistung, ein siebtes ist Reserve. Der Dieseltank ist auf 48 Stunden ausgelegt. Das ist ein Rechenszenario, kein erfolgter Zuschaltversuch.",
+    "narration": "Im p90-Fall erreicht das Becken ohne Kühlung nach 11,4 Minuten die interne Alarmschwelle von 20 Grad. Die Detektion dauert eine halbe Minute. Danach dauert der Generatorstart fünf Minuten. Die volle Kühlleistung steht zehn Minuten nach der Detektion bereit, also 10,5 Minuten nach dem Ausfall. Der Höchstwert bleibt bei 16,7 Grad, im Mittelstrom bei 12,9 Grad. Sechs Aggregate liefern die p90-Leistung, ein siebtes ist Reserve. Der Dieseltank ist auf 48 Stunden ausgelegt. Das ist ein Rechenszenario, kein erfolgter Zuschaltversuch.",
     "sources": ["Validierung recovery_peak_temperature_c", "failure in data/parameters.yml"]
   },
   {

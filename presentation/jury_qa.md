@@ -56,13 +56,13 @@ Beleg: LAWA [10], `return_ramp_hours` und `return_ramp_max_rate_k_h`. Revision: 
 
 ### 9. Deckt N+1 nur das letzte Jahr ab?
 
-Nein. Jede Ausbaustufe muss ihre erforderliche Reserve vor dem Lastjahr nachweisen. Im Endausbau sind zwölf Stränge geplant, elf tragen den p90-Bedarf und einer ist Reserve. Im Mittelbetrieb modulieren fünf. Die Kostenrechnung enthält p90-Skalierung und 20 % Reserve. N+1 deckt trotzdem nur einen Einzelfehler, keine hydrologische Überlast oder gemeinsame Ursachen.
+Nein. Jede Ausbaustufe muss ihre erforderliche Reserve vor dem Lastjahr nachweisen. Im Endausbau sind zwölf Stränge mit je 179,4 MW installierter Leistung geplant, zusammen 2152,5 MW. Im p90-Fall liefern elf davon je 163,1 MW, also rund 91 % ihrer installierten Leistung, einer ist Reserve. Im Mittelbetrieb modulieren fünf. Die Kostenrechnung enthält p90-Skalierung und 20 % Reserve. N+1 deckt trotzdem nur einen Einzelfehler, keine hydrologische Überlast oder gemeinsame Ursachen.
 
-Beleg: `module_count`, `required_modules`, `reserve_fraction` und `design` in `output/model/results.json`. Revision: Auslegung von Mittelwert auf p90 geändert.
+Beleg: `module_count`, `required_modules`, `per_module_installed_mw`, `per_module_required_mw`, `reserve_fraction` und `design` in `output/model/results.json`. Revision: Installierte und tatsächlich benötigte Strangleistung getrennt.
 
 ### 10. Was passiert bei einem Stromausfall?
 
-Ohne Kühlung erreicht das angenommene Becken im Mittelstrom nach 23 Minuten 20 °C, im p90-Fall bereits nach 11,4 Minuten. Diese Schwelle ist intern, keine behördliche Blau-Grenze und keine Siedezeit. Das dynamische Modell nutzt 0,5 min Detektion, 5 min Generatorstart und 10 min bis voller Kühlleistung. Der Höchstwert beträgt 12,6 °C im Mittelstrom und 16,2 °C im p90-Fall. Die Differenz zur vollen Leistung beträgt dort 1,4 Minuten und ist keine freie Wartezeit. Zwei Netzeinspeisungen, sechs Aggregate und eine Reserve gehören zum Szenario, nicht zu einem erfolgten Feldtest.
+Ohne Kühlung erreicht das angenommene Becken im Mittelstrom nach 23 Minuten 20 °C, im p90-Fall bereits nach 11,4 Minuten. Diese Schwelle ist intern, keine behördliche Blau-Grenze und keine Siedezeit. Auf 0,5 min Detektion folgen 5 min Generatorstart und 10 min bis voller Kühlleistung, also 5,5 und 10,5 Minuten nach dem Ausfall. Der Höchstwert beträgt 12,9 °C im Mittelstrom und 16,7 °C im p90-Fall. Die Differenz zur vollen Leistung beträgt dort 0,9 Minuten und ist keine freie Wartezeit. Zwei Netzeinspeisungen, sechs Aggregate und eine Reserve gehören zum Szenario, nicht zu einem erfolgten Feldtest.
 
 Beleg: `validation.failure_mean` und `failure_p90`, Folie 6. Revision: Beide Abflussfälle und eine Konvergenzprüfung ergänzt.
 
@@ -136,7 +136,7 @@ Beleg: `uncertainty.mean_capacity_overload_fraction`, `design_overload_fraction`
 
 ### 22. Ist H2 bei warmer, feuchter Luft physikalisch gleichwertig?
 
-Im Szenario beträgt die Feuchtkugeltemperatur 28 °C, die Annäherung 4 K. Verdunstung kühlt damit zunächst von 100 auf 32 °C mit 655,8 MW. Eine Kältemaschine übernimmt 221,9 MW bis 9 °C. Ohne diese Stufe wäre H2 nicht gleichwertig. Die 28 °C sind eine technische Annahme, keine gemessene standortbezogene Extremfeuchte. Feuchtemessungen können die Auslegung verändern.
+Im Szenario beträgt die Feuchtkugeltemperatur 28 °C, die Annäherung 4 K. Verdunstung kühlt damit zunächst von 100 auf 32 °C mit 655,9 MW. Eine Kältemaschine übernimmt 221,9 MW bis 9 °C. Ohne diese Stufe wäre H2 nicht gleichwertig. Die 28 °C sind eine technische Annahme, keine gemessene standortbezogene Extremfeuchte. Feuchtemessungen können die Auslegung verändern.
 
 Beleg: `plant.wet_bulb_design_c`, `evaporative_approach_k`, `alternatives[1]` und `test_evaporative_has_summer_chiller`. Revision: Feuchtkugelgrenze und Kältestufe ergänzt.
 
@@ -148,7 +148,7 @@ Beleg: BDEW [16], `tariff_scenarios`. Revision: Tarifklasse und Sensitivität ko
 
 ### 24. Ist der Wiederanlauf nach zehn Minuten bewiesen?
 
-Nein. Es ist ein dynamisches Rechenszenario mit expliziten Annahmen. Detektion, Generatorstart und Lastzuschaltung werden gegen das Beckenaufheizen gerechnet. Im Mittelstrom liegt der Höchstwert bei 12,6 °C, im p90-Fall bei 16,2 °C. Ohne Kühlung wären 20 °C dort nach 11,4 Minuten erreicht. Die Differenz zur vollen Leistung beträgt dort 1,4 Minuten und ist keine freie Wartezeit. Zwei Toleranz- und Zeitschrittstufen bestätigen den Verlauf. Herstellerdaten, Netzschutz, Aggregatanlauf, gemeinsame Fehler und ein realer Lastabwurf- und Zuschaltversuch fehlen weiterhin.
+Nein. Es ist ein dynamisches Rechenszenario mit expliziten Annahmen. Auf 0,5 min Detektion folgen 5 min Generatorstart und 10 min bis voller Kühlleistung. Absolute Zeitpunkte nach dem Ausfall sind 5,5 und 10,5 Minuten. Im Mittelstrom liegt der Höchstwert bei 12,9 °C, im p90-Fall bei 16,7 °C. Ohne Kühlung wären 20 °C dort nach 11,4 Minuten erreicht. Die Differenz zur vollen Leistung beträgt dort 0,9 Minuten und ist keine freie Wartezeit. Zwei Toleranz- und Zeitschrittstufen bestätigen den Verlauf. Herstellerdaten, Netzschutz, Aggregatanlauf, gemeinsame Fehler und ein realer Lastabwurf- und Zuschaltversuch fehlen weiterhin.
 
 Beleg: `failure` in `data/parameters.yml`, `validation.failure_mean`, `failure_p90` und `failure_p90_convergence_error_k`. Revision: Auslegungsfall und Konvergenzprüfung ergänzt, keine Feldvalidierung behauptet.
 

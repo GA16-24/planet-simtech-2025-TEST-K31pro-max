@@ -31,6 +31,8 @@ hydrology:
   pool_depth_m: 22.0
   pool_depth_pressure_bar: 3.17007
   pool_depth_saturation_c: 135.413
+  pressure_table_url: "https://webbook.nist.gov/cgi/fluid.cgi?Action=Data&Wide=on&ID=C7732185&Type=IsoBar&Digits=6&P=3.17007&TLow=130&THigh=140&TInc=1&RefState=DEF&TUnit=C&PUnit=bar&DUnit=kg%2Fm3&HUnit=kJ%2Fkg&WUnit=m%2Fs&VisUnit=uPa*s&STUnit=N%2Fm"
+  properties_table_url: "https://webbook.nist.gov/cgi/fluid.cgi?Action=Data&Wide=on&ID=C7732185&Type=IsoBar&Digits=6&P=1.01325&TLow=0&THigh=100&TInc=10&RefState=DEF&TUnit=C&PUnit=bar&DUnit=kg%2Fm3&HUnit=kJ%2Fkg&WUnit=m%2Fs&VisUnit=uPa*s&STUnit=N%2Fm"
   surface_saturation_c: 99.9743
   boiling_margin_k: 5.0
   affected_fraction_design_note: "Der erwartete Betrieb nutzt 2,3 m³/s. Für den 9-°C-Normalbetrieb wird die Kapazität mit dem historischen 90-Prozent-Quantil 4,7 m³/s und 20 % Reserve ausgelegt. Extremhochwasser bleibt ein separater Stresstest."
@@ -74,6 +76,7 @@ plant:
   diesel_energy_kwh_l: 9.8
   diesel_price_eur_l: 1.50
   intake_design_pressure_bar: 3.5
+  operation_year_convention: "Konservative Jahreskosten: Temperatur und Leistung am Jahresende gelten für alle 8760 Stunden des Jahres. Jahr 0 enthält Anfangsinvestition und den ersten Betriebsjahresposten ohne Diskontierung."
 
 failure:
   detection_minutes: 0.5
@@ -82,7 +85,7 @@ failure:
   controls_ups_minutes: 15.0
   backup_required_aggregates: 6
   backup_installed_aggregates: 7
-  note: "Zeit- und Aggregatwerte sind Szenarioannahmen. Sie ersetzen weder Herstellerdaten noch einen synchronisierten Lastabwurf- und Zuschaltversuch."
+  note: "Erst 0,5 min Detektion, danach 5 min Generatorstart und 10 min bis voller Kühlung. Absolute Zeit nach Ausfall: 5,5 min Start und 10,5 min volle Kühlung. Alle Werte sind Szenarioannahmen, kein Zuschaltversuch."
 
 air:
   density_kg_m3: 1.2

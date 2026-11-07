@@ -36,7 +36,9 @@ def main() -> None:
     for forbidden in ["TODO", "TBD", "???", "—"]:
         require(forbidden not in text, f"Unerwünschter Folientext: {forbidden}")
     require("1053,3" in text, "Alte Kapazitätsbezugsgröße fehlt auf der Sensitivitätsfolie")
-    require("16,2" in text, "p90-Ausfallwert fehlt auf der Ausfallfolie")
+    require("16,7" in text, "Korrigierter p90-Ausfallwert fehlt auf der Ausfallfolie")
+    require("9,646 MW/K" in text, "Thermische Kapazität hat eine falsche Einheit")
+    require("179,4" in text, "Installierte Strangleistung fehlt")
 
     vtt = (OUT / "Blautopf_Finale.vtt").read_text(encoding="utf-8")
     timestamps = re.findall(r"^\d{2}:\d{2}:\d{2}\.\d{3} --> \d{2}:\d{2}:\d{2}\.\d{3}$", vtt, flags=re.MULTILINE)
@@ -80,6 +82,7 @@ def main() -> None:
     require(abs(playback["duration_s"] - duration) < 0.05, "Echtzeitprobe gehört zu einer anderen Videodatei")
     require(abs(playback["real_s"] - duration) < 3.0, "Echtzeitprobe weicht von der Videodauer ab")
     require(playback["decode_exit_code"] == 0 and not playback["live_human_delivery"], "Wiedergabeprobe oder Live-Status ist falsch dokumentiert")
+    require(str(ROOT) not in playback["command"], "Wiedergabeprobe enthält einen absoluten lokalen Pfad")
 
     subprocess.run(["ffmpeg", "-v", "error", "-i", str(VIDEO), "-f", "null", "-"], check=True)
     frames = ROOT / "tmp" / "video_frames"

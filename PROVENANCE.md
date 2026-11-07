@@ -6,7 +6,7 @@ Das Repository begann am 07.11.2026 als leeres lokales Git-Repository. Das gleic
 
 ## KI-Beteiligung
 
-Die Implementierung, Rechercheunterstützung, Textentwürfe, Programmierung, Abbildungserzeugung und redaktionellen Änderungen erfolgen mit Kimi K3.1 Pro bei `thinking=max`. DeepSeek-V4.1-Flash und ein separates Kimi-K3.1-Pro-Exemplar bei maximaler Reasoning-Stufe prüfen getrennt. Der zweite Kimi-Lauf ist ein unabhängiger Same-Model-Kontext, keine externe oder menschliche Prüfung. Weitere KI-Läufe zur Recherche oder Textsynthese werden hier mit Zweck und Modell ergänzt. Menschliche Teamarbeit oder menschliche Prüfung wird nicht behauptet.
+Kimi K3.1 Pro bei `thinking=max` übernimmt Regel- und Physikrecherche, Implementierung, Programmierung, Textentwürfe, Abbildungen und Redaktion. DeepSeek-V4.1-Flash bei `reasoning_effort=max` unterstützt die Technik- und Wirtschaftsrecherche. DeepSeek und ein separates Kimi-K3.1-Pro-Exemplar bei maximaler Reasoning-Stufe prüfen getrennt. Der zweite Kimi-Lauf ist ein unabhängiger Same-Model-Kontext, keine externe oder menschliche Prüfung. Weitere KI-Läufe zur Recherche oder Textsynthese werden hier mit Zweck und Modell ergänzt. Menschliche Teamarbeit oder menschliche Prüfung wird nicht behauptet.
 
 Die Verantwortung für die Verwendung der Ausgaben bleibt bei der einreichenden menschlichen Person. Alle übernommenen Zahlen benötigen eine externe Primärquelle oder eine reproduzierbare Rechnung. KI-Aussagen allein gelten nicht als wissenschaftliche Belege.
 

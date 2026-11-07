@@ -1,0 +1,2 @@
+# Raw council reports retain intentional Markdown hard line breaks.
+review/rounds/*/deepseek.md whitespace=-trailing-space

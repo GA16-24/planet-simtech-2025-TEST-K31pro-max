@@ -70,6 +70,8 @@ def main() -> None:
 
     with pdfplumber.open(PDF) as pdf:
         sizes = []
+        figure_sizes = []
+        margin_pt = 25.0 / 25.4 * 72.0
         for index, page in enumerate(pdf.pages):
             require(abs(page.width - 595.276) < 1.0 and abs(page.height - 841.89) < 1.0, f"Seite {index + 1} ist nicht A4")
             body_chars = [char for char in page.chars if char["text"].strip()]
@@ -78,15 +80,27 @@ def main() -> None:
                 max_x = max(char["x1"] for char in body_chars)
                 min_top = min(char["top"] for char in body_chars)
                 max_bottom = max(char["bottom"] for char in body_chars)
-                require(min_x >= 70.0, f"Seite {index + 1}: Inhalt links unter 25 mm")
-                require(max_x <= page.width - 70.0, f"Seite {index + 1}: Inhalt rechts über 25 mm")
-                require(min_top >= 70.0, f"Seite {index + 1}: Inhalt oben unter 25 mm")
-                require(max_bottom <= page.height - 70.0, f"Seite {index + 1}: Inhalt unten über 25 mm")
+                require(min_x >= margin_pt, f"Seite {index + 1}: Inhalt links unter 25 mm")
+                require(max_x <= page.width - margin_pt, f"Seite {index + 1}: Inhalt rechts über 25 mm")
+                require(min_top >= margin_pt, f"Seite {index + 1}: Inhalt oben unter 25 mm")
+                require(max_bottom <= page.height - margin_pt, f"Seite {index + 1}: Inhalt unten über 25 mm")
+                footer_chars = [char for char in body_chars if index > 0 and char["text"] in str(index) and char["bottom"] > page.height - 40.0 / 25.4 * 72.0 and abs((char["x0"] + char["x1"]) / 2.0 - page.width / 2.0) < 5.0]
+                footer_ids = {id(char) for char in footer_chars}
+                for footer in footer_chars:
+                    for other in body_chars:
+                        if id(other) in footer_ids:
+                            continue
+                        overlap_x = min(footer["x1"], other["x1"]) - max(footer["x0"], other["x0"])
+                        overlap_y = min(footer["bottom"], other["bottom"]) - max(footer["top"], other["top"])
+                        require(overlap_x <= 0.5 or overlap_y <= 0.5, f"Seite {index + 1}: Seitenzahl überdeckt Text bei {other['text']}")
             sizes.extend(float(char["size"]) for char in body_chars if char["text"].isalpha())
+            figure_sizes.extend(float(max(char["height"], char["width"])) for char in body_chars if "DejaVuSans" in char["fontname"] and char["text"].isalpha())
         if sizes:
             sizes.sort()
             median = sizes[len(sizes) // 2]
             require(11.85 <= median <= 12.15, f"Median-Schriftgröße ist {median:.2f} statt 12 pt")
+        if figure_sizes:
+            require(min(figure_sizes) >= 11.90, f"Diagrammschrift ist {min(figure_sizes):.2f} statt mindestens 12 pt")
 
     RENDER.mkdir(parents=True, exist_ok=True)
     for old_image in RENDER.glob("page-*.png"):

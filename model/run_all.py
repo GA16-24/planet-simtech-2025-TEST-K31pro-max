@@ -42,9 +42,12 @@ for directory in (OUT, FIG, GEN):
 
 plt.rcParams.update({
     "font.family": "DejaVu Sans",
-    "font.size": 14,
-    "axes.titlesize": 16,
-    "axes.labelsize": 14,
+    "font.size": 18,
+    "axes.titlesize": 18,
+    "axes.labelsize": 18,
+    "xtick.labelsize": 18,
+    "ytick.labelsize": 18,
+    "legend.fontsize": 18,
     "axes.spines.top": False,
     "axes.spines.right": False,
     "figure.dpi": 160,
@@ -262,42 +265,43 @@ def main() -> None:
         weather_scenarios.append({"summer_air_c": air_temperature, "electricity_mw": stage.electricity_mw, "npv_25y_eur": npv(rows)})
 
     years = np.linspace(0.0, 12.0, 481)
-    fig, axes = plt.subplots(1, 2, figsize=(9.2, 3.5))
+    fig, axes = plt.subplots(1, 2, figsize=(9.2, 4.6))
     axes[0].plot(years, source_temperature_c(years, p), color=BLUE, lw=2)
     axes[0].axhline(s["target_temperature_c"], color=GREEN, ls="--", lw=1, label="Regelziel 9 °C")
     axes[0].axvline(10, color=GRAY, lw=0.8)
-    axes[0].set(xlabel="Jahre seit Prognosebeginn", ylabel="Tiefentemperatur in °C", title="Szenarioannahme")
+    axes[0].set(xlabel="Jahre", ylabel="Tiefe in °C")
     axes[0].legend(frameon=False, loc="upper left")
-    for fraction, color, label in [(1.0, BLUE, "Gesamter Quellstrom"), (0.01, ORANGE, "1 % des Quellstroms"), (0.001, GREEN, "0,1 % des Quellstroms")]:
+    for fraction, color, label in [(1.0, BLUE, "Gesamtstrom"), (0.01, ORANGE, "1 % Teilstrom"), (0.001, GREEN, "0,1 % Teilstrom")]:
         axes[1].plot(years, required_cooling_mw(years, p, fraction), color=color, lw=2, label=label)
-    axes[1].set(xlabel="Jahre seit Prognosebeginn", ylabel="Kühlleistung in MW", title="Erforderliche Wärmeabfuhr")
+    axes[1].set(xlabel="Jahre", ylabel="Kühlleistung in MW")
     axes[1].set_yscale("symlog", linthresh=1.0)
+    axes[1].set_yticks([0.0, 0.1, 1.0, 10.0, 100.0, 1000.0], ["0", "0,1", "1", "10", "100", "1000"])
     fig.legend(handles=axes[1].get_lines(), frameon=False, ncol=3, loc="lower center", bbox_to_anchor=(0.5, 0.005))
-    fig.subplots_adjust(bottom=0.38, wspace=0.35)
+    fig.subplots_adjust(bottom=0.34, wspace=0.35)
     save_figure(fig, "fig01_prognose_last")
 
     schedule_years = np.arange(0, 13)
     stages = [cooling_stage(float(year), p) for year in schedule_years]
-    fig, ax = plt.subplots(figsize=(8.6, 3.8))
+    fig, ax = plt.subplots(figsize=(8.6, 4.4))
     ax.stackplot(schedule_years, [stage.dry_mw for stage in stages], [stage.chiller_mw for stage in stages], labels=["Trockenkühlung", "Kältemaschinen"], colors=[BLUE, ORANGE], alpha=0.9)
     ax.plot(schedule_years, [stage.total_mw * 1.2 for stage in stages], color=RED, lw=1.8, ls="--", label="Mittelstrom mit 20 % Reserve")
     ax.plot(schedule_years, [stage.total_mw * 1.2 * design_flow_ratio(p) for stage in stages], color=BLUE, lw=1.8, ls="-.", label="p90 mit 20 % Reserve")
-    ax.set(xlabel="Jahre seit Prognosebeginn", ylabel="Leistung in MW", title="Modularer Ausbau der Vollstromkühlung")
-    ax.legend(frameon=False, ncol=3, loc="upper center", bbox_to_anchor=(0.5, -0.24))
-    fig.subplots_adjust(bottom=0.34)
+    ax.set(xlabel="Jahre", ylabel="Leistung in MW")
+    ax.legend(frameon=False, ncol=2, loc="upper center", bbox_to_anchor=(0.5, -0.24))
+    fig.subplots_adjust(bottom=0.36)
     save_figure(fig, "fig02_stufenplan")
 
-    fig, ax = plt.subplots(figsize=(8.6, 3.8))
+    fig, ax = plt.subplots(figsize=(8.6, 4.4))
     for technology, color, label in [("hybrid", BLUE, "H1 Hybrid"), ("evaporative", ORANGE, "H2 Verdunstung")]:
         rows = economic_schedule(p, technology)
         cumulative = np.cumsum([row["present_value_eur"] for row in rows]) / 1e9
         ax.plot([row["year"] for row in rows], cumulative, color=color, lw=2, label=label)
-    ax.set(xlabel="Betriebsjahr", ylabel="Kumulierte Barwertkosten in Mrd. €", title="Kostenpfad über 25 Jahre")
+    ax.set(xlabel="Betriebsjahr", ylabel="Barwert in Mrd. €")
     ax.legend(frameon=False, ncol=2, loc="upper center", bbox_to_anchor=(0.5, -0.24))
-    fig.subplots_adjust(bottom=0.32)
+    fig.subplots_adjust(bottom=0.34)
     save_figure(fig, "fig03_kostenpfad")
 
-    fig, ax = plt.subplots(figsize=(8.6, 3.8))
+    fig, ax = plt.subplots(figsize=(8.6, 4.4))
     labels = [row["case"] for row in sensitivity]
     values = [row["final_cooling_mw"] for row in sensitivity]
     positions = np.arange(len(labels))
@@ -305,34 +309,70 @@ def main() -> None:
     ax.axvline(final_q, color=RED, ls="--", lw=1.4, label=f"Referenz {final_q:.1f} MW".replace(".", ","))
     ax.set_yticks(positions, labels)
     ax.invert_yaxis()
-    ax.set(xlabel="Kühlleistung im Prognosejahr in MW", title="Deterministische Sensitivität")
+    ax.set(xlabel="Kühlleistung in MW")
     ax.legend(frameon=False, loc="lower right")
     save_figure(fig, "fig04_sensitivitaet")
 
-    fig, axes = plt.subplots(1, 2, figsize=(9.2, 3.5))
+    fig, axes = plt.subplots(1, 2, figsize=(7.0, 4.8))
     axes[0].hist(q_samples, bins=45, color=BLUE, alpha=0.85)
-    mean_line = axes[0].axvline(final_q, color=RED, ls="--", lw=1.4, label="Mittelstrom: 877,8 MW")
-    reserve_line = axes[0].axvline(final_q * (1 + p["plant"]["reserve_fraction"]), color=GRAY, ls=":", lw=1.6, label="Mittelstrom + 20 %: 1053,3 MW")
-    design_line = axes[0].axvline(design_stage.total_mw * (1 + p["plant"]["reserve_fraction"]), color=BLUE, ls="-.", lw=1.6, label="p90 + 20 %: 2152,5 MW")
-    axes[0].set(xlabel="Kühlleistung in MW", ylabel="Anzahl", title="Abflussunsicherheit")
+    mean_line = axes[0].axvline(final_q, color=RED, ls="--", lw=1.4, label="Mittelstrom: 877,8")
+    reserve_line = axes[0].axvline(final_q * (1 + p["plant"]["reserve_fraction"]), color=GRAY, ls=":", lw=1.6, label="Mittelstrom + 20 %: 1053,3")
+    design_line = axes[0].axvline(design_stage.total_mw * (1 + p["plant"]["reserve_fraction"]), color=BLUE, ls="-.", lw=1.6, label="p90 + 20 %: 2152,5")
+    axes[0].set(xlabel="Kühlleistung in MW", ylabel="Anzahl")
     axes[1].hist(npv_samples / 1e9, bins=45, color=ORANGE, alpha=0.85)
     axes[1].axvline(npv(hybrid_staged) / 1e9, color=RED, ls="--", lw=1.4)
-    axes[1].set(xlabel="Barwertkosten in Mrd. €", ylabel="Anzahl", title="COP und Investitionskosten")
+    axes[1].set(xlabel="Barwert in Mrd. €", ylabel="Anzahl")
     axes[1].xaxis.set_major_formatter(FuncFormatter(lambda value, position: f"{value:g}".replace(".", ",")))
-    fig.legend(handles=[mean_line, reserve_line, design_line], frameon=False, ncol=3, loc="lower center", fontsize=10)
-    fig.subplots_adjust(bottom=0.30, wspace=0.30)
+    fig.legend(handles=[mean_line, reserve_line, design_line], frameon=False, ncol=1, loc="lower center", bbox_to_anchor=(0.5, 0.005))
+    fig.subplots_adjust(bottom=0.43, wspace=0.40)
     save_figure(fig, "fig05_unsicherheit")
 
     fractions = np.logspace(-4, 0, 200)
-    fig, ax = plt.subplots(figsize=(8.6, 3.8))
+    fig, ax = plt.subplots(figsize=(8.6, 4.4))
     ax.loglog(fractions * 100.0, final_q * fractions, color=BLUE, lw=2)
     ax.axhline(storage_mw, color=GREEN, ls="--", label=f"Speichergrenze {storage_mw:.3f} MW".replace(".", ","))
     ax.axvline(1.0, color=ORANGE, ls=":", label="1-%-Teilstrom")
-    ax.set(xlabel="Erfasster Anteil des Quellstroms in %", ylabel="Kühlleistung in MW", title="Maßstab der Anlage hängt vom erfassten Strom ab")
+    ax.set(xlabel="Erfasster Strom in %", ylabel="Kühlleistung in MW")
     ax.set_ylim(bottom=0.02)
     ax.set_yticks([0.03, 0.1, 1.0, 10.0, 100.0, 1000.0], ["0,03", "0,1", "1", "10", "100", "1000"])
     ax.legend(frameon=False)
     save_figure(fig, "fig06_teilstrom")
+
+    slide_fig = ROOT / "presentation" / "figures"
+    slide_fig.mkdir(parents=True, exist_ok=True)
+    fig, ax = plt.subplots(figsize=(6.2, 2.3))
+    ax.loglog(fractions * 100.0, final_q * fractions, color=BLUE, lw=2)
+    ax.axhline(storage_mw, color=GREEN, ls="--", label="Speicher 0,0303 MW")
+    ax.axvline(1.0, color=ORANGE, ls=":", label="1 % Teilstrom")
+    ax.set(xlabel="Erfasster Strom in %", ylabel="Kühlleistung in MW")
+    ax.set_ylim(bottom=0.02)
+    ax.set_yticks([0.03, 0.1, 1.0, 10.0, 100.0, 1000.0], ["0,03", "0,1", "1", "10", "100", "1000"])
+    ax.legend(frameon=False, loc="upper left", fontsize=16)
+    fig.savefig(slide_fig / "teilstrom.png", dpi=220)
+    plt.close(fig)
+
+    fig, ax = plt.subplots(figsize=(3.3, 2.3))
+    for technology, color, label in [("hybrid", BLUE, "H1 trocken"), ("evaporative", ORANGE, "H2 Verdunstung")]:
+        rows = economic_schedule(p, technology)
+        cumulative = np.cumsum([row["present_value_eur"] for row in rows]) / 1e9
+        ax.plot([row["year"] for row in rows], cumulative, color=color, lw=2)
+        ax.text(25.4, cumulative[-1], label.split()[0], color=color, fontsize=16, va="center")
+    ax.set(xlabel="Betriebsjahr", ylabel="Barwert in Mrd. €", xlim=(0.0, 27.5))
+    fig.savefig(slide_fig / "kostenpfad.png", dpi=220)
+    plt.close(fig)
+
+    fig, ax = plt.subplots(figsize=(3.4, 2.3))
+    ax.hist(q_samples, bins=40, color=BLUE, alpha=0.85)
+    ax.axvline(final_q, color=RED, ls="--", lw=1.4)
+    ax.axvline(final_q * (1 + p["plant"]["reserve_fraction"]), color=GRAY, ls=":", lw=1.6)
+    ax.axvline(design_stage.total_mw * (1 + p["plant"]["reserve_fraction"]), color=BLUE, ls="-.", lw=1.6)
+    ax.set(xlabel="Kühlleistung in MW", ylabel="Anzahl", xlim=(200.0, 2300.0), ylim=(0.0, 640.0))
+    ax.text(final_q, 610.0, "877,8", color=RED, fontsize=16, ha="center", va="bottom")
+    ax.text(final_q * (1 + p["plant"]["reserve_fraction"]), 500.0, "1053,3", color=GRAY, fontsize=16, ha="center", va="bottom")
+    ax.text(design_stage.total_mw * (1 + p["plant"]["reserve_fraction"]), 610.0, "2152,5", color=BLUE, fontsize=16, ha="right", va="bottom")
+    fig.subplots_adjust(left=0.20, right=0.96, top=0.93, bottom=0.23)
+    fig.savefig(slide_fig / "unsicherheit.png", dpi=220)
+    plt.close(fig)
 
     results = {
         "model_version": "2.1.0",
@@ -353,14 +393,15 @@ def main() -> None:
             "backup_fuel_liters": backup_fuel_liters(p),
             "return_ramp_hours": (p["scenario"]["source_temperature_cap_c"] - p["scenario"]["target_temperature_c"]) / p["ecology"]["maximum_return_rate_k_h"],
             "return_ramp_max_rate_k_h": validation["return_ramp_max_rate_k_h"],
-            "npsh_design_margin_bar": p["plant"]["intake_design_pressure_bar"] - 1.01325,
-            "npsh_design_margin_m": (p["plant"]["intake_design_pressure_bar"] - 1.01325) * 1e5 / (p["water"]["density_kg_m3"] * p["plant"]["gravity_m_s2"]),
+            "static_overpressure_head_bar": p["plant"]["intake_design_pressure_bar"] - 1.01325,
+            "static_overpressure_head_m": (p["plant"]["intake_design_pressure_bar"] - 1.01325) * 1e5 / (p["water"]["density_kg_m3"] * p["plant"]["gravity_m_s2"]),
             "flood_stress_cooling_mw": float(required_cooling_mw(final_year, p) * p["hydrology"]["discharge_flood_m3_s"] / p["water"]["discharge_m3_s"]),
             "return_buffer_m3": p["water"]["discharge_m3_s"] * p["ecology"]["return_buffer_hours"] * 3600.0,
             "module_pipe_diameter_m": float(np.sqrt(4.0 * p["hydrology"]["design_discharge_m3_s"] / p["plant"]["required_modules"] / (np.pi * p["plant"]["module_design_velocity_m_s"]))),
             "reserve_installed_mw": design_stage.total_mw * (1 + p["plant"]["reserve_fraction"]),
             "mean_flow_capacity_mw": final_q * (1 + p["plant"]["reserve_fraction"]),
             "per_module_required_mw": design_stage.total_mw / p["plant"]["required_modules"],
+            "per_module_installed_mw": design_stage.total_mw * (1 + p["plant"]["reserve_fraction"]) / p["plant"]["module_count"],
             "storage_lower_bound_mw": storage_mw,
             "evaporation_kg_s": evaporation,
             "evaporation_m3_year": evaporation / p["water"]["density_kg_m3"] * 365 * 24 * 3600,
@@ -482,7 +523,7 @@ def main() -> None:
         "FailureMinutesNinety": (validation["failure_p90"]["failure_time_to_20c_h"] * 60, 1),
         "RecoveryMarginNinety": (validation["failure_p90"]["recovery_margin_minutes"], 1),
         "MeanCapacity": (results["baseline"]["mean_flow_capacity_mw"], 1),
-        "NpshMargin": (results["baseline"]["npsh_design_margin_m"], 1),
+        "StaticHead": (results["baseline"]["static_overpressure_head_m"], 1),
         "AvailabilityLowNpv": (availability_scenarios[0]["npv_25y_eur"] / 1e9, 2),
         "AvailabilityHighNpv": (availability_scenarios[-1]["npv_25y_eur"] / 1e9, 2),
         "TariffHighNpv": (tariff_scenarios[-1]["npv_25y_eur"] / 1e9, 3),
@@ -492,6 +533,7 @@ def main() -> None:
         "PipeDiameter": (results["baseline"]["module_pipe_diameter_m"], 2),
         "QReserve": (results["baseline"]["reserve_installed_mw"], 1),
         "QModule": (results["baseline"]["per_module_required_mw"], 1),
+        "QModuleInstalled": (results["baseline"]["per_module_installed_mw"], 1),
         "QStorage": (storage_mw, 4),
         "EvapRate": (evaporation, 1),
         "EvapDry": (evaporative_stage.dry_mw, 1),
@@ -555,7 +597,23 @@ def main() -> None:
         handle.write("\\bottomrule\n\\end{tabular}\n")
 
     manifest = {}
-    for path in [ROOT / "data" / "parameters.yml", *sorted((ROOT / "model").glob("*.py")), OUT / "results.json", *sorted(FIG.glob("fig*.pdf"))]:
+    manifest_paths = [
+        ROOT / "data" / "parameters.yml",
+        ROOT / "requirements.lock.txt",
+        ROOT / "Makefile",
+        *sorted((ROOT / "model").glob("*.py")),
+        *sorted((ROOT / "scripts").glob("*.py")),
+        *sorted((ROOT / "scripts").glob("*.sh")),
+        OUT / "results.json",
+        OUT / "hybrid_schedule.csv",
+        OUT / "sensitivity.csv",
+        OUT / "uncertainty_samples.npz",
+        *sorted(GEN.glob("*.tex")),
+        *sorted(FIG.glob("fig*.pdf")),
+        *sorted(FIG.glob("fig*.png")),
+        *sorted((ROOT / "presentation" / "figures").glob("*.png")),
+    ]
+    for path in manifest_paths:
         manifest[str(path.relative_to(ROOT))] = hashlib.sha256(path.read_bytes()).hexdigest()
     with (OUT / "manifest.json").open("w", encoding="utf-8") as handle:
         json.dump(manifest, handle, indent=2)

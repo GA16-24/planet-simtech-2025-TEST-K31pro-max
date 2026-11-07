@@ -17,9 +17,9 @@ def main() -> None:
         "ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "default=noprint_wrappers=1:nokey=1", str(VIDEO)
     ], check=True, capture_output=True, text=True)
     duration = float(probe.stdout.strip())
-    command = ["/usr/bin/time", "-p", "ffmpeg", "-v", "error", "-re", "-i", str(VIDEO), "-f", "null", "-"]
+    command = ["/usr/bin/time", "-p", "ffmpeg", "-v", "error", "-re", "-i", str(VIDEO.relative_to(ROOT)), "-f", "null", "-"]
     started = time.monotonic()
-    result = subprocess.run(command, check=True, capture_output=True, text=True)
+    result = subprocess.run(command, cwd=ROOT, check=True, capture_output=True, text=True)
     elapsed = time.monotonic() - started
     timing = {}
     for line in result.stderr.strip().splitlines():

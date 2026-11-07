@@ -32,9 +32,9 @@ def simulate_failure(p: dict[str, Any], flow_ratio: float, rtol: float = 1e-9, a
     cooling_mw = float(required_cooling_mw(s["forecast_years"], p, affected_fraction=flow_ratio))
     source = s["boiling_temperature_c"]
     initial = s["initial_temperature_c"]
-    start_s = f["generator_start_minutes"] * 60.0
-    full_s = f["full_cooling_minutes"] * 60.0
-    assert f["detection_minutes"] * 60.0 <= start_s < full_s <= f["controls_ups_minutes"] * 60.0
+    start_s = (f["detection_minutes"] + f["generator_start_minutes"]) * 60.0
+    full_s = (f["detection_minutes"] + f["full_cooling_minutes"]) * 60.0
+    assert 0.0 < f["detection_minutes"] * 60.0 < start_s < full_s <= f["controls_ups_minutes"] * 60.0
     failure_time_h = -tau_s * np.log((source - 20.0) / (source - initial)) / 3600.0
 
     def recovered_cooling(time_s: float, temperature: list[float]) -> list[float]:
@@ -44,22 +44,29 @@ def simulate_failure(p: dict[str, Any], flow_ratio: float, rtol: float = 1e-9, a
         return [source_gain - cooling_loss]
 
     end_s = failure_time_h * 3600.0 * 1.2
-    time_s = np.linspace(0.0, end_s, 1001)
+    time_s = np.unique(np.concatenate([np.linspace(0.0, end_s, 1001), [start_s, full_s]]))
     options: dict[str, Any] = {"rtol": rtol, "atol": atol}
     if max_step_s is not None:
         options["max_step"] = max_step_s
-    recovery = solve_ivp(recovered_cooling, (0.0, end_s), [initial], t_eval=time_s, **options)
-    if not recovery.success:
-        raise RuntimeError(f"Ausfallintegration fehlgeschlagen: {recovery.message}")
+    peak_temperature = initial
+    for segment_start, segment_end in [(0.0, start_s), (start_s, full_s), (full_s, end_s)]:
+        segment_points = time_s[(time_s >= segment_start) & (time_s <= segment_end)]
+        recovery = solve_ivp(recovered_cooling, (segment_start, segment_end), [initial], t_eval=segment_points, **options)
+        if not recovery.success:
+            raise RuntimeError(f"Ausfallintegration fehlgeschlagen: {recovery.message}")
+        peak_temperature = max(peak_temperature, float(np.max(recovery.y[0])))
+        initial = float(recovery.y[0, -1])
     return {
         "flow_ratio": flow_ratio,
         "pool_time_constant_h": tau_s / 3600.0,
         "failure_time_to_20c_h": float(failure_time_h),
-        "recovery_peak_temperature_c": float(np.max(recovery.y[0])),
-        "recovery_margin_minutes": float(failure_time_h * 60.0 - f["full_cooling_minutes"]),
+        "recovery_peak_temperature_c": peak_temperature,
+        "recovery_margin_minutes": float(failure_time_h * 60.0 - full_s / 60.0),
         "detection_minutes": f["detection_minutes"],
         "generator_start_minutes": f["generator_start_minutes"],
         "full_cooling_minutes": f["full_cooling_minutes"],
+        "cooling_start_absolute_minutes": start_s / 60.0,
+        "full_cooling_absolute_minutes": full_s / 60.0,
         "evaluation_points": len(time_s),
     }
 

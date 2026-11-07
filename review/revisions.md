@@ -15,7 +15,7 @@ Diese Datei verbindet Juryfragen und Council-Befunde mit konkreten Änderungen o
 | 7, Verdunstung | `alternatives[1]`, Feuchtkugel und Kältestufe | Physikalisch gleichwertig im Szenario, Wasser und Hygiene als Zielkonflikt |
 | 8, Kälteschock | `planned_return_temperature_c` | 91-Stunden-Sollwerttest, kein Wiederanlaufnachweis |
 | 9, Reserve | `design`, `module_count` | p90 mit zwölf Strängen, elf aktiv und einer Reserve |
-| 10, Stromausfall | `validation.recovery_peak_temperature_c` | Dynamischer Test mit 0,5/5/10 min, keine reale Zuschaltprobe |
+| 10, Stromausfall | `validation.failure_mean`, `failure_p90` | Detektion 0,5 min, Start 5,5 min und volle Kühlung 10,5 min nach Ausfall; keine reale Zuschaltprobe |
 | 11, Stromerfassung | Messplan in Bericht und Folie 9 | Tracer und Durchfluss vor Detailauslegung |
 | 12, Wärmevermarktung | `heat_recovery_mw: 0.0` | Kein Erlös ohne gemessenen Abnehmer |
 | 13, Hochwasser | `baseline.flood_stress_cooling_mw` | 12,48 GW für 9 °C nicht abgedeckt |
@@ -29,7 +29,7 @@ Diese Datei verbindet Juryfragen und Council-Befunde mit konkreten Änderungen o
 | 21, Überlast | `uncertainty.mean_capacity_overload_fraction`, `design_overload_fraction` | p90-Reserve deckt begrenzte Stichprobe ab |
 | 22, Feuchtkugel | `plant.wet_bulb_design_c`, `alternatives[1]` | 28 °C plus 4 K, Kältestufe bis 9 °C |
 | 23, Tarif | BDEW [16], `tariff_scenarios` | 138 €/MWh als Proxy, 179 €/MWh als Alternative |
-| 24, Wiederanlauf | `validation.recovery_peak_temperature_c`, `recovery_margin_minutes` | Höchstwert 12,6 °C im Szenario |
+| 24, Wiederanlauf | `validation.failure_mean`, `failure_p90`, `failure_p90_convergence_error_k` | Höchstwerte 12,88 °C und 16,66 °C; Margin 0,921 min im p90-Fall; kein Feldversuch |
 | 25, Reiner Siedeschutz | `boil_guard` | 48,5 MW statt 877,8 MW, aber kein ökologischer Normalzustand |
 | 26, Standort | `design.air_service_area_m2`, `electricity_mw`, `backup_fuel_m3`, AwSV und BNatSchG | Screening vorhanden, Standort nicht nachgewiesen |
 | 27, Same-Model-Review | `review/model_configuration.md`, Nutzervorgabe | Kein Modellwechsel, unabhängiger Kontext statt externer Prüfung |
@@ -128,6 +128,37 @@ Diese Datei verbindet Juryfragen und Council-Befunde mit konkreten Änderungen o
 | M5, Karst, Standort, Netz, COP und Extremwertverteilung nicht nachgewiesen | Diese reale Machbarkeit kann ohne Messungen und Angebote nicht bestätigt werden. Das Paket beschränkt sein Ergebnis auf einen falsifizierbaren Szenarioentwurf und macht die Nachweise zu Zulassungsbedingungen. | Bericht Abschnitte 4.3 und 5, `docs/alternativenvergleich.md`, `boil_guard`, Hochwasser-Stresstest. Keine unbegründete Dauerzusage. |
 | M6, VTT-Satzzeiten und menschliche Restaufgaben | WebVTT technisch repariert und echte MP4-Wiedergabe erneut gemessen. Wortproportionale Satzzeiten bleiben offengelegt. Menschliche Hörprobe, Team-ID, Rechtefreigabe, Finalisten-E-Mail und Live-Probe werden nicht als erfolgt behauptet. | `output/presentation/playback.json`, `presentation/rehearsal.md`, `presentation/rights.md`, `PROVENANCE.md` |
 
+## Befunde aus Runde 4, DeepSeek
+
+| Befund | Konkrete Änderung oder begründete Grenze | Verifikation |
+| --- | --- | --- |
+| M1, Seitenzahl im Text und im Spaltengraben | Unterer Rand auf 34 mm, `footskip=7mm`, normale Fußzeile ohne `raisebox` | `report/preamble.tex`; Kollisionsprüfung für jede Seitenzahl in `scripts/verify_report.py` |
+| M2, uneinheitliche KI-Offenlegung | Regel- und Physikrecherche von Kimi, Technik- und Wirtschaftsrecherche von DeepSeek sowie getrennte Reviewrollen einheitlich benannt | `report/main.tex` Anhang A, `presentation/main.tex` Folie 10, `PROVENANCE.md` |
+| M3, Strangleistung mehrdeutig | Zwölf Stränge à 179,4 MW installiert; im p90-Fall elf Stränge à 163,1 MW bei etwa 91 % Last | `baseline.per_module_installed_mw`, `per_module_required_mw`; Bericht, Folie 5 und Q9 |
+| M4, Detektionszeit nicht im Ausfallmodell | Absolute Start- und Vollastzeitpunkte 5,5 und 10,5 min; Integration an beiden Schaltpunkten neu gestartet | `simulate_failure`; Mittelstrom 12,88 °C, p90 16,66 °C, Margin 0,921 min; analytischer Test und Konvergenzfehler 1,79e-12 K |
+| M5, statische Druckhöhe als NPSH bezeichnet | Auf statische Druckhöhe über Atmosphäre präzisiert; Dampfdruck und Saugverluste bleiben offen | `baseline.static_overpressure_head_m`, Bericht §3.1 |
+| M6, kleine Diagramme auf Folien 3, 7 und 8 | Eigene Projektgrafiken mit größeren Schriften und direkten Linienlabels statt verkleinerter Berichtsgrafiken | `presentation/figures/`, Folien 3, 7, 8 und tatsächliche MP4-Frames |
+| M7, MW statt MW/K auf Folie 2 | Einheit auf MW/K korrigiert | `presentation/main.tex`, `scripts/verify_presentation.py` |
+| M8, nur Hostnamen im Quellendruck | Auflösbare DOI- und URL-Pfade mit umbrechbarem `\nolinkurl` gedruckt; vollständige Hyperlinks bleiben erhalten | Literaturverzeichnis, `sources/registry.yml` |
+| M9, D4RT ohne Jahr und Venue | Jahr 2025 und Preprint-Status aus der referenzierten Version ergänzt, keine Venue erfunden | Quelle [22], PDF-Metadaten vom 10.12.2025, `sources/registry.yml` |
+| M10, Arial als Systemschrift | `newtxtext` und `newtxmath` statt macOS-Arial | `presentation/main.tex`; Folienbuild ohne absolute Schriftpfade |
+| M11, 655,8 statt 655,9 MW | Beide Dokumente auf den generierten Modellwert 655,9 MW vereinheitlicht | `docs/alternativenvergleich.md`, Q22, `EvapDry` |
+| M12, Manifest unvollständig | Eingaben, Programme, CSV- und NPZ-Ergebnisse, LaTeX-Tabellen und alle Figuren gehasht | `output/model/manifest.json`, `scripts/verify_repository.py` |
+| M13, absolute lokale Pfade | Wiedergabebefehl mit Repository-Arbeitsverzeichnis und relativem Videopfad | `scripts/record_playback.py`, `output/presentation/playback.json` |
+| M14, Jahresendleistung für alle Jahresstunden | Die konservative Diskretisierung wird ausdrücklich erklärt statt als Stundenmodell ausgegeben; Jahr 0 und Netzanschlussgrenze präzisiert | `plant.operation_year_convention`, Bericht §3.3 |
+| M15, 9 °C als historisch überzeichnet | „Angenommener Normalzustand“ statt „historischer Zustand“ | Bericht §1 |
+| M16, Worttrennungen und überflüssige Grafikflächen | Breitere Eingabespalten, direkte Linienlabels und keine isolierte Wiederholungstabelle am Ende | `report/main.tex`; Alternativen H4 bis H7 bleiben im Haupttext und in `docs/alternativenvergleich.md` |
+| M17, alte Videodauer im Entscheidungsprotokoll | Der Eintrag ist als historischer Build gekennzeichnet; aktuelle Dauer steht im neuen Zeitprotokoll | `decisions.tsv`, `presentation/rehearsal.md` |
+| M18, Margenschwelle und unentdeckte Diagrammschrift | Exakt 25 mm in Punkt, Fußzeilenkollisionen und effektive Glyphengröße in beiden Ausrichtungen geprüft | `scripts/verify_report.py` |
+
+## Befunde aus Runde 4, Kimi
+
+| Befund | Konkrete Änderung oder begründete Grenze | Verifikation |
+| --- | --- | --- |
+| M1, Diagrammschrift unter 12 pt und zu klein im Video | Berichtsgrafiken neu skaliert, Achsen- und Legendentexte mindestens 12 pt nach PDF-Skalierung; Projektgrafiken mit direkten Labels | `scripts/verify_report.py` misst die größere Glyphendimension, Seiten 5, 7 und 12; Folien und Videoframes |
+| M2, zweite NIST-Abfrage fehlt | Vollständige Drucktabellen-URL bei 3,17007 bar in Quellenregister und Eingabedatei verknüpft | `sources/registry.yml` Eintrag 4, `hydrology.pressure_table_url` |
+| M3, menschliche und technische Finalrestaufgaben | Video mit 290,232 s und Echtzeitprobe mit 289,67 s neu erzeugt; Archiv-Neukodierung ist für Runde 5 vorgesehen. Menschliche Hörprobe, manuelle VTT-Freigabe, Rechte und echte Teamprobe werden nicht erfunden. | `scripts/build_presentation.sh`, `presentation/rehearsal.md`, `presentation/rights.md`, `make verify`; menschliche Restaufgaben bleiben ausdrücklich offen |
+
 ## Offene physikalische und menschliche Grenzen
 
 - Betroffener Stromanteil, Karsterfassung und Verhalten oberhalb 4,7 m³/s sind nicht feldkalibriert.
@@ -136,4 +167,4 @@ Diese Datei verbindet Juryfragen und Council-Befunde mit konkreten Änderungen o
 - Der Wiederanlauf ist ein Rechenszenario, keine durchgeführte Zuschaltprobe.
 - Offizielle Team-ID, menschliche Fachprüfung, Medienfreigabe, Finalisten-E-Mail und echte Live-Probe fehlen.
 
-Runde 2 wurde mit Commit `cc25cc903681ebbc4d6865309236885f729d6d77` bewertet und nicht bestanden. Der Runde-3-Kandidat `babe04c` wurde in einer frischen Archivkopie reproduziert. `review/rounds/round3/reproduction.md` dokumentiert ausdrücklich diesen Kandidaten, nicht den späteren Dokumentationscommit. Runde 3 wurde anschließend mit Commit `77c1f972df9c67a00354e395ce31f27fd0c1b95c` bewertet und nicht bestanden. Für Runde 4 ist eine neue Archivreproduktion des exakten Kandidaten-Commits erforderlich. Erst danach werden Revision und Council-Auftrag eingefroren. Diese Zuordnung behauptet keine neue Punktzahl.
+Runde 2 wurde mit Commit `cc25cc903681ebbc4d6865309236885f729d6d77` bewertet und nicht bestanden. Der Runde-3-Kandidat `babe04c` wurde in einer frischen Archivkopie reproduziert. `review/rounds/round3/reproduction.md` dokumentiert ausdrücklich diesen Kandidaten, nicht den späteren Dokumentationscommit. Runde 3 wurde anschließend mit Commit `77c1f972df9c67a00354e395ce31f27fd0c1b95c` bewertet und nicht bestanden. Der Kandidat `85127420f90cc7fc742c5698e78fc1214e262a42` wurde für Runde 4 archivreproduziert; der Freeze-Commit `2fd9f3cd11e2f984f4fb8ce693b855529cabc580` ergänzte nur den Reproduktionsnachweis. Beide Runde-4-Reviewer bestanden die Stoppregel nicht. Ihre Befunde sind oben zugeordnet. Für Runde 5 ist eine neue Archivreproduktion einschließlich Präsentation und Video des exakten Kandidaten-Commits erforderlich. Erst danach werden Revision und Council-Auftrag eingefroren. Diese Zuordnung behauptet keine neue Punktzahl.

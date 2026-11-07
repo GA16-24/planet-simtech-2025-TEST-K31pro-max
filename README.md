@@ -2,7 +2,7 @@
 
 Unabhängig erstelltes Wettbewerbspaket für die vom Nutzer übergebene Blautopf-Aufgabe. Vulkanische Aktivität und die Zehnjahresprognose sind Szenarioprämissen, keine durch dieses Repository bestätigten Messbefunde.
 
-Das private Repository enthält einen deutschen Bericht, das vollständige Rechenmodell, Sensitivitäts- und Wirtschaftlichkeitsanalysen, einen Slidecast mit synthetischer Sprachausgabe, Sprechtext, Zeitprobe, adversariale Juryfragen sowie Herkunfts-, Prüf- und Reviewnachweise. Eine Einreichung oder öffentliche Veröffentlichung hat nicht stattgefunden.
+Die lokale Git-Arbeitskopie enthält einen deutschen Bericht, das vollständige Rechenmodell, Sensitivitäts- und Wirtschaftlichkeitsanalysen, einen Slidecast mit synthetischer Sprachausgabe, Sprechtext, Zeitprobe, adversariale Juryfragen sowie Herkunfts-, Prüf- und Reviewnachweise. Das private GitHub-Repository wurde neu angelegt. Ein Push erfolgte nicht, da keine externe Bereitstellung der Arbeitsdateien freigegeben wurde. Eine Wettbewerbsabgabe oder öffentliche Veröffentlichung hat nicht stattgefunden.
 
 ## Zentrale Antwort
 
@@ -26,6 +26,8 @@ Im erwarteten Vollstromszenario sind im zehnten Jahr 877,8 MW Kühlleistung erfo
 ## Voraussetzungen
 
 Für das Rechenmodell werden Python 3.14 und die Pakete aus `requirements.lock.txt` verwendet. Bericht und Folien benötigen Tectonic mit LaTeX-Paketen. PDF-Prüfungen benötigen Poppler. Das Video benötigt FFmpeg mit H.264 und AAC. Die optionale Neueinstellung der deutschen Stimme verwendet eSpeak NG 1.52.0. Die bereits erzeugten Audiodateien ermöglichen die Videoreproduktion ohne diesen Schritt.
+
+Die Referenzumgebung verwendet Python 3.14.6, Tectonic 0.17.0, FFmpeg 9.0.2 und Poppler 26.10.0. Die Schriften kommen aus den LaTeX-Paketen, nicht aus betriebssystemspezifischen Fontdateien.
 
 ## Reproduktion
 

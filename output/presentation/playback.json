@@ -1,11 +1,11 @@
 {
   "date": "2026-11-07",
-  "command": "/usr/bin/time -p ffmpeg -v error -re -i /Users/macbook_air_m1/.t3/scratch/2026-11-07-create-a-new-separate-github-162aa05c/planet-simtech-2025-TEST-K31pro-max/output/presentation/Blautopf_Finale.mp4 -f null -",
-  "duration_s": 290.174958,
-  "elapsed_s": 289.63734383299015,
-  "real_s": 289.62,
-  "user_s": 59.75,
-  "sys_s": 2.16,
+  "command": "/usr/bin/time -p ffmpeg -v error -re -i output/presentation/Blautopf_Finale.mp4 -f null -",
+  "duration_s": 290.23175,
+  "elapsed_s": 289.67879133298993,
+  "real_s": 289.67,
+  "user_s": 65.51,
+  "sys_s": 2.37,
   "decode_exit_code": 0,
   "live_human_delivery": false
 }

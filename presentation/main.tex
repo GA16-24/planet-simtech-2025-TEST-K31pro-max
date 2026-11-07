@@ -1,8 +1,6 @@
 \documentclass[aspectratio=169,17pt]{beamer}
 \usepackage[ngerman]{babel}
-\usepackage{fontspec}
-\setmainfont{Arial}
-\setsansfont{Arial}
+\usepackage{newtxtext}
 \usepackage{newtxmath}
 \renewcommand{\familydefault}{\sfdefault}
 \renewcommand{\rmdefault}{\sfdefault}
@@ -51,7 +49,7 @@
   \vspace{2mm}
   \begin{columns}[T]
     \column{0.52\textwidth}
-      \bignumber{9,646 MW}{Wärmeabfuhr pro Kelvin beim erwarteten Quellstrom}
+      \bignumber{9,646 MW/K}{Wärmeabfuhr pro Kelvin beim erwarteten Quellstrom}
       \vspace{3mm}
       \begin{equation*}
         \dot Q=\rho\,\dot V\,c_p\,\Delta T
@@ -65,14 +63,12 @@
 \end{frame}
 
 \begin{frame}{Zwei Kontrollvolumen}
-  \begin{columns}[T]
-    \column{0.63\textwidth}
-      \includegraphics[width=\textwidth,height=36mm,keepaspectratio]{../report/figures/fig06_teilstrom.png}
-    \column{0.33\textwidth}
-      \bignumber{29.000-fach}{Verhältnis von Vollstrom zu isolierter Speicherrechnung}
-      \vspace{1mm}
-      {\fontsize{12}{15}\selectfont Vollstrom 877,8 MW, Speicher 0,0303 MW. Ein 1-\%-Teilstrom senkt die Last auf 8,8 MW.\par}
-  \end{columns}
+  \centering
+  \includegraphics[width=0.96\textwidth,height=47mm,keepaspectratio]{figures/teilstrom.png}
+  \vspace{0mm}
+
+  \compactnumber{29.000-fach}{Vollstrom 877,8 MW gegenüber isolierter Speicherrechnung 0,0303 MW}
+  {\fontsize{12}{15}\selectfont Ein 1-\%-Teilstrom senkt die Last auf 8,8 MW.\par}
   \slidefoot{Eigene Rechnung mit Python und Kimi K3.1 Pro, Volumenannahme 25.000 m³.}
 \end{frame}
 
@@ -115,7 +111,7 @@
   \end{tikzpicture}}
   \vspace{1mm}
 
-  {\fontsize{12.5}{15}\selectfont p90: \DesignCooling\ MW Bedarf, \QReserve\ MW installiert, elf aktive und ein Reserve-Strang. Mittelbetrieb: fünf Stränge modulieren.\par}
+  {\fontsize{12.5}{15}\selectfont Zwölf Stränge à \QModuleInstalled\ MW installiert: \QReserve\ MW. Im p90-Fall liefern elf Stränge je \QModule\ MW, einer ist Reserve. Mittelbetrieb: fünf Stränge modulieren.\par}
   \slidefoot{Erwartete Wärmebilanz [8]. p90-Senke: \DesignAirRejection\ MW.}
 \end{frame}
 
@@ -128,20 +124,20 @@
     \column{0.55\textwidth}
       {\fontsize{13.5}{16}\selectfont
       \begin{itemize}
-        \item Detektion 0,5 min, Generatorstart 5 min
-        \item volle Kühlleistung nach 10 min
+        \item Detektion 0,5 min, danach Generatorstart 5 min
+        \item volle Kühlung 10 min nach Detektion
         \item sechs Aggregate und eine Reserve
         \item 48 h Reserve: \FuelReserve\ Mio. Liter Diesel
       \end{itemize}\par}
   \end{columns}
-  \slidefoot{Rechenszenario, keine reale Zuschaltprobe. Steuerung 15 min unterbrechungsfrei.}
+  \slidefoot{Start nach 5,5 min, volle Kühlung nach 10,5 min. Rechenszenario, keine reale Zuschaltprobe.}
 \end{frame}
 
 \begin{frame}{Der Preis des trockenen Weges}
   \begin{columns}[T]
-    \column{0.62\textwidth}
-      \includegraphics[width=\textwidth,height=44mm,keepaspectratio]{../report/figures/fig03_kostenpfad.png}
-    \column{0.34\textwidth}
+    \column{0.52\textwidth}
+      \includegraphics[width=\textwidth]{figures/kostenpfad.png}
+    \column{0.44\textwidth}
       \compactnumber{\CapexFinal\ Mio. €}{Investition mit p90-Reserve}
       \vspace{1mm}
       \compactnumber{\NpvHybrid\ Mrd. €}{Barwert über 25 Jahre}
@@ -153,9 +149,9 @@
 
 \begin{frame}{Die Hülle begrenzt das Versprechen}
   \begin{columns}[T]
-    \column{0.64\textwidth}
-      \includegraphics[width=\textwidth,height=32mm,keepaspectratio]{../report/figures/fig05_unsicherheit.png}
-    \column{0.32\textwidth}
+    \column{0.60\textwidth}
+      \includegraphics[width=\textwidth]{figures/unsicherheit.png}
+    \column{0.36\textwidth}
       \compactnumber{2,15 GW}{p90-Kapazität für 9 °C mit Reserve}
       \vspace{1mm}
       {\fontsize{11.5}{14}\selectfont Mittelstrom + 20 \%: \MeanCapacity\ MW, \MeanOverloadPercent\ \% Überlast. p90 deckt die begrenzte Stichprobe. 32,7 m³/s: \QFloodStress\ GW für 9 °C, nicht abgedeckt.\par}
@@ -188,7 +184,7 @@
   {\fontsize{15}{19}\selectfont 878 MW Erwartungslast, 2,15 GW p90-Kapazität. Die Anlage hält 9 °C innerhalb ihrer angenommenen Hülle. Vor dem Bau müssen Messungen und Standort denselben Maßstab bestätigen.\par}
   \vfill
   \source{Hauptquellen [2,3,4,8,9,13,16,24,25]. Vollständige Quellen im Bericht.}
-  \source{KI-Offenlegung: Inhalt, Modell und Sprechtext mit Kimi K3.1 Pro bei maximaler Reasoning-Stufe. Recherche mit DeepSeek-V4.1-Flash. Vertonung mit eSpeak NG 1.52.0. Kein Live-Mitschnitt und keine menschliche Prüfung.}
+  \source{KI-Offenlegung: Kimi K3.1 Pro (thinking=max) für Regel- und Physikrecherche, Implementierung, Texte und Abbildungen. DeepSeek-V4.1-Flash (reasoning\_effort=max) für Technik/Wirtschaft und Review. Separates Kimi-Exemplar für Review, keine externe Prüfung. Vertonung eSpeak NG 1.52.0, kein Live-Mitschnitt, keine menschliche Prüfung.}
 \end{frame}
 
 \end{document}

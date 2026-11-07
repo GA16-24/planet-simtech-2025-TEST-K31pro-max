@@ -22,8 +22,9 @@
   author: National Institute of Standards and Technology
   title: Water, thermophysical properties, isobaric tables
   url: https://webbook.nist.gov/cgi/fluid.cgi?Action=Data&Wide=on&ID=C7732185&Type=IsoBar&Digits=6&P=1.01325&TLow=0&THigh=100&TInc=10&RefState=DEF&TUnit=C&PUnit=bar&DUnit=kg%2Fm3&HUnit=kJ%2Fkg&WUnit=m%2Fs&VisUnit=uPa*s&STUnit=N%2Fm
+  pressure_table_url: https://webbook.nist.gov/cgi/fluid.cgi?Action=Data&Wide=on&ID=C7732185&Type=IsoBar&Digits=6&P=3.17007&TLow=130&THigh=140&TInc=1&RefState=DEF&TUnit=C&PUnit=bar&DUnit=kg%2Fm3&HUnit=kJ%2Fkg&WUnit=m%2Fs&VisUnit=uPa*s&STUnit=N%2Fm
   accessed: 07.11.2026
-  use: Dichte, Wärmekapazität, Enthalpie und Sättigung
+  use: Dichte, Wärmekapazität, Enthalpie und Sättigung; zweite Abfrage bei 3,17007 bar von 130 bis 140 °C in 1-K-Schritten
 - id: 5
   author: International Association for the Properties of Water and Steam
   title: Revised Release on the IAPWS Industrial Formulation 1997
@@ -136,6 +137,8 @@
 - id: 22
   author: Zhang et al.
   title: Efficiently Reconstructing Dynamic Scenes One D4RT at a Time
+  year: 2025
+  venue: Preprint, Version vom 10.12.2025, keine Venue in der referenzierten PDF ausgewiesen
   url: https://storage.googleapis.com/d4rt_assets/D4RT_paper.pdf
   accessed: 07.11.2026
   use: Ausschließlich visueller Layoutvergleich gemäß Nutzervorgabe, keine Fachquelle

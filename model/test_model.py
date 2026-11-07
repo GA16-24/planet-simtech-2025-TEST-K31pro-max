@@ -72,10 +72,23 @@ class ModelTests(unittest.TestCase):
 
     def test_failure_p90_and_convergence(self) -> None:
         result = run_validation(self.p)
-        self.assertAlmostEqual(result["failure_mean"]["recovery_peak_temperature_c"], 12.6447637, places=5)
-        self.assertAlmostEqual(result["failure_p90"]["recovery_peak_temperature_c"], 16.2044656, places=4)
-        self.assertAlmostEqual(result["failure_p90"]["failure_time_to_20c_h"] * 60.0, 11.4213539, places=5)
-        self.assertAlmostEqual(result["failure_p90"]["recovery_margin_minutes"], 1.4213539, places=5)
+        failure = result["failure_p90"]
+        self.assertEqual(failure["cooling_start_absolute_minutes"], 5.5)
+        self.assertEqual(failure["full_cooling_absolute_minutes"], 10.5)
+        self.assertAlmostEqual(failure["failure_time_to_20c_h"] * 60.0, 11.4213539, places=5)
+        self.assertAlmostEqual(failure["recovery_margin_minutes"], 0.9213539, places=5)
+        ratio = self.p["hydrology"]["design_discharge_m3_s"] / self.p["water"]["discharge_m3_s"]
+        tau_seconds = self.p["scenario"]["pool_volume_m3"] / (self.p["water"]["discharge_m3_s"] * ratio)
+        at_start = 100.0 - 91.0 * np.exp(-5.5 * 60.0 / tau_seconds)
+        duration_seconds = 5.0 * 60.0
+        cooling_k_s = required_cooling_mw(10.0, self.p, affected_fraction=ratio) * 1e6 / (self.p["water"]["density_kg_m3"] * self.p["scenario"]["pool_volume_m3"] * self.p["water"]["specific_heat_j_kgk"])
+        integration_constant = 100.0 + tau_seconds ** 2 * cooling_k_s / duration_seconds
+        particular_slope = -tau_seconds * cooling_k_s / duration_seconds
+        peak_time_s = -tau_seconds * np.log(particular_slope * tau_seconds / (at_start - integration_constant))
+        self.assertGreater(peak_time_s, 0.0)
+        self.assertLess(peak_time_s, duration_seconds)
+        at_peak = integration_constant + particular_slope * peak_time_s + (at_start - integration_constant) * np.exp(-peak_time_s / tau_seconds)
+        self.assertAlmostEqual(failure["recovery_peak_temperature_c"], at_peak, places=5)
         self.assertLess(result["failure_p90_convergence_error_k"], 1e-6)
 
     def test_validation_suite(self) -> None:
