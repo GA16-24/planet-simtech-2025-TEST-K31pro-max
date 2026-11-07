@@ -25,13 +25,15 @@ water:
 hydrology:
   discharge_p10_m3_s: 0.7
   discharge_p90_m3_s: 4.7
+  design_discharge_m3_s: 4.7
   discharge_flood_m3_s: 32.7
   summer_low_mean_m3_s: 1.2
   pool_depth_m: 22.0
   pool_depth_pressure_bar: 3.17007
   pool_depth_saturation_c: 135.413
   surface_saturation_c: 99.9743
-  affected_fraction_design_note: "Der Referenzfall erwärmt den gesamten mittleren Quellstrom. Hochwasser wird separat als nicht auslegungsdeckender Stresstest ausgewiesen."
+  boiling_margin_k: 5.0
+  affected_fraction_design_note: "Der erwartete Betrieb nutzt 2,3 m³/s. Für den 9-°C-Normalbetrieb wird die Kapazität mit dem historischen 90-Prozent-Quantil 4,7 m³/s und 20 % Reserve ausgelegt. Extremhochwasser bleibt ein separater Stresstest."
 
 ecology:
   maximum_return_rate_k_h: 1.0
@@ -43,16 +45,20 @@ ecology:
 plant:
   summer_design_air_c: 35.0
   dry_cooler_approach_k: 5.0
+  wet_bulb_design_c: 28.0
+  evaporative_approach_k: 4.0
   condenser_temperature_c: 45.0
   module_design_velocity_m_s: 1.2
-  chiller_cop: 5.0
+  chiller_cop: 4.0
+  performance_evidence: "COP und Feuchtkugel sind technische Szenarioannahmen, keine Herstellerkurve oder lokale Wetterextremstatistik. Ein Tarif von 138 €/MWh folgt dem BDEW-Bereich 70 bis 150 GWh und bleibt Proxy für den größeren Abnahmefall."
   dry_auxiliary_fraction: 0.015
   pump_head_m: 12.0
   pump_efficiency: 0.8
   reserve_fraction: 0.2
-  module_count: 6
-  required_modules: 5
-  electricity_price_eur_mwh: 179.0
+  module_count: 12
+  required_modules: 11
+  electricity_price_eur_mwh: 138.0
+  electricity_price_high_eur_mwh: 179.0
   maintenance_fraction: 0.03
   discount_rate: 0.03
   replacement_year: 15
@@ -69,12 +75,22 @@ plant:
   diesel_price_eur_l: 1.50
   intake_design_pressure_bar: 3.5
 
+failure:
+  detection_minutes: 0.5
+  generator_start_minutes: 5.0
+  full_cooling_minutes: 10.0
+  controls_ups_minutes: 15.0
+  backup_required_aggregates: 6
+  backup_installed_aggregates: 7
+  note: "Zeit- und Aggregatwerte sind Szenarioannahmen. Sie ersetzen weder Herstellerdaten noch einen synchronisierten Lastabwurf- und Zuschaltversuch."
+
 air:
   density_kg_m3: 1.2
   specific_heat_j_kgk: 1005.0
   face_velocity_m_s: 2.0
   temperature_rise_k: 15.0
   service_area_factor: 1.5
+  source: "Luftseitige Werte sind technische Bilanzannahmen für ein Standort-Screening, keine Hersteller- oder Standortnachweise. Rückverwirbelung, Schall und Plume sind separat zu prüfen."
 
 emissions:
   carbon_intensity_tco2_mwh: 0.363
@@ -94,6 +110,7 @@ cost:
   civil_scale_exponent: 0.65
   controls_scale_exponent: 0.5
   backup_scale_exponent: 1.0
+  fixed_cost_basis: "Tiefbau und Steuerung sind separate All-in-Schätzposten einschließlich projektbezogener Reserve und erhalten daher nicht erneut den 60-%-Zuschlag der variablen Ausrüstung."
   water_price_eur_m3: 0.50
   evaporative_hygiene_eur_year: 500000.0
   evidence: "Exchanger vendor anchor and chiller literature range are documented separately. Dry coolers, civil works, backup power, multipliers and water price are explicit scenario estimates, not quotations."
@@ -109,7 +126,7 @@ uncertainty:
   discharge_mode_m3_s: 2.3
   discharge_high_m3_s: 4.7
   cop_low: 3.0
-  cop_mode: 5.0
+  cop_mode: 4.0
   cop_high: 6.5
   capex_multiplier_sigma: 0.30
   affected_fraction_low: 0.0001

@@ -70,6 +70,23 @@ def run_validation(p: dict[str, Any]) -> dict[str, float | bool]:
     failure_source = s["boiling_temperature_c"]
     failure_time_20c_h = -tau_s * np.log((failure_source - 20.0) / (failure_source - initial)) / 3600.0
     assert failure_time_20c_h > 0.0
+    f = p["failure"]
+    start_s = f["generator_start_minutes"] * 60.0
+    full_s = f["full_cooling_minutes"] * 60.0
+    assert f["detection_minutes"] * 60.0 <= start_s < full_s <= f["controls_ups_minutes"] * 60.0
+
+    def recovered_cooling(time_s: float, temperature: list[float]) -> list[float]:
+        fraction = min(max((time_s - start_s) / (full_s - start_s), 0.0), 1.0)
+        source_gain = (failure_source - temperature[0]) / tau_s
+        cooling_loss = final_q * 1e6 / (w["density_kg_m3"] * s["pool_volume_m3"] * w["specific_heat_j_kgk"]) * fraction
+        return [source_gain - cooling_loss]
+
+    recovery_time_s = np.linspace(0.0, failure_time_20c_h * 3600.0 * 1.2, 1001)
+    recovery = solve_ivp(recovered_cooling, (0.0, float(recovery_time_s[-1])), [initial], t_eval=recovery_time_s, rtol=1e-9, atol=1e-9)
+    recovery_peak_c = float(np.max(recovery.y[0]))
+    recovery_margin_minutes = failure_time_20c_h * 60.0 - f["full_cooling_minutes"]
+    assert recovery_peak_c < 20.0 and recovery_margin_minutes > 0.0
+    assert f["backup_installed_aggregates"] > f["backup_required_aggregates"]
 
     hybrid_staged = economic_schedule(p, "hybrid", upfront=False)
     hybrid_upfront = economic_schedule(p, "hybrid", upfront=True)
@@ -86,8 +103,12 @@ def run_validation(p: dict[str, Any]) -> dict[str, float | bool]:
     assert abs(ramp_hours - 91.0) < 1e-12
     assert ramp_max_rate_k_h <= e["maximum_return_rate_k_h"] + 1e-12
     assert ramp_temperature_c[-1] == s["target_temperature_c"]
-    expected_fuel = stage.electricity_mw * 1000.0 * p["plant"]["backup_duration_hours"] / (p["plant"]["backup_thermal_efficiency"] * p["plant"]["diesel_energy_kwh_l"])
+    expected_fuel = cooling_stage(final_year, p, affected_fraction=p["hydrology"]["design_discharge_m3_s"] / w["discharge_m3_s"]).electricity_mw * 1000.0 * p["plant"]["backup_duration_hours"] / (p["plant"]["backup_thermal_efficiency"] * p["plant"]["diesel_energy_kwh_l"])
     assert abs(backup_fuel_liters(p) - expected_fuel) < 1e-9
+    evaporative = cooling_stage(final_year, p, technology="evaporative")
+    assert abs(evaporative.dry_mw + evaporative.chiller_mw - evaporative.total_mw) < 1e-9
+    assert evaporative.chiller_mw > 0.0 and evaporative.electricity_mw > 0.0
+    assert abs(evaporation_kg_s(evaporative.dry_mw, p) * w["latent_heat_j_kg"] / 1e6 - evaporative.dry_mw) < 1e-9
 
     return {
         "replacement_error_eur": abs(hybrid_staged[p["plant"]["replacement_year"]]["replacement_eur"] - expected_replacement),
@@ -98,10 +119,13 @@ def run_validation(p: dict[str, Any]) -> dict[str, float | bool]:
         "stage_split_error_mw": abs(stage.dry_mw + stage.chiller_mw - stage.total_mw),
         "heat_sink_balance_error_mw": abs(stage.air_rejection_mw - stage.total_mw - stage.electricity_mw),
         "evaporation_balance_error_mw": abs(evaporation * w["latent_heat_j_kg"] / 1e6 - final_q),
+        "evaporative_stage_error_mw": abs(evaporative.dry_mw + evaporative.chiller_mw - evaporative.total_mw),
         "dilution_mixing_error_c": abs(mixed - s["target_temperature_c"]),
         "ode_max_error_k": ode_error_k,
         "pool_time_constant_h": tau_s / 3600.0,
         "failure_time_to_20c_h": float(failure_time_20c_h),
+        "recovery_peak_temperature_c": recovery_peak_c,
+        "recovery_margin_minutes": recovery_margin_minutes,
         "staged_npv_lower_than_upfront": npv(hybrid_staged) < npv(hybrid_upfront),
         "all_checks_passed": True,
     }

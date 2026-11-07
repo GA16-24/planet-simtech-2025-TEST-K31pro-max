@@ -10,6 +10,7 @@
 \usepackage{booktabs}
 \usepackage{colortbl}
 \usepackage{graphicx}
+\usepackage{array}
 \usepackage{tikz}
 \usetikzlibrary{positioning}
 \input{../report/generated/numbers.tex}
@@ -42,7 +43,7 @@
   \vspace{6mm}
   {\fontsize{22}{27}\selectfont Dauerhafte Kühlung für das Blautopf-Szenario\par}
   \vfill
-  {\fontsize{14}{18}\selectfont PlaNeT SimTech, Science Slam\par}
+  {\fontsize{14}{18}\selectfont PlaNeT SimTech, Finale\par}
   {\fontsize{12}{15}\selectfont Team-ID TEST-K31pro-max, 07.11.2026\par}
 \end{frame}
 
@@ -50,7 +51,7 @@
   \vspace{2mm}
   \begin{columns}[T]
     \column{0.52\textwidth}
-      \bignumber{9,646 MW}{Wärmeabfuhr pro Kelvin beim mittleren Quellstrom}
+      \bignumber{9,646 MW}{Wärmeabfuhr pro Kelvin beim erwarteten Quellstrom}
       \vspace{3mm}
       \begin{equation*}
         \dot Q=\rho\,\dot V\,c_p\,\Delta T
@@ -60,7 +61,7 @@
       \vspace{2mm}
       {\fontsize{14}{17}\selectfont Das Szenario erwärmt das Tiefenwasser von 9 auf 100 °C. Der Entwurf kühlt den gesamten betroffenen Strom zurück auf 9 °C.\par}
   \end{columns}
-  \slidefoot{Quellen und Rechnung [2,4], konservativer Vollstromfall.}
+  \slidefoot{Quellen und Rechnung [2,4], Erwartungsstrom bei voller Erfassung.}
 \end{frame}
 
 \begin{frame}{Zwei Kontrollvolumen}
@@ -78,12 +79,12 @@
 \begin{frame}{Sieben physikalische Wege}
   \renewcommand{\arraystretch}{1.0}
   {\fontsize{11.5}{14}\selectfont
-  \begin{tabular}{@{}p{11mm}p{90mm}p{35mm}@{}}
+  \begin{tabular}{@{}>{\hspace{0pt}\raggedright\arraybackslash}p{11mm}>{\hspace{0pt}\raggedright\arraybackslash}p{79.5mm}>{\hspace{0pt}\raggedright\arraybackslash}p{45mm}@{}}
     \toprule
     Weg & Entscheidender Befund & Urteil \\
     \midrule
     \rowcolor{soft} H1 & Trockene Hybridkühlung schließt die Wärmebilanz & Referenz \\
-    H2 & Verdunstung verbraucht 11,3 Mio. m³/a & ökologisch schlechter \\
+    H2 & Verdunstung mit Kältestufe: 8,45 Mio. m³/a & Wasser und Hygiene \\
     H3 & Kaltwasserbedarf 52,3 m³/s & keine Quelle belegt \\
     H4 & Karsteingriff braucht unbekannte Fließwege & Forschungsoption \\
     H5 & Bypass lässt das Becken weiter heiß & unzureichend \\
@@ -91,7 +92,7 @@
     H7 & Passive Fläche 4,39 km² bei Sommerluft & unzureichend \\
     \bottomrule
   \end{tabular}\par}
-  \slidefoot{Alternativenvergleich unter identischer Last, Berechnungen in \texttt{results.json}.}
+  \slidefoot{Gleiche Last und p90-Reserve, Emissionen und Wasserbedarf getrennt bewertet.}
 \end{frame}
 
 \begin{frame}{Die zweistufige Kühlung}
@@ -104,8 +105,8 @@
     \node[stage] (source) {Tiefenwasser\\100 °C};
     \node[stage,right=12mm of source] (dry) {Trockenkühler\\100 auf 40 °C\\578,8 MW};
     \node[stage,right=12mm of dry] (chiller) {Kältemaschine\\40 auf 9 °C\\299,0 MW};
-    \node[stage,right=12mm of chiller] (buffer) {Puffer\\8280 m³\\Rampe 91 h};
-    \node[stage,above=15mm of dry,text width=46mm] (air) {Luft als externe Wärmesenke\\952,0 MW};
+    \node[stage,right=12mm of chiller] (buffer) {Puffer\\8280 m³\\91-h-Test};
+    \node[stage,above=15mm of dry,text width=46mm] (air) {Luft als externe Wärmesenke\\967,2 MW};
     \draw[flow] (source) -- (dry);
     \draw[flow] (dry) -- (chiller);
     \draw[flow] (chiller) -- (buffer);
@@ -114,26 +115,26 @@
   \end{tikzpicture}}
   \vspace{1mm}
 
-  {\fontsize{12.5}{15}\selectfont Sechs Stränge in jeder Ausbaustufe, fünf im Betrieb und einer in Reserve. Jedes aktive Endmodul kühlt 0,46 m³/s.\par}
-  \slidefoot{Wärmebilanz einschließlich Kondensator- und Hilfsenergie [8], eigene Anlagenskizze.}
+  {\fontsize{12.5}{15}\selectfont p90: \DesignCooling\ MW Bedarf, \QReserve\ MW installiert, elf aktive und ein Reserve-Strang. Mittelbetrieb: fünf Stränge modulieren.\par}
+  \slidefoot{Erwartete Wärmebilanz [8]. p90-Senke: \DesignAirRejection\ MW.}
 \end{frame}
 
-\begin{frame}{Bei Ausfall zählen Minuten}
+\begin{frame}{Der gerechnete Wiederanlauf}
   \begin{columns}[T]
     \column{0.40\textwidth}
-      \bignumber{23 min}{bis 20 °C nach vollständigem Kühlungsausfall im zehnten Jahr}
+      \bignumber{\RecoveryPeak\ °C}{Höchstwert im dynamischen Ausfall-Szenario}
       \vspace{2mm}
-      {\fontsize{12.5}{15}\selectfont Interne Alarmschwelle, keine behördliche Blau-Grenze und keine Siedezeit.\par}
+      {\fontsize{12.5}{15}\selectfont Ohne Kühlung wären 20 °C nach \FailureMinutes\ Minuten erreicht.\par}
     \column{0.55\textwidth}
       {\fontsize{13.5}{16}\selectfont
       \begin{itemize}
-        \item sechs Stränge mit N+1-Reserve in jeder Ausbaustufe
-        \item zwei Netzeinspeisungen und 48 Stunden Notstromreserve
-        \item unabhängige Temperatur- und Druckmessung
-        \item Sollwert rampe am Kälteauslass, 91-h-Stresstest
+        \item Detektion 0,5 min, Generatorstart 5 min
+        \item volle Kühlleistung nach 10 min
+        \item sechs Aggregate und eine Reserve
+        \item 48 h Reserve: \FuelReserve\ Mio. Liter Diesel
       \end{itemize}\par}
   \end{columns}
-  \slidefoot{Beckenvolumen 25.000 m³ als Rechenannahme, Zeitkonstante 3,02 h.}
+  \slidefoot{Rechenszenario, keine reale Zuschaltprobe. Steuerung 15 min unterbrechungsfrei.}
 \end{frame}
 
 \begin{frame}{Der Preis des trockenen Weges}
@@ -141,13 +142,13 @@
     \column{0.62\textwidth}
       \includegraphics[width=\textwidth,height=44mm,keepaspectratio]{../report/figures/fig03_kostenpfad.png}
     \column{0.34\textwidth}
-      \compactnumber{722 Mio. €}{Investition mit Reserve}
+      \compactnumber{\CapexFinal\ Mio. €}{Investition mit p90-Reserve}
       \vspace{1mm}
-      \compactnumber{2,94 Mrd. €}{Barwert über 25 Jahre}
+      \compactnumber{\NpvHybrid\ Mrd. €}{Barwert über 25 Jahre}
       \vspace{1mm}
-      {\fontsize{12}{15}\selectfont Verdunstung: 0,79 Mrd. €, 11,3 Mio. m³/a Wasser. H1: 193,0 kt CO$_2$/a mehr Stromemissionen [23].\par}
+      {\fontsize{12}{15}\selectfont H2: \NpvEvap\ Mrd. € und \EvapAnnual\ Mio. m³/a Wasser. H1: \EmissionsDelta\ kt CO$_2$/a mehr Stromemissionen [23].\par}
   \end{columns}
-  \slidefoot{Szenario-Schätzungen in Euro von 2026, keine Angebote [13,16,18,19].}
+  \slidefoot{Szenario-Schätzungen 2026, keine Angebote. Dauerhafter p90-Betrieb: \DesignNpv\ Mrd. €.}
 \end{frame}
 
 \begin{frame}{Die Hülle begrenzt das Versprechen}
@@ -155,37 +156,38 @@
     \column{0.64\textwidth}
       \includegraphics[width=\textwidth,height=32mm,keepaspectratio]{../report/figures/fig04_sensitivitaet.png}
     \column{0.32\textwidth}
-      \compactnumber{12,48 GW}{Hochwasser-Stresstest bei 32,7 m³/s}
+      \compactnumber{2,15 GW}{p90-Kapazität für 9 °C mit Reserve}
       \vspace{1mm}
-      {\fontsize{11.5}{14}\selectfont Nicht abgedeckt. Mehr Wärme erfordert einen neuen Entwurf.\par}
+      {\fontsize{11.5}{14}\selectfont Begrenzte Stichprobe ohne Überlast. 32,7 m³/s: 12,48 GW für 9 °C, nicht abgedeckt.\par}
   \end{columns}
-  \slidefoot{Varianten [2,3]. Referenz: höchstens 2,3 m³/s betroffener Strom.}
+  \slidefoot{Kein Extremwertnachweis. Höchstens 4,7 m³/s betroffener Strom.}
 \end{frame}
 
-\begin{frame}{Messung und Kühlentscheidung}
+\begin{frame}{Messung, Standort und Nachweis}
   \renewcommand{\arraystretch}{1.0}
   {\fontsize{12}{14.5}\selectfont
-  \begin{tabular}{@{}p{70mm}p{69mm}@{}}
+  \begin{tabular}{@{}>{\hspace{0pt}\raggedright\arraybackslash}p{68mm}>{\hspace{0pt}\raggedright\arraybackslash}p{68mm}@{}}
     \toprule
-    Messung & Konsequenz \\
+    Prüfpaket & Entscheidung \\
     \midrule
-    Temperatur und Druck in beiden Karstästen & Ort und Verlauf der Anomalie \\
-    Durchfluss und Tracer & betroffener Anteil des Quellstroms \\
-    verteilte Temperatursonden & Tiefenprofile statt Oberflächenbild \\
-    Kühlversuche & gemessene statt angenommene Leistung \\
-    Energiezähler an der Luftseite & kein Wärmerückfluss ins Gewässer \\
+    Temperatur, Druck, Tracer & betroffener Strom \\
+    Luft und Fläche & 8,19 ha, Strömung, Schall \\
+    Netz und Diesel & 182,7 MW, 2.237 m³ \\
+    FFH und Wasserrecht & Vorprüfung und Genehmigung \\
+    Lastabwurf und Zuschaltung & Wiederanlauf beweisen \\
+    Pilotkreislauf & Mischung und COP messen \\
     \bottomrule
   \end{tabular}\par}
-  \slidefoot{Nur ein nachweisbar kleiner Teilstrom rechtfertigt eine kleine Anlage. Messprogramm [3,11,12].}
+  \slidefoot{Prüfpflichten, keine erfolgten Messungen [3,11,12,24,25].}
 \end{frame}
 
 \begin{frame}{Schlussfolgerung}
-  \vspace{3mm}
-  {\fontsize{22}{27}\selectfont\bfseries Die 878 MW folgen aus dem Vollstromszenario. Sie sind keine beliebig gewählte Anlagengröße.\par}
-  \vspace{4mm}
-  {\fontsize{15}{19}\selectfont Die Anlage hält 9 °C innerhalb ihrer belegten Hülle. Vor dem Bau entscheiden Tracer, Durchfluss und Tiefenmessung über den tatsächlichen Maßstab.\par}
+  \vspace{0mm}
+  {\fontsize{22}{27}\selectfont\bfseries Sieden verhindern heißt Wärme abführen, nicht nur den Siedepunkt erhöhen.\par}
+  \vspace{1mm}
+  {\fontsize{15}{19}\selectfont 878 MW Erwartungslast, 2,15 GW p90-Kapazität. Die Anlage hält 9 °C innerhalb ihrer angenommenen Hülle. Vor dem Bau müssen Messungen und Standort denselben Maßstab bestätigen.\par}
   \vfill
-  \source{Hauptquellen [2,3,4,8,9,13,16]. Vollständige Quellen im Bericht.}
+  \source{Hauptquellen [2,3,4,8,9,13,16,24,25]. Vollständige Quellen im Bericht.}
   \source{KI-Offenlegung: Inhalt, Modell und Sprechtext mit Kimi K3.1 Pro bei maximaler Reasoning-Stufe. Recherche mit DeepSeek-V4.1-Flash. Vertonung mit eSpeak NG 1.52.0. Kein Live-Mitschnitt und keine menschliche Prüfung.}
 \end{frame}
 

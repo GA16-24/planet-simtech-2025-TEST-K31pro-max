@@ -1,22 +1,22 @@
 # Sprechtext und Quellen
 
-Die Vertonung verwendet eSpeak NG 1.52.0 mit deutscher Stimme. Der Tempofaktor nach der Laufzeitmessung beträgt 1.0783. Es handelt sich nicht um eine menschliche Live-Präsentation.
+Die Vertonung verwendet eSpeak NG 1.52.0 mit deutscher Stimme. Der Tempofaktor nach der Laufzeitmessung beträgt 1.0457. Es handelt sich nicht um eine menschliche Live-Präsentation.
 
 ## Folie 1. Die 878-Megawatt-Aufgabe
 
-Zeit 00:00:00.000 bis 00:00:17.396, effektive Dauer 17.40 s.
+Zeit 00:00:00.000 bis 00:00:20.922, effektive Dauer 20.92 s.
 
-Der Blautopf soll in zehn Jahren kochen. Diese Zahl und die vulkanische Ursache sind die Prämissen unseres Szenarios, keine neuen Messungen von uns. Unsere Antwort beginnt mit einer unbequemen Energiebilanz. Wer das Becken dauerhaft kalt halten will, muss im Extremfall 878 Megawatt abführen.
+Der Blautopf soll in zehn Jahren kochen. Diese Zahl und die vulkanische Ursache sind Szenarioprämissen, keine neuen Messungen. Unsere Antwort beginnt mit einer Energiebilanz. Wer das Becken dauerhaft kalt halten will, muss im Erwartungsfall 878 Megawatt abführen. Für das 90-Prozent-Abflussquantil wird die Kapazität größer ausgelegt.
 
 Quellen und Belege:
 - Aufgabenprämisse
-- Modellergebnis baseline.final_cooling_mw
+- Modellergebnisse baseline und design
 
 ## Folie 2. Ein Kelvin entscheidet
 
-Zeit 00:00:17.396 bis 00:00:46.199, effektive Dauer 28.80 s.
+Zeit 00:00:20.922 bis 00:00:48.867, effektive Dauer 27.95 s.
 
-Im Mittel fließen jede Sekunde 2,3 Kubikmeter Wasser durch den Blautopf. Jedes Kilogramm speichert etwa 4,2 Kilojoule pro Kelvin. Deshalb transportiert der Strom 9,646 Megawatt pro Kelvin. Zwischen dem kalten Normalzustand und dem Sieden liegen hier 91 Kelvin. Multipliziert ergibt das 877,8 Megawatt. Das ist der zentrale Unterschied zwischen einer kleinen Kühlung am Beckenrand und einer Anlage, die den ganzen Quellstrom behandelt.
+Im Mittel fließen jede Sekunde 2,3 Kubikmeter Wasser durch den Blautopf. Jedes Kilogramm speichert etwa 4,2 Kilojoule pro Kelvin. Deshalb transportiert der erwartete Strom 9,646 Megawatt pro Kelvin. Zwischen dem kalten Normalzustand und dem Sieden liegen 91 Kelvin. Multipliziert ergibt das 877,8 Megawatt. Diese Wärme muss dauerhaft aus dem Wasser heraus, nicht nur der Siedepunkt verschoben werden.
 
 Quellen und Belege:
 - Fan et al. [2]
@@ -25,9 +25,9 @@ Quellen und Belege:
 
 ## Folie 3. Zwei Kontrollvolumen
 
-Zeit 00:00:46.199 bis 00:01:14.545, effektive Dauer 28.35 s.
+Zeit 00:00:48.867 bis 00:01:12.871, effektive Dauer 24.00 s.
 
-Man kann die Aufgabe mit 30 Kilowatt beantworten, wenn man nur das Beckenvolumen in zehn Jahren aufheizt und den Abfluss vergisst. Unsere Speicherrechnung zeigt genau diese 0,0303 Megawatt. Aber der Blautopf ist keine verschlossene Thermoskanne. Wenn der gesamte Zufluss warm wird, muss die gleiche Wärmemenge wieder aus dem Strom heraus. Erhitzt die Anomalie dagegen nur ein Prozent des Flusses, genügen 8,8 Megawatt. Die Messtechnik entscheidet also zuerst, welches Kontrollvolumen stimmt.
+Wer nur das Beckenvolumen in zehn Jahren aufheizt und den Abfluss vergisst, erhält 0,0303 Megawatt. Der Blautopf ist aber keine verschlossene Thermoskanne. Wenn der gesamte Zufluss warm wird, muss dieselbe Wärme wieder aus dem Strom heraus. Erhitzt die Anomalie nur ein Prozent des Flusses, genügen 8,8 Megawatt. Die Messtechnik entscheidet deshalb zuerst, welches Kontrollvolumen stimmt.
 
 Quellen und Belege:
 - Eigene Speicher- und Teilstromrechnung
@@ -35,9 +35,9 @@ Quellen und Belege:
 
 ## Folie 4. Sieben physikalische Wege
 
-Zeit 00:01:14.545 bis 00:01:41.771, effektive Dauer 27.23 s.
+Zeit 00:01:12.871 bis 00:01:42.625, effektive Dauer 29.75 s.
 
-Wir haben sieben Wege mit derselben Last verglichen. Druck verschiebt nur das Sieden und schützt die Organismen nicht. Ein Bypass lässt das Becken weiter heiß werden. Passive Kühlflächen scheitern an Fläche und Sommerluft. Kaltwasserzumischung braucht mehr als das Zwanzigfache des natürlichen Abflusses. Verdunstung ist billig, entzieht der Blau aber elf Millionen Kubikmeter im Jahr. Ein Karsteingriff wäre ursächlich, kennt jedoch die Fließwege nicht sicher genug. Deshalb bleibt die trockene Hybridkühlung.
+Sieben Wege werden mit derselben Last verglichen. Druck verschiebt nur das Sieden und schützt die Organismen nicht. Ein Bypass lässt das Becken weiter heiß werden. Passive Kühlflächen scheitern an Fläche und Sommerluft. Kaltwasserzumischung braucht mehr als das Zwanzigfache des natürlichen Abflusses. Verdunstung mit Kältestufe ist günstiger, verbraucht aber 8,45 Millionen Kubikmeter Wasser im Jahr. Ein Karsteingriff kennt die Fließwege nicht sicher genug. Deshalb bleibt die trockene Hybridkühlung, trotz höherer Stromemissionen.
 
 Quellen und Belege:
 - Alternativenvergleich
@@ -46,64 +46,64 @@ Quellen und Belege:
 
 ## Folie 5. Die zweistufige Kühlung
 
-Zeit 00:01:41.771 bis 00:02:27.062, effektive Dauer 45.29 s.
+Zeit 00:01:42.625 bis 00:02:17.786, effektive Dauer 35.16 s.
 
-Unsere Anlage nutzt die hohe Temperatur zuerst ohne Kältemaschine. Trockenkühler senken das Wasser von 100 auf 40 Grad und führen 579 Megawatt an die Luft ab. Danach kühlen Kältemaschinen auf 9 Grad und übernehmen 299 Megawatt. Ihre Kondensatoren geben zusätzlich die Antriebsenergie ab. Mit Ventilatoren und Pumpen muss die Luft 952 Megawatt aufnehmen. Sechs getrennte Stränge sind in jeder Ausbaustufe geplant, fünf arbeiten, einer ist Reserve. Bei der geplanten Inbetriebnahme senkt die Regelung den Kälteauslass mit höchstens einem Kelvin pro Stunde. Der Stresstest von 100 auf 9 Grad dauert deshalb 91 Stunden. Ein Puffer allein wäre dafür kein Nachweis. Nach einem Ausfall ist eine eigene sichere Wiederanlaufplanung erforderlich.
+Trockenkühler senken das Wasser zuerst von 100 auf 40 Grad und führen 579 Megawatt an die Luft ab. Danach kühlen Kältemaschinen auf 9 Grad und übernehmen 299 Megawatt. Ihre Kondensatoren geben zusätzlich die Antriebsenergie ab. Im Erwartungsfall muss die Luft 967 Megawatt aufnehmen. Für 4,7 Kubikmeter pro Sekunde werden 2,15 Gigawatt installiert. Dann arbeiten elf Stränge und einer ist Reserve. Im Mittelbetrieb modulieren fünf. Die Sollwertrampe am Kälteauslass begrenzt die Änderung auf ein Kelvin pro Stunde.
 
 Quellen und Belege:
 - OpenStax Kondensatorbilanz [8]
 - LAWA [10]
 - output/model/results.json
 
-## Folie 6. Bei Ausfall zählen Minuten
+## Folie 6. Der gerechnete Wiederanlauf
 
-Zeit 00:02:27.062 bis 00:02:55.801, effektive Dauer 28.74 s.
+Zeit 00:02:17.786 bis 00:02:47.836, effektive Dauer 30.05 s.
 
-Ein Ausfall ist kein ferner Zufall. Im zehnten Jahr erreicht das ungekühlte Becken nach unserem Modell in etwa 23 Minuten die interne Alarmschwelle von 20 Grad. Diese Schwelle ist keine behördliche Blau-Grenze und keine Siedezeit. Deshalb gehören ein freier Strang, zwei Netzeinspeisungen und 48 Stunden Notstrom zum Entwurf. Unabhängige Sensoren messen Temperatur und Druck. Die Anlage gilt nur dann als erfolgreich, wenn auch Tiefe und Fluss kalt bleiben, nicht nur die sichtbare Oberfläche.
+Ohne Kühlung erreicht das Becken im Modell nach 23 Minuten die interne Alarmschwelle von 20 Grad. Deshalb rechnen wir den Wiederanlauf zeitlich nach. Detektion dauert eine halbe Minute, der Generatorstart fünf Minuten, volle Kühlleistung steht nach zehn Minuten bereit. Der Höchstwert bleibt bei 12,6 Grad. Sechs Aggregate liefern die p90-Leistung, ein siebtes ist Reserve. Der Dieseltank ist auf 48 Stunden ausgelegt. Das ist ein Rechenszenario, kein erfolgter Zuschaltversuch.
 
 Quellen und Belege:
-- Validierung failure_time_to_20c_h
-- LAWA [10]
-- OGewV [9]
+- Validierung recovery_peak_temperature_c
+- failure in data/parameters.yml
 
 ## Folie 7. Der Preis des trockenen Weges
 
-Zeit 00:02:55.801 bis 00:03:34.619, effektive Dauer 38.82 s.
+Zeit 00:02:47.836 bis 00:03:24.038, effektive Dauer 36.20 s.
 
-Die trockene Lösung ist bewusst nicht die billigste. Wir schätzen 722 Millionen Euro Investition und 138 Millionen Euro jährlichen Betrieb im zehnten Jahr. Über 25 Jahre ergibt sich ein Barwert von 2,94 Milliarden Euro. Verdunstung käme mit 0,79 Milliarden aus. Diese Differenz kauft den Erhalt des Wasserhaushalts und vermeidet das offene Aerosolsystem am Blautopf. Der Emissionsunterschied beträgt 193 Kilotonnen CO2 pro Jahr. Alle Kosten sind Szenarien in Euro von 2026, keine Angebote. Ein belegter kleiner Teilstrom würde die Kosten drastisch senken.
+Die p90-Reserve kostet 1,28 Milliarden Euro Investition. Im erwarteten zehnten Jahr fallen 146,5 Millionen Euro Betriebskosten an, der Barwert liegt bei 3,67 Milliarden. Verdunstung mit Kältestufe kommt auf 2,99 Milliarden, verbraucht aber 8,45 Millionen Kubikmeter Wasser pro Jahr. H1 verursacht 62,3 Kilotonnen mehr Stromemissionen. Der Tarif von 138 Euro pro Megawattstunde ist nur ein Proxy. Alle Kosten sind Szenarien in Euro von 2026, keine Angebote.
 
 Quellen und Belege:
 - BDEW [16]
-- Kostenannahmen in data/parameters.yml
+- Kostenannahmen und alternatives in output/model/results.json
 - 42. BImSchV [13]
 
 ## Folie 8. Die Hülle begrenzt das Versprechen
 
-Zeit 00:03:34.619 bis 00:04:04.021, effektive Dauer 29.40 s.
+Zeit 00:03:24.038 bis 00:03:54.617, effektive Dauer 30.58 s.
 
-Dauerhaft heißt bei uns nicht grenzenlos. Unsere Auslegung gilt bis 100 Grad am tiefen Zufluss und bis 2,3 Kubikmeter pro Sekunde betroffenem Strom. Der gemessene Hochwasserwert liegt bei 32,7 Kubikmetern pro Sekunde. Wenn die Anomalie diesen gesamten Strom erfasst, wären 12,48 Gigawatt nötig. Das kann unsere Referenzanlage nicht. Auch ein Temperaturanstieg nach dem zehnten Jahr erfordert Nachrüstung. Diese Grenzen offen zu nennen ist Teil der Lösung, kein Fußnotenfehler.
+Eine Auslegung auf den Mittelstrom überschreitet in 38,57 Prozent der Ziehungen die 9-Grad-Kapazität. Die p90-Reserve deckt die begrenzte Verteilung vollständig ab. Das ist kein Extremwertnachweis. Für 32,7 Kubikmeter pro Sekunde wären 12,48 Gigawatt nötig. Ein reiner Siedeschutz auf etwa 95 Grad braucht beim Mittelstrom dagegen nur 48,5 Megawatt, schützt aber das Ökosystem nicht. Diese Zielkonflikte gehören zur Antwort.
 
 Quellen und Belege:
 - LGRB [3]
 - Fan et al. [2]
-- Sensitivitätsrechnung
+- uncertainty und boil_guard in output/model/results.json
 
-## Folie 9. Messung und Kühlentscheidung
+## Folie 9. Messung, Standort und Nachweis
 
-Zeit 00:04:04.021 bis 00:04:30.111, effektive Dauer 26.09 s.
+Zeit 00:03:54.617 bis 00:04:24.618, effektive Dauer 30.00 s.
 
-Vor dem Bau messen verteilte Sonden Temperatur und Druck in beiden Karstästen und über die Tiefe. Tracer und Durchflussmessungen zeigen, welcher Ast die Wärme trägt. Abgestufte Kühlversuche prüfen die berechnete Leistung direkt. Wärme- und Stromzähler an der Luftseite verhindern, dass wir die abgegebene Energie nur scheinbar beseitigen. Erst diese Daten legen Modulzahl und Kosten fest. Ein kleiner betroffener Teilstrom ist die einzige ehrliche Abkürzung zur kleinen Anlage.
+Vor dem Bau müssen Sonden Temperatur und Druck in beiden Karstästen messen. Tracer und Durchfluss zeigen, welcher Ast die Wärme trägt. Für die Luftsenke sind 8,19 Hektar einzuplanen, außerdem Netzleistung von 182,7 Megawatt und 2.237 Kubikmeter Diesellager. Schall, Plume, Rückverwirbelung und die FFH-Prüfung können den Standort verwerfen. Ein Pilotkreislauf muss Mischung und COP messen. Auch der Wiederanlauf ist praktisch zu beweisen.
 
 Quellen und Belege:
 - Lauber et al. [11]
 - US EPA [12]
-- Falsifikationsprotokoll im Bericht
+- BNatSchG [24]
+- AwSV [25]
 
 ## Folie 10. Schlussfolgerung
 
-Zeit 00:04:30.111 bis 00:04:50.065, effektive Dauer 19.95 s.
+Zeit 00:04:24.618 bis 00:04:49.954, effektive Dauer 25.34 s.
 
-Die 878 Megawatt folgen zwingend aus dem Vollstromszenario. Unsere Antwort ist deshalb eine zweistufige Kühlung mit Reserve, externer Wärmesenke und einem Ausbaupfad, der auf echten Messungen beruht. Sie hält den Normalzustand innerhalb ihrer ausgewiesenen Hülle. Damit wird aus der Katastrophenprognose eine prüfbare Ingenieuraufgabe.
+Sieden verhindern heißt Wärme abführen, nicht nur den Siedepunkt erhöhen. Unsere Antwort ist eine zweistufige Kühlung mit 878 Megawatt Erwartungslast und 2,15 Gigawatt p90-Kapazität. Sie hält den Normalzustand innerhalb ihrer angenommenen Hülle. Erst Messungen und ein geeigneter Standort dürfen den Ausbaupfad festlegen. Davor bleibt dies ein prüfbarer Szenarioentwurf, keine Baufreigabe.
 
 Quellen und Belege:
 - Gesamtergebnis

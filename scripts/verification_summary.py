@@ -1,7 +1,7 @@
 from __future__ import annotations
 
+import hashlib
 import json
-from datetime import datetime, timezone
 from pathlib import Path
 
 from pypdf import PdfReader
@@ -17,8 +17,18 @@ def main() -> None:
     presentation = json.loads((ROOT / "output" / "presentation" / "verification.json").read_text(encoding="utf-8"))
     playback_path = ROOT / "output" / "presentation" / "playback.json"
     playback = json.loads(playback_path.read_text(encoding="utf-8")) if playback_path.exists() else None
+    artifact_paths = [
+        ROOT / "output" / "pdf" / "TEST-K31pro-max.pdf",
+        ROOT / "output" / "presentation" / "Blautopf_Finale.mp4",
+        ROOT / "output" / "model" / "results.json",
+        playback_path,
+    ]
+    digest = hashlib.sha256()
+    for path in artifact_paths:
+        digest.update(str(path.relative_to(ROOT)).encode("utf-8"))
+        digest.update(path.read_bytes())
     summary = {
-        "created_utc": datetime.now(timezone.utc).isoformat(),
+        "artifact_sha256": digest.hexdigest(),
         "report": {
             "physical_pages": len(report.pages),
             "main_pages": bibliography_start - 1,

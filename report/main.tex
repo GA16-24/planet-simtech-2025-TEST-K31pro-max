@@ -27,269 +27,189 @@
 \setcounter{page}{1}
 \section*{Zusammenfassung}
 
-Der Blautopf ließe sich im vorgegebenen Szenario dauerhaft vor dem Sieden schützen, indem der gesamte betroffene Quellstrom vor dem offenen Becken gekühlt wird. Große Luftkühler nutzen zuerst die hohe Temperaturdifferenz. Danach senken Kältemaschinen das Wasser auf etwa 9 °C. Ein Mischbecken und eine Sollwert rampe am Kälteauslass begrenzen bei geplanter Inbetriebnahme die Temperaturänderung auf höchstens 1 °C pro Stunde. Die Wärme darf nicht in denselben Wasserkreislauf zurückkehren.
+Der betroffene Quellstrom muss vor dem offenen Becken geschlossen gekühlt und die entzogene Wärme dauerhaft aus dem verbundenen Wassersystem entfernt werden. Der unabhängig entwickelte Referenzentwurf H1 nutzt zuerst Trockenkühler, danach Kältemaschinen. Er hält im Erwartungsfall 2,3 m³/s auf 9 °C und wird für das historische 90-Prozent-Abflussquantil von 4,7 m³/s mit weiteren 20 % Kapazitätsreserve ausgelegt. Diese Trennung von Jahresbetrieb und installierter Kapazität verhindert, dass eine Mittelwertrechnung als Hochwassernachweis missverstanden wird.
 
-Die Aufgabe ist vor allem eine Frage der Größe. Im zehnten Jahr müsste die Anlage \textbf{\QFinal\ Megawatt Wärme abführen}. Diese Zahl folgt aus 2,3 Kubikmetern Wasser pro Sekunde, die von 100 auf 9 °C abgekühlt werden. Eine Rechnung, die nur das angenommene Beckenvolumen erwärmt, ergibt dagegen \QStorage\ Megawatt. Sie übersieht den ständigen Zufluss und taugt nicht zur Auslegung.
+Im zehnten Jahr beträgt die erwartete Kühlleistung \textbf{\QFinal\ MW}. Für 4,7 m³/s sind \DesignCooling\ MW erforderlich; installiert werden \QReserve\ MW. Zwölf Stränge sehen im p90-Fall elf aktive und einen reservierten Strang vor. Im Mittelbetrieb modulieren fünf Stränge, die übrigen stehen bereit. Ein Puffer, eine geregelte Sollwertrampe, zwei Netzeinspeisungen und ein zeitlich berechneter Notlauf sichern den Übergang. Luft, nicht Blau oder Grundwasser, nimmt die Antriebswärme auf.
 
-Der Entwurf besitzt in jeder Ausbaustufe sechs getrennte Stränge. Fünf tragen die Last, der sechste ist Reserve. Im Endausbau sind \QReserve\ Megawatt installiert. Ein Puffer von \BufferVolume\ Kubikmetern entspricht einer Stunde mittleren Quellstroms. Notstrom, Ersatzmodule und unabhängige Temperatur- und Druckmessungen sind nötig, weil ein Speicher bei einem Ausfall keine dauerhafte Sicherheit bietet.
+Die Szenarioschätzung ergibt \CapexFinal\ Mio. € Investition, \OpexFinal\ Mio. € Betriebskosten im zehnten Jahr und \NpvHybridFull\ Mrd. € Barwert über 25 Jahre. Verdunstung mit ergänzender Kältestufe ist billiger, verbraucht aber \EvapAnnual\ Mio. m³ Wasser pro Jahr und verursacht Hygienepflichten. Kaltwasserzumischung scheitert an der nicht nachgewiesenen Wasserquelle. Alle Geldbeträge sind Schätzungen in Euro von 2026, keine Angebote.
 
-Die geschlossene Bauweise ist teuer, erhält aber den Wasserhaushalt. Die Szenarioschätzung ergibt \textbf{\CapexFinal\ Millionen Euro Investition} und rund \OpexFinal\ Millionen Euro Betriebskosten im zehnten Jahr. Die über 25 Jahre abgezinsten Gesamtkosten betragen \NpvHybrid\ Milliarden Euro. Verdunstungskühlung wäre billiger, würde aber jährlich \EvapAnnual\ Millionen Kubikmeter Wasser verbrauchen und zusätzliche Hygienepflichten auslösen. Kaltwasserzumischung bräuchte eine nicht nachgewiesene Wasserquelle mit mehr als dem Zwanzigfachen des natürlichen Quellstroms.
+Die Aussage gilt nur für höchstens 4,7 m³/s betroffenen Strom, höchstens 100 °C am tiefen Zufluss und eine nachgewiesene externe Wärmesenke. Der Hochwasserfall mit 32,7 m³/s ist für das 9-°C-Ziel nicht abgedeckt. Standort, Netzanschluss, Luftführung, Genehmigung und Karsterfassung bleiben zu prüfen. Eine Baufreigabe, menschliche Fachprüfung oder Einreichung wird nicht behauptet.
 
-Die Lösung gilt nur innerhalb einer klaren Hülle. Höchstens 2,3 Kubikmeter pro Sekunde sind von der Erwärmung betroffen. Ihre Temperatur steigt binnen zehn Jahren von 9 auf 100 °C und bleibt danach höchstens dort. Ein vollständig erwärmter Hochwasserstrom würde \QFloodStress\ Gigawatt Kühlung verlangen und ist nicht abgedeckt. Vor einem Bau müssen Messungen zeigen, welcher Karstast wie viel Wärme führt. Alle Kosten sind Schätzungen in Euro von 2026, keine Angebote. Eine Genehmigung, menschliche Prüfung oder tatsächliche Einreichung wird nicht behauptet.
+\section{Einführung und Zielgrenzen}
 
-\section{Einführung: Die Wärme ist das Problem}
+Sieden ist die späte Grenze, nicht der einzige Schaden. Auch geringere Erwärmung und schnelles Abkühlen können Organismen belasten [9,10]. Deshalb wird zwischen zwei Zielen unterschieden: Der Normalbetrieb soll den historischen Zustand um 9 °C erhalten. Ein separater Siedeschutzfall verhindert nur das Überschreiten des lokalen Siedepunkts. Druckbeaufschlagung oder eine Abdeckung löst keine Wärmebilanz und wird nicht als Lösung gewertet.
 
-Wenn Dampf über dem Blautopf stünde, wäre das eigentliche Ziel bereits verfehlt. Sieden ist die späte physikalische Grenze. Für Organismen können weit niedrigere Temperaturen und auch ein zu schnelles Abkühlen schädlich sein [9,10]. Die Antwort muss deshalb mehr leisten als eine Abdeckung, die Dampfblasen verbirgt, oder ein höherer Druck, der das Sieden erst bei höherer Temperatur eintreten lässt. Die zugeführte Wärme muss das verbundene Wassersystem verlassen.
+Der Blautopf entwässert einen Karstaquifer von etwa 165 km². Ur-Blau und Nord-Blau sind bekannt, aber die Gesamtstruktur der unterirdischen Strömung ist nur teilweise erfasst [3,11]. Deshalb reicht eine Kühlung am sichtbaren Beckenrand nicht ohne Nachweis, dass die Wärmequelle vollständig erfasst wird. Vulkanische Aktivität und die Zehnjahresprognose bleiben Prämissen, keine neuen Messbefunde dieses Berichts.
 
-Der Blautopf entwässert einen Karstaquifer von etwa 165 km². Zwei verbundene Höhlenäste, Ur-Blau und Nord-Blau, sind bekannt. Die bekannte Systemlänge von etwa 15,5 km ist keine vollständige Länge des unterirdischen Strömungsnetzes [3]. Tracerversuche zeigen unterschiedliche Strömungsbereiche und Fließgeschwindigkeiten [11]. Eine Anlage, die nur eine bequem zugängliche Stelle kühlt, könnte deshalb den Wärmeträger verfehlen.
+Fan, Goeppert und Goldscheider berichten für 1952 bis 2021 einen mittleren Abfluss von 2,3 m³/s sowie die 10- und 90-Prozent-Quantile 0,7 und 4,7 m³/s [2]. Die Referenz erwartet den Mittelwert im Jahresbetrieb. Die thermische Kapazität wird dagegen mit 4,7 m³/s bemessen. Ein kleiner Teilstrom wäre nur nach einem Messnachweis zulässig, dass die übrige Strömung keine relevante Wärme einträgt.
 
-Gleichzeitig ist der Quellstrom gut dokumentiert. Für 1952 bis 2021 beträgt der mittlere Abfluss 2,3 m³/s, die Quantile für 10 und 90 Prozent liegen bei 0,7 und 4,7 m³/s [2]. Gerade dieser Durchfluss macht die Aufgabe anspruchsvoll. Er transportiert pro Kelvin Temperaturdifferenz etwa 9,65 Megawatt. Ein kleiner Kältekreislauf an einem Teilstrom kann deshalb nur dann genügen, wenn Messungen beweisen, dass auch nur dieser kleine Teilstrom die Anomalie trägt.
+\section{Methode und Annahmen}
 
-Dieser Bericht vergleicht sieben unabhängig abgeleitete Ansätze mit denselben physikalischen Regeln. Er wählt die hybride Vollstromkühlung H1, rechnet ihre Wärme- und Kostenbilanz und benennt Beobachtungen, die Entwurf oder Erfolg widerlegen würden. Die vulkanische Ursache und die Zehnjahresprognose bleiben Szenariovorgaben. Die zitierten Fachquellen belegen weder vulkanische Aktivität am Blautopf noch eine solche Prognose. Anhang A dokumentiert die umfassende KI-Nutzung und die Unabhängigkeit der Herleitung.
+\subsection{Daten, Prämissen und Hypothesen}
 
-\section{Methode, Daten und Annahmen}
-
-\subsection{Messdaten und Szenarioannahmen}
-
-Die belastbarste Ausgangsgröße ist der Abfluss. Fan, Goeppert und Goldscheider werteten die LUBW-Station 76273 über 1952 bis 2021 aus. Sie berichten neben dem Mittelwert tägliche Werte von 0,1 bis 32,6 m³/s [2]. Das Landesamt für Geologie, Rohstoffe und Bergbau nennt für einen anderen Zeitraum und eine andere Statistik einen Hochwasserwert von 32,7 m³/s [3]. Diese Zahlen sind nicht austauschbar. Der Bericht verwendet 2,3 m³/s als Referenzstrom und 32,7 m³/s ausschließlich als separaten Stresstest.
+Tabelle \ref{tab:annahmen} trennt Quellenwerte von bewussten Modellannahmen. Das LGRB nennt 32,7 m³/s für eine andere Hochwasserstatistik; dieser Wert ist kein Bestandteil der Normalauslegung [3]. Auch Bathymetrie, vertikale Temperaturprofile, Astabflüsse und die lokale Wärmebilanz sind unbekannt. Die öffentlich genannten 9 °C sind ein Szenarioanker, keine neue Zeitreihe [1].
 
 \begin{table}[!t]
 \centering
-\begin{tabular}{@{}>{\hspace{0pt}\raggedright\arraybackslash}p{22mm}>{\hspace{0pt}\raggedright\arraybackslash}p{16mm}>{\hspace{0pt}\raggedright\arraybackslash}p{24mm}@{}}
+\begin{tabular}{@{}>{\hspace{0pt}\raggedright\arraybackslash}p{23mm}>{\hspace{0pt}\raggedright\arraybackslash}p{17mm}>{\hspace{0pt}\raggedright\arraybackslash}p{23mm}@{}}
 \toprule
 Größe & Wert & Status und Herkunft \\
 \midrule
-Mittlerer Abfluss & 2,3 m³/s & Messreihe [2] \\
-Abflussquantile & 0,7 und 4,7 m³/s & 10- und 90-Prozent-Quantil [2] \\
-Beckentiefe & 20,6 bis 22 m & keine neue Vermessung [1,3] \\
-Ausgangstemperatur & etwa 9 °C & öffentliche Angabe [1] \\
-Tiefenerwärmung & 9 auf 100 °C & linear in zehn Jahren, Szenario \\
-Temperatur danach & höchstens 100 °C & Entwurfsgrenze \\
-Betroffener Strom & höchstens 2,3 m³/s & Entwurfsannahme \\
-Beckenvolumen & 25.000 m³ & Rechenannahme, keine Bathymetrie \\
-Auslegungsluft & 35 °C & technische Annahme \\
-Rückführziel & 9 °C, 1 K/h & ökologisches Regelziel [1,10] \\
+Erwarteter Abfluss & 2,3 m³/s & Messreihe [2] \\
+Abfluss p90 & 4,7 m³/s & Kapazitätswahl [2] \\
+Hochwasser-Stresstest & 32,7 m³/s & andere Statistik [3] \\
+Beckenvolumen & 25.000 m³ & Rechenannahme \\
+Quelltemperatur & 9 bis 100 °C & Szenario, danach gedeckelt \\
+Rückführziel & 9 °C, 1 K/h & eigenes Regelziel [1,10] \\
+Sommerluft, Feuchtkugel & 35 °C, 28 °C & technische Annahmen \\
+Trocken-/Feuchtannäherung & 5 K, 4 K & technische Annahmen \\
+Kälte-COP, Strompreis & 4,0; 138 €/MWh & Szenarien [16] \\
 \bottomrule
 \end{tabular}
-\caption{Messwerte, Szenarioprämissen und technische Annahmen im Überblick.}
+\caption{Messwerte, Szenarioprämissen und technische Annahmen.}
 \label{tab:annahmen}
 \end{table}
 
-Tabelle \ref{tab:annahmen} fasst die Trennung von Messdaten, Szenarioprämissen und technischen Annahmen zusammen. Die 9 °C der Stadt eignen sich als Ausgangswert, aber nicht als Ersatz für eine mehrjährige Temperaturmessung [1]. Ebenso fehlen aktuelle Beckenvermessung, vertikale Temperaturprofile, Astabflüsse und eine lokale Wärmebilanz der Wasseroberfläche. Diese Lücken werden nicht durch scheinbar genaue Nachkommastellen verdeckt.
+Vor der quantitativen Auswahl wurden sieben physikalisch verschiedene Ansätze registriert: geregelte Wasserkühlung, Verdunstung, Zumischung, geologische Wärmeentnahme, Bypass, Druckverschiebung und passive Wärmerohre. H1 wurde zunächst als begrenzter Teilkreislauf formuliert. Die Vollstrombetrachtung skaliert denselben Ansatz erst nach der Wärmebilanz auf den gesamten betroffenen Strom. Diese Herleitung ist dokumentiert und behauptet keine weltweite Neuheit.
 
-\subsection{Wärme- und Druckbilanz}
+\subsection{Wärme, Druck und Kosten}
 
-Für Wasser ohne Phasenwechsel gilt die sensible Wärmeleistung
+Für sensible Wärme ohne Phasenwechsel gilt
 \begin{equation}
 \dot Q=\rho\,\dot V\,c_p\,(T_{ein}-T_{ziel}).
 \label{eq:sensible}
 \end{equation}
-Dabei sind \(\rho\) die Dichte, \(\dot V\) der betroffene Volumenstrom und \(c_p\) die spezifische Wärmekapazität. Die Gleichung folgt aus der Energieerhaltung und ist Bestandteil allgemeiner Wasser- und Wärmebilanzen [6,7]. Die Rechnung verwendet \(\rho=999,702\ \mathrm{kg/m^3}\) und \(c_p=4195,14\ \mathrm{J/(kg\,K)}\) aus der NIST-Tabelle bei etwa 10 °C und 1,01325 bar [4]. Über den gesamten Temperaturpfad konstante Stoffwerte sind eine Näherung. Für eine spätere Detailauslegung sind temperatur- und druckabhängige IAPWS-Werte erforderlich [5].
-
-Mit dem Mittelstrom ergibt sich der Wärmekapazitätsstrom
+Die Stoffwerte \(\rho=999,702\ \mathrm{kg/m^3}\) und \(c_p=4195,14\ \mathrm{J/(kg\,K)}\) stammen aus der NIST-Tabelle bei etwa 10 °C und 1,01325 bar [4]. Konstante Werte sind eine Näherung; die Detailauslegung muss IAPWS-Werte über Temperatur und Druck verwenden [5]. Für den Erwartungsstrom folgt
 \begin{equation}
 C=\rho\,\dot V\,c_p=\KDurchfluss\ \mathrm{MW/K}.
 \label{eq:capacity}
 \end{equation}
-Das Szenario bildet die Tiefentemperatur in °C ab. Mit der Zeit \(t\) in Jahren gilt
+Die Temperatur in °C folgt mit \(t\) in Jahren als
 \begin{equation}
-T_q(t)=\min(9+9,1t,100).
+T_q(t)=\min(9+9{,}1\,t,100).
 \end{equation}
-Die jährlich benötigte Kühlung ist \(C\,[T_q(t)-9]\) für positive Differenzen. Oberflächen- und Sohlverluste werden nicht als Gegenleistung angerechnet, weil Flächen, Windfunktion und lokale Austauschkoeffizienten unbekannt sind. Die allgemeine Flussenergiebilanz enthält Strahlung, Verdunstung, fühlbare Wärme und Sohlaustausch [6]. Diese Terme können die Rechnung später verbessern, werden hier aber nicht mit erfundenen Standortwerten gefüllt.
+Die jährliche Kühlleistung ist \(C\,[T_q(t)-9]\) für positive Differenzen. Natürliche Oberflächen- und Sohlverluste werden mangels lokaler Daten nicht angerechnet [6]. Überall muss \(T+u_T<T_{sat}(p_{abs})-\Delta T_S\) gelten. Die Unsicherheit \(u_T\) und die Sicherheitsmarge \(\Delta T_S\) sind messtechnisch und behördlich festzulegen [5].
 
-Zusätzlich muss an jedem Ort und zu jeder Zeit die Siedebedingung
-\begin{equation}
-T+u_T<T_{sat}(p_{abs})-\Delta T_S
-\label{eq:boiling}
-\end{equation}
-gelten. Dabei ist \(u_T\) die Mess- und Modellunsicherheit, \(\Delta T_S\) eine noch mit der Behörde festzulegende Sicherheitsmarge. Der Siedepunkt hängt vom absoluten Druck ab [5]. Eine Oberflächenmessung allein beweist daher nicht, dass Tiefe, Steigleitung und Rückführung sicher bleiben.
-
-\subsection{Vergleichs- und Kostenregeln}
-
-Jeder Ansatz muss die gesamte Wärmebilanz schließen, bei 35 °C Außenluft auf 9 °C kühlen können und die Wärme außerhalb des verbundenen Grund- und Oberflächenwassers abgeben. Eine Umleitung, die das Becken selbst weiter erwärmt, oder eine bloße Erhöhung des Siedepunkts scheidet vor dem Kostenvergleich aus. Erst danach entscheiden Wasserbedarf, Umweltfolgen, Betriebssicherheit und Kosten.
-
-Alle Geldbeträge sind Szenarioschätzungen in Euro von 2026. Der Barwert über 25 Jahre lautet
+Alle Varianten müssen im jeweiligen Sommerszenario 9 °C erreichen und die Wärme außerhalb des verbundenen Wassersystems abgeben. Der Barwert über 25 Jahre ist
 \begin{equation}
 K_0=\sum_{y=0}^{25}\frac{I_y+B_y+M_y+E_y}{(1+0,03)^y}.
 \label{eq:npv}
 \end{equation}
-Hier sind \(I_y\) Investitionen, \(B_y\) Strom, Wasser und Hygiene abzüglich Wärmeerlösen, \(M_y\) Wartung und \(E_y\) Ersatzinvestitionen. Die Wartung beträgt jährlich 3 \% der installierten Investition. In Jahr 15 werden 25 \% der variablen Endausrüstung ersetzt. Der Strompreis beträgt 179 €/MWh, passend zum ausgewiesenen Preis von 17,9 ct/kWh für kleine und mittlere Industrie [16]. Für Wasser werden 0,50 €/m³ und für die Hygiene von H2 0,5 Mio. € pro Jahr angesetzt. Wärmeerlöse bleiben im Referenzfall null.
+Hier sind \(I_y\) Investitionen, \(B_y\) Betrieb, \(M_y\) Wartung und \(E_y\) Ersatz. Wartung beträgt 3 \% der installierten Investition pro Jahr. Jahr 15 ersetzt 25 \% der variablen Endausrüstung. Auf variable Ausrüstung folgen p90-Skalierung, 20 \% Reserve und 60 \% Zuschlag. Die 95 Mio. € für Tiefbau und Steuerung sind dagegen separate All-in-Schätzposten einschließlich ihrer eigenen Reserve. Sie erhalten nicht nochmals 60 \%.
 
-Der Stückpreis von 15 €/kW für Wärmetauscher orientiert sich am oberen Listenpreis eines einzelnen Plattenapparats, nicht an einer Anlage am Blautopf [18]. Kältemaschinen mit 500 €/kW, Trockenkühler mit 120 €/kW, Tiefbau, Steuerung, Notstrom und Zuschläge sind ausdrücklich Modellannahmen. Auf die variable Ausrüstung werden 20 \% Leistungsreserve und anschließend 60 \% Zuschlag für Engineering und Unvorhergesehenes gerechnet. Es gibt weder standortbezogene Geräteangebote noch Ausschreibungsergebnisse. Historische Kostenliteratur dient nur als weiterer Anker [19].
+Der Strompreis von 138 €/MWh folgt dem BDEW-Bereich für 70 bis 150 GWh pro Jahr [16]. Der tatsächliche Verbrauch liegt darüber, deshalb ist dies nur ein Tarifproxy; 179 €/MWh werden als Alternativszenario gerechnet. Wasser kostet 0,50 €/m³, H2-Hygiene 0,5 Mio. € pro Jahr. Ein Wärmetauscherpreis von 15 €/kW orientiert sich nur an einem Gerätelistenpreis [18]. Übrige Kosten sind ausdrücklich Szenarioannahmen, unter anderem 500 €/kW Kältemaschine und 120 €/kW Trockenkühler [19]. Wärmeerlöse sind null.
 
 \section{Ergebnisse}
 
-\subsection{Vollstrom und Speicher unterscheiden sich um vier Größenordnungen}
+\subsection{Vollstrom, Speicher und p90-Kapazität}
 
-Im zehnten Jahr beträgt die Temperaturdifferenz 91 K. Die erforderliche Wärmeabfuhr ist daher
+Für den Erwartungsstrom beträgt die Kühlleistung im zehnten Jahr
 \begin{equation}
 \dot Q_{10}=C(100-9)=\QFinalFull\ \mathrm{MW}.
 \label{eq:qfinal}
 \end{equation}
-Diese Zahl enthält noch keine Verdampfung des gesamten Wassers. Sie beschreibt allein die Abkühlung von 100 auf 9 °C. Die volle Anlage muss diese Leistung dauerhaft abführen, solange der heiße Zufluss fortdauert.
-
-Die kleine Speichergrenze entsteht aus einer anderen Frage. Welche durchschnittliche Leistung würde ein abgeschlossenes, angenommenes Beckenvolumen von 25.000 m³ innerhalb von zehn Jahren von 9 auf 100 °C erwärmen? Mit einem Modelljahr von 8760 Stunden gilt
+Das isolierte, angenommene Beckenvolumen würde über zehn Jahre dagegen nur
 \begin{equation}
 \dot Q_V=\frac{\rho Vc_p(100-9)}{10\cdot365\cdot86400}
-=\QStorage\ \mathrm{MW}.
+=\QStorage\ \mathrm{MW}
 \end{equation}
-Der Vollstromfall ist rund 29.000-mal größer. Die Speichergrenze ignoriert, dass bei 2,3 m³/s das angenommene Beckenvolumen rechnerisch alle \PoolTau\ Stunden ersetzt wird. Als alleinige Auslegungsgrundlage würde sie die dauerhafte Wärmezufuhr unterschätzen. Umgekehrt ist der Vollstromwert keine Messung der vulkanischen Leistung. Er ist die notwendige Kühlleistung unter der ausdrücklichen Annahme, dass der gesamte Mittelstrom mit 100 °C ankommt. Abbildung \ref{fig:prognose} stellt die Lastpfade gegenüber.
+benötigen. Der Faktor von rund 29.000 zeigt den Fehler einer Auslegung ohne Zu- und Abfluss. Er ist keine Messung der vulkanischen Leistung. Abbildung \ref{fig:prognose} zeigt, wie stark der erfasste Stromanteil die Aufgabe verändert.
 
 \begin{figure*}[t]
 \centering
 \includegraphics[width=\textwidth]{figures/fig01_prognose_last.pdf}
-\caption{Szenariotemperatur und erforderliche Wärmeabfuhr in drei Stromanteilen. Eigene Darstellung mit Python und Kimi K3.1 Pro aus [2,4].}
+\caption{Szenariotemperatur und Kühlleistung in drei Stromanteilen. Eigene Darstellung aus [2,4] mit Python und Kimi K3.1 Pro.}
 \label{fig:prognose}
 \end{figure*}
 
-\subsection{Trockenkühlung und Kältemaschinen teilen die Last}
+Für 4,7 m³/s steigt der Wärmeentzug auf \DesignCooling\ MW. Mit 20 \% Reserve werden \QReserve\ MW installiert. Im p90-Fall arbeiten elf Stränge mit je \QModule\ MW erforderlicher Leistung, ein zwölfter ist Reserve. Die Kapazität deckt die gesamte auf 4,7 m³/s begrenzte Unsicherheitsverteilung. Sie ist trotzdem kein Extremwertnachweis. Bei 1,2 m/s ergibt sich für die elf Laststränge ein hydraulischer Richtdurchmesser von \PipeDiameter\ m. Druckhaltung vor dem offenen Becken, Druckprofile und ein NPSH-Rechenwert von \NpshMargin\ m bei 3,5 bar bleiben zu prüfen. Das hydrostatische Beispiel von 22 m Tiefe ergibt 3,17007 bar und 135,413 °C Sättigungspunkt [4,5].
 
-Bei 35 °C Außenluft und einer angenommenen Annäherung von 5 K kann die direkte Trockenkühlung das heiße Wasser im Auslegungsjahr auf 40 °C bringen. Sie übernimmt
+\subsection{Zweistufige Kühlung und Wärmesenke}
+
+Bei 35 °C Luft und 5 K Annäherung übernimmt die Trockenkühlung
 \begin{equation}
 \dot Q_{trocken}=C(100-40)=\QDry\ \mathrm{MW}.
 \end{equation}
-Erst die zweite Stufe kühlt von 40 auf 9 °C:
+Die Kältemaschinen übernehmen anschließend
 \begin{equation}
 \dot Q_{K}=C(40-9)=\QChiller\ \mathrm{MW}.
 \end{equation}
-Damit ist H1 keine kleine Wärmepumpe mit einem symbolischen Teilstrom. Die Anlage erfasst den vollen mittleren Quellstrom und kombiniert \QDry\ MW direkte Kühlung mit \QChiller\ MW Kältemaschinenkühlung. In kühleren Jahren übernehmen die Kältemaschinen einen größeren Anteil, weil die Trockenkühler unterhalb ihrer Annäherungstemperatur nicht weiter kühlen können.
-
-Für die Kältemaschinen gilt \(COP_C=\dot Q_K/W_K\) und \(\dot Q_{Kond}=\dot Q_K+W_K\) [8]. Der verwendete \(COP_C=5\) ist eine Szenarioannahme, keine Herstellerkurve. Feldmessungen an Grundwasser-Wärmepumpen weisen Jahresarbeitszahlen von 2,33 bis 4,76 aus, weshalb die Sensitivität den Bereich 3,0 bis 6,5 umfasst [17]. Beim Referenzwert beträgt die elektrische Leistung \PChiller\ MW. Die Kondensatoren müssen deshalb
+Ihr Szenario-COP beträgt 4,0 statt eines optimistischeren Werts ohne Produktkurve. Auch Feldmessungen an Wärmepumpen beweisen diesen Kältefall nicht [17]. Mit \(COP_C=\dot Q_K/W_K\) und \(\dot Q_{Kond}=\dot Q_K+W_K\) [8] folgt
 \begin{equation}
-\dot Q_{Kond}=299,024+59,805=\QCondenser\ \mathrm{MW}
+\begin{aligned}
+\dot Q_{Kond}&=\QChillerFull+\PChiller\\
+&=\QCondenser\ \mathrm{MW}.
+\end{aligned}
 \end{equation}
-abgeben. Diese Wärme ist größer als die von den Kältemaschinen entzogene Wärme, weil die elektrische Antriebsenergie ebenfalls als Wärme anfällt. Wer nur die 299 MW nennt, unterschlägt einen wesentlichen Teil der Wärmesenke.
+Mit 1,5 \% Ventilatorhilfsleistung und \PPumps\ MW Pumpenleistung ergibt sich \PElectric\ MW elektrische Leistung im Erwartungsfall. Die externe Wärmeabgabe ist \(\dot Q_{10}+P_{el}=\QAirRejection\ MW\), nicht bloß die Entzugsleistung von 877,8 MW. Eine Rückführung in dasselbe Gewässersystem würde die Bilanz zerstören [8].
 
-Mit 1,5 \% Ventilatorhilfsleistung auf Trocken- und Kondensatorkühlung sowie \PPumps\ MW Pumpenleistung ergibt sich
-\begin{equation}
-P_{el}=\PChiller+\PFans+\PPumps=\PElectric\ \mathrm{MW}.
-\end{equation}
-Die vollständige externe Wärmesenke beträgt folglich
-\begin{equation}
-\dot Q_{Senke}=\dot Q_{10}+P_{el}=\QAirRejection\ \mathrm{MW}.
-\end{equation}
-Die Anlage muss also \QAirRejection\ MW an Luft oder an nachgewiesene externe Wärmeabnehmer abgeben. Eine Rückführung in Blau, Blautopf oder denselben Aquifer würde die Bilanz aufheben und zusätzlich die Antriebsenergie eintragen [8]. Flächenbedarf, Luftführung, Rückverwirbelung, Geräusche und lokale Erwärmung sind noch nicht standortbezogen untersucht. Die geschlossene Bilanz beweist die Energieerhaltung, nicht die bauliche Machbarkeit an diesem Ort.
+Für den p90-Spitzenfall sind \DesignElectric\ MW Antriebsleistung und \DesignAirRejection\ MW Wärmeabgabe angesetzt. Bei 2 m/s Face-Geschwindigkeit und 15 K Lufterwärmung ergeben sich \AirFaceArea\ m² Face-Fläche, \AirServiceArea\ ha Betriebs- und Servicefläche und \AirVolumeFlow\ m³/s Luftvolumenstrom. Diese Bilanzgrößen sind noch keine Hersteller- oder Standortauslegung. Rückverwirbelung, Schall, Plume und lokale Erwärmung sind zu untersuchen. Die Stromemissionen betragen im Erwartungsjahr \EmissionsHybrid\ kt CO₂, H2 liegt bei \EmissionsEvap\ kt, bezogen auf 363 g/kWh [23].
 
-\subsection{Module, Puffer und Notstrom sichern den Betrieb}
+\subsection{Stufenplan und Kosten}
 
-Der Endausbau besitzt sechs thermisch gleiche Stränge. Fünf Stränge mit je \QModule\ MW decken die \QFinal\ MW Last. Der sechste Strang bildet die N+1-Reserve. Installiert sind damit \QReserve\ MW, also 20 \% mehr als benötigt. Jedes lasttragende Modul führt etwa 0,46 m³/s. Bei einer angenommenen Rohrgeschwindigkeit von 1,2 m/s folgt
-\begin{equation}
-d=\sqrt{\frac{4\cdot0,46}{\pi\cdot1,2}}=\PipeDiameter\ \mathrm{m}.
-\end{equation}
-Dies ist ein hydraulischer Richtwert, noch keine Rohrklasse oder Druckauslegung. Die Entnahme erfolgt geschlossen und druckgehalten, bevor heißes Wasser bei fallendem Druck seinen lokalen Siedepunkt erreichen kann. Als hydrostatisches Beispiel ergeben 22 m Wassertiefe 3,17007 bar absoluten Druck und einen Sättigungspunkt von 135,413 °C [4,5]. Dieses Beispiel ersetzt kein Druckprofil im Höhlennetz.
-
-In jeder Ausbaustufe wird die benötigte Leistung auf fünf aktive und einen reservierten Strang verteilt. Frühe Module sind kleiner und werden erweitert oder ersetzt. Die Kostenrechnung enthält deshalb in jedem Jahr 20 \% Reserve. Jahr 0 umfasst Messinfrastruktur, Tiefbau und Steuerung mit 95 Mio. €. Im Modell steigt die benötigte Kühlung von 87,8 MW in Jahr 1 über 438,9 MW in Jahr 5 auf 877,8 MW in Jahr 10. Jede Stufe muss vor dem prognostizierten Lastjahr getestet sein. Der Stufenplan spart gegenüber dem sofortigen Endausbau \NpvSaving\ Mio. € Barwert, darf aber keine Sicherheitsstufe verzögern. Der Ausbau ist in Anhang C, Abbildung \ref{fig:stufen}, dargestellt.
-
-Ein externer Misch- und Pufferspeicher von
-\begin{equation}
-V_P=2,3\cdot3600=\BufferVolume\ \mathrm{m^3}
-\end{equation}
-fasst eine Stunde des Referenzstroms. Der Speicher allein erzwingt keine Temperaturrampe. Bei vollem Durchfluss und einem Sprung um 91 K betrüge die Anfangsrate eines ideal gemischten Behälters 91 K/h. Deshalb regelt die geplante Inbetriebnahme den Sollwert am Auslass der Kältemaschinen. Der volle betroffene Strom bleibt erfasst, während die Auslasstemperatur vom gemessenen Ausgangswert mit höchstens 1 K/h abfällt. Der Stresstest dieses Regelprogramms von 100 auf 9 °C dauert \ReturnRampHours\ Stunden; das Modell prüft Grenzrate und Endwert. Unabhängige Sensoren am Kontrollpunkt stoppen die Rampe bei einer Überschreitung. Der Wert folgt einer LAWA-Empfehlung und ist ein eigenes Regelziel, keine automatisch geltende Blau-Grenze [10]. Die OGewV-Typzuordnung und behördlichen Grenzen sind unbestätigt [9]. Die Inbetriebnahme muss vor kritischen Quelltemperaturen erfolgen. Der Rampentest ist ausdrücklich kein Wiederanlauf- oder Notfallnachweis. Der Puffer dämpft nur Mess- und Regelfehler; Mischung und Dynamik erfordern einen Pilotversuch. Er kühlt nicht dauerhaft und ersetzt weder Reservemodul noch Notstrom.
-
-Für einen Stromausfall sind zwei getrennte Netzeinspeisungen und eine Ersatzstromversorgung für \PElectric\ MW vorgesehen. Der Kostenschätzposten enthält 60 Mio. € zuzüglich Brennstoff. Für 48 Stunden ergibt sich bei 40 \% Wirkungsgrad und 9,8 kWh/L ein Vorrat von rund \FuelReserve\ Mio. Litern Diesel. Der Preis von 1,50 €/L ist eine eigene Szenarioannahme. Aggregatzahl, Netzschutz und gemeinsame Fehlerbilder sind noch nicht ausgelegt. Die Dringlichkeit zeigt ein vereinfachter Ausfalltest: Bei 100 °C heißem Zufluss, 25.000 m³ ideal gemischtem Becken und vollständigem Kühlungsausfall gilt \(T(t)=100+(9-100)e^{-t/\tau}\) mit \(\tau=\PoolTau\) h. Bereits nach \FailureMinutes\ Minuten erreicht das Modell 20 °C. Diese 20 °C sind eine intern gesetzte Alarmschwelle, keine behördlich bestätigte Blau-Grenze. Der Test ist kein prognostizierter realer Verlauf, sondern ein Argument für automatische Fehlererkennung, redundante Messketten und sofort verfügbare Reserveleistung.
-
-Der Ansaugdruck wird mit 3,5 bar angesetzt. Gegenüber dem Dampfdruck bei 100 °C verbleibt eine NPSH-Reserve von \NpshMargin\ m Wassersäule. Sie verhindert Kavitation erst nach einem Druck- und Verlustprofil, ersetzt aber keine standortbezogene Pumpenauslegung. Für die Luftsenke werden 2 m/s Face-Geschwindigkeit und 15 K Lufterwärmung angesetzt. Daraus folgen \AirFaceArea\ m² Face-Fläche und mit 50 \% Zuschlag \AirServiceArea\ ha Betriebs- und Servicefläche. Rückverwirbelung, Lärm und lokale Erwärmung sind weiterhin offen. Die Stromemissionen betragen im Referenzjahr rund \EmissionsHybrid\ Kilotonnen CO₂ gegenüber \EmissionsEvap\ Kilotonnen bei H2, nach dem UBA-Faktor 363 g/kWh für 2024 [23]. Diese Differenz ist Teil des ökologischen Zielkonflikts, kein behaupteter Klimavorteil.
-
-\section{Alternativen und Wirtschaftlichkeit}
-
-\subsection{H1, H2 und H3 im gleichen Kostenmodell}
-
-Die folgende Tabelle verwendet identische Last, Laufzeit und Diskontierung. Die Investition enthält die jeweils modellierte Reserve. Die Betriebskosten beziehen sich auf Jahr 10 und enthalten keine neue Investition oder Ersatzinvestition. Alle Angaben sind Szenarioschätzungen in Euro von 2026.
+Die Investition enthält die p90-Reserve und beträgt \CapexFinal\ Mio. €. Im Erwartungsjahr kosten Strom \EnergyCostFinal\ Mio. € und Wartung \MaintenanceFinal\ Mio. €, zusammen \OpexFinal\ Mio. €. Der Barwert beträgt \NpvHybridFull\ Mrd. €; sofortiger Endausbau kostet \NpvUpfront\ Mrd. €. Der Stufenplan spart \NpvSaving\ Mio. €, sofern jede Stufe vor ihrem Lastjahr geprüft ist. Bei dauerhaftem p90-Betrieb steigen Betrieb und Barwert auf \DesignOpex\ Mio. € beziehungsweise \DesignNpv\ Mrd. €. Abbildung \ref{fig:stufen} zeigt den Ausbau. Tabelle \ref{tab:alternativen} und Abbildung \ref{fig:kosten} vergleichen die Alternativen mit derselben Kapazitäts- und Kostenregel.
 
 \begin{table*}[t]
 \centering
 \input{generated/alternatives.tex}
-\caption{Vergleich der drei dimensionierten Ansätze. H2 ist am günstigsten, verändert aber den Wasserhaushalt und das Hygieneregime.}
+\caption{Erwarteter Betrieb bei p90-Auslegung. H2 ist günstiger, verändert aber Wasserhaushalt und Hygieneregime. H3 gibt Wärme an Zusatzwasser statt an Luft ab.}
 \label{tab:alternativen}
 \end{table*}
-
-Tabelle \ref{tab:alternativen} vergleicht die drei dimensionierten Ansätze mit identischer Last und Laufzeit. Bei H1 setzen sich die jährlichen Betriebskosten aus \EnergyCostFinal\ Mio. € Strom und \MaintenanceFinal\ Mio. € Wartung zusammen. Der gestaffelte Barwert liegt bei \NpvHybrid\ Mrd. € gegenüber \NpvUpfront\ Mrd. € bei sofortigem Endausbau. Die Differenz ist ein Rechenvorteil des bedarfsgerechten Ausbaus, keine Erlaubnis für verspätete Sicherheitsreserve. Die Kostenpfade sind in Abbildung \ref{fig:kosten} dargestellt.
 
 \begin{figure*}[t]
 \centering
 \includegraphics[width=\textwidth]{figures/fig03_kostenpfad.pdf}
-\caption{Kumulierte Barwertkosten der Hybrid- und Verdunstungskühlung. H1 ist teurer, vermeidet aber den jährlichen Wasserverbrauch von H2. Eigene Rechnung mit Kimi K3.1 Pro.}
+\caption{Kumulierte Barwertkosten von H1 und H2. Die Investition enthält die p90-Reserve, der Stromverbrauch folgt dem erwarteten Abfluss. Eigene Rechnung mit Kimi K3.1 Pro.}
 \label{fig:kosten}
 \end{figure*}
 
-H2 nutzt Verdunstungswärme. Mit einem Screeningwert von 2,45 MJ/kg folgt aus der vollen Last ein Wasserdampfstrom von \EvapRate\ kg/s [6]. Der jährliche Ersatzwasserbedarf beträgt \EvapAnnual\ Mio. m³. Bezogen auf das Quellsystem wären das \EvapFraction\ \% des mittleren Abflusses. Herkunft und ökologische Verträglichkeit dieses Wassers sind nicht nachgewiesen. Auch das 9-°C-Ziel ist bei warmer, feuchter Luft ohne gemessene Feuchtkugeltemperatur nicht garantiert. Offene Verdunstungssysteme unterliegen Anforderungen zu Bau, Betrieb, Kontrolle, Laboruntersuchung, Protokoll und Prüfung nach der 42. BImSchV [13]. Aerosole, Schaum und Sichtwirkung kommen als Prüffragen hinzu. H2 ist im Modell am billigsten, aber kein gleichwertiger Ersatz für den wasser- und hygieneärmaren H1.
+H2 kühlt im Szenario bei 28 °C Feuchtkugel und 4 K Annäherung zunächst durch Verdunstung von 100 auf 32 °C, also mit \EvapDry\ MW. Eine Kältemaschine übernimmt danach \EvapChiller\ MW bis 9 °C. Damit ist H2 physikalisch gleichwertig, nicht nur bei kühler Luft. Der Dampfstrom beträgt \EvapRate\ kg/s und der Ersatzwasserbedarf \EvapAnnual\ Mio. m³ pro Jahr, \EvapFraction\ \% des erwarteten Quellstroms [6]. Offene Verdunstung erfordert Hygiene- und Prüfmaßnahmen nach der 42. BImSchV [13]. H2 bleibt billiger, hat aber Wasser-, Hygiene- und Aerosolrisiken; H1 verursacht mehr Stromemissionen.
 
-H3 mischt 5 °C kaltes Wasser zu. Aus der Energiebilanz folgt
+H3 benötigt mit 5 °C kaltem Zusatzwasser \DilutionFlow\ m³/s, das \DilutionRatio-fache des erwarteten Quellstroms. Diese Quelle ist nicht belegt. Die Wärme bleibt zudem im Wasserkreislauf. H4 scheitert ohne genaue Karstwege an der vollständigen Erfassung. H5 kann nur zusammen mit H1 wirken. H6 erhöht lediglich den Siedepunkt. H7 benötigt \PassiveArea\ km² aktive Fläche und kann bei 35 °C Luft nicht passiv auf 9 °C kühlen [7]. Tabelle \ref{tab:verworfen} fasst die Ausschlüsse zusammen.
+
+\section{Betrieb, Standort und Diskussion}
+
+\subsection{Geplante Temperaturrampe}
+
+Ein Puffer von \BufferVolume\ m³ entspricht einer Stunde Erwartungsstrom, er erzwingt aber keine 1-K/h-Änderung. Die geplante Inbetriebnahme senkt deshalb den Sollwert am Kälteauslass vom gemessenen Ausgangswert mit höchstens 1 K/h. Der Stresstest von 100 auf 9 °C dauert \ReturnRampHours\ Stunden und wird im Modell an 921 Stützstellen geprüft. Sensoren stoppen die Rampe bei Überschreitung am Kontrollpunkt. Der Wert folgt einer LAWA-Empfehlung und ist keine behördlich bestätigte Blau-Grenze [9,10]. Inbetriebnahme muss vor kritischen Temperaturen erfolgen. Pufferdynamik, Mischung und Ökotyp sind im Pilotversuch zu prüfen; ein Wiederanlauf ist damit nicht bewiesen.
+
+\subsection{Dynamischer Ausfalltest und Ersatzstrom}
+
+Ohne Kühlung erreicht ein ideal gemischtes Becken mit \PoolTau\ h Zeitkonstante nach \FailureMinutes\ Minuten 20 °C. Diese interne Alarmschwelle ist keine behördliche Grenze. Das dynamische Modell verwendet
 \begin{equation}
-\begin{aligned}
-\dot V_k&=\frac{877,781\cdot10^6}{999,702\cdot4195,14\cdot(9-5)}\\
-&=\DilutionFlow\ \mathrm{m^3/s}.
-\end{aligned}
+\frac{\dd T}{\dd t}=\frac{100-T}{\tau}-\frac{Q_{Kuehl}(t)}{\rho Vc_p}.
 \end{equation}
-Das ist das \DilutionRatio-fache des natürlichen Mittelstroms als zusätzlicher Kaltwasserstrom. Die Mischung würde den Abfluss auf 54,625 m³/s erhöhen. Eine ganzjährig verfügbare, kalte und ökologisch verträgliche Quelle dieser Größe ist nicht belegt. Allein der angesetzte Wasserpreis erzeugt 825,06 Mio. € der jährlichen Betriebskosten. H3 scheidet deshalb trotz einfacher Technik aus.
+Detektion dauert angenommen 0,5 min, der Generatorstart 5 min, die volle Kühlleistung steht nach 10 min bereit. Die Steuerung ist für 15 min unterbrechungsfrei. Im Szenario bleibt das Maximum bei \RecoveryPeak\ °C; bis zur 20-°C-Schwelle bleiben \RecoveryMargin\ min Reserve. Dies ist ein Rechennachweis unter Annahmen, kein Lastabwurf- oder Zuschaltversuch. Gemeinsame Ausfallursachen und reale Anlaufkurven bleiben zu prüfen.
 
-H1 kostet bewusst mehr als H2. Der Aufpreis kauft einen geschlossenen Prozess ohne modellierten jährlichen Wasserverbrauch, ohne offenes Verdunstungssystem und mit trockener Wärmeabgabe. Die 42. BImSchV schließt bestimmte geschlossene Trockenkühler von ihrem Anwendungsbereich aus [13]. Das beseitigt nicht jede rechtliche Prüfung. Wasserentnahme, Rückleitung und Eingriffe können Erlaubnis oder Bewilligung nach dem WHG erfordern [14]. Schutzgebiet, Naturdenkmal, Biotop und das ab dem Blautopf beginnende FFH-Gebiet verlangen eine standortbezogene Prüfung [15]. Dieser Bericht stellt keine Genehmigung in Aussicht.
+Sechs Aggregate decken \DesignElectric\ MW im p90-Fall, ein siebtes ist Reserve. Zwei unabhängige Netzeinspeisungen sind ebenfalls Szenarioannahmen. Für 48 Stunden bei 40 \% Wirkungsgrad und 9,8 kWh/L werden \FuelReserve\ Mio. Liter Diesel benötigt. Ein Ausfall eines Moduls oder Aggregats ist abgedeckt; gemeinsame Fehler, Kraftstofflogistik und Brandereignisse sind nicht nachgewiesen.
 
-\subsection{H4 bis H7 scheitern an Nachweis oder Wärmebilanz}
+\subsection{Standort-Screening als Zulassungsbedingung}
 
-Tabelle \ref{tab:verworfen} fasst die Ausschlussgründe zusammen. H4 bliebe interessant, falls Tracer und Temperaturmessungen einen begrenzten heißen Ast nachweisen. Dann könnte eine kleinere Anlage näher an der Ursache arbeiten. Bohr- oder Verpressungsmaßnahmen im Karst bergen jedoch das Risiko neuer Strömungswege und Stoffeinträge. H5 kann als geschlossener Zulauf zu H1 dienen, nicht als alleinige Lösung. H6 behandelt das sichtbare Kriterium und verschlechtert die Energiebilanz. H7 kann Hilfsenergie sparen, besitzt aber bei sommerlicher Auslegungsluft keine ausreichende treibende Temperaturdifferenz.
+Das Screening ergibt vier harte Prüfpakete. Erstens werden \AirServiceArea\ ha für Kühlung und Service benötigt, aufgeteilt auf zwölf Blöcke. Ein konkreter Platz ist nicht ausgewählt. Zweitens muss jede unabhängig nutzbare Netzeinspeisung \DesignElectric\ MW liefern; eine Netzzusage und die Kosten des Anschlusses fehlen. Drittens entsprechen \FuelReserve\ Mio. Liter einem Lagervolumen von \DieselVolume\ m³. Rückhaltung und Leckkontrolle sind nach AwSV auszulegen [25]. Viertens verlangen Schutzgebiet und mögliche Beeinträchtigungen eine Prüfung nach WHG und Bundesnaturschutzgesetz [14,15,24]. Erhebliche Beeinträchtigungen können das Projekt untersagen.
 
-\section{Sensitivität, Unsicherheit und Diskussion}
+Damit ist H1 ein bedingter Szenarioentwurf, keine Baufreigabe. Vor der Auswahl sind Flächeneigentum, Luftströmung, Abstände, Schall, Plume, Feuchte und Hochwasserlinie zu prüfen. Ohne geeigneten Standort darf die Vollstromanlage nicht gebaut werden; nur ein messtechnisch bestätigter kleinerer Wärmepfad würde dann den Maßstab ändern. Das vorhandene kommunale Wärmenetz ist eine mögliche Ergänzung, aber ohne Jahreslastgang und Anschlusskapazität kein angerechneter Abnehmer [20].
 
-\subsection{Durchfluss und Teilstrom dominieren die Auslegung}
+\subsection{Siedeschutz, Unsicherheit und Hochwasser}
 
-Die deterministische Rechnung verändert jeweils eine Eingabe. Alle Kosten bleiben Szenarioschätzungen in Euro von 2026.
+Das reine Siedeverbot ist vom ökologischen Normalziel zu unterscheiden. Mit 5 K Abstand zum Oberflächensiedepunkt ergibt sich eine Schutzmarke von \GuardTarget\ °C. Beim Erwartungsstrom genügen dafür \GuardCooling\ MW Kühlleistung und \GuardElectric\ MW Antriebsleistung; die Szenariokosten betragen \GuardCapex\ Mio. € Investition und \GuardNpv\ Mrd. € Barwert. Diese Variante verhindert nur Sieden und bewahrt nicht das Ökosystem. Sie wird daher nicht als normaler Dauerzustand gewählt, sondern zeigt den Preis der strengeren 9-°C-Zielsetzung.
 
-Ein früherer oder späterer Prognosezeitpunkt verändert die Endlast nicht, solange 100 °C als Obergrenze bleibt. Er verändert jedoch Bauzeit und Kostenpfad. Der Durchfluss wirkt unmittelbar auf die Leistung. Schon das historische 90-Prozent-Quantil würde bei vollständiger Erwärmung etwa 1,7-mal so viel Kühlung wie die installierte Reserveauslegung verlangen. Deshalb ist die Obergrenze von 2,3 m³/s betroffenem Strom eine zu prüfende Annahme, kein konservativer hydrologischer Maximalwert. Die Varianten sind in Anhang C, Tabelle \ref{tab:sensitivitaet}, dargestellt.
+Die 10.000 Monte-Carlo-Ziehungen variieren Abfluss, COP und Investitionsfaktor gekoppelt über alle Jahresreihen. Eine Auslegung nur auf den Mittelstrom überschreitet in \MeanOverloadPercent\ \% der Fälle die 9-°C-Kapazität. Die p90-Reserve überschreitet in der auf 4,7 m³/s begrenzten Verteilung keinen Fall. Das ist eine Folge der bewussten Kapazitätswahl, keine Garantie für Extremhochwasser oder andere Wärmequellen. Die Kostenquantile reichen von \NpvSampleLow\ bis \NpvSampleHigh\ Mrd. € und sind in Abbildung \ref{fig:unsicherheit} dargestellt. Ein Tarif von 179 €/MWh ergibt \TariffHighNpv\ Mrd. €. Bei 95 \% Netzverfügbarkeit steigt der Barwert mit vollständigem Dieselersatz auf \AvailabilityLowNpv\ statt \AvailabilityHighNpv\ Mrd. €. Geringere Verfügbarkeit ist somit kein Kostenvorteil mehr.
 
-Besonders wichtig ist der Anteil des Stroms, der die Anomalie tatsächlich trägt:
-
-\begin{table*}[t]
-\centering
-\input{generated/flow_fractions.tex}
-\caption{Teilstromszenarien. Die Zuordnung des betroffenen Teilstroms entscheidet vor der Investition über den Maßstab.}
-\label{tab:teilstrom}
-\end{table*}
-
-Diese Tabelle erklärt sowohl die Versuchung als auch den Fehler einer kleinen Wärmepumpe. Ein kleiner Teilstrom wäre viel billiger, aber nur dann richtig, wenn die übrigen 99 oder 99,9 \% nachweislich keine relevante Wärme in Becken oder Blau eintragen. Ohne diese Messung bleibt H1 die sichere Vollstromannahme. Die Kosten der kleinen Fälle skalieren Tiefbau und Leitungen mit Potenzgesetzen, Antrieb und Wärmeübertragung direkt mit dem Strom. Sie sind keine Zusicherung realer Baukosten. Die Skala ist in Tabelle \ref{tab:teilstrom} dargestellt.
-
-\subsection{Stochastik zeigt Streuung, nicht Sicherheit}
-
-Eine Monte-Carlo-Rechnung mit 10.000 Ziehungen variiert den Abfluss dreiecksverteilt zwischen 0,7 und 4,7 m³/s mit dem Modalwert 2,3 m³/s. Für die Kühlleistung ergeben sich ein 5-Prozent-Quantil von \QSampleLow\ MW und ein 95-Prozent-Quantil von \QSampleHigh\ MW. Die Verteilung ist eine Rechenannahme über historische Quantile, keine Prognoseverteilung des vulkanischen Szenarios.
-
-Für die Kosten werden zusätzlich der COP zwischen 3,0 und 6,5 sowie ein lognormaler Investitionsfaktor mit Sigma 0,30 variiert. Jede Ziehung berechnet alle 25 Jahresreihen mit denselben Werten für Abfluss, COP und Investitionsfaktor. Der Barwert liegt im 5- bis 95-Prozent-Bereich zwischen \NpvSampleLow\ und \NpvSampleHigh\ Mrd. €. Die Referenzrechnung ohne Zufallsvariation stimmt exakt mit der gekoppelten Rechnung überein. Wetter, betroffener Stromanteil, Temperaturpfad, Wärmesenkenrückströmung und Ausfallhäufigkeit fehlen in der gemeinsamen Verteilung. Die Quantile sind deshalb keine vollständige Risikoaussage und keine 95-prozentige Garantie. Zusätzlich werden Verfügbarkeiten von 95, 98 und 100 \% sowie 30, 35 und 38 °C Auslegungsluft als getrennte Szenarien ausgewiesen. Die Verfügbarkeit verändert in dieser Rechnung nur Strommenge und Stromkosten, der Barwert liegt zwischen \AvailabilityLowNpv\ und \AvailabilityHighNpv\ Mrd. €. Sie reduziert weder die angesetzte Last noch den Sicherheitsbedarf in den nicht verfügbaren Zeiten. Für 38 °C Luft steigt der Barwert auf \WeatherHighNpv\ Mrd. €.
-
-Weitere Unsicherheiten bleiben modellstrukturell. Die Rechnung nutzt konstante Stoffwerte für Wasser, vernachlässigt natürliche Wärmeverluste und Gewinne, setzt einen idealen Temperaturverlauf und kennt keine Schichtung. Der COP von 5 ist eine Annahme, keine Herstellerkurve. Die jährliche Stromrechnung entspricht 8760 Betriebsstunden bei voller jeweiliger Last und enthält damit keine zusätzlichen Abschaltungen. Wartung und Reserve mindern dieses Idealbild, ersetzen aber keine Verfügbarkeitssimulation. Auch Spülwasser, Erstbefüllung, Kältemittelverluste, Netzanschluss und Abbau der Anlage sind nicht vollständig bepreist.
-
-\subsection{Die Auslegungshülle ist Teil des Ergebnisses}
-
-Dauerhaft bedeutet hier unbegrenzter Betrieb mit Wartung innerhalb folgender Grenzen: Die Tiefentemperatur steigt linear von 9 auf 100 °C in zehn Jahren und bleibt danach höchstens 100 °C. Höchstens 2,3 m³/s sind betroffen. Die Anlage kann bei 35 °C Luft ihre volle Wärme an eine externe Senke abgeben. Der heiße Zufluss wird vor dem offenen Becken erfasst. Die ökologische Rückführung erreicht 9 °C und höchstens 1 K/h Änderung.
-
-Außerhalb dieser Hülle gibt es keine Scheinzusage. Wenn die Temperatur nach Jahr zehn weiter steigt, wenn mehr als 2,3 m³/s erwärmt werden oder wenn Wärme zusätzlich im Becken eingetragen wird, muss die Anlage wachsen. Eine endliche Anlage kann keine unbegrenzt wachsende vulkanische Leistung beherrschen.
-
-Der Hochwasser-Stresstest macht diese Grenze besonders deutlich. Würden unrealistisch konservative 32,7 m³/s vollständig von 100 auf 9 °C gekühlt, ergäben sich
-\begin{equation}
-\begin{aligned}
-\dot Q_{HW}&=877,781\frac{32,7}{2,3}\\
-&=12.479,8\ \mathrm{MW}=\QFloodStress\ \mathrm{GW}.
-\end{aligned}
-\end{equation}
-Diese Hülle deckt H1 nicht ab. Hochwasser könnte die Wärme auch verdünnen oder andere Karstäste aktivieren. Genau deshalb muss die Zuordnung von Anomalie, Ast und Abflussregime vor dem Bau gemessen werden. Der Stresstest darf weder verschwiegen noch als realistische Lastprognose missverstanden werden.
+Der Hochwasser-Stresstest bleibt offen. Für 32,7 m³/s wären zur Rückkehr auf 9 °C \QFloodStress\ GW erforderlich. H1 ist dafür weder hydraulisch noch thermisch ausgelegt. Auch Temperaturen über 100 °C oder weitere Wärmequellen verlangen einen neuen Entwurf. Die Sensitivitätstabellen stehen in Anhang C, Tabelle \ref{tab:sensitivitaet} und Tabelle \ref{tab:teilstrom}. Sie zeigen, dass ein bestätigter kleiner Teilstrom Kosten senken kann, während unbekannte Anteile jede feste Zusage verunsichern.
 
 \section{Nachweis, Falsifikation und Modellprüfung}
 
-Vor der Endauslegung sind synchronisierte Temperatur-, Druck-, Leitfähigkeits- und Durchflussmessungen in Ur-Blau, Nord-Blau, am Höhleneingang, in mehreren Beckentiefen, am Ausfluss und entlang der Blau erforderlich. Wetterstation und Referenzlogger trennen atmosphärische von unterirdischer Erwärmung. Tracerversuche können die beteiligten Äste und Laufzeiten prüfen [11]. Faseroptische Temperaturmessung kann räumliche Anomalien eingrenzen, braucht aber Kalibrierung und hydraulische Daten [12]. Mindestens ein vollständiger Jahresgang mit Niedrigwasser, Sturm und Schneeschmelze sollte die Kalibrierung tragen. Für Regelung und Drucksicherheit sind Messintervalle von höchstens 15 Minuten sinnvoll, sicherheitsrelevante Vorgänge brauchen schnellere Messung.
+Vor einer Investition sind synchronisierte Temperatur-, Druck-, Leitfähigkeits- und Durchflussmessungen in beiden Karstästen, über die Beckentiefe, am Ausfluss und entlang der Blau erforderlich. Wetterstation und Referenzlogger trennen atmosphärische von unterirdischer Erwärmung. Tracer prüfen Wege und Laufzeiten [11]. Faseroptische Temperaturmessung kann Anomalien räumlich eingrenzen [12]. Ein Jahresgang mit Niedrigwasser, Sturm und Schneeschmelze ist Mindestanforderung; sicherheitsrelevante Vorgänge brauchen Messungen deutlich unter 15 Minuten.
 
-Der Erfolg wird an mehreren unabhängigen Bilanzen geprüft. Der Wärmetauscher muss aus eigener Durchfluss- und Temperaturmessung die berechnete Kühlleistung nachweisen. Stromzähler müssen die angesetzte Antriebsleistung bestätigen. Luft- oder Wärmenetzmessungen müssen die externe Senke schließen. Temperatur und Druck an allen kritischen Punkten müssen die Siedemarge einhalten. Am ökologischen Kontrollpunkt gelten zusätzlich Zieltemperatur, natürliche Referenzdifferenz und 1 K/h. Eine kühle Oberfläche allein beweist nichts über Tiefe oder Fluss.
+Drei Nachweise bleiben zwingend. Der Wärmetauscher muss Durchfluss und Temperaturdifferenz messen, die Antriebsenergie muss gezählt werden, und die Luft- oder Wärmenetzbilanz muss die externe Senke schließen. Zusätzlich sind Siedemarge, 9-°C-Ziel und höchstens 1 K/h am Kontrollpunkt zu belegen. Ein kühles Oberflächenbild genügt nicht. Die Anlage ist zu verwerfen oder zu erweitern, wenn mehr als 4,7 m³/s betroffen sind, die Temperatur weiter steigt, die Senke Wärme zurückführt oder Standort und Genehmigung scheitern. Ein bestätigter kleiner heißer Ast erlaubt dagegen eine kleinere Anlage.
 
-Die Auslegung ist zu verwerfen oder zu vergrößern, wenn Messungen mehr als 2,3 m³/s betroffenen Strom, Temperaturen über 100 °C nach Jahr zehn oder eine wesentliche Hochwasserbeteiligung zeigen. Sie darf verkleinert werden, wenn reproduzierbare Messungen einen eng begrenzten heißen Ast belegen. Der Erfolg ist falsifiziert, wenn die vereinbarte Siedemarge verletzt wird, das 9-°C-Ziel dauerhaft verfehlt wird, die Rückführänderung 1 K/h überschreitet oder abgegebene Wärme nachweislich in denselben Wasserkreislauf zurückkehrt. Ein Modell, das einen späteren Messzeitraum nicht vorhersagt, ist für die Auslegung ebenfalls verworfen.
-
-Das Python-Modell berechnet jede Zahl und Abbildung aus `data/parameters.yml` neu. Sieben Tests und die unabhängige Validierung prüfen Energiebilanz, Stufenaufteilung, Kondensatorwärme, Verdunstung, Mischung, Speichergrenze, Sollwert rampe und Kostenpfad. Die numerische Lösung der Becken-Zeitfunktion weicht im Grenzfall um höchstens \(8,1\times10^{-10}\) K von der analytischen Lösung ab. Die Wärmesenkenbilanz schließt mit einem Fehler unter \(2\times10^{-14}\) MW. Diese Rechenkontrollen sind keine Feldvalidierung.
-
-Mit mehr Zeit wäre der nächste Arbeitsschritt kein größeres Rechenmodell, sondern ein Messprogramm. Eine aktuelle Bathymetrie, zwei unabhängige Temperaturketten, Astabflüsse, Druckprofile und Wasserchemie würden die wichtigsten Annahmen prüfen. Ein Pilotmodul mit Tracer- und Lastwechselversuchen könnte Wärmeübertragung, Durchmischung, Fouling und reale COP-Werte messen. Danach wären IAPWS-Stoffwerte, ein geschichtetes Beckenmodell und gekoppelte Karst-, Fluss- und Wetterbilanzen sinnvoll [4,5,6].
-
-Für die Wärmesenke wären Standortvarianten, Luftströmung, Lärm, Schattenwurf und Netzanschluss zu untersuchen. Die Technischen Werke Blaubeuren betreiben ein Wärmenetz in der Altstadt, dessen Umbau und Erweiterung geplant sind [20]. Eine Wärmenutzung könnte Kosten und direkte Luftabgabe senken. Ohne Jahreslastgang, Rücklauftemperatur und Anschlusskapazität wird dafür kein Erlös angerechnet. Ebenso fehlen Herstellerkennfelder, belastbare Baukosten, Notstromdauer, Zuverlässigkeitsdaten, ökologische Typzuordnung und behördliche Bewertung.
+Das Python-Modell erzeugt alle berichteten Größen aus `data/parameters.yml`. Zehn Tests und interne Konsistenz- und Plausibilitätsprüfungen kontrollieren Wärme- und Mischungsbilanzen, Kosten, Rampen, p90-Kapazität und den Ausfallverlauf. Die gekoppelte Referenzkostenrechnung schließt mit Fehler null. Die ODE-Kontrolle weicht um höchstens \(8,1\times10^{-10}\) K von der analytischen Lösung ab. Diese Prüfungen sind keine externe oder feldbezogene Validierung. NIST-Werte und unabhängige Handrechnungen verankern die zentrale Leistung; Herstellerkurven und Pilotmessungen fehlen weiterhin.
 
 \section{Schlussfolgerung}
 
-Die gestellte Frage hat eine eindeutige physikalische Antwort: Das Wasser muss vor dem Druckabfall und vor dem Eintritt ins offene Becken vollständig gekühlt werden, und die entzogene Wärme muss dauerhaft außerhalb des verbundenen Wassersystems bleiben. Unter den geprüften Ansätzen erfüllt H1 diese Bedingung ohne zusätzlichen jährlichen Wasserbedarf im Modell. Die Vollstromauslegung benötigt \QFinal\ MW Kühlung, \PElectric\ MW elektrische Leistung und eine \QAirRejection-MW-Senke. Sechs Stränge, davon einer in Reserve, ein einstündiger Puffer und Ersatzstrom machen daraus einen betreibbaren Szenarioentwurf.
+Dauerhafter Schutz verlangt, den betroffenen Strom vor dem offenen Becken zu kühlen und die gesamte Wärme einschließlich Antriebsenergie außerhalb des Wasserkreislaufs abzugeben. H1 leistet dies ohne jährlichen Zusatzwasserbedarf. Die p90-Auslegung installiert \QReserve\ MW, während der Erwartungsbetrieb \QFinal\ MW erfordert. Der reine Siedeschutz wäre kleiner, wahrt aber nicht den ökologischen Normalzustand.
 
-Die höheren Kosten von H1 sind der Preis für geschlossene Wasserführung und trockene Wärmeabgabe. Entscheidend bleibt jedoch die Beweislage. Solange der betroffene Stromanteil, die lokale Wärmesenke und die Hochwasserantwort nicht gemessen sind, ist die Anlagengröße eine begründete Annahme, keine Baufreigabe. Mit mehr Zeit sollten Messungen zuerst klären, ob H1 verkleinert werden darf oder vergrößert werden muss. Genau diese Offenheit macht den Entwurf überprüfbar.
+H1 ist damit eine begründete, wirtschaftlich anspruchsvolle Szenariolösung, kein Baubescheid. Der Maßstab wird erst durch Karstmessungen, Standort- und Netzprüfung sowie die FFH-Vorprüfung belastbar. Diese Nachweise können den Entwurf verkleinern, vergrößern oder verwerfen. Gerade diese Prüfbedingungen verhindern eine unbegründete Dauerzusage.
 
 \clearpage
 \section*{Literaturverzeichnis}
@@ -302,81 +222,67 @@ Die höheren Kosten von H1 sind der Preis für geschlossene Wasserführung und t
 \bibitem{stadt} [1] Stadt Blaubeuren: Geopoint Blautopf. \url{https://www.blaubeuren.de/Geopoint-Blautopf}. Abruf: 07.11.2026.
 \bibitem{fan} [2] Fan, X.; Goeppert, N.; Goldscheider, N. (2023): Quantifying the historic and future response of karst spring discharge to climate variability and change at a snow-influenced temperate catchment in central Europe. Hydrogeology Journal 31, 2213-2229. \url{https://doi.org/10.1007/s10040-023-02703-9}. Abruf: 07.11.2026.
 \bibitem{lgrb} [3] Landesamt für Geologie, Rohstoffe und Bergbau Baden-Württemberg: Regionalbeschreibung Mittlere Alb, Fallbeispiele zum Blautopf. \url{https://lgrbwissen.lgrb-bw.de/hydrogeologie/regionalbeschreibung-mittlere-alb/fallbeispiele}. Abruf: 07.11.2026.
-\bibitem{nist} [4] National Institute of Standards and Technology: NIST Chemistry WebBook, thermophysikalische Eigenschaften von Wasser. Isobare Tabelle bei 1,01325 bar: \url{https://webbook.nist.gov/cgi/fluid.cgi?Action=Data&Wide=on&ID=C7732185&Type=IsoBar&Digits=6&P=1.01325&TLow=0&THigh=100&TInc=10&RefState=DEF&TUnit=C&PUnit=bar&DUnit=kg%2Fm3&HUnit=kJ%2Fkg&WUnit=m%2Fs&VisUnit=uPa*s&STUnit=N%2Fm}. Isobare Tabelle bei 3,17007 bar: \url{https://webbook.nist.gov/cgi/fluid.cgi?Action=Data&Wide=on&ID=C7732185&Digits=6&RefState=DEF&TUnit=C&PUnit=bar&DUnit=kg%2Fm3&HUnit=kJ%2Fkg&WUnit=m%2Fs&VisUnit=uPa*s&STUnit=N%2Fm&Type=IsoBar&P=3.1700700760259997&TLow=130&THigh=140&TInc=1}. Abruf: 07.11.2026.
+\bibitem{nist} [4] National Institute of Standards and Technology: NIST Chemistry WebBook, Wasser, isobare Tabelle. \url{https://webbook.nist.gov/cgi/fluid.cgi?Action=Data&Wide=on&ID=C7732185&Type=IsoBar&Digits=6&P=1.01325&TLow=0&THigh=100&TInc=10&RefState=DEF&TUnit=C&PUnit=bar&DUnit=kg%2Fm3}. Abruf: 07.11.2026. Die Drucktabelle verwendet dieselbe Maske mit P=3,17007, TLow=130, THigh=140 und TInc=1. Vollständige Abfragen und Einheiten stehen im Quellenregister und im Modell.
 \bibitem{iapws} [5] International Association for the Properties of Water and Steam: Revised Release on the IAPWS Industrial Formulation 1997 for the Thermodynamic Properties of Water and Steam, IF97-Rev. \url{https://iapws.org/relguide/IF97-Rev.html}. Abruf: 07.11.2026.
-\bibitem{ouellet} [6] Ouellet, V.; Caissie, D. (2023): Towards a better understanding of the evaporative cooling of rivers. Canadian Water Resources Journal 48, 189-205. \url{https://doi.org/10.1080/07011784.2023.2177196}. Offen zugängliches Preprint: \url{https://repository.library.noaa.gov/view/noaa/49285/noaa_49285_DS1.pdf}. Abruf: 07.11.2026.
+\bibitem{ouellet} [6] Ouellet, V.; Caissie, D. (2023): Towards a better understanding of the evaporative cooling of rivers. Canadian Water Resources Journal 48, 189-205. \url{https://doi.org/10.1080/07011784.2023.2177196}. Preprint: \url{https://repository.library.noaa.gov/view/noaa/49285/noaa_49285_DS1.pdf}. Abruf: 07.11.2026.
 \bibitem{bergman} [7] Bergman, T. L.; Lavine, A. S.; Incropera, F. P.; DeWitt, D. P.: Fundamentals of Heat and Mass Transfer, Kapitel 1, Wiley-Auszug. \url{https://catalogimages.wiley.com/images/db/pdf/9781119382911.excerpt.pdf}. Abruf: 07.11.2026.
 \bibitem{openstax} [8] OpenStax: University Physics Volume 2, Abschnitt 4.3, Refrigerators and Heat Pumps. \url{https://openstax.org/books/university-physics-volume-2/pages/4-3-refrigerators-and-heat-pumps}. Abruf: 07.11.2026.
-\bibitem{ogewv} [9] Bundesrepublik Deutschland: Oberflächengewässerverordnung 2016, Anlage 7, Anforderungen an die Wassertemperatur. \url{https://www.gesetze-im-internet.de/ogewv_2016/anlage_7.html}. Abruf: 07.11.2026.
+\bibitem{ogewv} [9] Bundesrepublik Deutschland: Oberflächengewässerverordnung 2016, Anlage 7. \url{https://www.gesetze-im-internet.de/ogewv_2016/anlage_7.html}. Abruf: 07.11.2026.
 \bibitem{lawa} [10] van Treeck, R.; Wolter, C. (2020): Temperaturempfindlichkeiten der Fischgemeinschaften in deutschen Fließgewässern. LAWA-Projekt O 10.20. \url{https://www.laenderfinanzierungsprogramm.de/static/LFP/Dateien/LAWA/AO/O_10.20_211119_Endbericht_O10.20_TempEmpf_Fische.pdf}. Abruf: 07.11.2026.
 \bibitem{lauber} [11] Lauber, U.; Ufrecht, W.; Goldscheider, N. (2014): Spatially resolved information on karst conduit flow from in-cave dye tracing. Hydrology and Earth System Sciences 18, 435-445. \url{https://doi.org/10.5194/hess-18-435-2014}. Abruf: 07.11.2026.
 \bibitem{epa} [12] United States Environmental Protection Agency: Fiber Optic Distributed Temperature Sensing. \url{https://www.epa.gov/environmental-geophysics/fiber-optic-distributed-temperature-sensing}. Abruf: 07.11.2026.
-\bibitem{bimschv} [13] Bundesrepublik Deutschland: Zweiundvierzigste Verordnung zur Durchführung des Bundes-Immissionsschutzgesetzes, 42. BImSchV. \url{https://www.gesetze-im-internet.de/bimschv_42/BJNR237900017.html}. Abruf: 07.11.2026.
+\bibitem{bimschv} [13] Bundesrepublik Deutschland: 42. BImSchV. \url{https://www.gesetze-im-internet.de/bimschv_42/BJNR237900017.html}. Abruf: 07.11.2026.
 \bibitem{whg} [14] Bundesrepublik Deutschland: Wasserhaushaltsgesetz, insbesondere §§ 8, 9, 12 und 27. \url{https://www.gesetze-im-internet.de/whg_2009/}. Abruf: 07.11.2026.
 \bibitem{naturschutz} [15] Stadt Blaubeuren: Blautopf-Sanierung, Grundlagen Naturschutz. \url{https://www.blautopf-sanierung.de/willkommen/Grundlagen/Naturschutz}. Abruf: 07.11.2026.
 \bibitem{bdew} [16] Bundesverband der Energie- und Wasserwirtschaft: BDEW-Strompreisanalyse, Preisangaben 2026. \url{https://www.bdew.de/service/daten-und-grafiken/bdew-strompreisanalyse/}. Abruf: 07.11.2026.
 \bibitem{bfe} [17] Schweizerisches Bundesamt für Energie (2010): Feldmessungen großer Wärmepumpenanlagen. \url{https://pubdb.bfe.admin.ch/de/publication/download/4978}. Abruf: 07.11.2026.
-\bibitem{tga} [18] tga-shop: Buderus SL333 Plattenwärmetauscher DN100 PN16, 601 bis 700 kW, Produktpreis und Listenpreis. \url{https://tga-shop.de/Buderus-SL333-Plattenwaermetauscher-DN100-PN16-601-700-kW-70-Platten-7738300409/70001-7738300409}. Abruf: 07.11.2026.
+\bibitem{tga} [18] tga-shop: Buderus SL333 Plattenwärmetauscher DN100 PN16, Produktpreis und Listenpreis. \url{https://tga-shop.de/Buderus-SL333-Plattenwaermetauscher-DN100-PN16-601-700-kW-70-Platten-7738300409/70001-7738300409}. Abruf: 07.11.2026.
 \bibitem{haw} [19] HAW Hamburg (2012): Kälte- und Klimatisierungssysteme, wirtschaftlicher Vergleich. \url{https://reposit.haw-hamburg.de/bitstream/20.500.12738/5979/1/Bachelorthesis_Bez_Armin_20120618.pdf}. Abruf: 07.11.2026.
 \bibitem{waermeplanung} [20] Stadt Blaubeuren: Kommunale Wärmeplanung. \url{https://www.blaubeuren.de/de/Aktuelles/Kommunale-Waermeplanung}. Abruf: 07.11.2026.
 \bibitem{planetbericht} [21] PlaNeT SimTech: Vorgaben für den Bericht, Stand 10/2026. \url{https://www.planet-simtech.de/wp-content/uploads/2023/05/PlaNeT_Vorgaben-Bericht.pdf}. Abruf: 07.11.2026.
 \bibitem{d4rt} [22] Zhang et al.: Efficiently Reconstructing Dynamic Scenes One D4RT at a Time. \url{https://storage.googleapis.com/d4rt_assets/D4RT_paper.pdf}. Abruf: 07.11.2026. Ausschließlich Layoutvergleich.
 \bibitem{uba} [23] Umweltbundesamt (2025): CO₂-Emissionen pro Kilowattstunde Strom 2024 gesunken. \url{https://www.umweltbundesamt.de/themen/co2-emissionen-pro-kilowattstunde-strom-2024}. Abruf: 07.11.2026.
+\bibitem{bnatschg} [24] Bundesrepublik Deutschland: Bundesnaturschutzgesetz, § 34, Verträglichkeitsprüfung. \url{https://www.gesetze-im-internet.de/bnatschg_2009/__34.html}. Abruf: 07.11.2026.
+\bibitem{awsv} [25] Bundesrepublik Deutschland: Verordnung über Anlagen zum Umgang mit wassergefährdenden Stoffen, § 18, Rückhaltung. \url{https://www.gesetze-im-internet.de/awsv/__18.html}. Abruf: 07.11.2026.
 \end{description}
 
-\section*{Anhang A: KI-Verwendung, Unabhängigkeit und Prüfstatus}
-
-Für den Arbeitsstand wurden Kimi K3.1 Pro bei \texttt{thinking=max} für Rechercheunterstützung, Implementierung, Programmierung, Textentwürfe, Abbildungserzeugung und redaktionelle Änderungen verwendet. DeepSeek-V4.1-Flash und ein separates Exemplar von Kimi K3.1 Pro bei maximaler Reasoning-Stufe wirken als KI-Reviewer. Der Bericht wurde aus Recherchenotizen, versionierten Modellparametern und berechneten Ergebnissen synthetisiert und redaktionell in LaTeX überarbeitet. Diese Verwendung geht über sprachliche Schliffhilfe hinaus und wird deshalb für den gesamten Bericht erklärt [21].
-
-Fachliche Aussagen stützen sich auf die nummerierten Quellen oder auf im Haupttext nachvollziehbare Rechnungen. KI-Aussagen allein wurden nicht als wissenschaftliche Belege verwendet. Die Modellprüfung schließt die Energiebilanz, Stufenaufteilung, Wärmesenke, Verdunstungs- und Mischungsbilanz sowie den Test der Becken-Zeitfunktion ein. Diese Prüfungen sind Rechenkontrollen, keine Feldvalidierung.
-
-Es fand keine menschliche fachliche Prüfung dieses Arbeitsstands statt. Die KI-Reviewer sind keine menschlichen Gutachter. Vor einer tatsächlichen Einreichung müssen berechtigte Teammitglieder sämtliche Inhalte prüfen, ihre offizielle Team-ID einsetzen, die erforderlichen Erklärungen abgeben und selbst einreichen [21]. Dieser Entwurf wurde nicht eingereicht. Standortbezogene Angebote, eine rechtliche Genehmigung, eine durchgeführte Lieferung und weltweite Neuheit werden nicht behauptet.
-
-Es wurden keine früheren PlaNeT-SimTech-Einreichungen, Gewinnerberichte, Lösungszusammenfassungen, Reviews, Präsentationen, Videos, einschlägigen Diskussionen oder bestehenden aufgabenbezogenen Lösungsrepositories geöffnet oder verwendet. Der Ansatz wurde aus dem Aufgabentext, allgemeinen Fachquellen und eigenen Berechnungen entwickelt.
-
 \onecolumn
-\section*{Anhang B: Reproduktion und Layoutvergleich}
+\section*{Anhang A: KI-Verwendung und Unabhängigkeit}
 
-Der vollständige Rechenlauf verwendet Python 3.14, NumPy, SciPy, Matplotlib und PyYAML. Der Befehl \texttt{python model/run\_all.py} erzeugt Ergebnisdateien, Jahresreihen, Unsicherheitsstichproben, Tabellen und Abbildungen. \texttt{python -m unittest discover -s model} führt die Modelltests aus. \texttt{scripts/verify\_report.py} prüft Seitenbudget, Geometrie, Inhalt, Anonymität und Renderbilder der PDF-Datei. Eine Manifestdatei enthält die SHA-256-Hashes der Eingaben, Programme und Ergebnisse.
+Kimi K3.1 Pro bei \texttt{thinking=max} wurde für Recherche, Implementierung, Programmierung, Textentwürfe, Abbildungen und redaktionelle Änderungen verwendet. DeepSeek-V4.1-Flash und ein separates Exemplar von Kimi K3.1 Pro bei maximaler Reasoning-Stufe wirken als KI-Reviewer. Der zweite Kimi-Lauf ist ein unabhängiger Same-Model-Kontext, keine externe oder menschliche Prüfung. Die umfassende KI-Verwendung wird für den gesamten Bericht erklärt [21].
 
-Das Layout folgt der vom Nutzer genannten D4RT-Arbeit nur in der zweispaltigen Ordnung, der Times-Hierarchie, den Tabellenlinien, erklärenden Bildunterschriften und numerischen Verweisen [22]. D4RT verwendet US Letter, kleinere Ränder und kleinere Schriftgrade. Diese Maße werden nicht übernommen. Der vorliegende Bericht verwendet A4, 26 mm Rand und 12 pt auch für Tabellen, Bildunterschriften, Fußnoten und Literatur. Die Abweichung ist eine Folge der offiziellen Vorgaben [21], keine Abwertung der Referenzgestaltung.
+Fachliche Aussagen stützen sich auf die nummerierten Quellen oder nachvollziehbare Rechnungen. KI-Aussagen sind keine eigenständigen wissenschaftlichen Belege. Die Modellprüfungen sind Rechenkontrollen, keine Feldvalidierung. Es wurden keine früheren PlaNeT-Beiträge, Lösungszusammenfassungen, Reviews, Videos oder bestehenden Lösungsrepositories verwendet. Die Herleitung ist unabhängig, nicht als weltweite Neuheit bezeichnet.
 
-\begin{table}[H]
-\centering
-\begin{tabular}{@{}>{\hspace{0pt}\raggedright\arraybackslash}p{20mm}>{\hspace{0pt}\raggedright\arraybackslash}p{23mm}>{\hspace{0pt}\raggedright\arraybackslash}p{21mm}@{}}
-\toprule
-Störung & Technische Antwort & Verbleibende Grenze \\
-\midrule
-Kühlmodul & Isolierung, fünf Stränge übernehmen & ein Einzelausfall \\
-Netzausfall & Ersatzstrom für \PElectric\ MW & Dauer und gemeinsame Fehler ungeprüft \\
-Ablagerung & Druckdifferenz messen, reinigen & Foulingrate fehlt \\
-Rückströmung & getrennte Senke, Luftmessung & Standortnachweis fehlt \\
-Hochwasser & Anlage außerhalb, erhöhte Elektrik & Hochwasserlinie fehlt \\
-Kälteschock & Puffer, höchstens 1 K/h & Mischung und Ökotyp offen \\
-Sensorfehler & redundante Messkette & Ausfallraten unbekannt \\
-\bottomrule
-\end{tabular}
-\caption{Ausfällen konkrete Antworten und verbleibende Prüfbedarfe zugeordnet.}
-\label{tab:ausfaelle}
-\end{table}
+Keine menschliche Fachprüfung hat stattgefunden. Vor einer echten Abgabe müssen berechtigte Menschen Inhalte, Team-ID, Erklärungen, Rechte und technische Vorgaben prüfen und selbst einreichen. Diese Fassung wurde nicht eingereicht. Genehmigungen, Angebote, Live-Darbietung und weltweite Neuheit werden nicht behauptet.
 
-Tabelle \ref{tab:ausfaelle} ordnet den Ausfall- und Störungsfällen technische Antworten und verbleibende Grenzen zu.
+\section*{Anhang B: Reproduktion, Layout und Prüfgrenzen}
+
+Mit Python 3.14, NumPy, SciPy, Matplotlib und PyYAML erzeugt \texttt{python model/run\_all.py} alle Zahlen, Jahresreihen, Stichproben, Tabellen und Abbildungen. \texttt{python -m unittest discover -s model} führt die Tests aus. \texttt{scripts/verify\_report.py} prüft Seitenbudget, Geometrie, Inhalt, Anonymität und Renderbilder. Das Manifest enthält SHA-256-Hashes der Eingaben, Programme und Ergebnisse. Vollständige Befehle stehen in der README.
+
+Das Layout folgt D4RT bei Zweispaltigkeit, Times-Hierarchie, Tabellenlinien, erklärenden Unterschriften und numerischen Verweisen [22]. D4RT verwendet US Letter, kleinere Ränder und Schriftgrade. Diese Maße werden nicht übernommen. Der Bericht nutzt A4, 26 mm Rand und 12 pt, auch für Tabellen und Literatur [21]. Die lokale D4RT-PDF und gerasterte Seiten 1, 2 und 6 liegen dem Reviewpaket bei. Damit ist der Bildvergleich prüfbar, nicht nur beschrieben.
 
 \clearpage
-\section*{Anhang C: Ergänzende Ergebnisfiguren}
+\section*{Anhang C: Ergänzende Ergebnisse}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.88\textwidth]{figures/fig02_stufenplan.pdf}
-\caption{Modularer Ausbau der Vollstromkühlung. Die Trockenkühlung beginnt erst oberhalb ihrer treibenden Temperaturdifferenz. Die gestrichelte Linie enthält 20 \% Reserve. Eigene Rechnung mit Kimi K3.1 Pro.}
+\caption{Modularer Ausbau der Vollstromkühlung. Die gestrichelte Linie enthält 20 \% Reserve; die p90-Kapazität wird zusätzlich skaliert. Eigene Rechnung mit Kimi K3.1 Pro.}
 \label{fig:stufen}
 \end{figure}
 
 \begin{table}[H]
 \centering
 \input{generated/sensitivity.tex}
-\caption{Deterministische Sensitivität. Die Prognosezeit verändert vor allem den Ausbaupfad, der Durchfluss auch die Endlast.}
+\caption{Deterministische Sensitivität. Prognosezeit verändert vor allem den Ausbaupfad, Durchfluss auch die Endlast.}
 \label{tab:sensitivitaet}
+\end{table}
+
+\begin{table}[H]
+\centering
+\input{generated/flow_fractions.tex}
+\caption{Teilstromszenarien mit p90-Reserve. Erst Messungen dürfen die kleineren Fälle freigeben.}
+\label{tab:teilstrom}
 \end{table}
 
 \begin{table}[H]
@@ -385,14 +291,21 @@ Tabelle \ref{tab:ausfaelle} ordnet den Ausfall- und Störungsfällen technische 
 \toprule
 Ansatz & Entscheidender Befund & Bewertung \\
 \midrule
-H4 Wärmeentnahme im Karst & Zwei verzweigte, nur teilweise bekannte Strömungssysteme [3,11] & Forschungsoption, keine belastbare Dauerlösung \\
-H5 Bypass am Becken vorbei & Die Blau kann entlastet werden, die Beckenbilanz bleibt offen & allein unzureichend \\
-H6 Druck oder Abdeckung & \(T_{sat}(p)\) steigt, die thermische Belastung bleibt [5] & aus Prinzip abgelehnt \\
+H4 Wärmeentnahme im Karst & Zwei verzweigte, nur teilweise bekannte Strömungssysteme [3,11] & Forschungsoption \\
+H5 Bypass am Becken vorbei & Die Beckenbilanz bleibt offen & nur mit H1 \\
+H6 Druck oder Abdeckung & \(T_{sat}(p)\) steigt, die thermische Belastung bleibt [5] & abgelehnt \\
 H7 Passive Wärmerohre & Bei 10 W/(m² K) und 20 K wären \PassiveArea\ km² nötig. Bei 35 °C Luft ist 9 °C passiv nicht erreichbar [7] & allenfalls Unterstützung \\
 \bottomrule
 \end{tabular}
-\caption{Verworfene Ansätze, die die physikalischen Auswahlkriterien nicht erfüllen.}
+\caption{Verworfene Ansätze und ihre physikalischen Ausschlussgründe.}
 \label{tab:verworfen}
 \end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.88\textwidth]{figures/fig05_unsicherheit.pdf}
+\caption{Gekoppelte Unsicherheit von Abfluss, COP und Investitionsfaktor. Die Verteilung endet bei 4,7 m³/s und ist kein Extremwertmodell. Eigene Rechnung mit Kimi K3.1 Pro.}
+\label{fig:unsicherheit}
+\end{figure}
 
 \end{document}

@@ -136,6 +136,7 @@ def main() -> None:
         "duration_s": total,
         "maximum_allowed_s": 300.0,
         "internal_limit_s": 295.0,
+        "subtitle_alignment": "word-proportional, not forced alignment",
         "slides": segments,
     }
     (PRESENTATION / "timings.json").write_text(json.dumps(timings, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -155,6 +156,8 @@ def main() -> None:
         "Offizielles Maximum: 300 s. Interne Produktionsgrenze: 295 s. Ergebnis: bestanden.",
         "",
         "Die Zeitprobe misst die reale synthetische Sprachfassung und die kodierte Videodatei. Sie ist keine behauptete menschliche Live-Probe. Vor einer echten Finalteilnahme müssen die präsentierenden Personen eine eigene Probe mit Rollenverteilung, Technik und Fragen durchführen und dokumentieren.",
+        "",
+        "Die VTT-Satzzeiten werden proportional zur Wortzahl der Sprechtexte und zur gemessenen Audiodauer berechnet. Sie sind nicht durch Forced Alignment verifiziert. Vor einer Abgabe sind sie manuell zu prüfen.",
         "",
         "Die zusätzliche Echtzeit-Wiedergabe und ihre Messung werden nach dem Export in diesem Dokument ergänzt. Die Integritätsprüfung durch Decodierung steht in `output/presentation/verification.json`.",
         "",

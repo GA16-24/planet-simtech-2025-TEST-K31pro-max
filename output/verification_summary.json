@@ -1,8 +1,8 @@
 {
-  "created_utc": "2026-11-07T18:44:23.743040+00:00",
+  "artifact_sha256": "43416317ddbc98a33bcc191e1067eefba9894438302bd2192a1487d46585b2a3",
   "report": {
-    "physical_pages": 16,
-    "main_pages": 10,
+    "physical_pages": 13,
+    "main_pages": 7,
     "bibliography_and_appendix_pages": 5,
     "main_limit": 10,
     "back_limit": 5
@@ -11,21 +11,24 @@
     "replacement_error_eur": 0.0,
     "return_ramp_hours": 91.0,
     "return_ramp_max_rate_k_h": 1.0000000000001066,
-    "backup_fuel_liters": 908657.1869030808,
+    "backup_fuel_liters": 2236544.9817894283,
     "energy_balance_error_mw": 0.0,
     "stage_split_error_mw": 0.0,
-    "heat_sink_balance_error_mw": 1.4210854715202004e-14,
+    "heat_sink_balance_error_mw": 4.263256414560601e-14,
     "evaporation_balance_error_mw": 0.0,
+    "evaporative_stage_error_mw": 0.0,
     "dilution_mixing_error_c": 1.7763568394002505e-15,
     "ode_max_error_k": 8.031904030758596e-10,
     "pool_time_constant_h": 3.019323671497585,
     "failure_time_to_20c_h": 0.3889881396224893,
+    "recovery_peak_temperature_c": 12.644763691135058,
+    "recovery_margin_minutes": 13.339288377349359,
     "staged_npv_lower_than_upfront": true,
     "all_checks_passed": true,
     "coupled_npv_error_eur": 0.0
   },
   "presentation": {
-    "duration_s": 290.131706,
+    "duration_s": 290.025458,
     "video_codec": "h264",
     "audio_codec": "aac",
     "width": 1920,
@@ -40,11 +43,11 @@
   "playback": {
     "date": "2026-11-07",
     "command": "/usr/bin/time -p ffmpeg -v error -re -i /Users/macbook_air_m1/.t3/scratch/2026-11-07-create-a-new-separate-github-162aa05c/planet-simtech-2025-TEST-K31pro-max/output/presentation/Blautopf_Finale.mp4 -f null -",
-    "duration_s": 290.131706,
-    "elapsed_s": 289.5840782080777,
-    "real_s": 289.58,
-    "user_s": 62.14,
-    "sys_s": 2.23,
+    "duration_s": 290.025458,
+    "elapsed_s": 289.46913629211485,
+    "real_s": 289.46,
+    "user_s": 63.68,
+    "sys_s": 2.27,
     "decode_exit_code": 0,
     "live_human_delivery": false
   }

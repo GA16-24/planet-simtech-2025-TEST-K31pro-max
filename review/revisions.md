@@ -1,57 +1,109 @@
 # Revisions- und Befundzuordnung
 
-Diese Datei verbindet adversariale Juryfragen und Council-Befunde mit nachweisbaren Änderungen. Sie erhebt nicht den Anspruch, dass jede Antwort durch einen Commit beweist die technische Machbarkeit. Offene Restaufgaben bleiben ausgewiesen.
+Diese Datei verbindet Juryfragen und Council-Befunde mit konkreten Änderungen oder begründeten offenen Grenzen. Rechennachweise sind keine Feldvalidierung und keine Baufreigabe.
 
-## Fragen 1 bis 20
+## Fragen 1 bis 27
 
 | Frage | Nachweis der Herleitung und späteren Änderung | Status |
 | --- | --- | --- |
-| 1, Speicher statt Vollstrom | Commit `49eb33fb652215a09fd154042d3df922edadded2`, `model/core.py`, `docs/hypothesen.md` | Vollstrom- und Speicherfall getrennt |
-| 2, Siedepunkt im Tiefendruck | Dasselbe Ausgangsmodell, NIST und IAPWS [4,5] | Hydrostatisches Beispiel dokumentiert |
-| 3, Kühlung bei 35 °C Luft | Commit `49eb33f`, `model/core.py` | Zwei Stufen ausdrücklich getrennt |
-| 4, Kondensatorwärme | Commit `65f218b4d5e57f9ad565231dc7b8fb41b4e46c69` und spätere Kostenrevision | Kondensator- und Hilfsenergie in Senke und Kosten |
-| 5, COP als Annahme | `data/parameters.yml`, `model/run_all.py` | COP variiert, keine Herstellerkurve |
-| 6, 8 oder 12 Jahre | Commit `65f218b`, `output/model/sensitivity.csv` | Endlast und Ausbau getrennt |
-| 7, Verdunstungsalternative | Commit `65f218b`, Runde 2 Kostenrevision | Wasserhaushalt und Emissionen offengelegt |
-| 8, Kälteschock | Commit `9b3a83bcea1358184b14de6759af117a049114f5` und Runde 2 Rampenmodell | Aktive 91-Stunden-Rampe und Sensorabschaltung |
-| 9, N+1 in jeder Stufe | Commit `65f218b`, `reserve_fraction` | Sechs Stränge in jeder Stufe |
-| 10, Stromausfall | Commit `65f218b`, `model/validation.py`, Runde 2 Notstromszenario | Interne Alarmschwelle und 48 Stunden Reserve |
-| 11, Vollständige Stromerfassung | Commit `49eb33f`, Messplan in Bericht und Folie 9 | Tracer und Durchfluss vor Detailauslegung |
-| 12, Wärmevermarktung | Commit `65f218b`, `heat_recovery_mw: 0.0` | Kein Erlös ohne Abnehmer |
-| 13, Hochwasser | Commit `65f218b`, `baseline.flood_stress_cooling_mw` | 12,48-GW-Grenze nicht abgedeckt |
-| 14, Dauerhaftigkeit | Commit `65f218b`, `scenario.premise` | Gültigkeit nur innerhalb der Hülle |
-| 15, Kosten | Commit `65f218b`, Runde 2 Ersatzinvestition und Notstrom | Szenarien mit gekoppelter Unsicherheit |
-| 16, Falsifikation | Commit `65f218b`, `docs/alternativenvergleich.md` | Explizite Abbruchkriterien |
-| 17, Genehmigung | Commit `65f218b`, WHG und Naturschutzquellen | Keine Genehmigung behauptet |
-| 18, Synthetische Präsentation | Commit `9b3a83b`, `presentation/rehearsal.md`, `output/presentation/playback.json` | Slidecast und Echtzeitprobe, keine Live-Darbietung |
-| 19, D4RT-Layout | Commit `65f218b`, Runde 2 Layoutkorrekturen | D4RT-Prinzipien ohne Verstoß gegen Vorgaben |
+| 1, Speicher statt Vollstrom | `49eb33fb652215a09fd154042d3df922edadded2`, `model/core.py` | Vollstrom und Speichergrenze getrennt |
+| 2, Tiefendruck | NIST und IAPWS [4,5], `data/parameters.yml` | Hydrostatisches Beispiel, kein Druckprofil |
+| 3, Kühlung bei 35 °C | `cooling_stage` | Trockenkühlung und Kältestufe getrennt |
+| 4, Kondensatorwärme | `baseline` und `design` in `output/model/results.json` | Externe Wärmeabgabe einschließlich Hilfsenergie |
+| 5, COP | `data/parameters.yml`, gekoppelte Ziehungen | Referenz von 5 auf 4 gesenkt, Bereich 3 bis 6,5, keine Produktkurve |
+| 6, Prognosezeit | `output/model/sensitivity.csv` | Endlast und Ausbaupfad getrennt |
+| 7, Verdunstung | `alternatives[1]`, Feuchtkugel und Kältestufe | Physikalisch gleichwertig im Szenario, Wasser und Hygiene als Zielkonflikt |
+| 8, Kälteschock | `planned_return_temperature_c` | 91-Stunden-Sollwerttest, kein Wiederanlaufnachweis |
+| 9, Reserve | `design`, `module_count` | p90 mit zwölf Strängen, elf aktiv und einer Reserve |
+| 10, Stromausfall | `validation.recovery_peak_temperature_c` | Dynamischer Test mit 0,5/5/10 min, keine reale Zuschaltprobe |
+| 11, Stromerfassung | Messplan in Bericht und Folie 9 | Tracer und Durchfluss vor Detailauslegung |
+| 12, Wärmevermarktung | `heat_recovery_mw: 0.0` | Kein Erlös ohne gemessenen Abnehmer |
+| 13, Hochwasser | `baseline.flood_stress_cooling_mw` | 12,48 GW für 9 °C nicht abgedeckt |
+| 14, Dauerhaftigkeit | `scenario.premise`, `hydrology.affected_fraction_design_note` | Nur innerhalb der erklärten Hülle |
+| 15, Kosten | `baseline`, `design`, `tariff_scenarios` | Szenarien mit gekoppelter Unsicherheit, keine Angebote |
+| 16, Falsifikation | Bericht und `docs/alternativenvergleich.md` | Explizite Abbruchkriterien |
+| 17, Genehmigung | WHG [14], BNatSchG [24] | Keine Genehmigung behauptet |
+| 18, Synthetische Präsentation | `presentation/rehearsal.md`, `timings.json` | Slidecast und Echtzeitprobe, keine Live-Darbietung |
+| 19, D4RT | `sources/D4RT_paper.pdf`, Referenzbilder in `review/rendered/` | Direkter visueller Vergleich möglich |
 | 20, Menschliche Restaufgaben | `PROVENANCE.md`, `README.md`, `presentation/rights.md` | Weiterhin offen |
+| 21, Überlast | `uncertainty.mean_capacity_overload_fraction`, `design_overload_fraction` | p90-Reserve deckt begrenzte Stichprobe ab |
+| 22, Feuchtkugel | `plant.wet_bulb_design_c`, `alternatives[1]` | 28 °C plus 4 K, Kältestufe bis 9 °C |
+| 23, Tarif | BDEW [16], `tariff_scenarios` | 138 €/MWh als Proxy, 179 €/MWh als Alternative |
+| 24, Wiederanlauf | `validation.recovery_peak_temperature_c`, `recovery_margin_minutes` | Höchstwert 12,6 °C im Szenario |
+| 25, Reiner Siedeschutz | `boil_guard` | 48,5 MW statt 877,8 MW, aber kein ökologischer Normalzustand |
+| 26, Standort | `design.air_service_area_m2`, `electricity_mw`, `backup_fuel_m3`, AwSV und BNatSchG | Screening vorhanden, Standort nicht nachgewiesen |
+| 27, Same-Model-Review | `review/model_configuration.md`, Nutzervorgabe | Kein Modellwechsel, unabhängiger Kontext statt externer Prüfung |
 
-## Council-Befunde aus Runde 1
+## Erhaltene Korrekturen aus Runde 1
 
 | Befund | Konkrete Änderung | Verifikation |
 | --- | --- | --- |
-| Folie 8 läuft über die Seite | Grafik und Text kompakt, Fußzeile gekürzt | `scripts/verify_presentation.py` prüft alle Textzeichen gegen Seitenfläche, MP4-Frames zusätzlich visuell |
-| Pfeil ins Leere in Folie 5 | Beide Wärmepfeile führen direkt auf `air.south` | Folie 5 im Renderbild |
-| Legendenkollisionen in Abbildungen 1 und 3 | Legenden außerhalb der Datenfläche | Abbildungen neu rendern und Sichtprüfung |
-| Gleichung 3 mit eigener Nummernzeile | Szenariogleichung gekürzt und Einheiten in Prosa | PDF-Geometrie und Sichtprüfung |
-| Gemischte Dezimaltrennzeichen | Makros erzeugen deutsches Komma | `report/generated/numbers.tex` und PDF-Text |
-| „Mehr als doppelt“ falsch | Auf rund 1,7-fache Reserveauslegung korrigiert | `report/main.tex`, Modellwerte |
-| 1-K/h-Aussage unmodelliert | Sollwert rampe am Kälteauslass statt Pufferbehauptung | `return_ramp_hours` und `return_ramp_max_rate_k_h` in Modell und Tests |
-| Zwischenkorrektur der Ventil rampe | Linearer Ventilhub verworfen, weil er in einem Mischbehälter die Rate nicht generell begrenzt. Kälteauslass wird geregelt, Wiederanlauf bleibt gesondert offen | Sollwert funktion `planned_return_temperature_c`, Intervalltest mit 921 Stützstellen |
-| Seitenzahl außerhalb des Randbereichs | Unterer Satzspiegel 28 mm, `footskip=6mm`, Fußzeile um 7 mm angehoben | Vertikale Prüfung aller Textzeichen einschließlich Fußzeilen, gemessen mindestens 26,50 mm |
-| Quellenregisterfehler | Drei DOI-Titel und zweite NIST-Tabelle korrigiert, UBA ergänzt | `sources/registry.yml`, `report/main.tex` |
-| Ersatzinvestition ohne 60-%-Zuschlag | Multiplikator auch auf Ersatz angewandt | `test_replacement_uses_engineering_multiplier` |
-| Monte-Carlo-Kopplung unzureichend | Jede Ziehung rechnet alle 25 Jahre mit Abfluss, COP und Investitionsfaktor | `coupled_npv_error_eur = 0.0` |
-| Manifest ignoriert Umlautpfade | `git ls-files -z`, NUL-Verarbeitung und Mengenabgleich mit `git ls-tree -r -z` | Exakte Dateimenge des neuen Manifests |
-| Wärmesenke und Notstrom offen | Fläche, Rückverwirbelung, NPSH, zwei Einspeisungen, 48 Stunden und Diesel vorrat quantifiziert | `air_face_area_m2`, `npsh_design_margin_m`, `backup_fuel_liters` |
-| Visuelle Qualität unter D4RT | Doppelte Labels entfernt, Verweise ergänzt, Figuren und Tabellen neu angeordnet | Marken- und Referenzprüfung in `scripts/verify_report.py` |
-| URLs und Zitierweise | Links umbrechbar, linksbündig, zweite Drucktabelle, Klammern `[n]` sichtbar | PDF-Text und Sichtprüfung |
-| SAR 1215:1216 statt 1:1 | `setsar=1` und verlustfreie Einpassung | `ffprobe` verlangt SAR 1:1 und DAR 16:9 |
-| Q&A-Revisionen ohne Commitbezug | Diese Datei verbindet Fragen und Befunde mit Commits | `review/revisions.md` |
-| CO2 und Luftkühlerfläche fehlen | UBA-Faktor 363 g/kWh, Face- und Servicefläche ergänzt | `emissions_tco2_year`, `air_face_area_m2` |
-| Zwischenkorrektur Diesel einheit | MWh mit 1000 in kWh umgerechnet, Brennstoffkosten neu berechnet | Exakter Test auf 908657,186903 Liter, NPV 2,938 Mrd. € |
-| Zwischenkorrektur Folie 7 | Kürzere Kennzahlenbeschreibungen, Mathematiksatz für CO2, geringere Abstände | Alle Textzeichen innerhalb der Folie, Sichtprüfung und Videoexport |
-| Zwischenkorrektur Anhang | Einspaltiger Ergebnis anhang, Überschrift vor den Inhalten, größere Diagrammtexte | Gerenderte Seiten 15 und 16, keine fast leere Zwischenseite |
+| Folie 8 läuft über die Seite | Grafik und Text kompakt, Fußzeile gekürzt | Alle Textzeichen gegen die Folienfläche geprüft |
+| Pfeil ins Leere in Folie 5 | Beide Wärmepfeile führen direkt auf `air.south` | Sichtprüfung |
+| Legendenkollisionen | Legenden außerhalb der Datenflächen | Neue Figuren und Sichtprüfung |
+| Gleichung 3 mit eigener Nummernzeile | Szenariogleichung gekürzt | PDF-Geometrie und Sichtprüfung |
+| Gemischte Dezimaltrennzeichen | Makros und Diagrammlabels mit deutschem Komma | `report/generated/numbers.tex`, PDF und Folien |
+| Falscher Vergleich „mehr als doppelt“ | Auf rund 1,7-fache Reserveauslegung korrigiert | Modellwerte |
+| 1-K/h-Aussage unmodelliert | Sollwertrampe am Kälteauslass statt Pufferbehauptung | Intervalltest mit 921 Stützstellen |
+| Ventilrampe als unzureichender Zwischenmechanismus | Linearer Ventilhub verworfen, Wiederanlauf getrennt | `planned_return_temperature_c` |
+| Seitenzahl außerhalb des Randes | Unterer Satzspiegel und angehobene Fußzeile | Alle Textzeichen, gemessener Mindestabstand 25,85 mm |
+| Quellenregisterfehler | DOI-Titel und zweite NIST-Tabelle korrigiert | `sources/registry.yml`, Bericht |
+| Ersatzinvestition ohne Zuschlag | 60-%-Zuschlag auch auf Ersatz | `test_replacement_uses_engineering_multiplier` |
+| Monte-Carlo-Kopplung | Jede Ziehung rechnet alle Jahresreihen | `coupled_npv_error_eur = 0.0` |
+| Manifest ignoriert Umlautpfade | `git ls-files -z`, `git ls-tree -r -z` | Exakte Dateimenge |
+| Wärmesenke und Notstrom offen | Fläche, NPSH, zwei Einspeisungen, 48 Stunden und Dieselvorrat | `design`, `validation` |
+| Visuelle Qualität unter D4RT | Doppelte Labels entfernt, Verweise ergänzt, Anhänge umgebrochen | Marken- und Referenzprüfung |
+| URLs und Zitierweise | Links umbrechbar, linksbündig, NIST-Abfrage verkürzt | PDF-Text und Sichtprüfung |
+| SAR statt 1:1 | `setsar=1` und verlustfreie Einpassung | `ffprobe` verlangt SAR 1:1 und DAR 16:9 |
+| Q&A ohne Commitbezug | Fragen und Befunde sind dieser Datei zugeordnet | `review/revisions.md` |
+| CO2 und Luftkühlerfläche fehlen | UBA-Faktor, Face- und Servicefläche | `emissions_tco2_year`, `design.air_face_area_m2` |
+| Dieseleinheit | MWh mit 1000 in kWh umgerechnet | Exakter Brennstofftest |
+| Folie 7 zu voll | Kürzere Kennzahlen, Mathematiksatz für CO2, geringere Abstände | Text innerhalb der Folie |
+| Fast leere Anhangsseite | Anhang A und B einspaltig und kompakt | Gerenderte Seiten, keine fast leere Seite |
 
-Der neue Runde-2-Commit wird nach dem vollständigen Build eingetragen. `decisions.tsv` enthält die zusätzlichen Befunde aus der Selbstprüfung. Die Council-Bewertungen der neuen Revision folgen erst nach erneuter unabhängiger Prüfung.
+## Befunde aus Runde 2, DeepSeek
+
+| Befund | Konkrete Änderung | Verifikation |
+| --- | --- | --- |
+| M1, 0,1 % wird 0 % | Prozentformat mit einer Nachkommastelle | `report/generated/flow_fractions.tex`, PDF |
+| M2, Komma in Gleichung 3 mehrdeutig | `9{,}1\,t` im Mathematiksatz | PDF-Seite mit der Szenariogleichung |
+| M3, Nummer von Gleichung 10 auf eigener Zeile | Kondensatorbilanz zweizeilig mit `aligned` und Makros | PDF-Seite 4, Gleichung 9 |
+| M4, fast leere Seite 14 | Anhang A und B gemeinsam einspaltig | Keine fast leere Seite im neuen Bericht |
+| M5, Kühlleistung und Wärmeabgabe vermischt | Tabelle trennt Wärmeentzug und Abgabe an Luft | `report/generated/alternatives.tex` |
+| M6, gequetschte Tabelle und lange NIST-URL | Einspaltige Anhänge, NIST-Abfrage mit Parametern im Text | PDF-Anhang und Quelle [4] |
+| M7, getrennte Komposita | Sollwertrampe, Ventilrampe, Sollwertfunktion, Dieselvorrat | Texte und Folien |
+| M8, Speicherlinie im Diagramm abgeschnitten | Untergrenze 0,02 MW und eigener Tick 0,03 MW | `fig06_teilstrom`, Folie 3 |
+| M9, Worttrennung auf Folie 4 | Urteilsspalte 45 mm, Befund 79,5 mm, sachliche Abwägung | Folie 4 |
+| M10, gespreizte Folientabelle | Beide Spalten 68 mm, linksbündig, kürzere Texte | Folie 9 |
+| M11, COP 5 über Feldbereich | Referenz 4,0 als Szenario, Bereich 3,0 bis 6,5 | `data/parameters.yml`, Unsicherheitsanalyse |
+| M12, Verfügbarkeit senkt Kosten | Fehlende Netzenergie mit Diesel bepreist | `economic_schedule(..., backup_shortfall=True)` und Test |
+| M13, fester Posten ohne 60 % | 95 Mio. € als All-in-Schätzposten einschließlich Reserve erklärt | `cost.fixed_cost_basis`, Bericht |
+| M14, „unabhängige Validierung“ | Interne Konsistenz- und Plausibilitätsprüfung genannt, externe Handrechnung und Archivreproduktion | `model/validation.py`, Reproduktionsnachweise |
+| M15, 9 °C nicht gegen Siedeschutz abgewogen | `boil_guard` mit 94,9743 °C, eigene Kostenrechnung, p90-Auslegung | `boil_guard`, `design` |
+| M16, Standortfeasibilität offen | Screening für Fläche, Netz, Diesel, Luft und FFH als Zulassungsbedingung | Bericht und Q&A 26, Standort weiterhin offen |
+| M17, Council B modellgleich | Vorgeschriebene Modelle nicht gewechselt, Same-Model-Kontext benannt | `review/model_configuration.md` |
+| M18, Hashweichung durch Zeitstempel | Deterministischer Artefakthash, Git-Blob-Abgleich und Statuskontrolle nach Prüfung | `verification_summary.py`, `freeze_revision.py` |
+| M19, stale Revision und Hypothesenherkunft | Runde-2-Commit dokumentiert, `fig:unsicherheit` eingebunden, Skalierung erklärt | `review/revisions.md`, `docs/hypothesen.md` |
+
+## Befunde aus Runde 2, Kimi
+
+| Befund | Konkrete Änderung | Verifikation |
+| --- | --- | --- |
+| M1, 38,57 % Überlast bei Mittelwert | p90-Kapazität 2152,5 MW statt 1053,3 MW, Überlast separat ausgewertet | `uncertainty`, `test_design_capacity` |
+| M2, H2 nicht gleichwertig | 28 °C Feuchtkugel, 4 K Annäherung, Kältestufe bis 9 °C | `alternatives[1]`, `test_evaporative_has_summer_chiller` |
+| M3, Senke und Notfall nicht betriebsfähig | Standort-Screening, dynamischer Wiederanlauf, sechs Aggregate plus Reserve | `design`, `validation.recovery_peak_temperature_c` |
+| M4, falscher Stromtarif | 138 €/MWh als Proxy für den nächstpassenden Bereich, 179 €/MWh als Alternative | `tariff_scenarios` |
+| M5, falscher Prozentwert | 0,1 % statt 0 % | `report/generated/flow_fractions.tex` |
+| M6, Folie 10 und Sprechtext überbehaupten | „angenommene Hülle“, Messungen erst vor dem Bau | `presentation/main.tex`, `narration.json` |
+| M7, visuelle Restfehler | Dezimalkommas in Diagrammen, Speicherlinie sichtbar, Anhänge kompakt | Bericht und Folien im Renderbild |
+| M8, menschliche Auslieferung offen | Keine Erledigung behauptet | `README.md`, `presentation/rehearsal.md`, `presentation/rights.md` |
+
+## Offene physikalische und menschliche Grenzen
+
+- Betroffener Stromanteil, Karsterfassung und Verhalten oberhalb 4,7 m³/s sind nicht feldkalibriert.
+- COP, Teillast, Feuchtkugel, Wärmeübertragung, Luftführung, Schall und Plume benötigen Hersteller- oder Standortdaten.
+- Netzanschluss, Flächeneigentum, Diesellogistik, Genehmigung und gemeinsame Ausfallursachen sind offen.
+- Der Wiederanlauf ist ein Rechenszenario, keine durchgeführte Zuschaltprobe.
+- Offizielle Team-ID, menschliche Fachprüfung, Medienfreigabe, Finalisten-E-Mail und echte Live-Probe fehlen.
+
+Runde 2 wurde mit Commit `cc25cc903681ebbc4d6865309236885f729d6d77` bewertet und nicht bestanden. Runde 3 wird erst nach vollständigen Builds und Prüfungen eingefroren und unabhängig bewertet. Diese Zuordnung behauptet keine neue Punktzahl.

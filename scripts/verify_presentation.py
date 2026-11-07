@@ -30,7 +30,7 @@ def main() -> None:
     require(len(reader.pages) == 10, f"Folienzahl {len(reader.pages)} statt 10")
     text = "\n".join(page.extract_text() or "" for page in reader.pages)
     text = text.replace("\u2011", "-").replace("\u2010", "-")
-    for required in ["877,8", "952,0", "12,48", "Schlussfolgerung", "KI-Offenlegung"]:
+    for required in ["877,8", "967,2", "12,48", "Schlussfolgerung", "KI-Offenlegung"]:
         require(required in text, f"Folieninhalt fehlt: {required}")
     for forbidden in ["TODO", "TBD", "???", "—"]:
         require(forbidden not in text, f"Unerwünschter Folientext: {forbidden}")

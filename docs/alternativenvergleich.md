@@ -2,70 +2,66 @@
 
 ## Einheitliche Auslegungsbasis
 
-Alle Varianten müssen den mittleren betroffenen Quellstrom von 2,3 m³/s im zehnten Jahr von 100 °C auf 9 °C bringen und diese Temperatur danach halten. Die erforderliche Wärmeabfuhr beträgt 877,8 MW. Die Rechnung verwendet 999,702 kg/m³ und 4195,14 J/(kg K) aus der NIST-Tabelle bei etwa 10 °C. Der konstante Stoffwert ist eine Näherung über den Temperaturpfad. Die Unsicherheit des Wärmeeintrags ist wesentlich größer.
+Der erwartete betroffene Quellstrom beträgt 2,3 m³/s. Für die Kapazität wird das historische 90-Prozent-Quantil von 4,7 m³/s mit 20 % Reserve gewählt. Diese Risikovorgabe ist kein Extremwertnachweis. Alle Varianten müssen im zehnten Jahr von 100 °C auf 9 °C kühlen und die Temperatur danach halten. Der erwartete Wärmeentzug beträgt 877,8 MW, der p90-Bedarf 1793,7 MW. Die Rechnung verwendet 999,702 kg/m³ und 4195,14 J/(kg K) aus der NIST-Tabelle bei etwa 10 °C. Konstante Stoffwerte sind eine Näherung.
 
-Alle Geldbeträge sind Szenario-Schätzungen in Euro von 2026, keine Angebote. Der Barwert umfasst 25 Jahre, 3 % Diskontsatz, Investitionen, 20 % Reserve, Wartung, Ersatz, Strom und soweit anwendbar Wasser und Hygiene. Die Investitions- und Betriebskosten stammen aus `output/model/results.json`. Die vollständigen Jahresreihen stehen in `output/model/hybrid_schedule.csv`.
+Alle Geldbeträge sind Szenarioschätzungen in Euro von 2026, keine Angebote. Der Barwert umfasst 25 Jahre, 3 % Diskontsatz, Investitionen, p90-Kapazität und 20 % Reserve, Wartung, Ersatz, Strom und soweit anwendbar Wasser und Hygiene. Die Werte stammen aus `output/model/results.json`. Jahresreihen stehen in `output/model/hybrid_schedule.csv` und `design_schedule`.
 
-## Harte Auswahlkriterien vor der Wirtschaftlichkeit
+## Physikalische und ökologische Auswahlkriterien
 
-1. Der Ansatz muss die gesamte Wärmebilanz schließen. Eine bloße Verschiebung des Siedepunkts oder eine Umleitung am Becken vorbei genügt nicht.
-2. Die Kühlung muss auch bei sommerlicher Auslegungsluft von 35 °C auf 9 °C wirken. Passive Wärmeabgabe an diese Luft ist dafür nicht ausreichend.
-3. Die Wärme senke muss außerhalb des verbundenen Grund- und Oberflächenwassers liegen. Rückkehr der Kondensatorwärme in denselben Kreislauf würde die Bilanz aufheben.
-4. Ein Ansatz ohne belastbare Wasserquelle, Standort- oder Wirkungsnachweise wird nicht als Dauerlösung dargestellt.
-5. Erst nach diesen physikalischen und ökologischen Filtern entscheiden Kosten und Umsetzbarkeit.
+1. Der Ansatz muss die gesamte Wärmebilanz schließen. Eine Verschiebung des Siedepunkts oder eine Umleitung am Becken vorbei genügt nicht.
+2. Auch bei sommerlicher Auslegungsluft muss 9 °C erreichbar sein. Passive Wärmeabgabe an 35 °C Luft genügt dafür nicht.
+3. Die Wärme inklusive Kondensator- und Hilfsenergie muss außerhalb des verbundenen Grund- und Oberflächenwassers bleiben.
+4. Fehlende Wasserquellen, Standortnachweise oder Wirkungsnachweise werden nicht als Dauerzusage dargestellt.
+5. Erst danach entscheiden Kosten und Umsetzbarkeit. Der Normalzustand um 9 °C wird vom reinen Siedeschutz getrennt.
 
-## Vergleich der rechnerisch dimensionierten Varianten
+## Rechnerisch dimensionierte Varianten
 
-| Größe im zehnten Jahr | H1 Hybride Vollstromkühlung | H2 Geschlossene Verdunstungskühlung | H3 Kaltwasserzumischung |
+| Größe im zehnten Jahr | H1 Trockene Hybridkühlung | H2 Verdunstung mit Kältestufe | H3 Kaltwasserzumischung |
 | --- | ---: | ---: | ---: |
-| Wärmeabfuhr | 877,8 MW | 877,8 MW | 877,8 MW |
-| Investition einschließlich Reserve | 722 Mio. € | 285 Mio. € | 120 Mio. € |
-| Strombedarf | 74,2 MW | 13,5 MW | 12,8 MW |
-| Strom pro Jahr | 650 GWh | 118 GWh | 112 GWh |
-| Wasserbedarf pro Jahr | 0 m³ | 11,30 Mio. m³ | 1650 Mio. m³ |
-| Betriebskosten im zehnten Jahr | 138,0 Mio. € | 35,9 Mio. € | 848,8 Mio. € |
-| Barwert über 25 Jahre | 2,938 Mrd. € | 0,792 Mrd. € | 11,480 Mrd. € |
+| Wärmeentzug | 877,8 MW | 877,8 MW | 877,8 MW |
+| Wärmeabgabe an Luft | 967,2 MW | 947,6 MW | 0,0 MW |
+| Investition mit p90-Reserve | 1283,1 Mio. € | 1019,7 Mio. € | 145,3 Mio. € |
+| Elektrische Leistung im Erwartungsfall | 89,4 MW | 69,8 MW | 12,8 MW |
+| Strom pro Jahr | 783,0 GWh | 611,5 GWh | 112,4 GWh |
+| Wasserbedarf pro Jahr | 0 m³ | 8,45 Mio. m³ | 1650 Mio. m³ |
+| Betriebskosten im zehnten Jahr | 146,5 Mio. € | 119,7 Mio. € | 844,9 Mio. € |
+| Barwert über 25 Jahre | 3,666 Mrd. € | 2,988 Mrd. € | 11,454 Mrd. € |
 
-H1 verteilt die Wärmeabfuhr auf 578,8 MW direkte Trockenkühlung und 299,0 MW Kältemaschinen. Die Kondensatoren geben 358,8 MW ab. Zusammen mit Hilfsantrieben müssen die Luftkühler und Kondensatoren 952,0 MW an die Umgebung abgeben. Diese Summe entspricht der entzogenen Wärme plus sämtlicher elektrischer Antriebsleistung.
+Die Kapazität wird mit p90 bemessen, der Verbrauch mit dem erwarteten Abfluss. Ein dauerhafter p90-Betrieb kostet H1 259,3 Mio. € im zehnten Jahr und 5,449 Mrd. € über 25 Jahre. Diese beiden Betrachtungen dürfen nicht vermischt werden.
 
-Für die Luftsenke werden 2 m/s Face-Geschwindigkeit und 15 K Lufterwärmung angesetzt. Daraus folgen 26.313 m² Face-Fläche und mit 50 % Zuschlag 3,95 ha Betriebs- und Servicefläche. Rückverwirbelung, Lärm und lokale Erwärmung bleiben offen. Die Stromemissionen betragen im Referenzjahr rund 236,0 Kilotonnen CO₂ gegenüber 42,9 Kilotonnen bei H2, nach dem UBA-Faktor 363 g/kWh für 2024 [23].
+H1 verteilt den Wärmeentzug auf 578,8 MW direkte Trockenkühlung und 299,0 MW Kältemaschinen. Die Kondensatoren geben 373,8 MW ab. Zusammen mit Hilfsantrieben müssen 967,2 MW an die Umgebung abgegeben werden. Im p90-Spitzenfall sind 182,7 MW Antriebsleistung und 1976,4 MW Wärmeabgabe angesetzt.
 
-H2 ist die günstigste physikalisch wirksame Variante. Sie verdunstet jedoch 358 kg/s beziehungsweise 15,6 % des mittleren Quellstroms. Die fehlende Wassermenge wirkt direkt auf die Blau. Hinzu kommen Aerosol- und Legionellenrisiken, die Kontroll-, Labor-, Protokoll- und Prüfpflichten der 42. BImSchV sowie Schaum- und Sichtwirkungen an einem touristisch sichtbaren Ort. H2 bleibt als Notfall- oder Spitzenlastoption denkbar, ist aber nicht die bevorzugte Dauerlösung.
+Für die Luftsenke werden 2 m/s Face-Geschwindigkeit und 15 K Lufterwärmung angesetzt. Im p90-Fall folgen 54.626 m² Face-Fläche, 8,19 ha Betriebs- und Servicefläche und 109.253 m³/s Luftvolumenstrom. Diese Werte sind Bilanzannahmen, keine Standort- oder Herstellernachweise. Die Stromemissionen betragen im Erwartungsjahr 284,2 Kilotonnen CO₂ gegenüber 222,0 Kilotonnen bei H2, nach dem UBA-Faktor 363 g/kWh für 2024 [23].
 
-H3 verlangt bei 5 °C kaltem Zusatzwasser 52,3 m³/s. Das ist das 22,75-fache des natürlichen mittleren Quellstroms. Eine solche ganzjährig kalte und ökologisch verträgliche Reserve ist nicht belegt. Die Wasserkosten dominieren den Barwert. H3 scheidet trotz einfacher Technik aus.
+H2 nutzt im Szenario 28 °C Feuchtkugeltemperatur und 4 K Annäherung. Verdunstung kühlt von 100 auf 32 °C mit 655,8 MW. Eine Kältemaschine übernimmt 221,9 MW bis 9 °C. Der Dampfstrom beträgt 267,7 kg/s, der jährliche Ersatzwasserbedarf 8,45 Mio. m³. Damit ist H2 physikalisch gleichwertig, verursacht aber Wasserverlust, Hygieneaufwand und Aerosolrisiken nach der 42. BImSchV. H1 verursacht mehr Stromemissionen. Die Wahl ist ein Zielkonflikt, kein pauschaler Vorteil einer Variante in jeder Umweltkategorie.
 
-## Nicht dimensionierbare oder physikalisch unzureichende Ansätze
+H3 verlangt bei 5 °C kaltem Zusatzwasser 52,3 m³/s. Das ist das 22,75-fache des mittleren Quellstroms. Eine ganzjährig kalte und ökologisch verträgliche Reserve ist nicht belegt. Die Wasserkosten dominieren den Barwert. H3 scheidet trotz einfacher Technik aus.
+
+## Verworfene Ansätze
 
 | Ansatz | Quantitativer oder physikalischer Befund | Entscheidung |
 | --- | --- | --- |
-| H4 Geologische Wärmeabschirmung oder Wärmeentnahme im Karst | Dieselbe Wärmemenge müsste im Gestein erfasst werden. Zwei Karstäste, unbekannte Gesamtlänge und stark unterschiedliche Fließgeschwindigkeiten verhindern eine belastbare Erfassungsgarantie ohne Feldversuche. | Forschungsoption, keine aktuelle Dauerlösung. Erst Tracer, Druck- und Temperaturmessungen können sie falsifizieren oder tragen. |
-| H5 Bypass am Blautopf vorbei | Schützt allenfalls die Blau. Das verbleibende Becken erhält weiterhin Wärme. Die geschlossene Beckenbilanz fehlt. | Als alleinige Antwort abgelehnt. |
-| H6 Druckbeaufschlagung | Der hydrostatische Siedepunkt in 22 m Tiefe liegt bei etwa 135,4 °C. Höherer Druck verschiebt nur die Schwelle, entzieht aber keine Wärme und verschärft die ökologische Belastung. | Aus Prinzip abgelehnt. |
-| H7 Passive Wärmerohre und Strahlungskühlung | Bei 10 W/(m² K) und 20 K treibender Differenz wären 4,39 km² aktive Fläche nötig. Bei 35 °C Luft kann ein passiver Kühlkörper nicht auf 9 °C kühlen. | Allenfalls Hilfskühlung in kalten Perioden, keine Hauptlösung. |
+| H4 Geologische Wärmeabschirmung oder Wärmeentnahme im Karst | Dieselbe Wärmemenge müsste im Gestein erfasst werden. Zwei Karstäste und unterschiedliche Fließgeschwindigkeiten verhindern eine belastbare Erfassungsgarantie ohne Feldversuche. | Forschungsoption, erst Tracer, Druck- und Temperaturmessungen können sie tragen. |
+| H5 Bypass am Blautopf vorbei | Schützt allenfalls die Blau. Das verbleibende Becken erhält weiterhin Wärme. | Als alleinige Antwort abgelehnt. |
+| H6 Druckbeaufschlagung | Höherer Druck verschiebt nur den Siedepunkt, entzieht aber keine Wärme und verschärft die ökologische Belastung. | Aus Prinzip abgelehnt. |
+| H7 Passive Wärmerohre und Strahlungskühlung | Bei 10 W/(m² K) und 20 K treibender Differenz wären 4,39 km² aktive Fläche nötig. Bei 35 °C Luft kann ein passiver Kühlkörper nicht auf 9 °C kühlen. | Allenfalls Hilfskühlung in kalten Perioden. |
 
-## Auswahl und Reserve
+## Auswahl, Reserve und dynamischer Nachweis
 
-H1 ist die kostengünstigste der geprüften Varianten, die ohne zusätzlichen Wasserverbrauch und ohne offenes Verdunstungssystem den Normalzustand dauerhaft halten kann. Der höhere Strom- und Kapitalaufwand ist der Preis für den Erhalt des Wasserhaushalts und die geringere hygienische und ökologische Belastung.
+H1 ist die günstigste geprüfte Variante ohne zusätzlichen Wasserverbrauch und ohne offenes Verdunstungssystem. Der höhere Strom- und Kapitalaufwand ist der Preis für geschlossene Wasserführung und trockene Wärmeabgabe. Der reine Siedeschutz auf 94,97 °C benötigt beim Mittelstrom nur 48,5 MW Kühlleistung und 1,07 MW Antriebsleistung. Er kostet 203,6 Mio. € Investition und 0,289 Mrd. € Barwert, wahrt aber nicht das Ökosystem und wird nicht als Normalzustand gewählt.
 
-Der Referenzentwurf hat sechs Module. Fünf Module zu je 175,6 MW decken die Last, das sechste bildet die Reserve. Jedes betriebsbereite Modul führt etwa 0,46 m³/s. Bei 1,2 m/s ergibt sich ein rechnerischer Rohrdurchmesser von 0,70 m. Ein 8280 m³ großer Misch- und Pufferspeicher entspricht einer Stunde mittleren Quellstroms. Er allein garantiert keine Temperaturrampe. Die geplante Inbetriebnahme senkt den Kälteauslass mit höchstens 1 K/h. Der rechnerische Stresstest von 100 auf 9 °C dauert 91 Stunden und ist kein Wiederanlauf- oder Notfallnachweis. Ein Sensor stoppt die Rampe bei Überschreitung am Kontrollpunkt. Zwei Netzeinspeisungen und 48 Stunden Notstrom sind vorgesehen. Bei 40 % Wirkungsgrad und 9,8 kWh/L ergibt sich ein Diesel vorrat von rund 909.000 Litern.
+Der Endausbau besitzt zwölf Stränge. Im p90-Fall tragen elf die Last, einer ist Reserve. Im Mittelbetrieb modulieren fünf. Jede Ausbaustufe muss ihre Reserve vor dem Lastjahr prüfen. Der Stufenplan spart 225 Mio. € Barwert gegenüber sofortigem Endausbau, darf aber keine Sicherheitsstufe verzögern.
 
-Die Trockenkühler arbeiten bei heißem Quellwasser zuerst. Kältemaschinen senken danach die Temperatur auf 9 °C. Die Leistung wird erst mit gemessener Temperatur und erfasstem Durchfluss ausgebaut. Gegenüber dem sofortigen Bau der Endstufe spart dieser Stufenplan im Modell 112 Mio. € Barwert. Die Einsparung ist keine Freigabe für verzögerten Sicherheitsbau. Jedes Modul muss vor dem prognostizierten Lastjahr betriebsbereit und getestet sein.
+Ein Puffer von 8280 m³ entspricht einer Stunde Erwartungsstrom und erzwingt keine Temperaturrampe. Die geplante Inbetriebnahme senkt den Kälteauslass mit höchstens 1 K/h. Der Stresstest von 100 auf 9 °C dauert 91 Stunden und ist kein Wiederanlauf- oder Notfallnachweis. Sensoren stoppen die Rampe bei Überschreitung am Kontrollpunkt.
 
-## Sensitivität des Anlagenmaßstabs
+Ohne Kühlung erreicht das Beckenmodell nach 23 Minuten 20 °C. Die dynamische Rechnung verwendet 0,5 min Detektion, 5 min Generatorstart und 10 min bis voller Kühlleistung. Der Höchstwert beträgt 12,6 °C. Sechs Aggregate liefern die p90-Leistung, ein siebtes ist Reserve. Für 48 Stunden ergibt sich bei 40 % Wirkungsgrad und 9,8 kWh/L ein Dieselvorrat von 2,237 Mio. Litern, also 2.237 m³. Diese Werte sind Szenarioannahmen, keine Hersteller- oder Zuschaltnachweise.
 
-| Erfasster Anteil des mittleren Quellstroms | Kühlleistung | Strombedarf | Investition | Barwert 25 Jahre |
-| --- | ---: | ---: | ---: | ---: |
-| 100 % | 877,8 MW | 74,2 MW | 722 Mio. € | 2,938 Mrd. € |
-| 10 % | 87,8 MW | 7,4 MW | 85 Mio. € | 0,31 Mrd. € |
-| 1 % | 8,8 MW | 0,74 MW | 12 Mio. € | 0,036 Mrd. € |
-| 0,1 % | 0,88 MW | 0,074 MW | 2,0 Mio. € | 0,0049 Mrd. € |
+## Standort und Falsifikation
 
-Die kleinen Investitionswerte skalieren Tiefbau und Leitungen mit Potenzgesetzen, Antrieb und Wärmeübertragung dagegen direkt mit dem betroffenen Strom. Sie sind Szenarien, keine Zusicherung von Baukosten.
+Das Standort-Screening verlangt 8,19 ha, zweimal 182,7 MW unabhängig nutzbare Netzleistung und 2.237 m³ Diesellager. Luftführung, Rückverwirbelung, Schall und Plume sind zu untersuchen. Die Rückhaltung und Leckkontrolle folgt der AwSV [25]. Wasserrecht und FFH-Vorprüfung nach § 34 BNatSchG bleiben Zulassungsbedingungen [14,15,24]. Ein geeigneter Standort ist nicht nachgewiesen.
 
-Die untere Speichergrenze beträgt bei einem angenommenen Beckenvolumen von 25.000 m³ nur 0,0303 MW. Sie ignoriert den Wärmeabtransport durch den Quellabfluss und ist deshalb keine geeignete alleinige Auslegungsgrundlage. Umgekehrt führt der dokumentierte Hochwasserwert von 32,7 m³/s im unrealistisch konservativen Fall einer vollständig erwärmten Hochwasserströmung zu 12,48 GW. Diese Hülle deckt der Referenzentwurf nicht ab. Die Zuordnung der Anomalie zu Karstast, Abflussregime und betroffenem Volumenstrom ist deshalb die wichtigste Messaufgabe vor dem Bau.
+Dauerhaft bedeutet unbegrenzter Betrieb mit Wartung innerhalb der Hülle: höchstens 4,7 m³/s betroffener Volumenstrom, höchstens 100 °C am tiefen Zufluss, nachgewiesene Erfassung und externe Wärmesenke. Für 32,7 m³/s wären 12,48 GW für 9 °C erforderlich. Dieser Fall ist nicht abgedeckt. Eine endliche Anlage kann keine unbegrenzt wachsende Wärmezufuhr beherrschen.
 
-## Dauerhaftigkeit und Falsifikation
+Die alte Auslegung nur auf den Mittelstrom überschreitet in 38,57 % der vorhandenen 10.000 Ziehungen die 9-°C-Kapazität. Die p90-Reserve deckt die begrenzte Verteilung vollständig ab. Das ist keine Garantie für Extremhochwasser oder andere Wärmequellen. Auch ein Tarifwechsel von 138 auf 179 €/MWh erhöht den Barwert von 3,666 auf 4,174 Mrd. €. Bei 95 % Netzverfügbarkeit steigt er mit vollständigem Dieselersatz auf 3,817 Mrd. €.
 
-Dauerhaft bedeutet hier unbegrenzter Betrieb mit Wartung innerhalb einer ausdrücklich begrenzten Hülle: linearer Anstieg der tiefen Quelltemperatur von 9 auf 100 °C in zehn Jahren, danach höchstens 100 °C, höchstens 2,3 m³/s betroffener Volumenstrom und ausreichende Luftkühlung bei 35 °C. Eine endliche Anlage kann keine unbegrenzt wachsende vulkanische Leistung garantieren.
-
-Die Auslegung ist zu verwerfen oder zu vergrößern, wenn Tracer- und Durchflussmessungen einen größeren betroffenen Strom zeigen, die Temperatur nach Jahr zehn weiter ansteigt oder Hochwasser die Anomalie trägt. Sie kann verkleinert werden, wenn nur ein begrenzter Karstast betroffen ist. Jede Überschreitung der Sicherheitsmarge unter dem lokalen Siedepunkt, jedes Nichterreichen des 9-°C-Ziels und jede nachgewiesene Rückströmung der abgegebenen Wärme in denselben Wasserkreislauf falsifiziert den Erfolg der Anlage.
+Die Auslegung ist zu verwerfen oder zu vergrößern, wenn Tracer- und Durchflussmessungen einen größeren betroffenen Strom zeigen, die Temperatur nach Jahr zehn weiter ansteigt oder Hochwasser die Anomalie trägt. Sie darf verkleinert werden, wenn nur ein begrenzter Karstast betroffen ist. Jede Überschreitung der Siedemarge, jedes Nichterreichen des 9-°C-Ziels, jede Überschreitung von 1 K/h und jede Rückströmung der Abwärme in denselben Wasserkreislauf falsifiziert den Erfolg.

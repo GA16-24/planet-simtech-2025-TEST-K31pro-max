@@ -25,12 +25,18 @@ def main() -> None:
     tree_files = {part.decode("utf-8") for part in tree_raw.split(b"\0") if part}
     if set(tracked) != tree_files:
         raise SystemExit(f"Dateimenge oder Pfade stimmen nicht mit dem Commit überein: {len(tracked)} gegen {len(tree_files)}")
+    status_after = subprocess.run(["git", "status", "--porcelain"], cwd=ROOT, check=True, capture_output=True, text=True).stdout
+    if status_after.strip():
+        raise SystemExit(f"Die Prüfung hat den Arbeitsbaum verändert:\n{status_after}")
     hashes = {}
     for relative in tracked:
         path = ROOT / relative
         if not path.is_file():
             raise SystemExit(f"Versionierte Datei fehlt: {relative}")
-        hashes[relative] = hashlib.sha256(path.read_bytes()).hexdigest()
+        committed = subprocess.run(["git", "show", f"{commit}:{relative}"], cwd=ROOT, check=True, capture_output=True).stdout
+        if committed != path.read_bytes():
+            raise SystemExit(f"Arbeitsdatei weicht vom Commit ab: {relative}")
+        hashes[relative] = hashlib.sha256(committed).hexdigest()
     destination = ROOT / "review" / "rounds" / round_name
     destination.mkdir(parents=True, exist_ok=True)
     revision = {

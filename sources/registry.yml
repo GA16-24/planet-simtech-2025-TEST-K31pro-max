@@ -145,3 +145,15 @@
   url: https://www.umweltbundesamt.de/themen/co2-emissionen-pro-kilowattstunde-strom-2024
   accessed: 07.11.2026
   use: 363 g CO2/kWh im deutschen Strommix 2024, Emissionsszenarien
+- id: 24
+  author: Bundesrepublik Deutschland
+  title: Bundesnaturschutzgesetz, § 34, Verträglichkeitsprüfung
+  url: https://www.gesetze-im-internet.de/bnatschg_2009/__34.html
+  accessed: 07.11.2026
+  use: Prüfpflicht und Verbot bei erheblichen Beeinträchtigungen von Natura-2000-Gebieten
+- id: 25
+  author: Bundesrepublik Deutschland
+  title: Verordnung über Anlagen zum Umgang mit wassergefährdenden Stoffen, § 18, Rückhaltung
+  url: https://www.gesetze-im-internet.de/awsv/__18.html
+  accessed: 07.11.2026
+  use: Rückhaltung von wassergefährdenden Stoffen bei der Diesellagerung

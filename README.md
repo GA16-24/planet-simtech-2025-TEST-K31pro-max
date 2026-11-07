@@ -6,9 +6,9 @@ Das private Repository enthält einen deutschen Bericht, das vollständige Reche
 
 ## Zentrale Antwort
 
-Die Lösung ist eine zweistufige, modular aufgebaute Vollstromkühlung. Direkte Trockenkühlung nutzt die hohe Temperaturdifferenz zuerst. Kältemaschinen bringen das Wasser danach auf 9 °C. Sechs Module stellen im Auslegungsjahr fünf betriebsnotwendige Module und eine Reserve. Die Wärme einschließlich Kondensator- und Hilfsenergie wird an Luft abgegeben, nicht an Blau oder Grundwasser.
+Die Lösung ist eine zweistufige, modular aufgebaute Vollstromkühlung. Direkte Trockenkühlung nutzt die hohe Temperaturdifferenz zuerst. Kältemaschinen bringen das Wasser danach auf 9 °C. Die Wärme einschließlich Kondensator- und Hilfsenergie wird an Luft abgegeben, nicht an Blau oder Grundwasser. Im p90-Fall tragen elf Stränge die Last, ein zwölfter ist Reserve. Im Mittelbetrieb modulieren fünf.
 
-Im konservativen Fall eines vollständig betroffenen mittleren Quellstroms sind im zehnten Jahr 877,8 MW Kühlleistung erforderlich. Die isolierte Speicherrechnung liefert dagegen nur 0,0303 MW. Der Unterschied ist der wichtigste wissenschaftliche Befund. Vor der endgültigen Dimensionierung müssen Durchfluss und betroffener Karstast gemessen werden.
+Im erwarteten Vollstromszenario sind im zehnten Jahr 877,8 MW Kühlleistung erforderlich. Für das historische 90-Prozent-Abflussquantil von 4,7 m³/s werden 1.793,7 MW benötigt und mit 20 % Reserve 2.152,5 MW installiert. Die isolierte Speicherrechnung liefert dagegen nur 0,0303 MW. Der Unterschied ist der wichtigste wissenschaftliche Befund. Vor der endgültigen Dimensionierung müssen Durchfluss, betroffener Karstast, Netzanschluss und Standort geprüft werden.
 
 ## Dateien
 
@@ -39,7 +39,7 @@ make presentation
 make verify
 ```
 
-`make model` erzeugt alle wissenschaftlichen Zahlen, Tabellen und Abbildungen. `make report` erzeugt den Bericht und prüft das PDF. `make presentation` erzeugt Folien, Video, Untertitel und Zeitnachweise. `make verify` prüft Modell, Dokumente, Video und formale Anforderungen erneut.
+`make model` erzeugt alle wissenschaftlichen Zahlen, Tabellen und Abbildungen. `make report` erzeugt den Bericht und prüft das PDF. `make presentation` erzeugt Folien, Video, Untertitel und Zeitnachweise. `make verify` prüft Modell, Dokumente, Video und formale Anforderungen erneut. Nach einer Änderung des Sprechtexts wird die deutsche Sprachausgabe mit `bash scripts/build_presentation.sh --regenerate-tts` neu erzeugt. Danach erfolgt die Medienprüfung erst nach einer aktuellen Echtzeit-Wiedergabeprobe.
 
 Der Dateiname verwendet die Testkennung `TEST-K31pro-max`, weil keine offizielle Team-ID vorliegt. Vor einer realen Abgabe muss ein berechtigtes Team diese Kennung in Deckblatt und Dateiname durch seine eigene ID ersetzen.
 

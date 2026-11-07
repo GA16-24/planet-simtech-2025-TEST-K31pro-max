@@ -50,6 +50,10 @@ Heatpipes oder geschlossene Wasserleitungen könnten Wärme aus der Tiefe zu Rad
 
 Die passive Anordnung braucht wenig Hilfsenergie. Ihre Leistung ist durch Temperaturdifferenz und Wetter begrenzt. Bei warmer Luft fehlt die treibende Differenz für eine Kühlung auf den kalten Normalzustand. H7 kann Hilfsenergie sparen, ist aber ohne Wärmepumpe nicht ganzjährig ausreichend.
 
+## Skalierung nach der Wärmebilanz
+
+Der ursprünglich als begrenzter Teilkreislauf formulierte H1 wird nicht verworfen, sondern auf den gesamten betroffenen Strom skaliert. Erst die Bilanz entscheidet, ob ein kleiner Teilstrom genügt. Ohne Nachweis eines begrenzten heißen Astes wird die Vollstromvariante verwendet. Die p90-Kapazität wird anschließend mit 20 % Reserve ausgelegt; der erwartete Verbrauch folgt weiterhin dem mittleren Abfluss.
+
 ## Vorläufige Auswahlregel
 
 Ein Ansatz kommt nur weiter, wenn er die Wärmebilanz am tiefen Erwärmungspunkt und am Beckenausfluss schließt, den Normalzustand ganzjährig halten kann und bei einem nachweisbaren Einzelfehler nicht sofort den Siedepunkt zulässt. Die endgültige Auswahl erfolgt erst nach einheitlicher Dimensionierung, Kostenrechnung, Unsicherheitsanalyse und Vergleich der Umweltfolgen.

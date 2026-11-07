@@ -1,12 +1,13 @@
 from __future__ import annotations
 
+import copy
 import unittest
 
 import yaml
 
 import numpy as np
 
-from core import backup_fuel_liters, cooling_stage, economic_schedule, planned_return_temperature_c, required_cooling_mw, source_temperature_c, storage_heating_power_mw, variable_capex_eur
+from core import backup_fuel_liters, cooling_stage, economic_schedule, npv, planned_return_temperature_c, required_cooling_mw, source_temperature_c, storage_heating_power_mw, variable_capex_eur
 from validation import run_validation
 
 
@@ -42,12 +43,38 @@ class ModelTests(unittest.TestCase):
         temperature = planned_return_temperature_c(time_h, self.p)
         self.assertEqual(temperature[-1], self.p["scenario"]["target_temperature_c"])
         self.assertLessEqual(float(np.max(np.abs(np.diff(temperature) / np.diff(time_h)))), 1.0 + 1e-12)
-        expected_fuel = cooling_stage(10.0, self.p).electricity_mw * 1000.0 * self.p["plant"]["backup_duration_hours"] / (self.p["plant"]["backup_thermal_efficiency"] * self.p["plant"]["diesel_energy_kwh_l"])
+        design_ratio = self.p["hydrology"]["design_discharge_m3_s"] / self.p["water"]["discharge_m3_s"]
+        expected_fuel = cooling_stage(10.0, self.p, affected_fraction=design_ratio).electricity_mw * 1000.0 * self.p["plant"]["backup_duration_hours"] / (self.p["plant"]["backup_thermal_efficiency"] * self.p["plant"]["diesel_energy_kwh_l"])
         self.assertAlmostEqual(backup_fuel_liters(self.p), expected_fuel, places=6)
-        self.assertAlmostEqual(backup_fuel_liters(self.p), 908657.1869030809, places=6)
+        self.assertGreater(backup_fuel_liters(self.p), 2e6)
+
+    def test_design_capacity(self) -> None:
+        ratio = self.p["hydrology"]["design_discharge_m3_s"] / self.p["water"]["discharge_m3_s"]
+        design = cooling_stage(10.0, self.p, affected_fraction=ratio)
+        installed = design.total_mw * (1.0 + self.p["plant"]["reserve_fraction"])
+        self.assertAlmostEqual(design.total_mw, 999.702 * 4.7 * 4195.14 * 91.0 / 1e6, places=9)
+        self.assertGreater(installed, design.total_mw)
+        self.assertEqual(self.p["plant"]["module_count"], self.p["plant"]["required_modules"] + 1)
+
+    def test_evaporative_has_summer_chiller(self) -> None:
+        stage = cooling_stage(10.0, self.p, technology="evaporative")
+        self.assertGreater(stage.chiller_mw, 0.0)
+        self.assertLess(stage.dry_mw, stage.total_mw)
+        self.assertAlmostEqual(stage.air_rejection_mw, stage.total_mw + stage.electricity_mw, places=9)
+
+    def test_backup_shortfall_increases_cost(self) -> None:
+        varied = copy.deepcopy(self.p)
+        varied["plant"]["availability"] = 0.95
+        rows = economic_schedule(varied, "hybrid", backup_shortfall=True)
+        self.assertGreater(npv(rows), npv(economic_schedule(self.p, "hybrid")))
+        self.assertGreater(rows[10]["backup_fuel_liters"], 0.0)
+        self.assertEqual(rows[10]["backup_cost_eur"], rows[10]["backup_fuel_liters"] * self.p["plant"]["diesel_price_eur_l"])
 
     def test_validation_suite(self) -> None:
-        self.assertTrue(run_validation(self.p)["all_checks_passed"])
+        result = run_validation(self.p)
+        self.assertTrue(result["all_checks_passed"])
+        self.assertLess(result["recovery_peak_temperature_c"], 20.0)
+        self.assertGreater(result["recovery_margin_minutes"], 0.0)
 
 
 if __name__ == "__main__":

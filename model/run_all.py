@@ -17,6 +17,7 @@ from core import (
     cooling_stage,
     cumulative_capex_eur,
     dilution_flow_m3_s,
+    design_flow_ratio,
     economic_schedule,
     evaporation_kg_s,
     heating_rate_k_per_year,
@@ -90,6 +91,7 @@ def alternative_result(p: dict[str, Any], technology: str, name: str, verdict: s
         "emissions_tco2_year": final["electricity_mwh"] * p["emissions"]["carbon_intensity_tco2_mwh"],
         "annual_water_m3": final["water_m3"],
         "annual_operating_eur": final["net_operation_eur"],
+        "external_air_rejection_mw": 0.0 if technology == "dilution" else cooling_stage(p["scenario"]["forecast_years"], p, technology=technology).air_rejection_mw,
         "npv_25y_eur": npv(rows),
         "schedule": rows,
     }
@@ -125,7 +127,7 @@ def coupled_npv(p: dict[str, Any], discharge: float, cop: float, capex_multiplie
         variable = (
             parts["exchanger"] * flow_ratio
             + parts["chiller"] * flow_ratio
-            + (dry + condenser) * 1000.0 * cost["dry_cooler_eur_kw"] * (1.0 + plant["reserve_fraction"])
+            + (dry + condenser) * 1000.0 * cost["dry_cooler_eur_kw"] * (1.0 + plant["reserve_fraction"]) * design_flow_ratio(p)
             + parts["backup_power"] * backup_ratio
         )
         fixed = (
@@ -158,14 +160,26 @@ def main() -> None:
     validation["coupled_npv_error_eur"] = abs(baseline_coupled_npv - npv(economic_schedule(p, "hybrid")))
     assert validation["coupled_npv_error_eur"] < 1e-6
 
+    design_p = copy.deepcopy(p)
+    design_p["water"]["discharge_m3_s"] = p["hydrology"]["design_discharge_m3_s"]
+    design_stage = cooling_stage(final_year, design_p)
+    design_rows = economic_schedule(design_p, "hybrid")
+    assert abs(cumulative_capex_eur(final_year, p) - cumulative_capex_eur(final_year, design_p)) < 1e-6
+    guard_p = copy.deepcopy(p)
+    guard_p["scenario"]["target_temperature_c"] = p["hydrology"]["surface_saturation_c"] - p["hydrology"]["boiling_margin_k"]
+    guard_p["hydrology"]["design_discharge_m3_s"] = guard_p["water"]["discharge_m3_s"]
+    guard_stage = cooling_stage(final_year, guard_p)
+    guard_rows = economic_schedule(guard_p, "hybrid")
+    evaporative_stage = cooling_stage(final_year, p, technology="evaporative")
+
     alternatives = [
         alternative_result(p, "hybrid", "H1 Zweistufige Vollstromkühlung", "Referenz, dauerhaft innerhalb der Auslegungshülle"),
-        alternative_result(p, "evaporative", "H2 Geschlossene Verdunstungskühlung", "Physikalisch wirksam, aber Wasserverlust und Hygieneregeln"),
+        alternative_result(p, "evaporative", "H2 Verdunstung mit Kältestufe", "Physikalisch gleichwertig im Szenario, aber Wasserverlust, Hygiene und Stromemissionen"),
         alternative_result(p, "dilution", "H3 Kaltwasserzumischung", "Keine ausreichende Kaltwasserquelle belegt"),
     ]
     hybrid_staged = economic_schedule(p, "hybrid", upfront=False)
     hybrid_upfront = economic_schedule(p, "hybrid", upfront=True)
-    evaporation = evaporation_kg_s(final_q, p)
+    evaporation = evaporation_kg_s(evaporative_stage.dry_mw, p)
     dilution = dilution_flow_m3_s(final_year, p)
     passive_area = passive_area_m2(final_q, p)
     storage_mw = storage_heating_power_mw(p)
@@ -222,8 +236,21 @@ def main() -> None:
     for availability in [0.95, 0.98, 1.0]:
         varied = copy.deepcopy(p)
         varied["plant"]["availability"] = availability
+        rows = economic_schedule(varied, "hybrid", backup_shortfall=True)
+        availability_scenarios.append({
+            "availability": availability,
+            "npv_25y_eur": npv(rows),
+            "final_grid_electricity_mwh": rows[final_year]["electricity_mwh"],
+            "final_backup_electricity_mwh": rows[final_year]["backup_electricity_mwh"],
+            "final_backup_fuel_liters": rows[final_year]["backup_fuel_liters"],
+        })
+
+    tariff_scenarios = []
+    for tariff in [p["plant"]["electricity_price_eur_mwh"], p["plant"]["electricity_price_high_eur_mwh"]]:
+        varied = copy.deepcopy(p)
+        varied["plant"]["electricity_price_eur_mwh"] = tariff
         rows = economic_schedule(varied, "hybrid")
-        availability_scenarios.append({"availability": availability, "npv_25y_eur": npv(rows), "final_electricity_mwh": rows[final_year]["electricity_mwh"]})
+        tariff_scenarios.append({"price_eur_mwh": tariff, "npv_25y_eur": npv(rows), "annual_energy_cost_eur": rows[final_year]["energy_cost_eur"]})
 
     weather_scenarios = []
     for air_temperature in [30.0, 35.0, 38.0]:
@@ -273,7 +300,7 @@ def main() -> None:
     values = [row["final_cooling_mw"] for row in sensitivity]
     positions = np.arange(len(labels))
     ax.barh(positions, values, color=[BLUE if value <= final_q else ORANGE for value in values])
-    ax.axvline(final_q, color=RED, ls="--", lw=1.4, label=f"Referenz {final_q:.1f} MW")
+    ax.axvline(final_q, color=RED, ls="--", lw=1.4, label=f"Referenz {final_q:.1f} MW".replace(".", ","))
     ax.set_yticks(positions, labels)
     ax.invert_yaxis()
     ax.set(xlabel="Kühlleistung im Prognosejahr in MW", title="Deterministische Sensitivität")
@@ -293,14 +320,16 @@ def main() -> None:
     fractions = np.logspace(-4, 0, 200)
     fig, ax = plt.subplots(figsize=(8.6, 3.8))
     ax.loglog(fractions * 100.0, final_q * fractions, color=BLUE, lw=2)
-    ax.axhline(storage_mw, color=GREEN, ls="--", label=f"Speichergrenze {storage_mw:.3f} MW")
-    ax.axvline(1.0, color=ORANGE, ls=":", label="1 %-Teilstrom")
+    ax.axhline(storage_mw, color=GREEN, ls="--", label=f"Speichergrenze {storage_mw:.3f} MW".replace(".", ","))
+    ax.axvline(1.0, color=ORANGE, ls=":", label="1-%-Teilstrom")
     ax.set(xlabel="Erfasster Anteil des Quellstroms in %", ylabel="Kühlleistung in MW", title="Maßstab der Anlage hängt vom erfassten Strom ab")
+    ax.set_ylim(bottom=0.02)
+    ax.set_yticks([0.03, 0.1, 1.0, 10.0, 100.0, 1000.0], ["0,03", "0,1", "1", "10", "100", "1000"])
     ax.legend(frameon=False)
     save_figure(fig, "fig06_teilstrom")
 
     results = {
-        "model_version": "1.1.0",
+        "model_version": "2.0.0",
         "parameters": p,
         "baseline": {
             "heating_rate_k_year": heating_rate_k_per_year(p),
@@ -322,9 +351,10 @@ def main() -> None:
             "npsh_design_margin_m": (p["plant"]["intake_design_pressure_bar"] - 1.01325) * 1e5 / (p["water"]["density_kg_m3"] * p["plant"]["gravity_m_s2"]),
             "flood_stress_cooling_mw": float(required_cooling_mw(final_year, p) * p["hydrology"]["discharge_flood_m3_s"] / p["water"]["discharge_m3_s"]),
             "return_buffer_m3": p["water"]["discharge_m3_s"] * p["ecology"]["return_buffer_hours"] * 3600.0,
-            "module_pipe_diameter_m": float(np.sqrt(4.0 * p["water"]["discharge_m3_s"] / p["plant"]["required_modules"] / (np.pi * p["plant"]["module_design_velocity_m_s"]))),
-            "reserve_installed_mw": final_q * (1 + p["plant"]["reserve_fraction"]),
-            "per_module_required_mw": final_q / p["plant"]["required_modules"],
+            "module_pipe_diameter_m": float(np.sqrt(4.0 * p["hydrology"]["design_discharge_m3_s"] / p["plant"]["required_modules"] / (np.pi * p["plant"]["module_design_velocity_m_s"]))),
+            "reserve_installed_mw": design_stage.total_mw * (1 + p["plant"]["reserve_fraction"]),
+            "mean_flow_capacity_mw": final_q * (1 + p["plant"]["reserve_fraction"]),
+            "per_module_required_mw": design_stage.total_mw / p["plant"]["required_modules"],
             "storage_lower_bound_mw": storage_mw,
             "evaporation_kg_s": evaporation,
             "evaporation_m3_year": evaporation / p["water"]["density_kg_m3"] * 365 * 24 * 3600,
@@ -339,9 +369,39 @@ def main() -> None:
             "final_capex_eur": cumulative_capex_eur(final_year, p, "hybrid"),
             "final_annual_operating_eur": hybrid_staged[final_year]["net_operation_eur"],
         },
+        "design": {
+            "flow_m3_s": design_p["water"]["discharge_m3_s"],
+            "required_cooling_mw": design_stage.total_mw,
+            "dry_cooling_mw": design_stage.dry_mw,
+            "chiller_mw": design_stage.chiller_mw,
+            "electricity_mw": design_stage.electricity_mw,
+            "condenser_heat_mw": design_stage.condenser_mw,
+            "air_rejection_mw": design_stage.air_rejection_mw,
+            "air_face_area_m2": design_stage.air_rejection_mw * 1e6 / (p["air"]["face_velocity_m_s"] * p["air"]["density_kg_m3"] * p["air"]["specific_heat_j_kgk"] * p["air"]["temperature_rise_k"]),
+            "air_service_area_m2": design_stage.air_rejection_mw * 1e6 / (p["air"]["face_velocity_m_s"] * p["air"]["density_kg_m3"] * p["air"]["specific_heat_j_kgk"] * p["air"]["temperature_rise_k"]) * p["air"]["service_area_factor"],
+            "air_volume_flow_m3_s": design_stage.air_rejection_mw * 1e6 / (p["air"]["density_kg_m3"] * p["air"]["specific_heat_j_kgk"] * p["air"]["temperature_rise_k"]),
+            "installed_capacity_mw": design_stage.total_mw * (1 + p["plant"]["reserve_fraction"]),
+            "required_modules": p["plant"]["required_modules"],
+            "installed_modules": p["plant"]["module_count"],
+            "required_backup_aggregates": p["failure"]["backup_required_aggregates"],
+            "installed_backup_aggregates": p["failure"]["backup_installed_aggregates"],
+            "backup_fuel_m3": backup_fuel_liters(p) / 1000.0,
+            "annual_operating_eur": design_rows[final_year]["net_operation_eur"],
+            "npv_25y_eur": npv(design_rows),
+        },
+        "boil_guard": {
+            "target_temperature_c": guard_p["scenario"]["target_temperature_c"],
+            "required_cooling_mw": guard_stage.total_mw,
+            "electricity_mw": guard_stage.electricity_mw,
+            "air_rejection_mw": guard_stage.air_rejection_mw,
+            "final_capex_eur": cumulative_capex_eur(final_year, guard_p),
+            "npv_25y_eur": npv(guard_rows),
+            "ecological_normal_state_preserved": False,
+        },
         "alternatives": alternatives,
         "flow_fraction_scenarios": flow_fraction_scenarios,
         "availability_scenarios": availability_scenarios,
+        "tariff_scenarios": tariff_scenarios,
         "weather_scenarios": weather_scenarios,
         "sensitivity": sensitivity,
         "uncertainty": {
@@ -352,9 +412,14 @@ def main() -> None:
             "npv_p05_eur": float(np.quantile(npv_samples, 0.05)),
             "npv_p50_eur": float(np.quantile(npv_samples, 0.50)),
             "npv_p95_eur": float(np.quantile(npv_samples, 0.95)),
+            "mean_capacity_overload_fraction": float(np.mean(q_samples > final_q * (1 + p["plant"]["reserve_fraction"]))),
+            "design_overload_fraction": float(np.mean(q_samples > design_stage.total_mw * (1 + p["plant"]["reserve_fraction"]))),
+            "design_coverage_fraction": float(np.mean(q_samples <= design_stage.total_mw * (1 + p["plant"]["reserve_fraction"]))),
+            "coverage_scope": "Nur innerhalb der auf 0,7 bis 4,7 m³/s begrenzten Dreiecksverteilung. Keine Wahrscheinlichkeitsaussage für Extremhochwasser oder andere Wärmequellen.",
         },
         "validation": validation,
         "hybrid_schedule": hybrid_staged,
+        "design_schedule": design_rows,
     }
     with (OUT / "results.json").open("w", encoding="utf-8") as handle:
         json.dump(jsonable(results), handle, ensure_ascii=False, indent=2)
@@ -372,9 +437,20 @@ def main() -> None:
     macros = {
         "QFinal": (final_q, 1),
         "QFinalFull": (final_q, 3),
+        "DesignCooling": (design_stage.total_mw, 1),
+        "DesignElectric": (design_stage.electricity_mw, 1),
+        "DesignAirRejection": (design_stage.air_rejection_mw, 1),
+        "DesignNpv": (npv(design_rows) / 1e9, 3),
+        "DesignOpex": (design_rows[final_year]["net_operation_eur"] / 1e6, 1),
+        "GuardTarget": (guard_p["scenario"]["target_temperature_c"], 2),
+        "GuardCooling": (guard_stage.total_mw, 1),
+        "GuardElectric": (guard_stage.electricity_mw, 2),
+        "GuardCapex": (cumulative_capex_eur(final_year, guard_p) / 1e6, 1),
+        "GuardNpv": (npv(guard_rows) / 1e9, 3),
         "KDurchfluss": (thermal_capacitance_mw_per_k(p), 3),
         "QDry": (final_stage.dry_mw, 1),
         "QChiller": (final_stage.chiller_mw, 1),
+        "QChillerFull": (final_stage.chiller_mw, 3),
         "PElectric": (final_stage.electricity_mw, 1),
         "EElectric": (final_stage.electricity_mw * HOURS_PER_YEAR / 1000, 1),
         "PChiller": (final_stage.chiller_mw / p["plant"]["chiller_cop"], 3),
@@ -384,25 +460,32 @@ def main() -> None:
         "MaintenanceFinal": (hybrid_staged[final_year]["maintenance_eur"] / 1e6, 2),
         "QCondenser": (final_stage.condenser_mw, 1),
         "QAirRejection": (final_stage.air_rejection_mw, 1),
-        "AirFaceArea": (results["baseline"]["air_face_area_m2"], 0),
-        "AirServiceArea": (results["baseline"]["air_service_area_m2"] / 10000, 2),
+        "AirFaceArea": (results["design"]["air_face_area_m2"], 0),
+        "AirServiceArea": (results["design"]["air_service_area_m2"] / 10000, 2),
+        "AirVolumeFlow": (results["design"]["air_volume_flow_m3_s"], 0),
         "EmissionsHybrid": (results["baseline"]["emissions_tco2_year"] / 1000, 1),
         "EmissionsEvap": (alternatives[1]["emissions_tco2_year"] / 1000, 1),
         "EmissionsDelta": ((results["baseline"]["emissions_tco2_year"] - alternatives[1]["emissions_tco2_year"]) / 1000, 1),
         "FuelReserve": (results["baseline"]["backup_fuel_liters"] / 1e6, 3),
+        "DieselVolume": (results["design"]["backup_fuel_m3"], 0),
         "ReturnRampHours": (results["baseline"]["return_ramp_hours"], 0),
         "ReturnRampRate": (results["baseline"]["return_ramp_max_rate_k_h"], 1),
+        "RecoveryPeak": (validation["recovery_peak_temperature_c"], 1),
+        "RecoveryMargin": (validation["recovery_margin_minutes"], 1),
         "NpshMargin": (results["baseline"]["npsh_design_margin_m"], 1),
         "AvailabilityLowNpv": (availability_scenarios[0]["npv_25y_eur"] / 1e9, 2),
         "AvailabilityHighNpv": (availability_scenarios[-1]["npv_25y_eur"] / 1e9, 2),
+        "TariffHighNpv": (tariff_scenarios[-1]["npv_25y_eur"] / 1e9, 3),
         "WeatherHighNpv": (weather_scenarios[-1]["npv_25y_eur"] / 1e9, 2),
         "QFloodStress": (results["baseline"]["flood_stress_cooling_mw"] / 1000, 2),
         "BufferVolume": (results["baseline"]["return_buffer_m3"], 0),
         "PipeDiameter": (results["baseline"]["module_pipe_diameter_m"], 2),
-        "QReserve": (final_q * 1.2, 1),
-        "QModule": (final_q / 5, 1),
+        "QReserve": (results["baseline"]["reserve_installed_mw"], 1),
+        "QModule": (results["baseline"]["per_module_required_mw"], 1),
         "QStorage": (storage_mw, 4),
         "EvapRate": (evaporation, 1),
+        "EvapDry": (evaporative_stage.dry_mw, 1),
+        "EvapChiller": (evaporative_stage.chiller_mw, 1),
         "EvapAnnual": (evaporation / p["water"]["density_kg_m3"] * 365 * 24 * 3600 / 1e6, 2),
         "EvapFraction": (100 * evaporation / p["water"]["density_kg_m3"] / p["water"]["discharge_m3_s"], 1),
         "DilutionFlow": (dilution, 1),
@@ -411,6 +494,7 @@ def main() -> None:
         "CapexFinal": (cumulative_capex_eur(final_year, p, "hybrid") / 1e6, 0),
         "OpexFinal": (hybrid_staged[final_year]["net_operation_eur"] / 1e6, 1),
         "NpvHybrid": (npv(hybrid_staged) / 1e9, 2),
+        "NpvHybridFull": (npv(hybrid_staged) / 1e9, 3),
         "NpvUpfront": (npv(hybrid_upfront) / 1e9, 2),
         "NpvSaving": ((npv(hybrid_upfront) - npv(hybrid_staged)) / 1e6, 0),
         "NpvEvap": (alternatives[1]["npv_25y_eur"] / 1e9, 2),
@@ -421,6 +505,8 @@ def main() -> None:
         "QSampleHigh": (results["uncertainty"]["cooling_p95_mw"], 0),
         "NpvSampleLow": (results["uncertainty"]["npv_p05_eur"] / 1e9, 2),
         "NpvSampleHigh": (results["uncertainty"]["npv_p95_eur"] / 1e9, 2),
+        "MeanOverloadPercent": (100 * results["uncertainty"]["mean_capacity_overload_fraction"], 2),
+        "DesignOverloadPercent": (100 * results["uncertainty"]["design_overload_fraction"], 1),
     }
     with (GEN / "numbers.tex").open("w", encoding="utf-8") as handle:
         for name, (value, digits) in macros.items():
@@ -429,7 +515,7 @@ def main() -> None:
     with (GEN / "alternatives.tex").open("w", encoding="utf-8") as handle:
         handle.write("\\begin{tabular}{@{}p{51mm}rrr@{}}\n\\toprule\nGröße im Auslegungsjahr & H1 Hybrid & H2 Verdunstung & H3 Zumischung \\\\\n\\midrule\n")
         rows = [
-            ("Wärmeabfuhr in MW", "required_cooling_mw", 1.0, 1),
+            ("Kühlleistung (Wärmeentzug) in MW", "required_cooling_mw", 1.0, 1),
             ("Investition in Mio. €", "installed_capex_eur", 1e6, 1),
             ("Elektrische Leistung in MW", "electricity_mw", 1.0, 1),
             ("Strom pro Jahr in GWh", "electricity_mwh", 1000.0, 1),
@@ -438,6 +524,8 @@ def main() -> None:
         for label, key, scale, digits in rows:
             values = [f"{alt['schedule'][final_year][key] / scale:.{digits}f}".replace(".", ",") for alt in alternatives]
             handle.write(f"{label} & {' & '.join(values)} \\\\\n")
+        air_values = [f"{alt['external_air_rejection_mw']:.1f}".replace(".", ",") for alt in alternatives]
+        handle.write("Davon Wärmeabgabe an Luft in MW & " + " & ".join(air_values) + " \\\\\n")
         handle.write("Zusatzwasser pro Jahr & 0 m³ & ")
         handle.write(f"{alternatives[1]['annual_water_m3']/1e6:.2f}".replace(".", ",") + " Mio. m³ & " + f"{alternatives[2]['annual_water_m3']/1e9:.3f}".replace(".", ",") + " Mrd. m³ \\\\\n")
         npv_values = [f"{alt['npv_25y_eur']/1e9:.3f}".replace(".", ",") for alt in alternatives]
@@ -453,7 +541,7 @@ def main() -> None:
     with (GEN / "flow_fractions.tex").open("w", encoding="utf-8") as handle:
         handle.write("\\begin{tabular}{@{}lrrrr@{}}\n\\toprule\nAnteil & Kühlung & Elektrik & Investition & Barwert \\\\\n & in MW & in MW & in Mio. € & in Mrd. € \\\\\n\\midrule\n")
         for row in flow_fraction_scenarios:
-            handle.write(f"{100*row['affected_fraction']:.0f} \\% & {row['final_cooling_mw']:.1f} & {row['electricity_mw']:.2f} & {row['final_capex_eur']/1e6:.0f} & {row['npv_25y_eur']/1e9:.4f} \\\\\n".replace(".", ","))
+            handle.write(f"{100*row['affected_fraction']:.1f} \\% & {row['final_cooling_mw']:.1f} & {row['electricity_mw']:.2f} & {row['final_capex_eur']/1e6:.0f} & {row['npv_25y_eur']/1e9:.4f} \\\\\n".replace(".", ","))
         handle.write("\\bottomrule\n\\end{tabular}\n")
 
     manifest = {}
