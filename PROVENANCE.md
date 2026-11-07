@@ -10,6 +10,18 @@ Die Implementierung, Rechercheunterstützung, Textentwürfe, Programmierung, Abb
 
 Die Verantwortung für die Verwendung der Ausgaben bleibt bei der einreichenden menschlichen Person. Alle übernommenen Zahlen benötigen eine externe Primärquelle oder eine reproduzierbare Rechnung. KI-Aussagen allein gelten nicht als wissenschaftliche Belege.
 
+Konkrete KI-Läufe:
+
+| Zweck | Modell und Einstellung | Produkt | Prüfung |
+| --- | --- | --- | --- |
+| Regeln und Layout | Kimi K3.1 Pro, `thinking=max` | `research_notes/Blautopf Wärmeschutz/rules_and_format.md` | Abgleich mit offiziellen PDFs und D4RT-Seitenbild |
+| Physik und Messdaten | Kimi K3.1 Pro, `thinking=max` | `research_notes/Blautopf Wärmeschutz/physical_system.md` | Quellen- und Einheitenabgleich durch den implementierenden Agenten |
+| Technik und Wirtschaftlichkeit | DeepSeek-V4.1-Flash, `reasoning_effort=max` | `research_notes/Blautopf Wärmeschutz/engineering_economics.md` | Quellenabgleich, keine Council-Stimme |
+| Hypothesen und Rechenmodell | Kimi K3.1 Pro, `thinking=max` | `docs/hypothesen.md`, `model/`, `output/model/` | Einheiten-, Energie-, Grenzfall- und Renderprüfungen |
+| Berichtssynthese | Kimi K3.1 Pro, `thinking=max` | `reports/Blautopf Wärmeschutz.md` | Redaktion und Zahlenabgleich durch den implementierenden Agenten |
+| Präsentation und Vertonung | Kimi K3.1 Pro, `thinking=max`, und eSpeak NG 1.52.0 | `presentation/`, PDF-Folien, Sprechtext und MP4 | Sichtprüfung, `ffprobe`, vollständige Decodierung und Laufzeitmessung |
+| Council | DeepSeek-V4.1-Flash, `reasoning_effort=max`, und separates Kimi K3.1 Pro, `thinking=max` | Reviews nach Runden in `review/rounds/` | Unabhängige read-only Bewertungen derselben eingefrorenen Revision |
+
 ## Quellen- und Entscheidungsregister
 
 | Datum | Quelle oder Vorgang | Verwendung | Nachweis |

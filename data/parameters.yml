@@ -1,0 +1,97 @@
+scenario:
+  initial_temperature_c: 9.0
+  boiling_temperature_c: 100.0
+  forecast_years: 10.0
+  target_temperature_c: 9.0
+  horizon_years: 25
+  affected_flow_fraction: 1.0
+  source_temperature_cap_c: 100.0
+  pool_volume_m3: 25000.0
+  pool_volume_status: "Geometrische Rechenannahme für die untere Speichergrenze, keine Vermessung"
+  premise: "Lineare Tiefenerwärmung von 9 auf 100 °C in zehn Jahren, danach konservativ konstant 100 °C ohne Rückkopplung durch Kühlung"
+
+water:
+  density_kg_m3: 999.702
+  specific_heat_j_kgk: 4195.14
+  latent_heat_j_kg: 2450000.0
+  discharge_m3_s: 2.3
+  cold_dilution_temperature_c: 5.0
+  sources:
+    discharge: "Fan et al. 2023, Mittel 1952 bis 2021, LUBW Station 76273"
+    temperature: "Stadt Blaubeuren, etwa 9 °C, Szenarioanker"
+    properties: "NIST WebBook, flüssiges Wasser bei etwa 10 °C und 1,01325 bar"
+    latent_heat: "Ouellet und Caissie 2023, Screeningwert für Flussverdunstung"
+
+hydrology:
+  discharge_p10_m3_s: 0.7
+  discharge_p90_m3_s: 4.7
+  discharge_flood_m3_s: 32.7
+  summer_low_mean_m3_s: 1.2
+  pool_depth_m: 22.0
+  pool_depth_pressure_bar: 3.17007
+  pool_depth_saturation_c: 135.413
+  surface_saturation_c: 99.9743
+  affected_fraction_design_note: "Der Referenzfall erwärmt den gesamten mittleren Quellstrom. Hochwasser wird separat als nicht auslegungsdeckender Stresstest ausgewiesen."
+
+ecology:
+  maximum_return_rate_k_h: 1.0
+  return_buffer_hours: 1.0
+  design_temperature_c: 9.0
+  note: "Der Normzustand ist strenger als ein reines Siedeverbot. Die konkrete OGewV-Typzuordnung der Blau bleibt behördlich zu bestätigen."
+
+plant:
+  summer_design_air_c: 35.0
+  dry_cooler_approach_k: 5.0
+  condenser_temperature_c: 45.0
+  module_design_velocity_m_s: 1.2
+  chiller_cop: 5.0
+  dry_auxiliary_fraction: 0.015
+  pump_head_m: 12.0
+  pump_efficiency: 0.8
+  reserve_fraction: 0.2
+  module_count: 6
+  required_modules: 5
+  electricity_price_eur_mwh: 179.0
+  maintenance_fraction: 0.03
+  discount_rate: 0.03
+  replacement_year: 15
+  replacement_fraction: 0.25
+  heat_recovery_mw: 0.0
+  heat_recovery_hours: 4000.0
+  heat_value_eur_mwh: 60.0
+  gravity_m_s2: 9.81
+
+cost:
+  price_year: 2026
+  exchanger_eur_kw: 15.0
+  chiller_eur_kw: 500.0
+  dry_cooler_eur_kw: 120.0
+  evaporative_eur_kw: 80.0
+  dilution_pump_eur_kw: 1000.0
+  fixed_civil_eur: 80000000.0
+  controls_eur: 15000000.0
+  backup_power_eur: 60000000.0
+  engineering_contingency_fraction: 0.6
+  civil_scale_exponent: 0.65
+  controls_scale_exponent: 0.5
+  backup_scale_exponent: 1.0
+  water_price_eur_m3: 0.50
+  evaporative_hygiene_eur_year: 500000.0
+  evidence: "Exchanger vendor anchor and chiller literature range are documented separately. Dry coolers, civil works, backup power, multipliers and water price are explicit scenario estimates, not quotations."
+
+passive:
+  heat_transfer_w_m2k: 10.0
+  driving_temperature_k: 20.0
+
+uncertainty:
+  random_seed: 20261107
+  sample_count: 10000
+  discharge_low_m3_s: 0.7
+  discharge_mode_m3_s: 2.3
+  discharge_high_m3_s: 4.7
+  cop_low: 3.0
+  cop_mode: 5.0
+  cop_high: 6.5
+  capex_multiplier_sigma: 0.30
+  affected_fraction_low: 0.0001
+  affected_fraction_high: 1.0

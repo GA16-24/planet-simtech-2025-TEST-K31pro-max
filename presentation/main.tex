@@ -1,0 +1,194 @@
+\documentclass[aspectratio=169,17pt]{beamer}
+\usepackage[ngerman]{babel}
+\usepackage{fontspec}
+\setmainfont{Arial}
+\setsansfont{Arial}
+\usepackage{newtxmath}
+\renewcommand{\familydefault}{\sfdefault}
+\renewcommand{\rmdefault}{\sfdefault}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\input{../report/generated/numbers.tex}
+
+\definecolor{navy}{HTML}{102A3D}
+\definecolor{blue}{HTML}{176B87}
+\definecolor{orange}{HTML}{D97732}
+\definecolor{soft}{HTML}{EAF2F5}
+\definecolor{gray}{HTML}{64707A}
+\definecolor{green}{HTML}{3D7A57}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}{}
+\setbeamercolor{normal text}{fg=navy,bg=white}
+\setbeamercolor{frametitle}{fg=navy,bg=white}
+\setbeamerfont{frametitle}{size=\fontsize{26}{31},series=\bfseries}
+\setbeamerfont{normal text}{size=\fontsize{17}{21}}
+\setbeamersize{text margin left=8mm,text margin right=8mm}
+
+\newcommand{\slidefoot}[1]{\vfill{\fontsize{10.5}{13}\selectfont\color{gray}#1\par}}
+\newcommand{\bignumber}[2]{{\fontsize{34}{38}\selectfont\bfseries\color{blue}#1\par}\vspace{1mm}{\fontsize{14}{17}\selectfont\color{gray}#2\par}}
+\newcommand{\compactnumber}[2]{{\fontsize{26}{30}\selectfont\bfseries\color{blue}#1\par}\vspace{1mm}{\fontsize{12.5}{15}\selectfont\color{gray}#2\par}}
+\newcommand{\source}[1]{{\fontsize{10.5}{13}\selectfont\color{gray}#1\par}}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \vspace{13mm}
+  {\fontsize{42}{47}\selectfont\bfseries 878 Megawatt\par}
+  \vspace{6mm}
+  {\fontsize{22}{27}\selectfont Dauerhafte Kühlung für das Blautopf-Szenario\par}
+  \vfill
+  {\fontsize{14}{18}\selectfont PlaNeT SimTech, Science Slam\par}
+  {\fontsize{12}{15}\selectfont Team-ID TEST-K31pro-max, 07.11.2026\par}
+\end{frame}
+
+\begin{frame}{Ein Kelvin entscheidet}
+  \vspace{2mm}
+  \begin{columns}[T]
+    \column{0.52\textwidth}
+      \bignumber{9,646 MW}{Wärmeabfuhr pro Kelvin beim mittleren Quellstrom}
+      \vspace{3mm}
+      \begin{equation*}
+        \dot Q=\rho\,\dot V\,c_p\,\Delta T
+      \end{equation*}
+    \column{0.43\textwidth}
+      \bignumber{877,8 MW}{für 91 K im zehnten Prognosejahr}
+      \vspace{2mm}
+      {\fontsize{14}{17}\selectfont Das Szenario erwärmt das Tiefenwasser von 9 auf 100 °C. Der Entwurf kühlt den gesamten betroffenen Strom zurück auf 9 °C.\par}
+  \end{columns}
+  \slidefoot{Quellen und Rechnung [2,4], konservativer Vollstromfall.}
+\end{frame}
+
+\begin{frame}{Zwei Kontrollvolumen}
+  \begin{columns}[T]
+    \column{0.65\textwidth}
+      \includegraphics[width=\textwidth,height=32mm,keepaspectratio]{../report/figures/fig06_teilstrom.png}
+    \column{0.31\textwidth}
+      \bignumber{0,0303 MW}{Speicherrechnung ohne Abfluss}
+      \vspace{1mm}
+      {\fontsize{12}{15}\selectfont Der Unterschied entscheidet die Anlagengröße. Ein 1-\%-Teilstrom senkt die Last auf 8,8 MW.\par}
+  \end{columns}
+  \slidefoot{Eigene Rechnung mit Python und Kimi K3.1 Pro, Volumenannahme 25.000 m³.}
+\end{frame}
+
+\begin{frame}{Sieben physikalische Wege}
+  \renewcommand{\arraystretch}{1.0}
+  {\fontsize{11.5}{14}\selectfont
+  \begin{tabular}{@{}p{11mm}p{91mm}p{35mm}@{}}
+    \toprule
+    Weg & Entscheidender Befund & Urteil \\
+    \midrule
+    \rowcolor{soft} H1 & Trockene Hybridkühlung schließt die Wärmebilanz & Referenz \\
+    H2 & Verdunstung verbraucht 11,3 Mio. m³/a & ökologisch schlechter \\
+    H3 & Kaltwasserbedarf 52,3 m³/s & keine Quelle belegt \\
+    H4 & Karsteingriff braucht unbekannte Fließwege & Forschungsoption \\
+    H5 & Bypass lässt das Becken weiter heiß & unzureichend \\
+    H6 & Druck verschiebt nur den Siedepunkt & abgelehnt \\
+    H7 & Passive Fläche 4,39 km² bei Sommerluft & unzureichend \\
+    \bottomrule
+  \end{tabular}\par}
+  \slidefoot{Alternativenvergleich unter identischer Last, Berechnungen in \texttt{results.json}.}
+\end{frame}
+
+\begin{frame}{Die zweistufige Kühlung}
+  \centering
+  \resizebox{\textwidth}{!}{%
+  \begin{tikzpicture}[
+    stage/.style={draw=navy,rounded corners=1mm,align=center,minimum height=20mm,text width=35mm,font=\fontsize{15}{18}\selectfont},
+    flow/.style={-{latex},very thick,blue},
+    heat/.style={-{latex},very thick,orange}]
+    \node[stage] (source) {Tiefenwasser\\100 °C};
+    \node[stage,right=12mm of source] (dry) {Trockenkühler\\100 auf 40 °C\\578,8 MW};
+    \node[stage,right=12mm of dry] (chiller) {Kältemaschine\\40 auf 9 °C\\299,0 MW};
+    \node[stage,right=12mm of chiller] (buffer) {Puffer\\8280 m³\\höchstens 1 K/h};
+    \node[stage,above=15mm of dry,text width=46mm] (air) {Luft als externe Wärmesenke\\952,0 MW};
+    \draw[flow] (source) -- (dry);
+    \draw[flow] (dry) -- (chiller);
+    \draw[flow] (chiller) -- (buffer);
+    \draw[heat] (dry.north) -- (air.south -| dry.north);
+    \draw[heat] (chiller.north) -- (air.south -| chiller.north);
+  \end{tikzpicture}}
+  \vspace{1mm}
+
+  {\fontsize{12.5}{15}\selectfont Sechs Stränge in jeder Ausbaustufe, fünf im Betrieb und einer in Reserve. Jedes aktive Endmodul kühlt 0,46 m³/s.\par}
+  \slidefoot{Wärmebilanz einschließlich Kondensator- und Hilfsenergie [8], eigene Anlagenskizze.}
+\end{frame}
+
+\begin{frame}{Bei Ausfall zählen Minuten}
+  \begin{columns}[T]
+    \column{0.40\textwidth}
+      \bignumber{23 min}{bis 20 °C nach vollständigem Kühlungsausfall im zehnten Jahr}
+      \vspace{2mm}
+      {\fontsize{12.5}{15}\selectfont Ökologische Alarmschwelle, nicht die Siedezeit.\par}
+    \column{0.55\textwidth}
+      {\fontsize{13.5}{16}\selectfont
+      \begin{itemize}
+        \item sechs Stränge mit N+1-Reserve in jeder Ausbaustufe
+        \item zwei Netzeinspeisungen und Notstromreserve
+        \item unabhängige Temperatur- und Druckmessung
+        \item Mischpuffer für höchstens 1 K/h am Rücklauf
+      \end{itemize}\par}
+  \end{columns}
+  \slidefoot{Beckenvolumen 25.000 m³ als Rechenannahme, Zeitkonstante 3,02 h.}
+\end{frame}
+
+\begin{frame}{Der Preis des trockenen Weges}
+  \begin{columns}[T]
+    \column{0.62\textwidth}
+      \includegraphics[width=\textwidth,height=44mm,keepaspectratio]{../report/figures/fig03_kostenpfad.png}
+    \column{0.34\textwidth}
+      \vspace{1mm}
+      \compactnumber{719 Mio. €}{Investition einschließlich Reserve}
+      \vspace{2mm}
+      \compactnumber{2,90 Mrd. €}{Barwertkosten über 25 Jahre}
+      \vspace{2mm}
+      {\fontsize{12}{15}\selectfont Verdunstung kostet 0,78 Mrd. €, verbraucht aber 15,6 \% des Quellstroms.\par}
+  \end{columns}
+  \slidefoot{Szenario-Schätzungen in Euro von 2026, keine Angebote [13,16,18,19].}
+\end{frame}
+
+\begin{frame}{Die Hülle begrenzt das Versprechen}
+  \begin{columns}[T]
+    \column{0.63\textwidth}
+      \includegraphics[width=\textwidth,height=44mm,keepaspectratio]{../report/figures/fig04_sensitivitaet.png}
+    \column{0.33\textwidth}
+      \vspace{1mm}
+      \bignumber{12,48 GW}{Hochwasser-Stresstest bei 32,7 m³/s}
+      \vspace{2mm}
+      {\fontsize{12.5}{15}\selectfont Dieser Fall ist nicht abgedeckt. Auch weiter steigende Temperaturen erfordern einen neuen Entwurf.\par}
+  \end{columns}
+  \slidefoot{Abflussvarianten [2,3]. Der Referenzfall umfasst höchstens 2,3 m³/s betroffenen Strom.}
+\end{frame}
+
+\begin{frame}{Messung und Kühlentscheidung}
+  \renewcommand{\arraystretch}{1.0}
+  {\fontsize{12}{14.5}\selectfont
+  \begin{tabular}{@{}p{70mm}p{72mm}@{}}
+    \toprule
+    Messung & Konsequenz \\
+    \midrule
+    Temperatur und Druck in beiden Karstästen & Ort und Verlauf der Anomalie \\
+    Durchfluss und Tracer & betroffener Anteil des Quellstroms \\
+    verteilte Temperatursonden & Tiefenprofile statt Oberflächenbild \\
+    abgestufte Kühlversuche & gemessene statt angenommene Leistung \\
+    Wärme- und Stromzähler am Luftkühler & kein Wärmerückfluss ins Gewässer \\
+    \bottomrule
+  \end{tabular}\par}
+  \slidefoot{Nur ein nachweisbar kleiner Teilstrom rechtfertigt eine kleine Anlage. Messprogramm [3,11,12].}
+\end{frame}
+
+\begin{frame}{Schlussfolgerung}
+  \vspace{3mm}
+  {\fontsize{22}{27}\selectfont\bfseries Die 878 MW folgen aus dem Vollstromszenario. Sie sind keine beliebig gewählte Anlagengröße.\par}
+  \vspace{4mm}
+  {\fontsize{15}{19}\selectfont Die Anlage hält 9 °C innerhalb ihrer belegten Hülle. Vor dem Bau entscheiden Tracer, Durchfluss und Tiefenmessung über den tatsächlichen Maßstab.\par}
+  \vfill
+  \source{Hauptquellen [2,3,4,8,9,13,16]. Vollständige Quellen im Bericht.}
+  \source{KI-Offenlegung: Inhalt, Modell und Sprechtext mit Kimi K3.1 Pro bei maximaler Reasoning-Stufe. Recherche mit DeepSeek-V4.1-Flash. Vertonung mit eSpeak NG 1.52.0. Kein Live-Mitschnitt und keine menschliche Prüfung.}
+\end{frame}
+
+\end{document}

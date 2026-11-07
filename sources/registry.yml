@@ -1,0 +1,141 @@
+- id: 1
+  author: Stadt Blaubeuren
+  title: Geopoint Blautopf
+  url: https://www.blaubeuren.de/Geopoint-Blautopf
+  accessed: 07.11.2026
+  use: Basistemperatur etwa 9 °C, Tiefe etwa 22 m, kommunale Einordnung
+- id: 2
+  author: Fan et al.
+  title: Hydrological functioning of a karst system with multiple recharge pathways
+  year: 2023
+  doi: 10.1007/s10040-023-02703-9
+  url: https://publikationen.bibliothek.kit.edu/1000163518/151549041
+  accessed: 07.11.2026
+  use: Abflussstatistik 1952 bis 2021, Einzugsgebiet, saisonale und kurzfristige Dynamik
+- id: 3
+  author: Landesamt für Geologie, Rohstoffe und Bergbau Baden-Württemberg
+  title: Fallbeispiele der regionalen Hydrogeologie, Blautopf
+  url: https://lgrbwissen.lgrb-bw.de/hydrogeologie/regionalbeschreibung-mittlere-alb/fallbeispiele
+  accessed: 07.11.2026
+  use: Karstäste, Tracer, Verweilzeiten, NQ, MQ und HQ
+- id: 4
+  author: National Institute of Standards and Technology
+  title: Water, thermophysical properties, isobaric tables
+  url: https://webbook.nist.gov/cgi/fluid.cgi?Action=Data&Wide=on&ID=C7732185&Type=IsoBar&Digits=6&P=1.01325&TLow=0&THigh=100&TInc=10&RefState=DEF&TUnit=C&PUnit=bar&DUnit=kg%2Fm3&HUnit=kJ%2Fkg&WUnit=m%2Fs&VisUnit=uPa*s&STUnit=N%2Fm
+  accessed: 07.11.2026
+  use: Dichte, Wärmekapazität, Enthalpie und Sättigung
+- id: 5
+  author: International Association for the Properties of Water and Steam
+  title: Revised Release on the IAPWS Industrial Formulation 1997
+  url: https://iapws.org/relguide/IF97-Rev.html
+  accessed: 07.11.2026
+  use: Siededruck und temperaturabhängige Stoffwerte
+- id: 6
+  author: Ouellet und Caissie
+  title: River water temperature and heat exchange modelling
+  year: 2023
+  doi: 10.1080/07011784.2023.2177196
+  url: https://repository.library.noaa.gov/view/noaa/49285/noaa_49285_DS1.pdf
+  accessed: 07.11.2026
+  use: Advektion, Dispersion, Strahlung, Verdunstung und BETA-Wärmebilanz
+- id: 7
+  author: Bergman et al.
+  title: Fundamentals of Heat and Mass Transfer, Kapitel 1
+  url: https://catalogimages.wiley.com/images/db/pdf/9781119382911.excerpt.pdf
+  accessed: 07.11.2026
+  use: Fourier- und Newton-Gleichung, Größenbereiche von Übergangskoeffizienten
+- id: 8
+  author: OpenStax
+  title: University Physics Volume 2, Abschnitte 4.3 und 4.5
+  url: https://openstax.org/books/university-physics-volume-2/pages/4-3-refrigerators-and-heat-pumps
+  accessed: 07.11.2026
+  use: COP, Kondensatorbilanz und Carnot-Grenze
+- id: 9
+  author: Bundesrepublik Deutschland
+  title: Oberflächengewässerverordnung, Anlage 7
+  url: https://www.gesetze-im-internet.de/ogewv_2016/anlage_7.html
+  accessed: 07.11.2026
+  use: Temperatur- und Erwärmungsgrenzen nach Gewässertyp, behördliche Zuordnung offen
+- id: 10
+  author: van Treeck und Wolter, LAWA
+  title: Temperaturempfindlichkeit von Fischen
+  year: 2020
+  url: https://www.laenderfinanzierungsprogramm.de/static/LFP/Dateien/LAWA/AO/O_10.20_211119_Endbericht_O10.20_TempEmpf_Fische.pdf
+  accessed: 07.11.2026
+  use: Kalt- und Warmstress, Empfehlung höchstens 1 K/h, Referenzmessung
+- id: 11
+  author: Lauber et al.
+  title: Flow and transport in the Blau karst system
+  year: 2014
+  doi: 10.5194/hess-18-435-2014
+  url: https://doi.org/10.5194/hess-18-435-2014
+  accessed: 07.11.2026
+  use: Tracermethodik und unterschiedliche Karstgeschwindigkeiten
+- id: 12
+  author: United States Environmental Protection Agency
+  title: Fiber Optic Distributed Temperature Sensing
+  url: https://www.epa.gov/environmental-geophysics/fiber-optic-distributed-temperature-sensing
+  accessed: 07.11.2026
+  use: Verteilte Temperaturmessung und Kalibrierung
+- id: 13
+  author: Bundesrepublik Deutschland
+  title: 42. Verordnung zur Durchführung des Bundes-Immissionsschutzgesetzes
+  url: https://www.gesetze-im-internet.de/bimschv_42/BJNR237900017.html
+  accessed: 07.11.2026
+  use: Hygiene- und Prüfpflichten für Verdunstungskühlanlagen
+- id: 14
+  author: Bundesrepublik Deutschland
+  title: Wasserhaushaltsgesetz, §§ 8, 9, 12 und 27
+  url: https://www.gesetze-im-internet.de/whg_2009/__9.html
+  accessed: 07.11.2026
+  use: Entnahme, Einleitung, Erlaubnis und Verschlechterungsverbot
+- id: 15
+  author: Stadt Blaubeuren
+  title: Naturschutz am Blautopf
+  url: https://www.blautopf-sanierung.de/willkommen/Grundlagen/Naturschutz
+  accessed: 07.11.2026
+  use: Schutzgebiete, Arten und FFH-Prüftiefe
+- id: 16
+  author: BDEW
+  title: Strompreisanalyse 2026
+  url: https://www.bdew.de/service/daten-und-grafiken/bdew-strompreisanalyse/
+  accessed: 07.11.2026
+  use: Strompreisszenarien 179 EUR/MWh und 138 EUR/MWh
+- id: 17
+  author: Schweizerisches Bundesamt für Energie
+  title: Feldmessungen großer Wärmepumpenanlagen
+  year: 2010
+  url: https://pubdb.bfe.admin.ch/de/publication/download/4978
+  accessed: 07.11.2026
+  use: Gemessene Jahresarbeitszahlen und Netzverluste
+- id: 18
+  author: tga-shop
+  title: Buderus SL333 Plattenwärmetauscher, technische und Preisangabe
+  url: https://tga-shop.de/Buderus-SL333-Plattenwaermetauscher-DN100-PN16-601-700-kW-70-Platten-7738300409/70001-7738300409
+  accessed: 07.11.2026
+  use: Einzelnes Gerätepreis-Ankerbeispiel, keine Projekt offerte
+- id: 19
+  author: HAW Hamburg
+  title: Kälte- und Klimatisierungssysteme, wirtschaftlicher Vergleich
+  year: 2012
+  url: https://reposit.haw-hamburg.de/bitstream/20.500.12738/5979/1/Bachelorthesis_Bez_Armin_20120618.pdf
+  accessed: 07.11.2026
+  use: Historische Kältemaschinenkosten und VDI-2067-Annuität
+- id: 20
+  author: Stadt Blaubeuren
+  title: Kommunale Wärmeplanung
+  url: https://www.blaubeuren.de/de/Aktuelles/Kommunale-Waermeplanung
+  accessed: 07.11.2026
+  use: Vorhandenes Wärmenetz, unbekannte Abnahmekapazität
+- id: 21
+  author: PlaNeT SimTech, Universität Stuttgart
+  title: Vorgaben für den Bericht, Stand 10/2026
+  url: https://www.planet-simtech.de/wp-content/uploads/2023/05/PlaNeT_Vorgaben-Bericht.pdf
+  accessed: 07.11.2026
+  use: Form, Zitation und KI-Transparenz
+- id: 22
+  author: Zhang et al.
+  title: Efficiently Reconstructing Dynamic Scenes One D4RT at a Time
+  url: https://storage.googleapis.com/d4rt_assets/D4RT_paper.pdf
+  accessed: 07.11.2026
+  use: Ausschließlich visueller Layoutvergleich gemäß Nutzervorgabe, keine Fachquelle

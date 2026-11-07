@@ -1,3 +1,6 @@
 ts	phase	decision	why	evidence	result
 2026-11-07T13:56:34Z	frame	Privates Repository und hochstrenge Prüfkette festgelegt	Reversible lokale Arbeit, aber hohe wissenschaftliche und formale Anforderungen	WORKFLOW.md, review/model_configuration.md	Prädikat und Modelle dokumentiert
 2026-11-07T13:56:34Z	sources	Ausschließlich aktuelle Regeln, D4RT-Layoutreferenz und allgemeine Primärquellen zugelassen	Clean-room-Vorgaben schließen frühere Lösungen aus	PROVENANCE.md, EXCLUSION_LOG.md	Quellenregister geöffnet
+2026-11-07T14:32:36Z	model	Vollstrom- und Speicherfall getrennt und Kondensatorwärme in die Auslegung aufgenommen	Eine lineare Speicherrechnung allein ignoriert den Abfluss, eine Kältemaschine gibt zusaetzlich Antriebswaerme ab	output/model/results.json, model/core.py, output/model/manifest.json	5 Tests und Energiebilanzen bestanden
+2026-11-07T16:06:21Z	verification	Kondensator- und Hilfsenergie in Wärmesenke und Kosten aufgenommen	Energieerhaltung verlangt Q_c plus elektrische Arbeit	model/core.py, output/model/results.json	Energiebilanzen bestanden
+2026-11-07T16:06:21Z	documents	Bericht und Präsentation regelkonform und unicode-sicher gebaut	Seitenbudget, Ränder, Zitierweise und Glyphen müssen im tatsächlichen PDF gelten	output/pdf/TEST-K31pro-max.pdf, output/presentation/Blautopf_Finale.pdf, review/rendered/	Automatische und visuelle Prüfungen bestanden

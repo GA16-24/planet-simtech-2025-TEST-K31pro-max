@@ -1,0 +1,13 @@
+{
+  "duration_s": 289.933594,
+  "video_codec": "h264",
+  "audio_codec": "aac",
+  "width": 1920,
+  "height": 1080,
+  "slide_count": 10,
+  "segment_count": 10,
+  "full_decode_passed": true,
+  "rendered_frames_checked": 5,
+  "live_human_delivery_verified": false,
+  "all_automated_checks_passed": true
+}
