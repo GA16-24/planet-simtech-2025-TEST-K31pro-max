@@ -32,7 +32,7 @@ Der Nutzer hat den Lieferumfang auf den Research Paper beschränkt. Präsentatio
 
 Prüfe den tatsächlich gerenderten Research Paper, nicht nur LaTeX oder JSON. Öffne die Kontaktübersicht und jede Einzelseite der aktuellen PDF. Prüfe die Diagramme und Tabellen in den gerenderten Seiten. Du darfst read-only Prüfbefehle ausführen, sofern dein Modus dies zulässt. Führe keine Builds aus und verändere keine Dateien.
 
-Lies keine Rohberichte oder Scorecards aus früheren Runden. Lies auch nicht `review/README.md` oder andere Übersichten mit früheren Punktzahlen. Vermeide rekursive Suchen im Verzeichnis `review/rounds/`, damit alte Bewertungen nicht versehentlich in deinen Kontext gelangen. Erlaubt sind dort nur `roundRUNDE/revision.json`, `roundRUNDE/reproduction.md` und `roundRUNDE/prompt.md`. Die Befundzuordnung enthält frühere Mängel ohne Punktzahlen. Prüfe deren Behebung an der aktuellen Revision selbst.
+Lies keine Rohberichte oder Scorecards aus früheren Runden. Lies auch nicht `review/README.md` oder andere Übersichten mit früheren Punktzahlen. Vermeide rekursive Suchen im Verzeichnis `review/rounds/`, damit alte Bewertungen nicht versehentlich in deinen Kontext gelangen. Erlaubt sind dort nur `RUNDE/revision.json`, `RUNDE/reproduction.md` und `RUNDE/prompt.md`. Die Befundzuordnung enthält frühere Mängel ohne Punktzahlen. Prüfe deren Behebung an der aktuellen Revision selbst.
 
 ## Kriterien
 
