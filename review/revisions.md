@@ -310,6 +310,20 @@ DeepSeek legte in Runde 9 offen, versehentlich `review/README.md` mit früheren 
 
 Die neue Revision enthält 23 bestandene Modelltests und 14 Seiten mit 10 Haupttext- und 4 Literatur-/Anhangsseiten. Die Prüfung verlangt mindestens 40 % vertikale Textfläche und Inhalt in beiden Spalten nach dem Deckblatt. Frühere Punktzahlen werden nicht übernommen. Vor Runde 11 ist die Archivreproduktion erneut zu prüfen.
 
+## Befunde aus Runde 11, DeepSeek
+
+| Befund | Konkrete Änderung oder begründete Grenze | Verifikation |
+| --- | --- | --- |
+| H2-Zyklen nicht eindeutig | Drei Zyklen werden ausdrücklich mit 12,48 und fünf Zyklen mit 10,40 Mio. m³ zugeordnet. Die Kosten verwenden den jeweiligen vollständigen Bedarf. | `evaporative_makeup_sensitivity`, Bericht §3.3 |
+| H3-Fixkosten nicht beschrieben | H3 enthält als variable Ausrüstung nur Pumpen und keinen Notstromposten, aber dieselben 95 Mio. € für Tiefbau und Steuerung. | Bericht §3.3 und Tabelle 2, `docs/alternativenvergleich.md` |
+| Teilstrom-Fixkosten fehlen | Die Unterschrift nennt \(80f^{0,65}+15f^{0,5}\) Mio. € für Tiefbau und Steuerung und die p90-Reserve der variablen Ausrüstung. | Tabelle 4, `civil_scale_exponent`, `controls_scale_exponent` |
+| Vertikale Leerräume in Anhang A | `\raggedbottom` verhindert das Dehnen um die Displayformel. Die tatsächliche Seite wird erneut gesichtet. | `report/main.tex`, PDF-Seite 13 |
+| COP- und Luftzeile in Tabelle 1 | Der COP ist als eigene Annahme und nur der Strompreis mit [16] belegt. Die Luftbezeichnung ist gekürzt und bleibt in einer Zeile. | Tabelle 1 auf PDF-Seite 4 |
+| Gleiche MW-Header | Die Header \(Q\) und \(P_{el}\) unterscheiden Kühlung und elektrische Leistung ohne Spaltenüberlauf. Die Unterschrift definiert beide in MW. | `report/generated/flow_fractions.tex`, PDF-Seite 14 |
+| Optionale Klarheitsbefunde | Die fünf Module im Mittelbetrieb werden mit etwa 98 % Last beschrieben. Die Quellkühlung ist gleichwertig, der Nasskühlturm bleibt unausgelegt. Der sekundäre Wärmekapazitätsstrom ist mit konstanten Stoffwerten gleich, mit temperaturabhängigen Werten nur eine Näherung. | Zusammenfassung, Bericht §§3.1 und 3.3 |
+
+Die Revision enthält weiterhin 23 bestandene Modelltests und 14 Seiten mit 10 Haupttext- und 4 Literatur-/Anhangsseiten. Die Reproduktion wird für Runde 12 mit dem exakten Review-Commit geprüft.
+
 ## Aktueller Lieferumfang
 
 Nach der Nutzerkorrektur ist nur der Research Paper Produkt. Die Kriterien 1 bis 6, 8 bis 11 und 12a bleiben Prüfgegenstand. Kriterium 12b und die Präsentationsartefakte werden nicht fortentwickelt. Nach den fachlichen Council-Runden folgt ein eigener Design-Council für den Research Paper.

@@ -29,7 +29,7 @@
 
 Das Wasser soll vor dem offenen Becken durch geschlossene Kühler fließen. Diese geben die Wärme an die Luft ab, nicht an Fluss oder Grundwasser. Zuerst nutzen große Luftkühler die hohe Temperatur. Danach senken elektrische Kältemaschinen das Wasser auf 9~°C. So soll der Fluss in seinem angenommenen normalen Zustand erhalten bleiben.
 
-Im zehnten Jahr wären dafür \textbf{\QFinal~\mbox{Megawatt} Kühlleistung} nötig. Einschließlich Antriebsenergie würden \QAirRejection\ MW an die Luft abgegeben. Für stärkeren Wasserfluss wird die Anlage größer ausgelegt. Bei 4,7~m³/s wären \DesignCooling\ MW nötig; installiert werden \QReserve\ MW. Im üblichen Betrieb arbeiten fünf Kühlmodule, im stärkeren Fall elf plus ein Ersatzmodul. Ein Puffer begrenzt die Belastung für das Gewässer. Die Temperatur des zurückgeführten Wassers darf sich höchstens um ein Grad pro Stunde ändern.
+Im zehnten Jahr wären dafür \textbf{\QFinal~\mbox{Megawatt} Kühlleistung} nötig. Einschließlich Antriebsenergie würden \QAirRejection\ MW an die Luft abgegeben. Für stärkeren Wasserfluss wird die Anlage größer ausgelegt. Bei 4,7~m³/s wären \DesignCooling\ MW nötig; installiert werden \QReserve\ MW. Im üblichen Betrieb arbeiten fünf Kühlmodule bei etwa 98 \% ihrer installierten Leistung, im stärkeren Fall elf plus ein Ersatzmodul. Ein Puffer begrenzt die Belastung für das Gewässer. Die Temperatur des zurückgeführten Wassers darf sich höchstens um ein Grad pro Stunde ändern.
 
 Die Schätzung ergibt \CapexFinal\ Mio. € Investition und \OpexFinal\ Mio. € Betriebskosten im zehnten Jahr. Über 25 Jahre ergeben sich \NpvHybridFull\ Mrd. €. Eine andere Möglichkeit, Wasser verdunsten zu lassen, wäre billiger, verdunstet aber \EvapAnnual\ Mio.~m³ Wasser pro Jahr. Mit Spülwasser und kleinen Verlusten werden \EvapMakeupAnnual\ Mio.~m³ pro Jahr zugeführt. Sie benötigt Hygienemaßnahmen. Alle Kosten sind Schätzungen in Euro von 2026, keine Angebote.
 
@@ -63,9 +63,9 @@ Hochwasser-Stresstest & 32,7~m³/s & HQ 1951 bis 2007, kein Wiederkehrintervall 
 Beckenvolumen & 25.000~m³ & Rechenannahme \\
 Quelltemperatur & 9 bis 100~°C & Szenario, danach gedeckelt \\
 Rückführziel & 9~°C, 1 K/h & eigenes Regelziel [1,10] \\
-Sommerluft, Feuchtkugel & 35~°C, 28~°C & technische Annahmen \\
+Luft, Feuchtkugel & 35~°C, 28~°C & technische Annahmen \\
 Trocken- und feuchte Annäherung & 5 K, 4 K & technische Annahmen \\
-Kälte-COP, Strompreis & 4,0; 138~€/MWh & Szenarien [16] \\
+Kälte-COP, Strompreis & 4,0; 138~€/MWh & COP eigene Annahme, Strompreis [16] \\
 \bottomrule
 \end{tabular}
 \caption{Messwerte, Szenarioprämissen und technische Annahmen.}
@@ -147,7 +147,7 @@ Für Netz, Ersatzstrom und Luftsenke wird der ungünstigste deklarierte COP von 
 
 \subsection{Stufenplan und Kosten}
 
-Die Investition enthält die p90-Reserve und beträgt \CapexFinal\ Mio. €. Im Erwartungsjahr kosten Strom \EnergyCostFinal\ Mio. € und Wartung \MaintenanceFinal\ Mio. €, zusammen \OpexFinal\ Mio. €. Der Barwert beträgt \NpvHybridFull\ Mrd. €; sofortiger Endausbau kostet \NpvUpfront\ Mrd. €. Der Stufenplan spart \NpvSaving\ Mio. €, sofern jede Stufe vor ihrem Lastjahr geprüft ist. Bei dauerhaftem p90-Betrieb steigen Betrieb und Barwert auf \DesignOpex\ Mio. € beziehungsweise \DesignNpv\ Mrd. €. H1 und H2 verwenden dieselbe Kapazitäts- und Kostenregel. H3 ist dagegen eine reine Pumpen- und Wasserkostenschätzung ohne Notstromposten. Tabelle \ref{tab:alternativen} und Abbildung \ref{fig:kosten} zeigen diesen Unterschied.
+Die Investition enthält die p90-Reserve und beträgt \CapexFinal\ Mio. €. Im Erwartungsjahr kosten Strom \EnergyCostFinal\ Mio. € und Wartung \MaintenanceFinal\ Mio. €, zusammen \OpexFinal\ Mio. €. Der Barwert beträgt \NpvHybridFull\ Mrd. €; sofortiger Endausbau kostet \NpvUpfront\ Mrd. €. Der Stufenplan spart \NpvSaving\ Mio. €, sofern jede Stufe vor ihrem Lastjahr geprüft ist. Bei dauerhaftem p90-Betrieb steigen Betrieb und Barwert auf \DesignOpex\ Mio. € beziehungsweise \DesignNpv\ Mrd. €. H1 und H2 verwenden dieselbe Kapazitäts- und Kostenregel. H3 enthält als variable Ausrüstung nur Pumpen und keinen Notstromposten; die 95 Mio. € für Tiefbau und Steuerung bleiben als Fixkostenbasis erhalten. Tabelle \ref{tab:alternativen} und Abbildung \ref{fig:kosten} zeigen diesen Unterschied.
 
 Die variable Ausrüstung umfasst \CapexExchanger\ Mio. € für Wärmetauscher, \CapexChiller\ Mio. € für Kältemaschinen, \CapexDryCooler\ Mio. € für Trockenkühler und \CapexBackup\ Mio. € für Ersatzstrom, zusammen \CapexVariable\ Mio. €. Mit dem 60-\%-Zuschlag ergibt das \CapexEngineered\ Mio. €. Die separaten 95 Mio. € für Tiefbau und Steuerung führen zur Gesamtinvestition von \CapexFinal\ Mio. €.
 
@@ -156,7 +156,7 @@ Für alle 8760 Stunden eines Jahres gilt dessen Jahresendtemperatur. Jahr 0 enth
 \begin{table*}[t]
 \centering
 \input{generated/alternatives.tex}
-\caption{Betrieb bei 2,3~m³/s mit p90-Auslegung. H2 ist günstiger, verändert aber Wasserhaushalt und Hygieneregime. Ihr Zusatzwasser enthält Verdunstung, Abschlämmung und Drift bei drei Konzentrationszyklen, mit Sensitivität bis fünf. H3 gibt Wärme an Zusatzwasser statt an Luft ab und enthält keinen Notstromposten.}
+\caption{Betrieb bei 2,3~m³/s mit p90-Auslegung. H2 ist günstiger, verändert aber Wasserhaushalt und Hygieneregime. Ihr Zusatzwasser enthält Verdunstung, Abschlämmung und Drift bei drei Konzentrationszyklen, mit Sensitivität bis fünf. H3 verwendet ebenfalls die 95-Mio.-€-Fixkostenbasis, aber keinen Notstromposten.}
 \label{tab:alternativen}
 \end{table*}
 
@@ -167,7 +167,7 @@ Für alle 8760 Stunden eines Jahres gilt dessen Jahresendtemperatur. Jahr 0 enth
 \label{fig:kosten}
 \end{figure*}
 
-H2 kühlt den Quellstrom im Gegenstrom von 100 auf \EvapSourceOutlet~°C. Der separate Sekundärkreislauf wird dabei von \EvapSecondaryInlet~°C auf \EvapSecondaryOutlet~°C erwärmt. Am heißen Ende beträgt der Abstand 100 - 96 = 4 K, am kalten Ende 36 - 32 = 4 K. Der Sekundärstrom von \EvapSecondaryFlow~m³/s hat denselben Wärmekapazitätsstrom wie der Quellstrom. Die Verdunstung übernimmt \EvapDry\ MW. Eine Kältemaschine übernimmt danach \EvapChiller\ MW bis 9~°C. Der Quellstrom bleibt geschlossen und wird vollständig weitergekühlt, der Dampfstrom gehört zum Sekundärkreislauf und nicht zum Quellabfluss. Damit ist H2 physikalisch gleichwertig, nicht nur bei kühler Luft. Das Modell verwendet das arithmetische Mittel der NIST-Verdampfungsenthalpien bei 32 und 100~°C. Die beiden Sättigungswerte stehen in \texttt{data/nist\_saturation\_32\_100.tsv}. Dieses Mittel ist keine vollständige Temperaturintegration [4]. Der Dampfstrom beträgt \EvapRate\ kg/s und die Verdunstungsmenge \EvapAnnual\ Mio.~m³ pro Jahr, \EvapFraction\ \% des erwarteten Quellstroms [6]. Mit \EvapCycles\ Konzentrationszyklen kommen \EvapBlowdownAnnual\ Mio.~m³ Abschlämmung und \EvapDriftPercent\ \% Drift hinzu. Der Zusatzwasserbedarf des Sekundärkreislaufs beträgt damit \EvapMakeupAnnual\ Mio.~m³ pro Jahr oder \EvapMakeupFraction\ \% des erwarteten Quellstroms. Zwischen drei und fünf Zyklen liegt er bei \EvapMakeupLow\ bis \EvapMakeupHigh\ Mio.~m³. Diese Annahmen ersetzen keine Wasserchemie- oder Herstellerdaten. Die Wasserkosten und der Barwert verwenden den vollständigen Zusatzwasserbedarf. Offene Verdunstung erfordert Hygiene- und Prüfmaßnahmen nach der 42. BImSchV [13]. H2 bleibt billiger, hat aber Wasser-, Hygiene- und Aerosolrisiken; H1 verursacht mehr Stromemissionen.
+H2 kühlt den Quellstrom im Gegenstrom von 100 auf \EvapSourceOutlet~°C. Der separate Sekundärkreislauf wird dabei von \EvapSecondaryInlet~°C auf \EvapSecondaryOutlet~°C erwärmt. Am heißen Ende beträgt der Abstand 100 - 96 = 4 K, am kalten Ende 36 - 32 = 4 K. Der Sekundärstrom von \EvapSecondaryFlow~m³/s hat im Modell denselben Wärmekapazitätsstrom wie der Quellstrom. Temperaturabhängige Stoffwerte machen dies nur zur Näherung [4,5]. Die Verdunstung übernimmt \EvapDry\ MW. Eine Kältemaschine übernimmt danach \EvapChiller\ MW bis 9~°C. Der Quellstrom bleibt geschlossen und wird vollständig weitergekühlt, der Dampfstrom gehört zum Sekundärkreislauf und nicht zum Quellabfluss. Damit ist die Quellkühlung physikalisch gleichwertig; der separate Nasskühlturm ist nicht ausgelegt. Das Modell verwendet das arithmetische Mittel der NIST-Verdampfungsenthalpien bei 32 und 100~°C. Die beiden Sättigungswerte stehen in \texttt{data/nist\_saturation\_32\_100.tsv}. Dieses Mittel ist keine vollständige Temperaturintegration [4]. Der Dampfstrom beträgt \EvapRate\ kg/s und die Verdunstungsmenge \EvapAnnual\ Mio.~m³ pro Jahr, \EvapFraction\ \% des erwarteten Quellstroms [6]. Mit \EvapCycles\ Konzentrationszyklen kommen \EvapBlowdownAnnual\ Mio.~m³ Abschlämmung und \EvapDriftPercent\ \% Drift hinzu. Der Zusatzwasserbedarf des Sekundärkreislaufs beträgt damit \EvapMakeupAnnual\ Mio.~m³ pro Jahr oder \EvapMakeupFraction\ \% des erwarteten Quellstroms. Bei drei Zyklen sind es \EvapMakeupHigh\ Mio.~m³, bei fünf Zyklen \EvapMakeupLow\ Mio.~m³. Diese Annahmen ersetzen keine Wasserchemie- oder Herstellerdaten. Die Wasserkosten und der Barwert verwenden den vollständigen Zusatzwasserbedarf. Offene Verdunstung erfordert Hygiene- und Prüfmaßnahmen nach der 42. BImSchV [13]. H2 bleibt billiger, hat aber Wasser-, Hygiene- und Aerosolrisiken; H1 verursacht mehr Stromemissionen.
 
 Nach der Registrierung von H1 bis H7 wurde H8 als wärmegetriebene Vergleichsvariante ergänzt. Eine einstufige Absorptionsstufe verwendet den thermischen COP \AbsThermalCop, innerhalb des HAW-Bereichs 0,6 bis 0,8 [19]. Ihr Heißwasserkreislauf wird von \AbsHotReturn~°C auf \AbsHotInlet~°C erwärmt. Der Quellstrom kühlt sich dabei von 100 auf \AbsSourceAfterGenerator~°C ab, beide Endabstände betragen 4 K. Die Generatorwärme beträgt \AbsGenerator\ MW bei einem Sekundärstrom von \AbsSecondaryFlow~m³/s. Der Verdampfer entzieht dem Quellstrom weitere \AbsEvaporator\ MW und senkt ihn auf \AbsSourceAfterEvaporator~°C. Danach liefern Trockenkühler \AbsDryCooling\ MW und Kompressionskältemaschinen unverändert \AbsChiller\ MW. Die Absorptionsabwärme beträgt \AbsRejection\ MW, die separate Kompressionskondensatorabwärme \AbsCondenser\ MW.
 
@@ -265,6 +265,7 @@ Mit mehr Bearbeitungszeit würden wir zuerst die Karst- und Standortmessungen, e
 \bibitem{awsv} [25] Bundesrepublik Deutschland: Verordnung über Anlagen zum Umgang mit wassergefährdenden Stoffen, § 18, Rückhaltung. \href{https://www.gesetze-im-internet.de/awsv/__18.html}{\nolinkurl{gesetze-im-internet.de/awsv/__18.html}}. Abruf: 07.11.2026.
 \end{description}
 
+\raggedbottom
 \section*{Anhang A: KI-Verwendung, Unabhängigkeit und Reproduktion}
 \begingroup
 \raggedright
@@ -308,7 +309,7 @@ Das Layout folgt D4RT [22], ersetzt aber US Letter durch A4, 26 mm Rand und 12 p
 \begin{table}[H]
 \centering
 \input{generated/flow_fractions.tex}
-\caption{Teilstromszenarien. Kühlung und Elektrik in MW, Investition in Mio. €, Barwert in Mrd. €.}
+\caption{Teilstromszenarien. \(Q\) ist die Kühlung, \(P_{el}\) die elektrische Leistung, jeweils in MW. Fixkosten \(80f^{0,65}+15f^{0,5}\) Mio. €, variable Ausrüstung mit p90-Reserve.}
 \label{tab:teilstrom}
 \end{table}
 

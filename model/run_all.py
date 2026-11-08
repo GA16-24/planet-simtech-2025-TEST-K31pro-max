@@ -816,7 +816,7 @@ def main() -> None:
         handle.write("\\bottomrule\n\\end{tabular*}\n")
 
     with (GEN / "flow_fractions.tex").open("w", encoding="utf-8") as handle:
-        handle.write("\\begin{tabular*}{\\columnwidth}{@{\\extracolsep{\\fill}}lrrrr}\n\\toprule\nAnteil & MW & MW & Mio. € & Mrd. € \\\\\n\\midrule\n")
+        handle.write("\\begin{tabular*}{\\columnwidth}{@{\\extracolsep{\\fill}}lrrrr}\n\\toprule\nAnteil & \\(Q\\) & \\(P_{el}\\) & Mio. € & Mrd. € \\\\\n\\midrule\n")
         for row in flow_fraction_scenarios:
             handle.write(f"{100*row['affected_fraction']:.1f} \\% & {row['final_cooling_mw']:.1f} & {row['electricity_mw']:.2f} & {row['final_capex_eur']/1e6:.0f} & {row['npv_25y_eur']/1e9:.3f} \\\\\n".replace(".", ","))
         handle.write("\\bottomrule\n\\end{tabular*}\n")
