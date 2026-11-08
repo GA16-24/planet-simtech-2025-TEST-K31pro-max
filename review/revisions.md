@@ -417,6 +417,20 @@ Die vierte Design-Runde war nicht bestanden, vergab aber bei beiden Reviewern D5
 
 Die fünfte Design-Runde war nicht bestanden. Diese Revision enthält 24 bestandene Modelltests und 15 Seiten mit 10 Haupttext- und 5 Literatur-/Anhangsseiten. `make verify` und die Sichtprüfung bestanden ohne Overfull-Warnungen. Die wissenschaftlichen Ergebnisdateien sind unverändert. Vor der nächsten Bewertung ist die Archivreproduktion erforderlich. Frühere Punktzahlen werden nicht übernommen.
 
+## Befunde aus Design-Runde 20
+
+| Befund | Konkrete Änderung oder begründete Grenze | Verifikation |
+| --- | --- | --- |
+| M1 und M2, Literaturbalance und getrennte Einträge | Der Spaltenwechsel folgt Quelle 22. Quellen 19 bis 22 stehen links, Quellen 23 bis 25 rechts. Lokale Absatzgruppen halten Quellen 6, 19 und 20 zusammen. Quelle 19 verwendet kurze Kapitel- und Tabellenangaben sowie einen durchgehenden URL. Ein globaler Sperrumbruch und ein zusätzlicher erzwungener Seitenumbruch wurden nach einer Zusatzseite verworfen. | `report/main.tex`, PDF-Seiten 11 bis 13, `scripts/verify_report.py` |
+| M3, Tabelle 2 vor ihrer ersten Referenz | Ein kurzer Vorausverweis steht unmittelbar nach Abschnitt 3.3 und vor dem Float. Er erscheint auf PDF-Seite 5, die Tabelle oben auf PDF-Seite 6. | `report/main.tex`, PDF-Seiten 5 und 6, automatisierter Referenztest mit normalisiertem PDF-Text |
+| M4, unklare Fallzeilen in Tabelle 3 | Eigene Gruppenzeilen für Abfluss und Sieden trennen die Gruppen. Jede Wertzeile enthält ihren Fall und alle Zahlen auf derselben Zeile. | `model/run_all.py`, `report/generated/sensitivity.tex`, PDF-Seite 15 |
+| M5, Gedränge und fehlende Führung in Abbildung 3 | Die Kapazitätslegende steht tiefer unter der MW-Achse. Eine Führungslinie verbindet H1 4,14 mit der gestrichelten Barwertlinie. Die Unterschrift erklärt diese Linie. | `model/run_all.py`, `report/main.tex`, PDF-Seite 14, mindestens 11,90 pt gemessene Diagrammglyphen |
+| M6, Abbildung 2 mit Legende am Achsentitel | Die H1/H2-Legende steht oben links im freien Diagrammbereich und überdeckt keine Kurven. | `model/run_all.py`, PDF-Seite 7 |
+| M7, visuelle Führung in Abbildung 1 | Die Panels tragen (a) und (b). Eine kürzere Legende steht unter dem rechten Panel, ohne die Figurenbreite zu vergrößern. | `model/run_all.py`, PDF-Seite 5, mindestens 11,90 pt gemessene Diagrammglyphen |
+| Optionaler Fund, Prüfpaketverweis | Der Anhang sagt nun ausdrücklich, dass die D4RT-Seiten im Prüfpaket beiliegen. | `report/main.tex`, PDF-Seite 14 |
+
+Die sechste Design-Runde war nicht bestanden. Diese Revision enthält 24 bestandene Modelltests und 15 Seiten mit 10 Haupttext- und 5 Literatur-/Anhangsseiten. `make verify` und die Sichtprüfung bestanden ohne Overfull-Warnungen. Die wissenschaftlichen Ergebnisdateien sind unverändert. Vor der nächsten Bewertung ist die Archivreproduktion erforderlich. Frühere Punktzahlen werden nicht übernommen.
+
 ## Aktueller Lieferumfang
 
 Nach der Nutzerkorrektur ist nur der Research Paper Produkt. Die Kriterien 1 bis 6, 8 bis 11 und 12a bleiben Prüfgegenstand. Kriterium 12b und die Präsentationsartefakte werden nicht fortentwickelt. Nach den fachlichen Council-Runden folgt ein eigener Design-Council für den Research Paper.

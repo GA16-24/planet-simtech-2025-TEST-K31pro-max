@@ -51,6 +51,10 @@ def main() -> None:
     require("Symlog" in full_text, "Nichtlineare Kühlleistungsachse ist nicht deklariert")
     compact_pages = [re.sub(rf"\s*{index}\s*$", "", text) if index > 0 else text for index, text in enumerate(page_texts)]
     compact_text = re.sub(r"\s+", "", "\n".join(compact_pages))
+    require("Tabelle2" in re.sub(r"\s+", "", page_texts[4]), "Tabelle 2 wird nicht bereits auf PDF-Seite 5 referenziert")
+    for source_number, closing_text in [(6, "noaa_49285_DS1.pdf"), (19, "Bez_Armin_20120618.pdf"), (20, "Kommunale-Waermeplanung"), (22, "AusschließlichLayoutvergleich")]:
+        complete_pages = [index for index, text in enumerate(compact_pages) if index >= 10 and f"[{source_number}]" in text and closing_text in re.sub(r"\s+", "", text)]
+        require(bool(complete_pages), f"Quelle {source_number} ist über Seitengrenzen getrennt")
     nist_urls = [
         "https://webbook.nist.gov/cgi/fluid.cgi?Action=Data&Wide=on&ID=C7732185&Type=IsoBar&Digits=6&P=1.01325&TLow=0&THigh=100&TInc=10&RefState=DEF&TUnit=C&PUnit=bar&DUnit=kg%2Fm3&HUnit=kJ%2Fkg&WUnit=m%2Fs&VisUnit=uPa*s&STUnit=N%2Fm",
         "https://webbook.nist.gov/cgi/fluid.cgi?Action=Data&Wide=on&ID=C7732185&Type=IsoBar&Digits=6&P=3.17080686&TLow=130&THigh=140&TInc=1&RefState=DEF&TUnit=C&PUnit=bar&DUnit=kg%2Fm3&HUnit=kJ%2Fkg&WUnit=m%2Fs&VisUnit=uPa*s&STUnit=N%2Fm",

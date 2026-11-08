@@ -361,7 +361,9 @@ def main() -> None:
     axes[1].set(xlabel="Jahre", ylabel="Kühlleistung in MW, Symlog")
     axes[1].set_yscale("symlog", linthresh=1.0)
     axes[1].set_yticks([0.0, 1.0, 10.0, 100.0, 1000.0], ["0", "1", "10", "100", "1000"])
-    fig.legend(handles=axes[1].get_lines(), frameon=False, ncol=3, loc="lower center", bbox_to_anchor=(0.5, 0.005))
+    for ax, label in zip(axes, ["(a)", "(b)"]):
+        ax.text(0.02, 0.98, label, transform=ax.transAxes, va="top")
+    fig.legend(handles=axes[1].get_lines(), labels=["Gesamt", "1 %", "0,1 %"], frameon=False, ncol=3, loc="lower center", bbox_to_anchor=(0.62, 0.005))
     fig.subplots_adjust(bottom=0.34, wspace=0.35)
     save_figure(fig, "fig01_prognose_last")
 
@@ -382,7 +384,7 @@ def main() -> None:
         cumulative = np.cumsum([row["present_value_eur"] for row in rows]) / 1e9
         ax.plot([row["year"] for row in rows], cumulative, color=color, lw=2, label=label)
     ax.set(xlabel="Betriebsjahr", ylabel="Barwert in Mrd. €")
-    ax.legend(frameon=False, ncol=2, loc="upper center", bbox_to_anchor=(0.5, -0.24))
+    ax.legend(frameon=False, ncol=2, loc="upper left")
     fig.subplots_adjust(bottom=0.34)
     save_figure(fig, "fig03_kostenpfad")
 
@@ -406,18 +408,29 @@ def main() -> None:
     axes[0].set(xlabel="MW", ylabel="Anzahl", xlim=(0, 2300))
     axes[0].set_ylim(0, axes[0].get_ylim()[1] * 1.35)
     axes[1].hist(npv_samples / 1e9, bins=45, color=ORANGE, alpha=0.85)
-    reference_line = axes[1].axvline(npv(hybrid_staged) / 1e9, color=RED, ls="--", lw=1.4, label=f"H1\n{npv(hybrid_staged) / 1e9:.2f}".replace(".", ","))
+    npv_reference = npv(hybrid_staged) / 1e9
+    axes[1].axvline(npv_reference, color=RED, ls="--", lw=1.4)
     axes[1].set(xlabel="Mrd. €", ylabel="Anzahl")
     axes[1].set_ylim(0, axes[1].get_ylim()[1] * 1.2)
     axes[1].xaxis.set_major_formatter(FuncFormatter(lambda value, position: f"{value:g}".replace(".", ",")))
-    axes[1].legend(handles=[reference_line], frameon=False, loc="upper right", fontsize=20)
+    axes[1].annotate(
+        f"H1\n{npv_reference:.2f}".replace(".", ","),
+        xy=(npv_reference, axes[1].get_ylim()[1]),
+        xytext=(0.62, 0.98),
+        textcoords="axes fraction",
+        fontsize=20,
+        color=RED,
+        ha="left",
+        va="top",
+        arrowprops={"arrowstyle": "-", "color": RED, "lw": 1.2},
+    )
     for ax in axes:
         ax.tick_params(labelsize=20)
         ax.xaxis.label.set_size(20)
         ax.yaxis.label.set_size(20)
     for x, label, color, linestyle in [(0.03, "877,8", RED, "--"), (0.30, "1.053,3", GRAY, ":"), (0.64, "2.152,5", BLUE, "-.")]:
-        fig.add_artist(Line2D([x, x + 0.05], [0.535, 0.535], color=color, ls=linestyle, lw=1.6))
-        fig.text(x + 0.065, 0.535, label, color=color, fontsize=20, va="center")
+        fig.add_artist(Line2D([x, x + 0.05], [0.52, 0.52], color=color, ls=linestyle, lw=1.6))
+        fig.text(x + 0.065, 0.52, label, color=color, fontsize=20, va="center")
     fig.subplots_adjust(left=0.18, right=0.95, top=0.97, bottom=0.08, hspace=0.55)
     save_figure(fig, "fig05_unsicherheit")
 
@@ -834,10 +847,20 @@ def main() -> None:
 
     with (GEN / "sensitivity.tex").open("w", encoding="utf-8") as handle:
         handle.write("\\begingroup\n\\setlength{\\tabcolsep}{4pt}\n\\begin{tabular*}{\\columnwidth}{@{}@{\\extracolsep{\\fill}}>{\\hspace{0pt}\\raggedright\\arraybackslash}p{21mm}rrr@{}}\n\\toprule\nFall & MW & Änderung & Barwert \\\\\n\\midrule\n")
+        current_group = None
         for row in sensitivity:
-            label = row["case"].replace("%", "\\%").replace(" m³/s", "~m³/s")
-            label = label.replace("Abfluss ", "Abfluss\\newline ")
-            label = label.replace("Sieden nach 8 Jahren", "Sieden,\\newline 8 Jahre").replace("Sieden nach 12 Jahren", "Sieden,\\newline 12 Jahre")
+            case = row["case"]
+            if case.startswith("Abfluss "):
+                group, label = "Abfluss", case.removeprefix("Abfluss ")
+            elif case.startswith("Sieden nach "):
+                group, label = "Sieden", case.removeprefix("Sieden nach ")
+            else:
+                group, label = None, case
+            if group != current_group:
+                if group is not None:
+                    handle.write("\\multicolumn{4}{@{}l}{\\textbf{" + group + "}} \\\\\n")
+                current_group = group
+            label = label.replace("%", "\\%").replace(" m³/s", "~m³/s").replace("Jahren", "Jahre")
             cooling = latex_number(row["final_cooling_mw"], 1)
             change = latex_number(100 * row["relative_change"], 1, signed=True)
             cost = latex_number(row["npv_25y_eur"] / 1e9, 3)
