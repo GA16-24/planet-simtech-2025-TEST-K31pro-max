@@ -2763,6 +2763,7 @@
     {
       "case": "Abfluss 0,7 m³/s",
       "value": 0.7,
+      "evaluation_year": 10.0,
       "final_cooling_mw": 267.150783335436,
       "relative_change": -0.6956521739130435,
       "npv_25y_eur": 2947955004.7184615
@@ -2770,6 +2771,7 @@
     {
       "case": "Abfluss 4,7 m³/s",
       "value": 4.7,
+      "evaluation_year": 10.0,
       "final_cooling_mw": 1793.7266881093562,
       "relative_change": 1.0434782608695659,
       "npv_25y_eur": 5919260310.2266035
@@ -2777,6 +2779,7 @@
     {
       "case": "Sieden nach 8 Jahren",
       "value": 8.0,
+      "evaluation_year": 10.0,
       "final_cooling_mw": 877.7811452450039,
       "relative_change": 0.0,
       "npv_25y_eur": 4223536168.1119204
@@ -2784,13 +2787,15 @@
     {
       "case": "Sieden nach 12 Jahren",
       "value": 12.0,
-      "final_cooling_mw": 877.7811452450039,
-      "relative_change": 0.0,
+      "evaluation_year": 10.0,
+      "final_cooling_mw": 731.4842877041699,
+      "relative_change": -0.16666666666666674,
       "npv_25y_eur": 4054603943.710702
     },
     {
       "case": "Ziel 7 °C",
       "value": 7.0,
+      "evaluation_year": 10.0,
       "final_cooling_mw": 897.073038547092,
       "relative_change": 0.021978021978022122,
       "npv_25y_eur": 4363379942.6496725
@@ -2798,6 +2803,7 @@
     {
       "case": "Ziel 11 °C",
       "value": 11.0,
+      "evaluation_year": 10.0,
       "final_cooling_mw": 858.489251942916,
       "relative_change": -0.0219780219780219,
       "npv_25y_eur": 3909574311.193763

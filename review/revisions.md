@@ -324,6 +324,16 @@ Die neue Revision enthält 23 bestandene Modelltests und 14 Seiten mit 10 Hauptt
 
 Die Revision enthält weiterhin 23 bestandene Modelltests und 14 Seiten mit 10 Haupttext- und 4 Literatur-/Anhangsseiten. Die Reproduktion wird für Runde 12 mit dem exakten Review-Commit geprüft.
 
+## Befunde aus Runde 12, DeepSeek
+
+| Befund | Konkrete Änderung oder begründete Grenze | Verifikation |
+| --- | --- | --- |
+| M1, Sensitivität ohne einheitliches Bezugsjahr | Alle Sensitivitätsgrößen werden im zehnten Jahr ausgewertet. Die 12-Jahres-Prognose ergibt dort 731,484 MW und -16,7 %. Die Barwerte folgen weiterhin der jeweiligen Prognose. | `sensitivity_rows`, `evaluation_year`, `test_sensitivity_uses_common_reference_year`, Tabelle 3 |
+| M2, Ausfallgleichung ohne MW-Konversion | Die Gleichung verwendet \(10^6 Q_{\mathrm{Kuehl,MW}}\) im Zähler und definiert Sekunden, Volumen, Dichte, Wärmekapazität und die Einheit K/s. | `report/main.tex`, `scripts/verify_report.py`, PDF-Seite 8 |
+| Optionale Klarheitsbefunde | Die Zusammenfassung beschreibt die Pufferwirkung als abhängig vom effektiven Volumen. Quelle [19] nennt Tabelle 5.11 für den Hilfsstrom. Die Spaltenbalance beginnt bereits bei Anhang A. | Zusammenfassung, Quelle [19], `sources/registry.yml`, `report/main.tex` |
+
+Die Revision enthält 24 bestandene Modelltests und 14 Seiten mit 10 Haupttext- und 4 Literatur-/Anhangsseiten. Die Reproduktion wird für Runde 13 mit dem exakten Review-Commit geprüft.
+
 ## Aktueller Lieferumfang
 
 Nach der Nutzerkorrektur ist nur der Research Paper Produkt. Die Kriterien 1 bis 6, 8 bis 11 und 12a bleiben Prüfgegenstand. Kriterium 12b und die Präsentationsartefakte werden nicht fortentwickelt. Nach den fachlichen Council-Runden folgt ein eigener Design-Council für den Research Paper.

@@ -29,7 +29,7 @@
 
 Das Wasser soll vor dem offenen Becken durch geschlossene Kühler fließen. Diese geben die Wärme an die Luft ab, nicht an Fluss oder Grundwasser. Zuerst nutzen große Luftkühler die hohe Temperatur. Danach senken elektrische Kältemaschinen das Wasser auf 9~°C. So soll der Fluss in seinem angenommenen normalen Zustand erhalten bleiben.
 
-Im zehnten Jahr wären dafür \textbf{\QFinal~\mbox{Megawatt} Kühlleistung} nötig. Einschließlich Antriebsenergie würden \QAirRejection\ MW an die Luft abgegeben. Für stärkeren Wasserfluss wird die Anlage größer ausgelegt. Bei 4,7~m³/s wären \DesignCooling\ MW nötig; installiert werden \QReserve\ MW. Im üblichen Betrieb arbeiten fünf Kühlmodule bei etwa 98 \% ihrer installierten Leistung, im stärkeren Fall elf plus ein Ersatzmodul. Ein Puffer begrenzt die Belastung für das Gewässer. Die Temperatur des zurückgeführten Wassers darf sich höchstens um ein Grad pro Stunde ändern.
+Im zehnten Jahr wären dafür \textbf{\QFinal~\mbox{Megawatt} Kühlleistung} nötig. Einschließlich Antriebsenergie würden \QAirRejection\ MW an die Luft abgegeben. Für stärkeren Wasserfluss wird die Anlage größer ausgelegt. Bei 4,7~m³/s wären \DesignCooling\ MW nötig; installiert werden \QReserve\ MW. Im üblichen Betrieb arbeiten fünf Kühlmodule bei etwa 98 \% ihrer installierten Leistung, im stärkeren Fall elf plus ein Ersatzmodul. Die Temperatur des zurückgeführten Wassers wird höchstens um ein Grad pro Stunde geändert. Wie stark ein Puffer wirkt, hängt vom effektiven Volumen ab.
 
 Die Schätzung ergibt \CapexFinal\ Mio. € Investition und \OpexFinal\ Mio. € Betriebskosten im zehnten Jahr. Über 25 Jahre ergeben sich \NpvHybridFull\ Mrd. €. Eine andere Möglichkeit, Wasser verdunsten zu lassen, wäre billiger, verdunstet aber \EvapAnnual\ Mio.~m³ Wasser pro Jahr. Mit Spülwasser und kleinen Verlusten werden \EvapMakeupAnnual\ Mio.~m³ pro Jahr zugeführt. Sie benötigt Hygienemaßnahmen. Alle Kosten sind Schätzungen in Euro von 2026, keine Angebote.
 
@@ -183,10 +183,11 @@ Ein Puffer von \BufferVolume~m³ entspricht einer Stunde Erwartungsstrom, er erz
 
 \subsection{Dynamischer Ausfalltest und Ersatzstrom}
 
-Ohne Kühlung erreicht ein ideal gemischtes Becken mit \PoolTau\ h Zeitkonstante nach \FailureMinutes\ Minuten 20~°C. Diese interne Alarmschwelle ist keine behördliche Grenze. Das dynamische Modell verwendet
+Ohne Kühlung erreicht ein ideal gemischtes Becken mit \PoolTau\ h Zeitkonstante nach \FailureMinutes\ Minuten 20~°C. Diese interne Alarmschwelle ist keine behördliche Grenze. Das dynamische Modell verwendet mit \(t\) und \(\tau\) in Sekunden
 \begin{equation}
-\frac{\dd T}{\dd t}=\frac{100-T}{\tau}-\frac{Q_{Kuehl}(t)}{\rho Vc_p}.
+\frac{\dd T}{\dd t}=\frac{100-T}{\tau}-\frac{10^6\,Q_{\mathrm{Kuehl,MW}}(t)}{\rho Vc_p}.
 \end{equation}
+Dabei sind \(V\) das Beckenvolumen in m³, \(\rho\) die Dichte in kg/m³, \(c_p\) die Wärmekapazität in J/(kg K) und \(Q_{\mathrm{Kuehl,MW}}\) der Wärmestrom in MW. Die linke Seite hat die Einheit K/s.
 Nach 0,5 min Detektion vergehen 5 min bis zum Generatorstart und weitere 5 min bis zur vollen Kühlleistung. Der Start erfolgt somit nach 5,5 min, die volle Kühlleistung nach 10,5 min. Die 15-min-USV hat damit 4,5 min Reserve. Im Mittelstrom bleibt das Maximum bei \RecoveryPeak~°C. Im p90-Fall erreicht das Becken ohne Kühlung 20~°C bereits nach \FailureMinutesNinety\ Minuten; mit demselben Wiederanlauf liegt der Höchstwert bei \RecoveryPeakNinety~°C. Die Differenz zur vollen Kühlleistung beträgt dann \RecoveryMarginNinety\ Minuten und ist keine frei verfügbare Wartezeit. Die Integrationsintervalle beginnen an den Schaltzeitpunkten neu, damit die dortigen Knickstellen nicht interpoliert werden. Zwei Toleranz- und Zeitschrittstufen bestätigen den p90-Verlauf. Dies sind Rechennachweise unter Annahmen, keine Lastabwurf- oder Zuschaltversuche. Gemeinsame Ausfallursachen und reale Anlaufkurven bleiben zu prüfen.
 
 Die Volumen- und Mischungsannahme ist sicherheitsrelevant. Bei nur 10.000 m³ effektivem Volumen erreicht der p90-Verlauf trotz Wiederanlauf \VolumePeakLow~°C und eine negative Differenz von \VolumeMarginLow\ Minuten zur vollen Kühlleistung. Die Alarmschwelle wird dort also verfehlt. Bei 50.000 m³ beträgt die Differenz \VolumeMarginHigh\ Minuten. Diese Sensitivität zeigt, dass Volumen und Durchmischung vor einer Sicherheitszusage gemessen werden müssen.
@@ -256,7 +257,7 @@ Mit mehr Bearbeitungszeit würden wir zuerst die Karst- und Standortmessungen, e
 \bibitem{bdew} [16] Bundesverband der Energie- und Wasserwirtschaft: BDEW-Strompreisanalyse, Preisangaben 2026. \href{https://www.bdew.de/service/daten-und-grafiken/bdew-strompreisanalyse/}{\nolinkurl{bdew.de/service/daten-und-grafiken/bdew-strompreisanalyse/}}. Abruf: 07.11.2026.
 \bibitem{bfe} [17] Schweizerisches Bundesamt für Energie (2010): Feldmessungen großer Wärmepumpenanlagen. \href{https://pubdb.bfe.admin.ch/de/publication/download/4978}{\nolinkurl{pubdb.bfe.admin.ch/de/publication/download/4978}}. Abruf: 07.11.2026.
 \bibitem{tga} [18] tga-shop: Buderus SL333 Plattenwärmetauscher DN100 PN16, Produktpreis und Listenpreis. \href{https://tga-shop.de/Buderus-SL333-Plattenwaermetauscher-DN100-PN16-601-700-kW-70-Platten-7738300409/70001-7738300409}{\nolinkurl{tga-shop.de/Buderus-SL333-Plattenwaermetauscher-DN100-PN16-601-700-kW-70-Platten-7738300409/70001-7738300409}}. Abruf: 07.11.2026.
-\bibitem{haw} [19] Bez, A. (2012): Kälte durch Wärme erzeugen. Bachelorthesis, HAW Hamburg, Kapitel 3 und Tabelle 5.6. \href{https://reposit.haw-hamburg.de/bitstream/20.500.12738/5979/1/Bachelorthesis_Bez_Armin_20120618.pdf}{\nolinkurl{reposit.haw-hamburg.de/bitstream/}\mbox{20.500.12738}\nolinkurl{/5979/1/Bachelorthesis_Bez_Armin_20120618.pdf}}. Abruf: 07.11.2026.
+\bibitem{haw} [19] Bez, A. (2012): Kälte durch Wärme erzeugen. Bachelorthesis, HAW Hamburg, Kapitel 3 sowie Tabellen 5.6 und 5.11. \href{https://reposit.haw-hamburg.de/bitstream/20.500.12738/5979/1/Bachelorthesis_Bez_Armin_20120618.pdf}{\nolinkurl{reposit.haw-hamburg.de/bitstream/}\mbox{20.500.12738}\nolinkurl{/5979/1/Bachelorthesis_Bez_Armin_20120618.pdf}}. Abruf: 07.11.2026.
 \bibitem{waermeplanung} [20] Stadt Blaubeuren: Kommunale Wärmeplanung. \href{https://www.blaubeuren.de/de/Aktuelles/Kommunale-Waermeplanung}{\nolinkurl{blaubeuren.de/de/Aktuelles/Kommunale-Waermeplanung}}. Abruf: 07.11.2026.
 \bibitem{planetbericht} [21] PlaNeT SimTech: Vorgaben für den Bericht, Stand 10/2026. \href{https://www.planet-simtech.de/wp-content/uploads/2023/05/PlaNeT_Vorgaben-Bericht.pdf}{\nolinkurl{planet-simtech.de/wp-content/uploads/2023/05/PlaNeT_Vorgaben-Bericht.pdf}}. Abruf: 07.11.2026.
 \bibitem{d4rt} [22] Zhang et al. (2025): Efficiently Reconstructing Dynamic Scenes One D4RT at a Time. Preprint, Version vom 10.12.2025. \href{https://storage.googleapis.com/d4rt_assets/D4RT_paper.pdf}{\nolinkurl{storage.googleapis.com/d4rt_assets/D4RT_paper.pdf}}. Abruf: 07.11.2026. Ausschließlich Layoutvergleich.
@@ -266,6 +267,7 @@ Mit mehr Bearbeitungszeit würden wir zuerst die Karst- und Standortmessungen, e
 \end{description}
 
 \raggedbottom
+\balance
 \section*{Anhang A: KI-Verwendung, Unabhängigkeit und Reproduktion}
 \begingroup
 \raggedright
@@ -289,7 +291,6 @@ Die Handrechnung bestätigt die zentrale Leistung mit NIST-Stoffwerten [4], nich
 Das Layout folgt D4RT [22], ersetzt aber US Letter durch A4, 26 mm Rand und 12 pt [21]. D4RT-PDF und Seiten 1, 2 und 6 liegen bei.
 \endgroup
 
-\balance
 \section*{Anhang B: Ergänzende Ergebnisse}
 
 \begin{figure}[H]
@@ -302,7 +303,7 @@ Das Layout folgt D4RT [22], ersetzt aber US Letter durch A4, 26 mm Rand und 12 p
 \begin{table}[H]
 \centering
 \input{generated/sensitivity.tex}
-\caption{Deterministische Sensitivität. Kühlleistung in MW, Änderung in \%, Barwert in Mrd. €.}
+\caption{Sensitivität. Kühlleistung im zehnten Jahr in MW, Änderung in \%, Barwert in Mrd. €.}
 \label{tab:sensitivitaet}
 \end{table}
 

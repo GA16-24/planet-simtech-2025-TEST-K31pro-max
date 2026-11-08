@@ -149,6 +149,33 @@ def coupled_npv(p: dict[str, Any], discharge: float, cop: float, capex_multiplie
     return float(sum(rows))
 
 
+def sensitivity_rows(p: dict[str, Any]) -> list[dict[str, Any]]:
+    final_q = float(required_cooling_mw(p["scenario"]["forecast_years"], p))
+    specifications = [
+        ("Abfluss 0,7 m³/s", "water.discharge_m3_s", p["hydrology"]["discharge_p10_m3_s"]),
+        ("Abfluss 4,7 m³/s", "water.discharge_m3_s", p["hydrology"]["discharge_p90_m3_s"]),
+        ("Sieden nach 8 Jahren", "scenario.forecast_years", 8.0),
+        ("Sieden nach 12 Jahren", "scenario.forecast_years", 12.0),
+        ("Ziel 7 °C", "scenario.target_temperature_c", 7.0),
+        ("Ziel 11 °C", "scenario.target_temperature_c", 11.0),
+    ]
+    rows = []
+    for label, path, value in specifications:
+        varied = copy.deepcopy(p)
+        section, key = path.split(".")
+        varied[section][key] = value
+        q = float(required_cooling_mw(p["scenario"]["forecast_years"], varied))
+        rows.append({
+            "case": label,
+            "value": value,
+            "evaluation_year": p["scenario"]["forecast_years"],
+            "final_cooling_mw": q,
+            "relative_change": q / final_q - 1.0,
+            "npv_25y_eur": npv(economic_schedule(varied, "hybrid")),
+        })
+    return rows
+
+
 def main() -> None:
     with (ROOT / "data" / "parameters.yml").open(encoding="utf-8") as handle:
         p = yaml.safe_load(handle)
@@ -226,22 +253,7 @@ def main() -> None:
             "npv_25y_eur": npv(economic_schedule(varied, "evaporative")),
         })
 
-    sensitivity_specs = [
-        ("Abfluss 0,7 m³/s", "water.discharge_m3_s", p["hydrology"]["discharge_p10_m3_s"]),
-        ("Abfluss 4,7 m³/s", "water.discharge_m3_s", p["hydrology"]["discharge_p90_m3_s"]),
-        ("Sieden nach 8 Jahren", "scenario.forecast_years", 8.0),
-        ("Sieden nach 12 Jahren", "scenario.forecast_years", 12.0),
-        ("Ziel 7 °C", "scenario.target_temperature_c", 7.0),
-        ("Ziel 11 °C", "scenario.target_temperature_c", 11.0),
-    ]
-    sensitivity = []
-    for label, path, value in sensitivity_specs:
-        varied = copy.deepcopy(p)
-        section, key = path.split(".")
-        varied[section][key] = value
-        q = float(required_cooling_mw(varied["scenario"]["forecast_years"], varied))
-        varied_npv = npv(economic_schedule(varied, "hybrid"))
-        sensitivity.append({"case": label, "value": value, "final_cooling_mw": q, "relative_change": q / final_q - 1.0, "npv_25y_eur": varied_npv})
+    sensitivity = sensitivity_rows(p)
 
     flow_fraction_scenarios = []
     for fraction in [1.0, 0.1, 0.01, 0.001]:

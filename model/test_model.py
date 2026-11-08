@@ -8,7 +8,7 @@ import yaml
 import numpy as np
 
 from core import absorption_stage, annual_operation, backup_fuel_cost_eur, backup_fuel_liters, cooling_stage, cumulative_capex_eur, design_electrical_stage, design_flow_ratio, economic_schedule, evaporation_kg_s, npv, planned_return_temperature_c, required_cooling_mw, source_temperature_c, storage_heating_power_mw, variable_capex_eur
-from run_all import coupled_npv, electrical_values_mw
+from run_all import coupled_npv, electrical_values_mw, sensitivity_rows
 from validation import run_validation, simulate_failure
 
 
@@ -234,6 +234,20 @@ class ModelTests(unittest.TestCase):
         self.assertAlmostEqual(electricity, design.electricity_mw, places=9)
         self.assertAlmostEqual(air, design.air_rejection_mw, places=9)
         self.assertGreater(coupled_npv(self.p, discharge, cop, 1.0, technology="absorption"), coupled_npv(self.p, discharge, cop, 1.0))
+
+    def test_sensitivity_uses_common_reference_year(self) -> None:
+        rows = sensitivity_rows(self.p)
+        row = next(row for row in rows if row["case"] == "Sieden nach 12 Jahren")
+        varied = copy.deepcopy(self.p)
+        varied["scenario"]["forecast_years"] = 12.0
+        expected = float(required_cooling_mw(10.0, varied))
+        baseline = float(required_cooling_mw(10.0, self.p))
+        self.assertAlmostEqual(expected, 731.484, places=3)
+        self.assertAlmostEqual(row["final_cooling_mw"], expected, places=9)
+        self.assertAlmostEqual(row["relative_change"], -1.0 / 6.0, places=9)
+        self.assertAlmostEqual(row["relative_change"], expected / baseline - 1.0, places=9)
+        self.assertEqual(row["evaluation_year"], 10.0)
+        self.assertAlmostEqual(next(row for row in rows if row["case"] == "Sieden nach 8 Jahren")["final_cooling_mw"], baseline, places=9)
 
     def test_validation_suite(self) -> None:
         result = run_validation(self.p)

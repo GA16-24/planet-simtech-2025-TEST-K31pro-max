@@ -1,0 +1,60 @@
+## 1. Bewertung
+
+Geprüft wurde ausschließlich Commit `a4005b20d5c19efcba1755ce6bd7b82eb1ecfc84`. Die Seitenangaben bezeichnen die physischen PDF-Seiten einschließlich Deckblatt.
+
+| Kriterium | Bewertung | Kurze Begründung und Belegorte |
+|---|---:|---|
+| 1. Qualität der Argumentation | 9 | Die Lösung folgt konsequent aus der Wärmebilanz und der erforderlichen externen Senke. Druckbeaufschlagung wird nachvollziehbar abgelehnt, der kleinere reine Siedeschutz wird gegen den ökologischen Normalzustand abgewogen. H1 bis H8 enden in begründeten Auswahl- oder Verwerfungsentscheidungen. Belege: PDF-S. 2, 7 und 11, `report/main.tex`, §§1, 3.3 und 6, `docs/alternativenvergleich.md`. |
+| 2. Vorgehen und Methodik | 9 | Quellenwerte, Szenarioprämissen und eigene Annahmen sind getrennt. Die Methodik verbindet stationäre Wärmebilanzen, p90-Auslegung mit Reserve, Min-COP-Auslegung für Netz und Senke, Kostenreihen, Ausfall dynamik und Unsicherheitsrechnung. Die Verteilungen und ihre fehlende empirische Kalibrierung werden offengelegt. Belege: Tabelle 1 auf PDF-S. 4, Gleichungen 1 bis 10, PDF-S. 8 bis 10, `data/parameters.yml`, `model/run_all.py:229-331`. |
+| 3. Qualität der vorgeschlagenen Lösung | 9 | H1 verbindet Trockenkühlung und Kompressionskälte zu einer geschlossenen Vollstromlösung mit modularer Reserve, Stufenplan, Ersatzstrom, Temperaturrampe und Abbruchkriterien. Standort, Netz, Herstellerdaten und Karsterfassung bleiben ausdrücklich Zulassungsbedingungen statt erfundener Nachweise. Belege: PDF-S. 4 bis 10, `output/model/results.json`, `baseline`, `design`, `validation.failure_mean`, `failure_p90`. |
+| 4. Mathematische und wissenschaftliche Modellierung | 9 | Wärme-, Kondensator-, Wasser- und Kostenbilanzen sind konsistent implementiert. H2 besitzt positive Gegenstrom-Pinchabstände, H8 geschlossene Generator-, Verdampfer- und Senkenbilanzen. Meine unabhängigen Rechnungen bestätigten 877,781145245 MW, 1793,726688109 MW und die übrigen Hauptgrößen. Die geschlossene Ausfalllösung weicht um weniger als \(5\times10^{-6}\) K von den gespeicherten numerischen Maxima ab. Belege: Gleichungen 1 bis 10, `model/core.py`, `model/validation.py`, `output/model/results.json`. |
+| 5. Ableitung neuer Ansätze | 9 | Die Hypothesen H1 bis H7 sind als eigenständige energetische Wege dokumentiert. Die Weiterentwicklung vom Tiefenkreislauf zur Vollstromkühlung und die spätere Ergänzung von H8 werden offengelegt, nicht als angeblich ursprüngliche Ideen verkauft. Provenienz und Ausschlussprotokoll benennen Quellen und frühere Expositionen. Weltweite Neuheit wird nicht behauptet. Belege: `docs/hypothesen.md`, `PROVENANCE.md`, `EXCLUSION_LOG.md`, Anhang A auf PDF-S. 13. |
+| 6. Wissenschaftliche Qualität | 9 | Zentrale Eingaben sind durch Primärquellen gedeckt. Fan bestätigt Mittelwert und Tagesquantile, NIST bestätigt Dichte, Wärmekapazität und Sättigung, die HAW-Arbeit trägt COP- und Kostenbereiche. Unsicherheiten, konstante Stoffwerte und fehlende Feldvalidierung werden sichtbar gemacht. Belege: PDF-S. 10 bis 13, `sources/registry.yml`, `data/nist_saturation_32_100.tsv`, 23 bestandene Tests in `model/test_model.py`. |
+| 8. Klare Erklärung von Annahmen, Methoden, Ergebnissen und Schlussfolgerungen | 9 | Die Zusammenfassung erklärt die Lösung weitgehend ohne Fachkürzel und nennt Zahlen, Kosten und Grenzen. Tabelle 1 trennt Herkunft und Annahmen, Ergebnisse sind mit Einheiten und Bezugsfällen versehen. Die Schlussfolgerung benennt Auslegung, fehlende Nachweise und Prioritäten bei mehr Bearbeitungszeit. Belege: PDF-S. 2 bis 4 und 11, Tabellen 2 bis 5 auf PDF-S. 7 und 14. |
+| 9. Kritische Diskussion der Ergebnisse | 9 | Der Bericht diskutiert Wasser- und Emissionskonflikte, Strompreis, Netzverfügbarkeit, Wetter, begrenzte Monte-Carlo-Verteilungen und Hochwasser. Besonders tragfähig ist die Volumensensitivität: Der p90-Ausfall hat nur 0,921 Minuten Differenz zur Vollast, bei 10.000 m³ wird die interne Schwelle mit 26,4 °C verfehlt. Belege: PDF-S. 7 bis 10, `volume_sensitivity`, `weather_scenarios`, `availability_scenarios`, `uncertainty.coverage_scope`. |
+| 10. Berichtsstruktur und Nachvollziehbarkeit für die Jury | 9 | Zusammenfassung, Einführung, Methodik, Ergebnisse, Diskussion, Nachweis und Schlussfolgerung folgen einer klaren Kette. Gleichungen, Tabellen und Abbildungen stehen nahe am zugehörigen Text. Anhang A dokumentiert KI und Reproduktion, Anhang B ordnet die Zusatzresultate eindeutig zu. Belege: PDF-S. 2 bis 14, `output/verification_summary.json:3-9`. |
+| 11. Format, Zitation, Anforderungen und visuelle Qualität | 9 | Die PDF hat 14 A4-Seiten, zehn Haupttextseiten und vier gemeinsame Literatur- und Anhangsseiten. Ich maß mindestens 25,85 mm Rand, eingebettete Schriften und keine Autorenmetadaten. Alle 25 Quellen werden numerisch geführt, KI-Nutzung und Testkennung sind offengelegt. Alle Einzelseiten sind lesbar und ohne Kollisionen oder abgeschnittene Inhalte. D4RT ist dichter und bildstärker, der Bericht erreicht dennoch eine geordnete, konsistente Typografie mit 12 pt Fließtext und wirksamen Diagrammglyphen ab 12,68 pt. Belege: `report/preamble.tex`, PDF-S. 5, 7, 8, 13 und 14, `review/rendered/d4rt_page01.png`, `d4rt_page02.png`, `d4rt_page06.png`. |
+| 12a. Bereitschaft für die schriftliche Runde | 9 | Das technische Testpaket ist geschlossen vorhanden. Alle 215 Freeze-Hashes und 44 Manifest-Hashes stimmen, die 23 Tests bestehen, PDF und alle 14 Seitenbilder sind vorhanden. Der dokumentierte Archivlauf verlangt 39 bytegleiche Paperartefakte und bezieht den vollständigen Review-Commit ein. Offizielle Team-ID, menschliche Fachprüfung, Rechtefreigabe und Einreichung bleiben offen und werden nicht als erledigt ausgegeben. Belege: `review/rounds/round12/revision.json`, `round12/reproduction.md`, `README.md:30-61`, `PROVENANCE.md:42-44`. |
+
+Die aktuellen Regeln wurden direkt gegen die [Berichtsvorgaben](https://www.planet-simtech.de/wp-content/uploads/2023/05/PlaNeT_Vorgaben-Bericht.pdf), die [Teilnahmebedingungen](https://www.planet-simtech.de/wp-content/uploads/2023/05/PlaNeT_Teilnahmebedingungen.pdf) und die [FAQ](https://www.planet-simtech.de/faq/) geprüft. Zentrale Quellenstichproben waren [Fan et al.](https://publikationen.bibliothek.kit.edu/1000163518/151549041), [NIST](https://webbook.nist.gov/cgi/fluid.cgi?Action=Data&Wide=on&ID=C7732185&Type=IsoBar&Digits=6&P=1.01325&TLow=0&THigh=100&TInc=10&RefState=DEF&TUnit=C&PUnit=bar&DUnit=kg%2Fm3&HUnit=kJ%2Fkg&WUnit=m%2Fs&VisUnit=uPa*s&STUnit=N%2Fm), die [HAW-Arbeit](https://reposit.haw-hamburg.de/bitstream/20.500.12738/5979/1/Bachelorthesis_Bez_Armin_20120618.pdf), die [BDEW-Strompreisanalyse](https://www.bdew.de/service/daten-und-grafiken/bdew-strompreisanalyse/) und der [UBA-Emissionsfaktor](https://www.umweltbundesamt.de/themen/co2-emissionen-pro-kilowattstunde-strom-2024).
+
+Zusätzlich bestätigten eigene Prüfungen:
+
+- Alle 23 Unittests: `OK`.
+- Exakte Wiedergabe der 10.000 Abfluss-Stichproben aus dem dokumentierten Seed.
+- H8 ist in allen gespeicherten gekoppelten Ziehungen teurer als H1.
+- Netz- und Luftgrenzen werden von keiner Stichprobe überschritten.
+- Die vier NPV-Reihen summieren sich exakt zu den ausgewiesenen Barwerten über jeweils 25 Betriebsjahre.
+- Python 3.14.6, Tectonic 0.17.0 und Poppler 26.10.0 entsprechen der dokumentierten Referenzumgebung.
+
+## 2. Materielle Mängel und Korrekturen
+
+Keine materiellen Mängel festgestellt. Damit ist keine Pflichtkorrektur für eine Bewertung unter 9 offen.
+
+Drei optionale Verbesserungen würden das Paket noch präziser machen:
+
+1. Die Sensitivität gegenüber der vulkanischen Prämisse könnte zusätzlich zu den Prognosejahren 8 und 12 direkt mit Zuflusstemperaturen von beispielsweise 50, 75 und 100 °C tabelliert werden. Umsetzung in `model/run_all.py`, `sensitivity_specs`, und Tabelle 3 auf PDF-S. 14. Die lineare Abhängigkeit ist bereits in Gleichung 1 enthalten, deshalb ist dies kein fachlicher Lückenschluss.
+2. In der Zusammenfassung könnte „Ein Puffer begrenzt die Belastung für das Gewässer“ durch die genauere Aussage ersetzt werden, dass die Sollwertrampe die Änderungsrate begrenzt und die Pufferwirkung vom effektiven Volumen abhängt. Belege: `report/main.tex:32`, differenzierte Darstellung auf PDF-S. 7 und 8.
+3. Quelle [19] könnte neben Kapitel 3 und Tabelle 5.6 auch Tabelle 5.11 für das Hilfsstrombeispiel 3 kW bei 54 kW nennen. Beleg: `report/main.tex:259`, HAW-PDF-Seite 60, dort Tabelle 5.11.
+
+## 3. Restrisiken und mögliche Dissenspunkte
+
+- Die Dauerzusage gilt nur bis 4,7 m³/s betroffenem Strom und 100 °C Zuflusstemperatur. Für 32,7 m³/s wären 12,48 GW erforderlich und nicht ausgelegt. Beleg: PDF-S. 10, `baseline.flood_stress_cooling_mw`.
+- Karstwege, betroffener Stromanteil, Standort, Netzanschluss, Luftführung, reale COP- und Teillastkurven sind nicht feldbestätigt. Der Bericht ist ein Szenarioentwurf, keine Baufreigabe. Beleg: PDF-S. 9 und 11.
+- Der Ausfalltest hängt am ideal gemischten Volumen von 25.000 m³. Die p90-Differenz von 0,921 Minuten ist klein, reale Zuschaltkurven und gemeinsame Ausfallursachen fehlen. Beleg: PDF-S. 8, `validation.failure_p90`.
+- Die vollständige Deckung durch die p90-Anlage gilt nur innerhalb der künstlich auf 4,7 m³/s begrenzten Dreiecksverteilung. Sie ist keine Hochwasserwahrscheinlichkeit. Beleg: PDF-S. 9 und 10, `uncertainty.coverage_scope`.
+- H2 bleibt eine Zielabwägung. Es ist billiger und verursacht weniger Stromemissionen, benötigt aber 12,48 Mio. m³ Zusatzwasser und Hygienemaßnahmen. Eine andere Gewichtung von Wasserverbrauch und Kosten kann zu einer anderen Präferenz führen. Beleg: Tabelle 2 auf PDF-S. 7.
+- H8 ist nur ein begrenztes Screening, keine vollständige Absorptionskreislauf- oder Rückkühlauslegung. Die reversible Obergrenze verwendet idealisierte 9 °C Verdampfungstemperatur und darf nicht als Produktnachweis gelesen werden. Beleg: PDF-S. 6 und 7, `plant.absorption_model_note`.
+- Die Unabhängigkeit ist dokumentiert, aber eine negative Tatsache wie die vollständige Nichtverwendung früherer Lösungen kann ein Repository nicht beweisen. Ich habe selbst keine verbotenen Lösungsmaterialien geöffnet oder verwendet.
+- Der Archivnachweis wurde inhaltlich geprüft, aber wegen des Read-only-Auftrags nicht durch einen neuen Build wiederholt. Er belegt Reproduktion in derselben Referenzumgebung, keine frische Installation auf einem fremden Rechner und keine externe wissenschaftliche Validierung. Beleg: `review/rounds/round12/reproduction.md:28`.
+- Die Bewertung des anderen Runde-12-Reviewers liegt mir nicht vor. Dort könnte insbesondere über die hinreichende Begrenzung des Szenarioentwurfs und die H8-Modelltiefe ein anderer Schwerpunkt gesetzt werden. Ein solcher Dissens ist nicht von mir festgestellt, sondern lediglich als offene Bewertungsfrage sichtbar.
+
+## 4. Begründung für Bewertungen von 10
+
+Keine Zeile erhielt eine 10. Entsprechend gibt es keine separaten Nachweise erfolgloser substanzieller Fehlersuche auf diesem Niveau zu dokumentieren.
+
+## 5. Urteil zur Stoppregel
+
+Von meiner Seite ist die Stoppregel erfüllt: Alle elf verbleibenden Kriterien erreichen 9, und es bleibt kein ungelöster substanzieller Einwand gegen Korrektheit, wissenschaftliche Qualität, Unabhängigkeit, Compliance oder Auslieferbarkeit des Paperpakets.
+
+Die Bedingung „beide Reviewer mindestens 9 in jeder Zeile“ kann ich ohne die andere Runde-12-Bewertung nicht bestätigen. Das Paket erhält daher meine technische Freigabe, ein nachgewiesener Gesamtstopp hängt noch vom zweiten Review ab.

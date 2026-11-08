@@ -51,6 +51,7 @@ def main() -> None:
     conclusion_text = full_text.split("Schlussfolgerung", 1)[-1].split("Literaturverzeichnis", 1)[0]
     require("Bearbeitungszeit" in conclusion_text, "Statement zu Verbesserungen bei mehr Bearbeitungszeit fehlt")
     source = (ROOT / "report" / "main.tex").read_text(encoding="utf-8")
+    require(r"\frac{10^6\,Q_{\mathrm{Kuehl,MW}}(t)" in source, "Ausfallgleichung muss MW in W umrechnen")
     source_without_urls = re.sub(r"\\(?:url|href)\{[^{}]*\}", "", source)
     require(not re.search(r"(?<!\\)%", source_without_urls), "Unmaskiertes Prozentzeichen im LaTeX-Quelltext")
     figure_numbers = [int(number) for number in re.findall(r"\\caption\{Abbildung\s+(\d+)", source)]
