@@ -31,9 +31,10 @@ Runde 1 bis Runde 5 sind vollständig dokumentiert. Die Stoppregel war jeweils n
 | 10 | Kandidat `3f2324cb7b7323f1a04fbbad82a87c6e48dd8f64`, Review `2c8deecf575e3c837a505be00f1e170348d28a27` | 1 bis 10 und 12a: 9; 11: 8 | 1 bis 10: 9; 11, 12a: 8 | HAW-Kostenbezeichnung, Anhangsdichte, Seitenflag und kleinere Nachweise |
 | 11 | Kandidat `94736f771aea1db20d8c7eeca5ded11d7ff42389`, Review `a8368ef77e14dcea7afb19c61b7f3b664c1344c9` | 1 bis 7, 9, 10 und 12a: 9; 8, 11: 8 | 4, 12a: 10; alle übrigen: 9 | H2-Zyklen, H3-Fixkosten, Teilstromformel, Anhangsspacing und Tabellenklarheit |
 | 12 | Review `a4005b20d5c19efcba1755ce6bd7b82eb1ecfc84` | 1, 3, 5, 9, 10, 11: 9; 2, 4, 6, 8, 12a: 8 | Alle elf Kriterien: 9 | Bezugsjahr der 12-Jahres-Sensitivität und Einheiten der Ausfallgleichung |
-| 13 | Kandidat nach Runde 12 in Vorbereitung | ausstehend | ausstehend | Erneute Archivreproduktion und unabhängige Prüfung |
+| 13 | Review `fbd0a26fb67a0417602278d475ec5b1c2075285e` | Alle elf Kriterien: 9 | 11: 10; 1 bis 3, 5, 7, 9, 10: 9; 4, 6, 8, 12a: 8 | MW-Konversionen, Kelvin und Testzahl |
+| 14 | Kandidat nach Runde 13 in Vorbereitung | ausstehend | ausstehend | Erneute Archivreproduktion und unabhängige Prüfung |
 
-Die vollständigen Matrizen mit Begründungen und Belegen stehen in `rounds/round1/scorecard.md` bis `rounds/round12/scorecard.md`. Der erste Kimi-Lauf in Runde 1 wurde wegen blockierender Leseberechtigungen verworfen. Der Neustart arbeitete mit technisch weiteren Berechtigungen, aber einem ausdrücklich read-only Auftrag und ohne Kenntnis des DeepSeek-Reviews. Die Reviews seit Runde 2 liefen read-only mit `runtimeMode=full-access`. `review/model_configuration.md` hält die tatsächlichen Einstellungen fest.
+Die vollständigen Matrizen mit Begründungen und Belegen stehen in `rounds/round1/scorecard.md` bis `rounds/round13/scorecard.md`. Der erste Kimi-Lauf in Runde 1 wurde wegen blockierender Leseberechtigungen verworfen. Der Neustart arbeitete mit technisch weiteren Berechtigungen, aber einem ausdrücklich read-only Auftrag und ohne Kenntnis des DeepSeek-Reviews. Die Reviews seit Runde 2 liefen read-only mit `runtimeMode=full-access`. `review/model_configuration.md` hält die tatsächlichen Einstellungen fest.
 
 Frühere Bewertungen gelten nie für eine neue Revision. Auch der Wechsel zum Paperumfang überträgt keine alte Punktzahl.
 

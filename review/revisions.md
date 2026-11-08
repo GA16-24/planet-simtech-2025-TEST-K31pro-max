@@ -334,6 +334,24 @@ Die Revision enthält weiterhin 23 bestandene Modelltests und 14 Seiten mit 10 H
 
 Die Revision enthält 24 bestandene Modelltests und 14 Seiten mit 10 Haupttext- und 4 Literatur-/Anhangsseiten. Die Reproduktion wird für Runde 13 mit dem exakten Review-Commit geprüft.
 
+## Befunde aus Runde 13, DeepSeek
+
+| Befund | Konkrete Änderung oder begründete Grenze | Verifikation |
+| --- | --- | --- |
+| Veraltete Testzahl | Der Nachweis nennt 24 Tests, die Prüfkette zählt 24 Testmethoden und verlangt dieselbe Zahl im Bericht. | `model/test_model.py`, `scripts/verify_report.py`, Bericht §5 |
+| 8-Jahres-Zeile ohne Erklärung | Die Unterschrift erklärt, dass die 100-°C-Kappung bereits erreicht ist und \(Q_{10}\) deshalb gleich bleibt, während der Barwert dem früheren Ausbaupfad folgt. | `sensitivity_rows`, Tabelle 3 |
+| Optionales Anlagenschema | Wird im eigenen Design-Council geprüft und nicht als fachlicher Mangel vorgezogen. | `review/README.md`, D4RT-Vergleich |
+
+## Befunde aus Runde 13, Kimi
+
+| Befund | Konkrete Änderung oder begründete Grenze | Verifikation |
+| --- | --- | --- |
+| M1, fehlende W/MW-Konversionen | Die sensible Wärme und der Wärmekapazitätsstrom werden durch \(10^6\) geteilt. Auch die Speicherheizleistung enthält \(10^6\) im Nenner. Die Bedeutung von \(\dot Q\) in MW ist ausdrücklich genannt. | `report/main.tex`, Gleichungen 1, 2 und 6; `scripts/verify_report.py` |
+| M2, Kelvin nicht definiert | Die Temperaturen in \(COP_{rev}\) sind als absolute Werte in Kelvin definiert, mit 282,15 K, 369,15 K und 308,15 K. | `report/main.tex`, `model/validation.py`, `scripts/verify_report.py` |
+| M3, veraltete Testzahl | Der Nachweis nennt 24 Tests, die Prüfkette zählt und verlangt 24 Testmethoden. | `model/test_model.py`, `scripts/verify_report.py`, Bericht §5 |
+
+Alle gedruckten Gleichungen wurden auf Einheiten geprüft. Die Zahlen bleiben unverändert. Die Revision enthält 24 bestandene Modelltests und 14 Seiten mit 10 Haupttext- und 4 Literatur-/Anhangsseiten. Die Reproduktion wird für Runde 14 mit dem exakten Review-Commit geprüft.
+
 ## Aktueller Lieferumfang
 
 Nach der Nutzerkorrektur ist nur der Research Paper Produkt. Die Kriterien 1 bis 6, 8 bis 11 und 12a bleiben Prüfgegenstand. Kriterium 12b und die Präsentationsartefakte werden nicht fortentwickelt. Nach den fachlichen Council-Runden folgt ein eigener Design-Council für den Research Paper.
