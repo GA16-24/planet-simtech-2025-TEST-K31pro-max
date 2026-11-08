@@ -21,6 +21,7 @@ Konkrete KI-Läufe:
 | Berichtssynthese | Kimi K3.1 Pro, `thinking=max` | `reports/Blautopf Wärmeschutz.md` | Redaktion und Zahlenabgleich durch den implementierenden Agenten |
 | Präsentation und Vertonung | Kimi K3.1 Pro, `thinking=max`, und eSpeak NG 1.52.0 | `presentation/`, PDF-Folien, Sprechtext und MP4 | Sichtprüfung, `ffprobe`, vollständige Decodierung und Laufzeitmessung |
 | Council | DeepSeek-V4.1-Flash, `reasoning_effort=max`, und separates Kimi K3.1 Pro, `thinking=max` | Reviews nach Runden in `review/rounds/` | Getrennte read-only Bewertungen derselben eingefrorenen Revision. Council B ist ein unabhängiger Same-Model-Kontext, keine externe Prüfung |
+| Übernahme und Paper-Revision | Kimi K3.1 Pro, `thinking=max` | Kostenkorrekturen, NIST-Sättigungsdaten, Bericht und Reviewpaket | 13 Modelltests, `make report`, Sichtprüfung aller 12 Seiten. Der verzögerte Schreibprozess des Ausgangslaufs wurde vor der Übernahme beendet |
 
 ## Quellen- und Entscheidungsregister
 
@@ -40,4 +41,4 @@ Alle im Bericht und in der Präsentation verwendeten Modellwerte stammen aus `mo
 
 ## Menschliche Restaufgaben
 
-Vor einer realen Einreichung müssen berechtigte Teammitglieder die Inhalte prüfen, die Testkennung durch ihre offizielle Team-ID ersetzen, ihre Einverständniserklärungen abgeben, Rechte an sämtlichen Medien bestätigen, eine eigene Sprechleistung einspielen oder die synthetische Vertonung ausdrücklich freigeben und selbst einreichen. Diese Schritte fanden im vorliegenden Lauf nicht statt.
+Vor einer realen Einreichung müssen berechtigte Teammitglieder die wissenschaftlichen Inhalte prüfen, die Testkennung durch ihre offizielle Team-ID ersetzen, ihre Einverständniserklärungen abgeben, die Rechte am Paper bestätigen und selbst einreichen. Diese Schritte fanden im vorliegenden Lauf nicht statt. Die historischen Präsentationsdateien gehören nicht mehr zum Lieferumfang und werden nicht weiterentwickelt.

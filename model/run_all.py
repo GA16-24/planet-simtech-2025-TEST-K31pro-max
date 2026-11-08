@@ -68,7 +68,7 @@ def save_figure(fig: plt.Figure, name: str) -> None:
 
 
 def macro(name: str, value: float, digits: int = 2) -> str:
-    return f"\\newcommand{{\\{name}}}{{{value:.{digits}f}}}\n".replace(".", ",")
+    return f"\\newcommand{{\\{name}}}{{{value:.{digits}f}}}\n".replace(".", "{,}")
 
 
 def jsonable(value: Any) -> Any:
@@ -126,26 +126,12 @@ def coupled_npv(p: dict[str, Any], discharge: float, cop: float, capex_multiplie
         fan = plant["dry_auxiliary_fraction"] * (dry + condenser)
         electricity = chiller / cop + fan + pump
         energy_cost = electricity * HOURS_PER_YEAR * plant["availability"] * plant["electricity_price_eur_mwh"]
-        parts = variable_capex_eur(float(min(year, p["scenario"]["forecast_years"])), p)
-        backup_ratio = final_electricity / cooling_stage(p["scenario"]["forecast_years"], p).electricity_mw if cooling_stage(p["scenario"]["forecast_years"], p).electricity_mw > 0.0 else 0.0
-        variable = (
-            parts["exchanger"] * flow_ratio
-            + parts["chiller"] * flow_ratio
-            + (dry + condenser) * 1000.0 * cost["dry_cooler_eur_kw"] * (1.0 + plant["reserve_fraction"]) * design_flow_ratio(p)
-            + parts["backup_power"] * backup_ratio
-        )
-        fixed = (
-            cost["fixed_civil_eur"] * flow_ratio ** cost["civil_scale_exponent"]
-            + cost["controls_eur"] * flow_ratio ** cost["controls_scale_exponent"]
-        )
-        installed = capex_multiplier * (fixed + (1.0 + cost["engineering_contingency_fraction"]) * variable)
+        installed = capex_multiplier * cumulative_capex_eur(float(min(year, p["scenario"]["forecast_years"])), p)
         investment = max(installed - previous_installed, 0.0)
         previous_installed = installed
-        if year == plant["replacement_year"]:
-            final_variable = variable
         replacement = 0.0
         if year == plant["replacement_year"]:
-            replacement = plant["replacement_fraction"] * capex_multiplier * (1.0 + cost["engineering_contingency_fraction"]) * final_variable
+            replacement = plant["replacement_fraction"] * capex_multiplier * (1.0 + cost["engineering_contingency_fraction"]) * sum(variable_capex_eur(p["scenario"]["forecast_years"], p).values())
         maintenance = plant["maintenance_fraction"] * installed
         total_cost = investment + replacement + maintenance + energy_cost
         rows.append(total_cost / (1.0 + plant["discount_rate"]) ** year)
@@ -275,7 +261,7 @@ def main() -> None:
         axes[1].plot(years, required_cooling_mw(years, p, fraction), color=color, lw=2, label=label)
     axes[1].set(xlabel="Jahre", ylabel="Kühlleistung in MW")
     axes[1].set_yscale("symlog", linthresh=1.0)
-    axes[1].set_yticks([0.0, 0.1, 1.0, 10.0, 100.0, 1000.0], ["0", "0,1", "1", "10", "100", "1000"])
+    axes[1].set_yticks([0.0, 1.0, 10.0, 100.0, 1000.0], ["0", "1", "10", "100", "1000"])
     fig.legend(handles=axes[1].get_lines(), frameon=False, ncol=3, loc="lower center", bbox_to_anchor=(0.5, 0.005))
     fig.subplots_adjust(bottom=0.34, wspace=0.35)
     save_figure(fig, "fig01_prognose_last")
@@ -366,10 +352,11 @@ def main() -> None:
     ax.axvline(final_q, color=RED, ls="--", lw=1.4)
     ax.axvline(final_q * (1 + p["plant"]["reserve_fraction"]), color=GRAY, ls=":", lw=1.6)
     ax.axvline(design_stage.total_mw * (1 + p["plant"]["reserve_fraction"]), color=BLUE, ls="-.", lw=1.6)
-    ax.set(xlabel="Kühlleistung in MW", ylabel="Anzahl", xlim=(200.0, 2300.0), ylim=(0.0, 640.0))
-    ax.text(final_q, 610.0, "877,8", color=RED, fontsize=16, ha="center", va="bottom")
-    ax.text(final_q * (1 + p["plant"]["reserve_fraction"]), 500.0, "1053,3", color=GRAY, fontsize=16, ha="center", va="bottom")
-    ax.text(design_stage.total_mw * (1 + p["plant"]["reserve_fraction"]), 610.0, "2152,5", color=BLUE, fontsize=16, ha="right", va="bottom")
+    ax.set(xlabel="Kühlleistung in MW", ylabel="Anzahl", xlim=(200.0, 2300.0), ylim=(0.0, 800.0))
+    ax.set_yticks([0.0, 200.0, 400.0, 600.0, 800.0])
+    ax.text(final_q, 760.0, "877,8", color=RED, fontsize=16, ha="center", va="bottom")
+    ax.text(final_q * (1 + p["plant"]["reserve_fraction"]), 680.0, "1053,3", color=GRAY, fontsize=16, ha="center", va="bottom")
+    ax.text(design_stage.total_mw * (1 + p["plant"]["reserve_fraction"]), 760.0, "2152,5", color=BLUE, fontsize=16, ha="right", va="bottom")
     fig.subplots_adjust(left=0.20, right=0.96, top=0.93, bottom=0.23)
     fig.savefig(slide_fig / "unsicherheit.png", dpi=220)
     plt.close(fig)
@@ -441,6 +428,7 @@ def main() -> None:
             "required_cooling_mw": guard_stage.total_mw,
             "electricity_mw": guard_stage.electricity_mw,
             "air_rejection_mw": guard_stage.air_rejection_mw,
+            "backup_power_eur": variable_capex_eur(final_year, guard_p)["backup_power"],
             "final_capex_eur": cumulative_capex_eur(final_year, guard_p),
             "npv_25y_eur": npv(guard_rows),
             "ecological_normal_state_preserved": False,
@@ -599,6 +587,7 @@ def main() -> None:
     manifest = {}
     manifest_paths = [
         ROOT / "data" / "parameters.yml",
+        ROOT / "data" / "nist_saturation_32_100.tsv",
         ROOT / "requirements.lock.txt",
         ROOT / "Makefile",
         *sorted((ROOT / "model").glob("*.py")),

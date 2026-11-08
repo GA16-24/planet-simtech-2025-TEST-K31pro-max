@@ -38,10 +38,18 @@ def main() -> None:
     ]:
         if destination.exists():
             shutil.rmtree(destination)
-        shutil.copytree(source, destination)
-    montage(sorted(report_dest.glob("page-*.png")), DEST / "report_contact.png", 3, 500)
-    montage(sorted(slides_dest.glob("slide-*.png")), DEST / "presentation_contact.png", 2, 640)
-    montage(sorted(frames_dest.glob("frame_*.png")), DEST / "video_contact.png", 2, 640)
+        if source.exists():
+            shutil.copytree(source, destination)
+    report_pages = sorted(report_dest.glob("page-*.png"))
+    if not report_pages:
+        raise FileNotFoundError("Keine gerenderten Berichtsseiten gefunden")
+    montage(report_pages, DEST / "report_contact.png", 3, 500)
+    for source, contact in [(slides_dest, DEST / "presentation_contact.png"), (frames_dest, DEST / "video_contact.png")]:
+        images = sorted(source.glob("*.png"))
+        if images:
+            montage(images, contact, 2, 640)
+        elif contact.exists():
+            contact.unlink()
     print(f"Review-Artefakte in {DEST}")
 
 

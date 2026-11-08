@@ -13,20 +13,22 @@ scenario:
 water:
   density_kg_m3: 999.702
   specific_heat_j_kgk: 4195.14
-  latent_heat_j_kg: 2450000.0
+  latent_heat_j_kg: 2340730.0
   discharge_m3_s: 2.3
   cold_dilution_temperature_c: 5.0
+  latent_heat_model: "Arithmetisches Mittel der NIST-Verdampfungsenthalpien bei 32 und 100 °C, keine vollständige Temperaturintegration"
   sources:
     discharge: "Fan et al. 2023, Mittel 1952 bis 2021, LUBW Station 76273"
     temperature: "Stadt Blaubeuren, etwa 9 °C, Szenarioanker"
     properties: "NIST WebBook, flüssiges Wasser bei etwa 10 °C und 1,01325 bar"
-    latent_heat: "Ouellet und Caissie 2023, Screeningwert für Flussverdunstung"
+    latent_heat: "NIST SatP, h_fg(32 °C)=2425,056 kJ/kg und h_fg(100 °C)=2256,404 kJ/kg, data/nist_saturation_32_100.tsv"
 
 hydrology:
   discharge_p10_m3_s: 0.7
   discharge_p90_m3_s: 4.7
   design_discharge_m3_s: 4.7
   discharge_flood_m3_s: 32.7
+  discharge_flood_basis: "LGRB, HQ für 1951 bis 2007; kein Wiederkehrintervall angegeben"
   summer_low_mean_m3_s: 1.2
   pool_depth_m: 22.0
   pool_depth_pressure_bar: 3.17007
@@ -123,6 +125,7 @@ passive:
   driving_temperature_k: 20.0
 
 uncertainty:
+  capacity_policy: "Feste Auslegung auf 4,7 m³/s mit 20 % Reserve für jede Ziehung. Abfluss und COP verändern Betriebskosten, der explizite Faktor verändert Investitionen. Keine erneute Kapazitätsskalierung pro Ziehung."
   random_seed: 20261107
   sample_count: 10000
   discharge_low_m3_s: 0.7

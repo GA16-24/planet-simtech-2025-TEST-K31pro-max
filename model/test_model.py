@@ -7,7 +7,8 @@ import yaml
 
 import numpy as np
 
-from core import backup_fuel_liters, cooling_stage, economic_schedule, npv, planned_return_temperature_c, required_cooling_mw, source_temperature_c, storage_heating_power_mw, variable_capex_eur
+from core import backup_fuel_cost_eur, backup_fuel_liters, cooling_stage, design_flow_ratio, economic_schedule, npv, planned_return_temperature_c, required_cooling_mw, source_temperature_c, storage_heating_power_mw, variable_capex_eur
+from run_all import coupled_npv
 from validation import run_validation
 
 
@@ -55,6 +56,25 @@ class ModelTests(unittest.TestCase):
         self.assertAlmostEqual(design.total_mw, 999.702 * 4.7 * 4195.14 * 91.0 / 1e6, places=9)
         self.assertGreater(installed, design.total_mw)
         self.assertEqual(self.p["plant"]["module_count"], self.p["plant"]["required_modules"] + 1)
+        self.assertEqual(variable_capex_eur(1.0, self.p)["backup_power"], variable_capex_eur(10.0, self.p)["backup_power"])
+
+    def test_coupled_npv_at_design_point(self) -> None:
+        design_p = copy.deepcopy(self.p)
+        design_p["water"]["discharge_m3_s"] = self.p["hydrology"]["design_discharge_m3_s"]
+        actual = coupled_npv(self.p, self.p["hydrology"]["design_discharge_m3_s"], self.p["plant"]["chiller_cop"], 1.0)
+        expected = npv(economic_schedule(design_p, "hybrid"))
+        self.assertAlmostEqual(actual, expected, places=3)
+
+    def test_guard_backup_scales_with_electricity(self) -> None:
+        guard = copy.deepcopy(self.p)
+        guard["scenario"]["target_temperature_c"] = self.p["hydrology"]["surface_saturation_c"] - self.p["hydrology"]["boiling_margin_k"]
+        guard["hydrology"]["design_discharge_m3_s"] = guard["water"]["discharge_m3_s"]
+        guard_electricity = cooling_stage(10.0, guard).electricity_mw
+        reference_electricity = cooling_stage(10.0, self.p, affected_fraction=design_flow_ratio(self.p)).electricity_mw
+        expected = (self.p["cost"]["backup_power_eur"] + backup_fuel_cost_eur(self.p)) * guard_electricity / reference_electricity
+        actual = variable_capex_eur(10.0, guard)["backup_power"]
+        self.assertAlmostEqual(actual, expected, places=6)
+        self.assertLess(actual, 1e6)
 
     def test_evaporative_has_summer_chiller(self) -> None:
         stage = cooling_stage(10.0, self.p, technology="evaporative")

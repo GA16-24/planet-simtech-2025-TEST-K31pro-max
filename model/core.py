@@ -121,8 +121,12 @@ def variable_capex_eur(year: float, p: dict[str, Any], technology: str = "hybrid
     c = p["cost"]
     stage = cooling_stage(year, p, technology=technology if technology in {"hybrid", "evaporative"} else "hybrid")
     capacity_scale = design_flow_ratio(p) * (1.0 + p["plant"]["reserve_fraction"])
-    fraction = p["scenario"]["affected_flow_fraction"]
-    backup = (c["backup_power_eur"] + backup_fuel_cost_eur(p)) * fraction ** c["backup_scale_exponent"]
+    design_electricity_mw = cooling_stage(p["scenario"]["forecast_years"], p, affected_fraction=design_flow_ratio(p)).electricity_mw
+    reference_scenario = dict(p["scenario"], target_temperature_c=p["scenario"]["initial_temperature_c"])
+    reference_p = dict(p, scenario=reference_scenario, hydrology=dict(p["hydrology"], design_discharge_m3_s=p["hydrology"]["discharge_p90_m3_s"]))
+    reference_electricity_mw = cooling_stage(p["scenario"]["forecast_years"], reference_p, affected_fraction=p["hydrology"]["discharge_p90_m3_s"] / p["water"]["discharge_m3_s"]).electricity_mw
+    electricity_ratio = design_electricity_mw / reference_electricity_mw if reference_electricity_mw > 0.0 else 0.0
+    backup = (c["backup_power_eur"] + backup_fuel_cost_eur(reference_p)) * electricity_ratio
     if technology == "hybrid":
         return {
             "exchanger": stage.total_mw * 1000.0 * c["exchanger_eur_kw"] * capacity_scale,

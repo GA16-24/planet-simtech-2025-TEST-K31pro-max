@@ -1,9 +1,9 @@
 {
-  "artifact_sha256": "dd24fea1c6268d282d349157fd4e04a873a10076978460b540fcbec3f058f26f",
+  "artifact_sha256": "937d009e94fbf8d2877fde3b06460e79e0fd1e9c8294dc687211516a56af75b7",
   "report": {
     "physical_pages": 12,
-    "main_pages": 6,
-    "bibliography_and_appendix_pages": 5,
+    "main_pages": 7,
+    "bibliography_and_appendix_pages": 4,
     "main_limit": 10,
     "back_limit": 5
   },
