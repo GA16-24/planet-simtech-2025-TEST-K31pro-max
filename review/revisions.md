@@ -381,6 +381,19 @@ Die Design-Stoppregel war in Runde 15 nicht erfüllt. Die neue Revision enthält
 
 Die zweite Design-Runde war nicht bestanden, vergab aber bei beiden Reviewern D5 10 für die formale Umsetzung. Die neue Revision enthält 24 bestandene Modelltests und 15 Seiten mit 10 Haupttext- und 5 Literatur-/Anhangsseiten. Die wissenschaftlichen Ergebnisdateien sind unverändert. Vor der nächsten Bewertung ist die Archivreproduktion erforderlich. Frühere Punktzahlen werden nicht übernommen.
 
+## Befunde aus Design-Runde 17
+
+| Befund | Konkrete Änderung oder begründete Grenze | Verifikation |
+| --- | --- | --- |
+| DeepSeek M1, Tabelle 1 im falschen Abschnitt | Tabelle 1 wird bereits mit Abschnitt 2.1 eingereiht und steht auf PDF-Seite 3 statt zwei Seiten später. | PDF-Seite 3, Tabellenverweis in Abschnitt 2.1 |
+| DeepSeek M2, Tabelle 2 trennt H8 und [19] | Tabelle 2 folgt erst nach den Absätzen H2, H8 und H3. Der HAW-Verweis bleibt im zusammenhängenden H8-Absatz. | PDF-Seiten 6 bis 8 |
+| DeepSeek M3, Abbildung 2 trennt Abschnitt 4.1 | Abbildung 2 steht als einspaltige Grafik mit H-Legende unmittelbar nach H3 und vor Abschnitt 4. Ihre Schrift bleibt mindestens 12 pt. | `model/run_all.py`, PDF-Seite 7 |
+| DeepSeek M4, Literaturspalten | Quellen 19 bis 22 stehen links und 23 bis 25 rechts auf PDF-Seite 13. `\balance` wurde nach einem Überlauf und einer Zusatzseite verworfen. | PDF-Seite 13, 15 Seiten mit 5 Literatur-/Anhangsseiten |
+| Kimi D1, `5 min` getrennt | Minuten und weitere literale Einheiten sind geschützt, darunter Preise, Geschwindigkeiten und Brennstoffwerte. | `report/main.tex`, erneuter PDF-Scan ohne Zahl-Einheit-Risse |
+| Kimi D4 und D6, Legende verdeckt Daten | Die Kapazitätslegende steht frei zwischen den Histogrammen. Drei kurze Linien- und Texteinträge überdecken weder Balken, Referenzlinien noch Achsentext. | `model/run_all.py`, PDF-Seite 14, mindestens 12 pt |
+
+Die dritte Design-Runde war nicht bestanden. Die neue Revision enthält 24 bestandene Modelltests und 15 Seiten mit 10 Haupttext- und 5 Literatur-/Anhangsseiten. Die wissenschaftlichen Ergebnisdateien sind unverändert. Vor der nächsten Bewertung ist die Archivreproduktion erforderlich. Frühere Punktzahlen werden nicht übernommen.
+
 ## Aktueller Lieferumfang
 
 Nach der Nutzerkorrektur ist nur der Research Paper Produkt. Die Kriterien 1 bis 6, 8 bis 11 und 12a bleiben Prüfgegenstand. Kriterium 12b und die Präsentationsartefakte werden nicht fortentwickelt. Nach den fachlichen Council-Runden folgt ein eigener Design-Council für den Research Paper.

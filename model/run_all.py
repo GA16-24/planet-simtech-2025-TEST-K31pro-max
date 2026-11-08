@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Any
 
 import matplotlib.pyplot as plt
+from matplotlib.lines import Line2D
 from matplotlib.ticker import FuncFormatter
 import numpy as np
 import yaml
@@ -375,8 +376,8 @@ def main() -> None:
     fig.subplots_adjust(bottom=0.36)
     save_figure(fig, "fig02_stufenplan")
 
-    fig, ax = plt.subplots(figsize=(8.6, 4.4))
-    for technology, color, label in [("hybrid", BLUE, "H1 Hybrid"), ("evaporative", ORANGE, "H2 Verdunstung")]:
+    fig, ax = plt.subplots(figsize=(4.0, 3.0))
+    for technology, color, label in [("hybrid", BLUE, "H1"), ("evaporative", ORANGE, "H2")]:
         rows = economic_schedule(p, technology)
         cumulative = np.cumsum([row["present_value_eur"] for row in rows]) / 1e9
         ax.plot([row["year"] for row in rows], cumulative, color=color, lw=2, label=label)
@@ -404,17 +405,19 @@ def main() -> None:
     design_line = axes[0].axvline(design_stage.total_mw * (1 + p["plant"]["reserve_fraction"]), color=BLUE, ls="-.", lw=1.6, label="2152,5")
     axes[0].set(xlabel="MW", ylabel="Anzahl", xlim=(0, 2300))
     axes[0].set_ylim(0, axes[0].get_ylim()[1] * 1.35)
-    axes[0].legend(handles=[mean_line, reserve_line, design_line], frameon=True, facecolor="white", edgecolor="none", framealpha=1.0, loc="lower left", fontsize=18)
     axes[1].hist(npv_samples / 1e9, bins=45, color=ORANGE, alpha=0.85)
     reference_line = axes[1].axvline(npv(hybrid_staged) / 1e9, color=RED, ls="--", lw=1.4, label=f"H1\n{npv(hybrid_staged) / 1e9:.2f}".replace(".", ","))
     axes[1].set(xlabel="Mrd. €", ylabel="Anzahl")
     axes[1].set_ylim(0, axes[1].get_ylim()[1] * 1.2)
     axes[1].xaxis.set_major_formatter(FuncFormatter(lambda value, position: f"{value:g}".replace(".", ",")))
-    axes[1].legend(handles=[reference_line], frameon=False, loc="upper right", fontsize=18)
+    axes[1].legend(handles=[reference_line], frameon=False, loc="upper right", fontsize=20)
     for ax in axes:
         ax.tick_params(labelsize=20)
         ax.xaxis.label.set_size(20)
         ax.yaxis.label.set_size(20)
+    for x, label, color, linestyle in [(0.10, "877,8", RED, "--"), (0.38, "1053,3", GRAY, ":"), (0.75, "2152,5", BLUE, "-.")]:
+        fig.add_artist(Line2D([x, x + 0.07], [0.535, 0.535], color=color, ls=linestyle, lw=1.6))
+        fig.text(x + 0.085, 0.535, label, color=color, fontsize=20, va="center")
     fig.subplots_adjust(left=0.18, right=0.95, top=0.97, bottom=0.08, hspace=0.55)
     save_figure(fig, "fig05_unsicherheit")
 
