@@ -46,6 +46,9 @@ def main() -> None:
         "tracked_file_count": len(hashes),
         "verification_command": "make verify",
         "verification_result": "passed",
+        "paper_reproduction_commands": ["make model test report", "make review-package"],
+        "historical_presentation_checks_included": True,
+        "delivery_scope": "Research Paper only; historical presentation checks are outside the delivery scope",
         "files": hashes,
     }
     (destination / "revision.json").write_text(json.dumps(revision, ensure_ascii=False, indent=2), encoding="utf-8")

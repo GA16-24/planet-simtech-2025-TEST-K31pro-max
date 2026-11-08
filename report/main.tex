@@ -31,7 +31,7 @@ Das Wasser soll vor dem offenen Becken durch geschlossene Kühler fließen. Dies
 
 Im zehnten Jahr wären dafür \textbf{\QFinal~\mbox{Megawatt} Kühlleistung} nötig. Einschließlich Antriebsenergie würden \QAirRejection\ MW an die Luft abgegeben. Für stärkeren Wasserfluss wird die Anlage größer ausgelegt. Bei 4,7~m³/s wären \DesignCooling\ MW nötig; installiert werden \QReserve\ MW. Im üblichen Betrieb arbeiten fünf Kühlmodule, im stärkeren Fall elf plus ein Ersatzmodul. Ein Puffer begrenzt die Belastung für das Gewässer. Die Temperatur des zurückgeführten Wassers darf sich höchstens um ein Grad pro Stunde ändern.
 
-Die Schätzung ergibt \CapexFinal\ Mio. € Investition und \OpexFinal\ Mio. € Betriebskosten im zehnten Jahr. Über 25 Jahre ergeben sich \NpvHybridFull\ Mrd. €. Eine andere Möglichkeit, Wasser verdunsten zu lassen, wäre billiger, verdunstet aber \EvapAnnual\ Mio.~m³ Wasser pro Jahr. Weiteres Spülwasser ist nicht eingerechnet. Sie benötigt Hygienemaßnahmen. Alle Kosten sind Schätzungen in Euro von 2026, keine Angebote.
+Die Schätzung ergibt \CapexFinal\ Mio. € Investition und \OpexFinal\ Mio. € Betriebskosten im zehnten Jahr. Über 25 Jahre ergeben sich \NpvHybridFull\ Mrd. €. Eine andere Möglichkeit, Wasser verdunsten zu lassen, wäre billiger, verdunstet aber \EvapAnnual\ Mio.~m³ Wasser pro Jahr. Mit Spülwasser und kleinen Verlusten werden \EvapMakeupAnnual\ Mio.~m³ pro Jahr zugeführt. Sie benötigt Hygienemaßnahmen. Alle Kosten sind Schätzungen in Euro von 2026, keine Angebote.
 
 Die Lösung gilt nur für höchstens 4,7~m³/s betroffenen Wasserfluss und höchstens 100~°C am tiefen Zufluss. Für 32,7~m³/s reicht sie nicht aus. Vor einem Bau müssen die Höhlenwege, ein geeigneter Standort, Stromversorgung, Luftführung und Genehmigung geprüft werden. Der Bericht ist keine Baufreigabe und keine Einreichung. Eine menschliche Fachprüfung hat nicht stattgefunden.
 
@@ -143,7 +143,7 @@ Ihr Szenario-COP beträgt 4,0 statt eines optimistischeren Werts ohne Produktkur
 \end{equation}
 Die Ventilatorhilfsleistung beträgt 1,5 \% der Summe aus Trockenkühlung und Kondensatorwärme, also \PFans\ MW. Die Pumpe verwendet 12 m Förderhöhe und 80 \% Wirkungsgrad, was \PPumps\ MW ergibt. Zusammen mit den Kältemaschinen folgen \PElectric\ MW elektrische Leistung im Erwartungsfall. Die externe Wärmeabgabe ist \(\dot Q_{10}+P_{el}=\QAirRejection\ MW\), nicht bloß die Entzugsleistung von 877,8 MW. Eine Rückführung in dasselbe Gewässersystem würde die Bilanz zerstören [8].
 
-Für Netz, Ersatzstrom und Luftsenke wird der ungünstigste deklarierte COP von \McCopLow\ angesetzt, nicht nur der Erwartungswert 4,0. In diesem Randfall sind \DesignElectric\ MW Antriebsleistung und \DesignAirRejection\ MW Wärmeabgabe erforderlich. Bei 2 m/s Face-Geschwindigkeit und 15 K Lufterwärmung ergeben sich \AirFaceArea\ m² Face-Fläche, \AirServiceArea\ ha Betriebs- und Servicefläche und \AirVolumeFlow\ m³/s Luftvolumenstrom. Diese Größen begrenzen die installierte Kapazität. Die Betriebskosten im nächsten Abschnitt verwenden dagegen den Erwartungs-COP 4,0. Rückverwirbelung, Schall, Plume und lokale Erwärmung bleiben zu untersuchen. Hersteller- und Standortauslegung stehen aus. Die Stromemissionen betragen im Erwartungsjahr \EmissionsHybrid\ kt CO₂, H2 liegt bei \EmissionsEvap\ kt, bezogen auf 363 g/kWh [23].
+Für Netz, Ersatzstrom und Luftsenke wird der ungünstigste deklarierte COP von \McCopLow\ angesetzt, nicht nur der Erwartungswert 4,0. In diesem Randfall sind \DesignElectric\ MW Antriebsleistung und \DesignAirRejection\ MW Wärmeabgabe erforderlich. Bei 2 m/s Face-Geschwindigkeit und 15 K Lufterwärmung ergeben sich \AirFaceArea\ m² Face-Fläche, \AirServiceArea\ ha Betriebs- und Servicefläche und \AirVolumeFlow\ m³/s Luftvolumenstrom. Diese Größen begrenzen die installierte Kapazität. Ventilatoranteil, Pumpenparameter und der Serviceflächenfaktor 1,5 sind eigene technische Annahmen ohne Herstellerkurven. Die Betriebskosten im nächsten Abschnitt verwenden dagegen den Erwartungs-COP 4,0. Rückverwirbelung, Schall, Plume und lokale Erwärmung bleiben zu untersuchen. Hersteller- und Standortauslegung stehen aus. Die Stromemissionen betragen im Erwartungsjahr \EmissionsHybrid\ kt CO₂, H2 liegt bei \EmissionsEvap\ kt, bezogen auf 363 g/kWh [23].
 
 \subsection{Stufenplan und Kosten}
 
@@ -156,7 +156,7 @@ Für alle 8760 Stunden eines Jahres gilt dessen Jahresendtemperatur. Jahr 0 enth
 \begin{table*}[t]
 \centering
 \input{generated/alternatives.tex}
-\caption{Betrieb bei 2,3~m³/s mit p90-Auslegung. H2 ist günstiger, verändert aber Wasserhaushalt und Hygieneregime. Ihre Wasserangabe ist nur die Verdunstung ohne Abschlämmung und Spülwasser. H3 gibt Wärme an Zusatzwasser statt an Luft ab und enthält keinen Notstromposten.}
+\caption{Betrieb bei 2,3~m³/s mit p90-Auslegung. H2 ist günstiger, verändert aber Wasserhaushalt und Hygieneregime. Ihr Zusatzwasser enthält Verdunstung, Abschlämmung und Drift bei drei Konzentrationszyklen, mit Sensitivität bis fünf. H3 gibt Wärme an Zusatzwasser statt an Luft ab und enthält keinen Notstromposten.}
 \label{tab:alternativen}
 \end{table*}
 
@@ -167,11 +167,11 @@ Für alle 8760 Stunden eines Jahres gilt dessen Jahresendtemperatur. Jahr 0 enth
 \label{fig:kosten}
 \end{figure*}
 
-H2 kühlt den Quellstrom im Gegenstrom von 100 auf \EvapSourceOutlet~°C. Der separate Sekundärkreislauf wird dabei von \EvapSecondaryInlet~°C auf \EvapSecondaryOutlet~°C erwärmt. Am heißen Ende beträgt der Abstand 100 - 96 = 4 K, am kalten Ende 36 - 32 = 4 K. Der Sekundärstrom von \EvapSecondaryFlow~m³/s hat denselben Wärmekapazitätsstrom wie der Quellstrom. Die Verdunstung übernimmt \EvapDry\ MW. Eine Kältemaschine übernimmt danach \EvapChiller\ MW bis 9~°C. Der Quellstrom bleibt geschlossen und wird vollständig weitergekühlt, der Dampfstrom gehört zum Sekundärkreislauf und nicht zum Quellabfluss. Damit ist H2 physikalisch gleichwertig, nicht nur bei kühler Luft. Das Modell verwendet das arithmetische Mittel der NIST-Verdampfungsenthalpien bei 32 und 100~°C. Die beiden Sättigungswerte stehen in \texttt{data/nist\_saturation\_32\_100.tsv}. Dieses Mittel ist keine vollständige Temperaturintegration [4]. Der Dampfstrom beträgt \EvapRate\ kg/s und die Verdunstungsmenge \EvapAnnual\ Mio.~m³ pro Jahr, \EvapFraction\ \% des erwarteten Quellstroms [6]. Abschlämmung und Spülwasser sind nicht enthalten, deshalb ist dies kein vollständiger Zusatzwasserbedarf. Offene Verdunstung erfordert Hygiene- und Prüfmaßnahmen nach der 42. BImSchV [13]. H2 bleibt billiger, hat aber Wasser-, Hygiene- und Aerosolrisiken; H1 verursacht mehr Stromemissionen.
+H2 kühlt den Quellstrom im Gegenstrom von 100 auf \EvapSourceOutlet~°C. Der separate Sekundärkreislauf wird dabei von \EvapSecondaryInlet~°C auf \EvapSecondaryOutlet~°C erwärmt. Am heißen Ende beträgt der Abstand 100 - 96 = 4 K, am kalten Ende 36 - 32 = 4 K. Der Sekundärstrom von \EvapSecondaryFlow~m³/s hat denselben Wärmekapazitätsstrom wie der Quellstrom. Die Verdunstung übernimmt \EvapDry\ MW. Eine Kältemaschine übernimmt danach \EvapChiller\ MW bis 9~°C. Der Quellstrom bleibt geschlossen und wird vollständig weitergekühlt, der Dampfstrom gehört zum Sekundärkreislauf und nicht zum Quellabfluss. Damit ist H2 physikalisch gleichwertig, nicht nur bei kühler Luft. Das Modell verwendet das arithmetische Mittel der NIST-Verdampfungsenthalpien bei 32 und 100~°C. Die beiden Sättigungswerte stehen in \texttt{data/nist\_saturation\_32\_100.tsv}. Dieses Mittel ist keine vollständige Temperaturintegration [4]. Der Dampfstrom beträgt \EvapRate\ kg/s und die Verdunstungsmenge \EvapAnnual\ Mio.~m³ pro Jahr, \EvapFraction\ \% des erwarteten Quellstroms [6]. Mit \EvapCycles\ Konzentrationszyklen kommen \EvapBlowdownAnnual\ Mio.~m³ Abschlämmung und \EvapDriftPercent\ \% Drift hinzu. Der Zusatzwasserbedarf des Sekundärkreislaufs beträgt damit \EvapMakeupAnnual\ Mio.~m³ pro Jahr oder \EvapMakeupFraction\ \% des erwarteten Quellstroms. Zwischen drei und fünf Zyklen liegt er bei \EvapMakeupLow\ bis \EvapMakeupHigh\ Mio.~m³. Diese Annahmen ersetzen keine Wasserchemie- oder Herstellerdaten. Die Wasserkosten und der Barwert verwenden den vollständigen Zusatzwasserbedarf. Offene Verdunstung erfordert Hygiene- und Prüfmaßnahmen nach der 42. BImSchV [13]. H2 bleibt billiger, hat aber Wasser-, Hygiene- und Aerosolrisiken; H1 verursacht mehr Stromemissionen.
 
 Nach der Registrierung von H1 bis H7 wurde H8 als wärmegetriebene Vergleichsvariante ergänzt. Eine einstufige Absorptionsstufe verwendet den thermischen COP \AbsThermalCop, innerhalb des HAW-Bereichs 0,6 bis 0,8 [19]. Ihr Heißwasserkreislauf wird von \AbsHotReturn~°C auf \AbsHotInlet~°C erwärmt. Der Quellstrom kühlt sich dabei von 100 auf \AbsSourceAfterGenerator~°C ab, beide Endabstände betragen 4 K. Die Generatorwärme beträgt \AbsGenerator\ MW bei einem Sekundärstrom von \AbsSecondaryFlow~m³/s. Der Verdampfer entzieht dem Quellstrom weitere \AbsEvaporator\ MW und senkt ihn auf \AbsSourceAfterEvaporator~°C. Danach liefern Trockenkühler \AbsDryCooling\ MW und Kompressionskältemaschinen unverändert \AbsChiller\ MW. Die Absorptionsabwärme beträgt \AbsRejection\ MW, die separate Kompressionskondensatorabwärme \AbsCondenser\ MW.
 
-Der Hilfsstrom der Absorptionsstufe beträgt \AbsAuxPercent\ \% der Verdampferleistung, entsprechend dem HAW-Beispiel 3 kW bei 54 kW [19]. Damit werden \AbsElectricity\ MW im Erwartungsbetrieb und \AbsDesignElectricity\ MW im elektrischen Auslegungsfall benötigt. Acht Aggregate plus eines sind erforderlich, der Dieselvorrat beträgt \AbsFuel\ Mio. Liter. Trotz des günstigen HAW-Unterwerts 250 €/kW plus 30 \% für die Absorptionsmaschine ergeben sich \AbsCapex\ Mio. € Investition, \AbsNpv\ Mrd. € Barwert und \AbsEmissions\ kt CO₂ pro Jahr. Auch bei thermischem COP 1,3 bleibt der Quellstrom nach dem Verdampfer über 40~°C. Die reversible Obergrenze \(COP_{rev}=T_e(T_g-T_c)/[(T_c-T_e)T_g]\) beträgt bei 96~°C Antrieb, 35~°C Senke und 9~°C Verdampfung \AbsRevCop; selbst sie lässt den Quellstrom nur auf \AbsRevOutlet~°C sinken. H8 ersetzt daher Trockenkühlung statt Kompressionskälte. Es ist in allen 10.000 gekoppelten Ziehungen teurer und wird nicht gewählt. Tabelle \ref{tab:absorption} zeigt die Bilanz. Andere Maschinen und Temperaturführungen benötigen Herstellerdaten, Teillastkurven und eine erneute Prüfung; das Screening schließt sie nicht allgemein aus.
+Der Hilfsstrom der Absorptionsstufe beträgt \AbsAuxPercent\ \% der Verdampferleistung, entsprechend dem HAW-Beispiel 3 kW bei 54 kW [19]. Einschließlich Kältemaschinen, Ventilatoren und Pumpen werden \AbsElectricity\ MW im Erwartungsbetrieb und \AbsDesignElectricity\ MW im elektrischen Auslegungsfall benötigt. Acht Aggregate plus eines sind erforderlich, der Dieselvorrat beträgt \AbsFuel\ Mio. Liter. Für die Absorptionsmaschine wird ein eigener günstiger Screeningwert von 250 €/kW innerhalb der HAW-Spanne 80 bis 1800 €/kW plus 30 \% angesetzt [19]. Dadurch ergeben sich \AbsCapex\ Mio. € Investition, \AbsNpv\ Mrd. € Barwert und \AbsEmissions\ kt CO₂ pro Jahr. Selbst eine kostenlose Absorptionsmaschine ließe H8 bei \AbsZeroNpv\ Mrd. € statt \NpvHybridFull\ Mrd. €. Auch bei thermischem COP 1,3 bleibt der Quellstrom nach dem Verdampfer über 40~°C. Bei der dokumentierten Generatorwärme von \AbsGenerator\ MW und Heißwasser 96/82~°C beträgt die reversible Obergrenze \(COP_{rev}=T_e(T_g-T_c)/[(T_c-T_e)T_g]\) bei 96~°C Antrieb, 35~°C Senke und 9~°C Verdampfung \AbsRevCop; selbst sie lässt den Quellstrom nur auf \AbsRevOutlet~°C sinken. H8 ersetzt daher Trockenkühlung statt Kompressionskälte. Es ist in allen 10.000 gekoppelten Ziehungen teurer und wird nicht gewählt. Tabelle \ref{tab:absorption} zeigt die Bilanz. Andere Maschinen und Temperaturführungen benötigen Herstellerdaten, Teillastkurven und eine erneute Prüfung; das Screening schließt sie nicht allgemein aus.
 
 H3 benötigt mit 5~°C kaltem Zusatzwasser \DilutionFlow~m³/s, das \DilutionRatio-fache des erwarteten Quellstroms. Diese Quelle ist nicht belegt. Die Wärme bleibt zudem im Wasserkreislauf. H4 (geologische Wärmeentnahme) scheitert ohne genaue Karstwege an der vollständigen Erfassung. H5 (Bypass) kann nur zusammen mit H1 wirken. H6 (Druckverschiebung) erhöht lediglich den Siedepunkt. H7 (passive Wärmerohre) benötigt \PassiveArea\ km² aktive Fläche und kann bei 35~°C Luft nicht passiv auf 9~°C kühlen [7].
 
@@ -219,7 +219,7 @@ Vor einer Investition sind synchronisierte Temperatur-, Druck-, Leitfähigkeits-
 
 Drei Nachweise bleiben zwingend. Der Wärmetauscher muss Durchfluss und Temperaturdifferenz messen, die Antriebsenergie muss gezählt werden, und die Luft- oder Wärmenetzbilanz muss die externe Senke schließen. Zusätzlich sind Siedemarge, 9-°C-Ziel und höchstens 1 K/h am Kontrollpunkt zu belegen. Ein kühles Oberflächenbild genügt nicht. Die Anlage ist zu verwerfen oder zu erweitern, wenn mehr als 4,7~m³/s betroffen sind, die Temperatur weiter steigt, die Senke Wärme zurückführt oder Standort und Genehmigung scheitern. Ein bestätigter kleiner heißer Ast erlaubt dagegen eine kleinere Anlage.
 
-Das Python-Modell erzeugt alle berichteten Größen aus \texttt{data/parameters.yml}. Zweiundzwanzig Tests und interne Konsistenz- und Plausibilitätsprüfungen kontrollieren Wärme- und Mischungsbilanzen, Kosten, Rampen, p90-Kapazität und den Ausfallverlauf. Die gekoppelte Referenzkostenrechnung schließt am Mittelstrompunkt und am p90-Auslegungspunkt jeweils mit Fehler null. Weitere Tests begrenzen die Notstromposten kleiner Teilstrom- und Siedeschutzfälle, die elektrische Min-COP-Auslegung, die Verdunstungs-Pinchstelle und die Volumensensitivität und prüfen die 25 tatsächlichen Betriebsjahre. H8 wird mit Sekundärbilanz, Temperaturabständen, Wärmesenke, Auslegungslast, Kosten und thermischen Sensitivitäten geprüft. Die ODE-Kontrolle weicht um höchstens \(8,1\times10^{-10}\) K von der analytischen Lösung ab. Zwei Toleranz- und Zeitschrittstufen bestätigen den p90-Ausfallverlauf. Diese Prüfungen sind keine externe oder feldbezogene Validierung. NIST-Werte und eine dokumentierte Handrechnung stützen die zentrale Leistung; Herstellerkurven und Pilotmessungen fehlen weiterhin.
+Das Python-Modell erzeugt alle berichteten Größen aus \texttt{data/parameters.yml}. Dreiundzwanzig Tests und interne Konsistenz- und Plausibilitätsprüfungen kontrollieren Wärme- und Mischungsbilanzen, Kosten, Rampen, p90-Kapazität und den Ausfallverlauf. Die gekoppelte Referenzkostenrechnung schließt am Mittelstrompunkt und am p90-Auslegungspunkt jeweils mit Fehler null. Weitere Tests begrenzen die Notstromposten kleiner Teilstrom- und Siedeschutzfälle, die elektrische Min-COP-Auslegung, die Verdunstungs-Pinchstelle und die Volumensensitivität und prüfen die 25 tatsächlichen Betriebsjahre. H8 wird mit Sekundärbilanz, Temperaturabständen, Wärmesenke, Auslegungslast, Kosten und thermischen Sensitivitäten geprüft. H2 wird mit vollständigem Zusatzwasser aus Verdunstung, Abschlämmung und Drift berechnet. Die ODE-Kontrolle weicht um höchstens \(8,1\times10^{-10}\) K von der analytischen Lösung ab. Zwei Toleranz- und Zeitschrittstufen bestätigen den p90-Ausfallverlauf. Diese Prüfungen sind keine externe oder feldbezogene Validierung. NIST-Werte und eine dokumentierte Handrechnung stützen die zentrale Leistung; Herstellerkurven und Pilotmessungen fehlen weiterhin.
 
 \section{Schlussfolgerung}
 
@@ -291,32 +291,32 @@ Das Layout folgt D4RT [22], ersetzt aber US Letter durch A4, 26 mm Rand und 12 p
 \balance
 \section*{Anhang B: Ergänzende Ergebnisse}
 
-\begin{figure*}[!t]
+\begin{figure}[H]
 \centering
-\includegraphics[width=\textwidth]{figures/fig05_unsicherheit.pdf}
-\caption{Gekoppelte Unsicherheit von Abfluss, COP und Investitionsfaktor. Die Verteilung endet bei 4,7~m³/s und ist kein Extremwertmodell. Eigene Rechnung mit Kimi K3.1 Pro.}
+\includegraphics[width=\columnwidth]{figures/fig05_unsicherheit.pdf}
+\caption{Kühlleistung links in MW, Barwert rechts in Mrd. €. Unsicherheit von Abfluss, COP und Investitionsfaktor, begrenzt auf 4,7~m³/s. Eigene Rechnung mit Kimi K3.1 Pro.}
 \label{fig:unsicherheit}
-\end{figure*}
+\end{figure}
 
-\begin{table*}[!t]
+\begin{table}[H]
 \centering
 \input{generated/sensitivity.tex}
-\caption{Deterministische Sensitivität. Prognosezeit verändert vor allem den Ausbaupfad, Durchfluss auch die Endlast.}
+\caption{Deterministische Sensitivität. Kühlleistung in MW, Änderung in \%, Barwert in Mrd. €.}
 \label{tab:sensitivitaet}
-\end{table*}
+\end{table}
 
-\begin{table*}[!t]
+\begin{table}[H]
 \centering
 \input{generated/flow_fractions.tex}
-\caption{Teilstromszenarien mit p90-Reserve. Erst Messungen dürfen die kleineren Fälle freigeben.}
+\caption{Teilstromszenarien. Kühlung und Elektrik in MW, Investition in Mio. €, Barwert in Mrd. €.}
 \label{tab:teilstrom}
-\end{table*}
+\end{table}
 
-\begin{table*}[!t]
+\begin{table}[H]
 \centering
 \input{generated/absorption.tex}
-\caption{Wärmegetriebene Variante H8 gegen H1 bei 2,3~m³/s. Die elektrische Auslegung verwendet COP 3,0 und 4,7~m³/s. Die Kosten folgen denselben Reserve- und Zuschlagsregeln.}
+\caption{H8 gegen H1 bei 2,3~m³/s, elektrische Auslegung mit COP 3,0 und 4,7~m³/s. Gleiche Reserve- und Zuschlagsregeln.}
 \label{tab:absorption}
-\end{table*}
+\end{table}
 
 \end{document}

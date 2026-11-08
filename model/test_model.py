@@ -7,7 +7,7 @@ import yaml
 
 import numpy as np
 
-from core import absorption_stage, backup_fuel_cost_eur, backup_fuel_liters, cooling_stage, cumulative_capex_eur, design_electrical_stage, design_flow_ratio, economic_schedule, npv, planned_return_temperature_c, required_cooling_mw, source_temperature_c, storage_heating_power_mw, variable_capex_eur
+from core import absorption_stage, annual_operation, backup_fuel_cost_eur, backup_fuel_liters, cooling_stage, cumulative_capex_eur, design_electrical_stage, design_flow_ratio, economic_schedule, evaporation_kg_s, npv, planned_return_temperature_c, required_cooling_mw, source_temperature_c, storage_heating_power_mw, variable_capex_eur
 from run_all import coupled_npv, electrical_values_mw
 from validation import run_validation, simulate_failure
 
@@ -143,6 +143,20 @@ class ModelTests(unittest.TestCase):
         self.assertLess(stage.dry_mw, stage.total_mw)
         self.assertAlmostEqual(stage.air_rejection_mw, stage.total_mw + stage.electricity_mw, places=9)
 
+    def test_evaporative_makeup_water(self) -> None:
+        operation = annual_operation(10, self.p, "evaporative")
+        stage = cooling_stage(10.0, self.p, technology="evaporative")
+        evaporation_m3 = evaporation_kg_s(stage.dry_mw, self.p) / self.p["water"]["density_kg_m3"] * 365.0 * 24.0 * 3600.0
+        cycles = self.p["plant"]["evaporative_cycles_of_concentration"]
+        expected = evaporation_m3 * (1.0 + 1.0 / (cycles - 1.0) + self.p["plant"]["evaporative_drift_fraction"])
+        self.assertAlmostEqual(operation["water_m3"], expected, places=6)
+        self.assertAlmostEqual(operation["water_cost_eur"], expected * self.p["cost"]["water_price_eur_m3"], places=6)
+        self.assertGreater(operation["water_m3"], evaporation_m3)
+        self.assertLess(npv(economic_schedule(self.p, "evaporative")), npv(economic_schedule(self.p, "hybrid")))
+        varied = copy.deepcopy(self.p)
+        varied["plant"]["evaporative_cycles_of_concentration"] = 5.0
+        self.assertLess(annual_operation(10, varied, "evaporative")["water_m3"], operation["water_m3"])
+
     def test_backup_shortfall_increases_cost(self) -> None:
         varied = copy.deepcopy(self.p)
         varied["plant"]["availability"] = 0.95
@@ -194,6 +208,9 @@ class ModelTests(unittest.TestCase):
         self.assertGreater(backup_fuel_liters(self.p, "absorption"), backup_fuel_liters(self.p))
         self.assertGreater(cumulative_capex_eur(10.0, self.p, "absorption"), cumulative_capex_eur(10.0, self.p, "hybrid"))
         self.assertGreater(npv(economic_schedule(self.p, "absorption")), npv(economic_schedule(self.p, "hybrid")))
+        free = copy.deepcopy(self.p)
+        free["cost"]["absorption_eur_kw"] = 0.0
+        self.assertGreater(npv(economic_schedule(free, "absorption")), npv(economic_schedule(self.p, "hybrid")))
 
     def test_absorption_temperature_limit_and_uncertainty(self) -> None:
         reference_chiller = cooling_stage(10.0, self.p).chiller_mw

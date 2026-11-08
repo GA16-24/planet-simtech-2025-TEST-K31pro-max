@@ -177,6 +177,9 @@ def main() -> None:
     absorption_design = design_electrical_stage(p, technology="absorption")
     absorption_economics = alternative_result(p, "absorption", "H8 Absorptionskühlung mit Kompressionsstufe", "Keine Reduktion der Kompressionsstufe im geprüften Temperaturfenster")
     absorption_capex = variable_capex_eur(final_year, p, "absorption")
+    absorption_free_p = copy.deepcopy(p)
+    absorption_free_p["cost"]["absorption_eur_kw"] = 0.0
+    absorption_zero_npv = npv(economic_schedule(absorption_free_p, "absorption"))
     hot_k = absorption.secondary_hot_inlet_c + 273.15
     sink_k = p["plant"]["summer_design_air_c"] + 273.15
     cold_k = s["target_temperature_c"] + 273.15
@@ -202,9 +205,26 @@ def main() -> None:
     hybrid_staged = economic_schedule(p, "hybrid", upfront=False)
     hybrid_upfront = economic_schedule(p, "hybrid", upfront=True)
     evaporation = evaporation_kg_s(evaporative_stage.dry_mw, p)
+    evaporation_m3_year = evaporation / p["water"]["density_kg_m3"] * 365 * 24 * 3600
     dilution = dilution_flow_m3_s(final_year, p)
     passive_area = passive_area_m2(final_q, p)
     storage_mw = storage_heating_power_mw(p)
+    evaporative_makeup_sensitivity = []
+    for cycles in [3.0, 4.0, 5.0]:
+        varied = copy.deepcopy(p)
+        varied["plant"]["evaporative_cycles_of_concentration"] = cycles
+        blowdown_m3 = evaporation_m3_year / (cycles - 1.0)
+        drift_m3 = evaporation_m3_year * varied["plant"]["evaporative_drift_fraction"]
+        makeup_m3 = evaporation_m3_year + blowdown_m3 + drift_m3
+        evaporative_makeup_sensitivity.append({
+            "cycles_of_concentration": cycles,
+            "evaporation_m3_year": evaporation_m3_year,
+            "blowdown_m3_year": blowdown_m3,
+            "drift_m3_year": drift_m3,
+            "makeup_m3_year": makeup_m3,
+            "annual_water_cost_eur": makeup_m3 * varied["cost"]["water_price_eur_m3"],
+            "npv_25y_eur": npv(economic_schedule(varied, "evaporative")),
+        })
 
     sensitivity_specs = [
         ("Abfluss 0,7 m³/s", "water.discharge_m3_s", p["hydrology"]["discharge_p10_m3_s"]),
@@ -359,18 +379,22 @@ def main() -> None:
     ax.legend(frameon=False, loc="lower right")
     save_figure(fig, "fig04_sensitivitaet")
 
-    fig, axes = plt.subplots(1, 2, figsize=(7.0, 4.8))
+    fig, axes = plt.subplots(1, 2, figsize=(4.0, 5.0))
     axes[0].hist(q_samples, bins=45, color=BLUE, alpha=0.85)
-    mean_line = axes[0].axvline(final_q, color=RED, ls="--", lw=1.4, label="Mittelstrom: 877,8")
-    reserve_line = axes[0].axvline(final_q * (1 + p["plant"]["reserve_fraction"]), color=GRAY, ls=":", lw=1.6, label="Mittelstrom + 20 %: 1053,3")
+    mean_line = axes[0].axvline(final_q, color=RED, ls="--", lw=1.4, label="Basis: 877,8")
+    reserve_line = axes[0].axvline(final_q * (1 + p["plant"]["reserve_fraction"]), color=GRAY, ls=":", lw=1.6, label="Basis +20 %: 1053,3")
     design_line = axes[0].axvline(design_stage.total_mw * (1 + p["plant"]["reserve_fraction"]), color=BLUE, ls="-.", lw=1.6, label="p90 + 20 %: 2152,5")
-    axes[0].set(xlabel="Kühlleistung in MW", ylabel="Anzahl", xlim=(0, 2300))
+    axes[0].set(xlabel="", ylabel="Anzahl", xlim=(0, 2300))
     axes[1].hist(npv_samples / 1e9, bins=45, color=ORANGE, alpha=0.85)
     reference_line = axes[1].axvline(npv(hybrid_staged) / 1e9, color=RED, ls="--", lw=1.4, label=f"Referenz: {npv(hybrid_staged) / 1e9:.2f}".replace(".", ","))
-    axes[1].set(xlabel="Barwert in Mrd. €", ylabel="Anzahl")
+    axes[1].set(xlabel="", ylabel="Anzahl")
     axes[1].xaxis.set_major_formatter(FuncFormatter(lambda value, position: f"{value:g}".replace(".", ",")))
-    fig.legend(handles=[mean_line, reserve_line, design_line, reference_line], frameon=False, ncol=2, loc="lower center", bbox_to_anchor=(0.5, 0.005))
-    fig.subplots_adjust(bottom=0.43, wspace=0.40)
+    for ax in axes:
+        ax.tick_params(labelsize=20)
+        ax.xaxis.label.set_size(20)
+        ax.yaxis.label.set_size(20)
+    fig.legend(handles=[mean_line, reserve_line, design_line, reference_line], frameon=False, ncol=1, loc="lower center", bbox_to_anchor=(0.5, 0.005), fontsize=20)
+    fig.subplots_adjust(bottom=0.43, wspace=0.55)
     save_figure(fig, "fig05_unsicherheit")
 
     fractions = np.logspace(-4, 0, 200)
@@ -451,7 +475,11 @@ def main() -> None:
             "per_module_installed_mw": design_stage.total_mw * (1 + p["plant"]["reserve_fraction"]) / p["plant"]["module_count"],
             "storage_lower_bound_mw": storage_mw,
             "evaporation_kg_s": evaporation,
-            "evaporation_m3_year": evaporation / p["water"]["density_kg_m3"] * 365 * 24 * 3600,
+            "evaporation_m3_year": evaporation_m3_year,
+            "evaporation_blowdown_m3_year": evaporative_makeup_sensitivity[0]["blowdown_m3_year"],
+            "evaporation_drift_m3_year": evaporative_makeup_sensitivity[0]["drift_m3_year"],
+            "evaporation_makeup_m3_year": evaporative_makeup_sensitivity[0]["makeup_m3_year"],
+            "evaporation_makeup_flow_fraction": evaporative_makeup_sensitivity[0]["makeup_m3_year"] / (365 * 24 * 3600) / p["water"]["discharge_m3_s"],
             "evaporation_flow_fraction": evaporation / p["water"]["density_kg_m3"] / p["water"]["discharge_m3_s"],
             "dilution_flow_m3_s": dilution,
             "dilution_to_natural_flow_ratio": dilution / p["water"]["discharge_m3_s"],
@@ -526,9 +554,11 @@ def main() -> None:
             "capex_parts_eur": absorption_capex,
             "final_capex_eur": absorption_economics["final_capex_eur"],
             "npv_25y_eur": absorption_economics["npv_25y_eur"],
+            "zero_absorption_equipment_npv_eur": absorption_zero_npv,
             "emissions_tco2_year": absorption_economics["emissions_tco2_year"],
             "economics": absorption_economics,
         },
+        "evaporative_makeup_sensitivity": evaporative_makeup_sensitivity,
         "flow_fraction_scenarios": flow_fraction_scenarios,
         "availability_scenarios": availability_scenarios,
         "tariff_scenarios": tariff_scenarios,
@@ -643,6 +673,13 @@ def main() -> None:
         "EvapChiller": (evaporative_stage.chiller_mw, 1),
         "EvapAnnual": (evaporation / p["water"]["density_kg_m3"] * 365 * 24 * 3600 / 1e6, 2),
         "EvapFraction": (100 * evaporation / p["water"]["density_kg_m3"] / p["water"]["discharge_m3_s"], 1),
+        "EvapMakeupAnnual": (evaporative_makeup_sensitivity[0]["makeup_m3_year"] / 1e6, 2),
+        "EvapBlowdownAnnual": (evaporative_makeup_sensitivity[0]["blowdown_m3_year"] / 1e6, 2),
+        "EvapMakeupFraction": (100 * results["baseline"]["evaporation_makeup_flow_fraction"], 1),
+        "EvapCycles": (p["plant"]["evaporative_cycles_of_concentration"], 0),
+        "EvapDriftPercent": (100 * p["plant"]["evaporative_drift_fraction"], 2),
+        "EvapMakeupLow": (evaporative_makeup_sensitivity[-1]["makeup_m3_year"] / 1e6, 2),
+        "EvapMakeupHigh": (evaporative_makeup_sensitivity[0]["makeup_m3_year"] / 1e6, 2),
         "DilutionFlow": (dilution, 1),
         "DilutionRatio": (dilution / p["water"]["discharge_m3_s"], 1),
         "PassiveArea": (passive_area / 1e6, 1),
@@ -715,6 +752,7 @@ def main() -> None:
         "AbsAirRejection": (absorption_economics["external_air_rejection_mw"], 1),
         "AbsCapex": (absorption_economics["final_capex_eur"] / 1e6, 1),
         "AbsNpv": (absorption_economics["npv_25y_eur"] / 1e9, 3),
+        "AbsZeroNpv": (absorption_zero_npv / 1e9, 3),
         "AbsEmissions": (absorption_economics["emissions_tco2_year"] / 1000, 1),
         "AbsFuel": (backup_fuel_liters(p, "absorption") / 1e6, 3),
         "AbsRequiredBackup": (int(np.ceil(absorption_design.electricity_mw / p["failure"]["backup_aggregate_capacity_mw"])), 0),
@@ -741,14 +779,14 @@ def main() -> None:
             handle.write(f"{label} & {' & '.join(values)} \\\\\n")
         air_values = [f"{alt['external_air_rejection_mw']:.1f}".replace(".", ",") for alt in alternatives]
         handle.write("Davon Wärmeabgabe an Luft in MW & " + " & ".join(air_values) + " \\\\\n")
-        handle.write("Verdunstung H2, Zusatzwasser H3 & 0 m³ & ")
+        handle.write("Zusatzwasser H2/H3 & 0 m³ & ")
         handle.write(f"{alternatives[1]['annual_water_m3']/1e6:.2f}".replace(".", ",") + " Mio. m³ & " + f"{alternatives[2]['annual_water_m3']/1e9:.3f}".replace(".", ",") + " Mrd. m³ \\\\\n")
         npv_values = [f"{alt['npv_25y_eur']/1e9:.3f}".replace(".", ",") for alt in alternatives]
         handle.write("Barwert in Mrd. € & " + " & ".join(npv_values) + " \\\\\n")
         handle.write("\\bottomrule\n\\end{tabular}\n")
 
     with (GEN / "absorption.tex").open("w", encoding="utf-8") as handle:
-        handle.write("\\begin{tabular*}{\\textwidth}{@{\\extracolsep{\\fill}}lrr}\n\\toprule\nGröße & H1 & H8 \\\\\n\\midrule\n")
+        handle.write("\\begin{tabular*}{\\columnwidth}{@{\\extracolsep{\\fill}}>{\\hspace{0pt}\\raggedright\\arraybackslash}p{40mm}rr}\n\\toprule\nGröße & H1 & H8 \\\\\n\\midrule\n")
         rows = [
             ("Generatorwärme in MW", 0.0, absorption.generator_mw, 1.0, 1),
             ("Verdampferkälte in MW", 0.0, absorption.evaporator_mw, 1.0, 1),
@@ -771,14 +809,14 @@ def main() -> None:
         handle.write("\\bottomrule\n\\end{tabular*}\n")
 
     with (GEN / "sensitivity.tex").open("w", encoding="utf-8") as handle:
-        handle.write("\\begin{tabular*}{\\textwidth}{@{\\extracolsep{\\fill}}lrrr}\n\\toprule\nFall & Kühlleistung & Änderung & Barwert \\\\\n & in MW & in \\% & in Mrd. € \\\\\n\\midrule\n")
+        handle.write("\\begin{tabular*}{\\columnwidth}{@{\\extracolsep{\\fill}}>{\\hspace{0pt}\\raggedright\\arraybackslash}p{24mm}rrr}\n\\toprule\nFall & MW & \\% & Mrd. € \\\\\n\\midrule\n")
         for row in sensitivity:
             label = row["case"].replace("%", "\\%")
             handle.write(f"{label} & {row['final_cooling_mw']:.1f} & {100*row['relative_change']:+.1f} & {row['npv_25y_eur']/1e9:.3f} \\\\\n".replace(".", ","))
         handle.write("\\bottomrule\n\\end{tabular*}\n")
 
     with (GEN / "flow_fractions.tex").open("w", encoding="utf-8") as handle:
-        handle.write("\\begin{tabular*}{\\textwidth}{@{\\extracolsep{\\fill}}lrrrr}\n\\toprule\nAnteil & Kühlung & Elektrik & Investition & Barwert \\\\\n & in MW & in MW & in Mio. € & in Mrd. € \\\\\n\\midrule\n")
+        handle.write("\\begin{tabular*}{\\columnwidth}{@{\\extracolsep{\\fill}}lrrrr}\n\\toprule\nAnteil & MW & MW & Mio. € & Mrd. € \\\\\n\\midrule\n")
         for row in flow_fraction_scenarios:
             handle.write(f"{100*row['affected_fraction']:.1f} \\% & {row['final_cooling_mw']:.1f} & {row['electricity_mw']:.2f} & {row['final_capex_eur']/1e6:.0f} & {row['npv_25y_eur']/1e9:.3f} \\\\\n".replace(".", ","))
         handle.write("\\bottomrule\n\\end{tabular*}\n")

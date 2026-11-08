@@ -55,6 +55,9 @@ plant:
   evaporative_secondary_inlet_c: 32.0
   evaporative_secondary_outlet_c: 96.0
   evaporative_secondary_flow_m3_s: 2.3
+  evaporative_cycles_of_concentration: 3.0
+  evaporative_drift_fraction: 0.0002
+  evaporative_makeup_note: "Zusatzwasser ist Verdunstung plus Abschlämmung und Drift. Drei Konzentrationszyklen im Referenzfall, Sensitivität drei bis fünf, Drift 0,02 % der Verdunstung. Eigene Szenarioannahmen ohne Hersteller- oder Wasserchemiedaten."
   absorption_thermal_cop: 0.70
   absorption_generator_return_c: 82.0
   absorption_approach_k: 4.0
@@ -117,7 +120,7 @@ cost:
   exchanger_eur_kw: 15.0
   chiller_eur_kw: 500.0
   absorption_eur_kw: 250.0
-  absorption_cost_basis: "H8 verwendet das untere Ende der HAW-Spanne 250 bis 1800 €/kW für Absorptionskältemaschinen, plus 30 % Szenarioaufschlag. Das ist ein günstiger Screeningwert für H8, kein Angebot."
+  absorption_cost_basis: "HAW Tabelle 5.6 enthält für Absorptionskältemaschinen 80 bis 1800 €/kW. H8 verwendet 250 €/kW als eigenen günstigen Screeningwert innerhalb dieses Spektrums, plus 30 % Szenarioaufschlag, kein Angebot."
   dry_cooler_eur_kw: 120.0
   evaporative_eur_kw: 80.0
   dilution_pump_eur_kw: 1000.0

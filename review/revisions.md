@@ -283,12 +283,32 @@ DeepSeek fand keinen materiellen Mangel. Die folgenden optionalen Hinweise wurde
 | --- | --- | --- |
 | M1, wärmegetriebene Kühlung fehlt | H8 als einstufige Absorptionsvariante registriert. Heißwasser 96/82 °C, Quellstrom 100/86 °C, positive Pinchstellen von 4 K, Generator 135,0 MW, Verdampfer 94,5 MW, Absorptionsabwärme 229,6 MW. | `absorption_stage`, `test_absorption_stage_energy_and_pinch`, Bericht §3.3 |
 | Elektrische und thermodynamische Prüfung | Hilfsstrom 5,56 % nach HAW 3/54 kW. H8 benötigt 94,6 MW im Mittelbetrieb und 245,1 MW im Min-COP-Fall, acht Aggregate plus Reserve und 3,001 Mio. Liter Diesel. Thermische COP-Werte 0,6 bis 1,3 und reversible Obergrenze 1,793 lassen den Quellstrom über 40 °C, die Kompressionsstufe bleibt unverändert. | `test_absorption_design_and_cost`, `test_absorption_temperature_limit_and_uncertainty`, Tabelle H8 |
-| Kosten, Emissionen und Unsicherheit | HAW-Unterwert 250 €/kW plus 30 % für die Absorptionsmaschine, ansonsten dieselben Reserve- und Zuschlagsregeln. H8 kostet 1716,0 Mio. € Investition und 4,346 Mrd. € Barwert, verursacht 300,9 kt CO₂ pro Jahr und ist in allen 10.000 gekoppelten Ziehungen teurer als H1. | `variable_capex_eur`, `coupled_npv(..., technology="absorption")`, `output/model/results.json` |
+| Kosten, Emissionen und Unsicherheit | Eigener Screeningwert 250 €/kW innerhalb der HAW-Spanne 80 bis 1800 €/kW plus 30 %, ansonsten dieselben Reserve- und Zuschlagsregeln. H8 kostet 1716,0 Mio. € Investition und 4,346 Mrd. € Barwert, verursacht 300,9 kt CO₂ pro Jahr und ist in allen 10.000 gekoppelten Ziehungen teurer als H1. | `variable_capex_eur`, `coupled_npv(..., technology="absorption")`, `output/model/results.json` |
 | M2, reale Abgabe fehlt | Keine offizielle Team-ID, menschliche Freigabe, Rechteprüfung oder Einreichung wird erfunden. Kriterium 12a bezeichnet im nächsten Auftrag ausdrücklich die technische Testpaketbereitschaft; reale Abgabevoraussetzungen bleiben sichtbar. | `README.md`, `PROVENANCE.md`, Anhang A, `review/council_prompt.md` |
 
 Die neue Revision enthält 22 bestandene Modelltests und 15 Seiten mit 10 Haupttext- und 5 Literatur-/Anhangsseiten. Die Spalten in Anhang A werden mit `\balance` ausgeglichen. Frühere Punktzahlen werden nicht übernommen. Vor Runde 10 ist die Archivreproduktion erneut zu prüfen.
 
 DeepSeek legte in Runde 9 offen, versehentlich `review/README.md` mit früheren Übersichtspunktzahlen gelesen zu haben. Die Werte wurden nach dem Bericht nicht verwendet. Der nächste Prüfauftrag schließt diese Datei ausdrücklich aus.
+
+## Befunde aus Runde 10, DeepSeek
+
+| Befund | Konkrete Änderung oder begründete Grenze | Verifikation |
+| --- | --- | --- |
+| M1, schwach genutzte Anhangsseiten | Einspaltige Abbildung und Tabellen in Lesereihenfolge statt seitenbreiter Floats. Anhang B und alle vier Tabellen stehen auf Seite 14 mit Inhalt in beiden Spalten. Die Abbildung wurde für die Spaltenbreite neu gesetzt und ihre Beschriftung nach Sichtprüfung korrigiert. | `report/main.tex`, `model/run_all.py`, PDF-Seiten 13 und 14, mindestens 12,16 pt Diagrammglyphen |
+| M2, falsches Seitenflag | Text vor der Überschrift Literaturverzeichnis entscheidet über die gemeinsame Seite. Das Flag ist jetzt true. Die zehn Haupttextseiten schließen das Deckblatt weiterhin aus. | `scripts/verification_summary.py`, `output/verification_summary.json` |
+| M3, H2-Wasserbilanz unvollständig | Drei Konzentrationszyklen mit 4,16 Mio. m³ Abschlämmung und 0,02 % Drift ergänzen 8,32 Mio. m³ Verdunstung auf 12,48 Mio. m³ Zusatzwasser. Drei bis fünf Zyklen ergeben 10,40 bis 12,48 Mio. m³. Wasserkosten und Barwert 3,722 Mrd. € verwenden den vollständigen Bedarf. | `annual_operation`, `test_evaporative_makeup_water`, `evaporative_makeup_sensitivity`, Bericht §3.3 und Tabelle 2 |
+| M4, Annahmen zu Hilfsantrieben und Servicefläche | Ventilatoranteil, 12 m Förderhöhe, 80 % Wirkungsgrad und Serviceflächenfaktor 1,5 werden ausdrücklich als eigene Annahmen ohne Herstellerkurven genannt. | Bericht §3.2, `data/parameters.yml` |
+| M5, reversible H8-Grenze ohne feste Generatorwärme | Die 135,0 MW Generatorwärme und 96/82 °C stehen unmittelbar bei der reversiblen Obergrenze. | Bericht §3.3, `absorption_reversible_cop` |
+| M6, historische Präsentation im Freeze-Nachweis | Der Freeze enthält separate Paperbefehle und kennzeichnet die historischen Präsentationsprüfungen als außerhalb des Lieferumfangs. | `scripts/freeze_revision.py`, `review/rounds/round11/reproduction.md` nach dem Lauf |
+
+## Befund aus Runde 10, Kimi
+
+| Befund | Konkrete Änderung oder begründete Grenze | Verifikation |
+| --- | --- | --- |
+| M1, 250 €/kW fälschlich als HAW-Unterwert | HAW Tabelle 5.6 wird mit dem vollständigen Spektrum 80 bis 1800 €/kW beschrieben. Der Wert 250 €/kW ist eine eigene günstige Szenarioannahme innerhalb dieses Spektrums, kein Unterwert und kein Angebot. | `data/parameters.yml`, `sources/registry.yml`, `docs/alternativenvergleich.md`, Bericht §3.3 |
+| Robustheit der Auswahl | Selbst eine kostenlose Absorptionsmaschine ergibt 4,200 Mrd. € Barwert statt 4,136 Mrd. € bei H1. Die Auswahl hängt nicht am Preis der Absorptionsmaschine. | `zero_absorption_equipment_npv_eur`, `test_absorption_design_and_cost` |
+
+Die neue Revision enthält 23 bestandene Modelltests und 14 Seiten mit 10 Haupttext- und 4 Literatur-/Anhangsseiten. Die Prüfung verlangt mindestens 40 % vertikale Textfläche und Inhalt in beiden Spalten nach dem Deckblatt. Frühere Punktzahlen werden nicht übernommen. Vor Runde 11 ist die Archivreproduktion erneut zu prüfen.
 
 ## Aktueller Lieferumfang
 

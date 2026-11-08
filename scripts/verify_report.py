@@ -86,7 +86,13 @@ def main() -> None:
                 max_x = max(char["x1"] for char in body_chars)
                 min_top = min(char["top"] for char in body_chars)
                 max_bottom = max(char["bottom"] for char in body_chars)
-                require(max_bottom - min_top >= 200, f"Seite {index + 1} nutzt zu wenig vertikalen Raum")
+                require(max_bottom - min_top >= 0.40 * (page.height - 2.0 * margin_pt), f"Seite {index + 1} nutzt weniger als 40 % der vertikalen Textfläche")
+                if index > 0:
+                    for side, column_chars in [("links", [char for char in body_chars if (char["x0"] + char["x1"]) / 2.0 < page.width / 2.0]), ("rechts", [char for char in body_chars if (char["x0"] + char["x1"]) / 2.0 >= page.width / 2.0])]:
+                        require(bool(column_chars), f"Seite {index + 1}: {side}e Spalte ist leer")
+                        if column_chars:
+                            column_span = max(char["bottom"] for char in column_chars) - min(char["top"] for char in column_chars)
+                            require(column_span >= 200.0, f"Seite {index + 1}: {side}e Spalte nutzt zu wenig vertikalen Raum")
                 require(min_x >= margin_pt, f"Seite {index + 1}: Inhalt links unter 25 mm")
                 require(max_x <= page.width - margin_pt, f"Seite {index + 1}: Inhalt rechts über 25 mm")
                 require(min_top >= margin_pt, f"Seite {index + 1}: Inhalt oben unter 25 mm")

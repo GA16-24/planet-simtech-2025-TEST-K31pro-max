@@ -249,7 +249,11 @@ def annual_operation(year: int, p: dict[str, Any], technology: str = "hybrid") -
         hygiene_eur = 0.0
     elif technology == "evaporative":
         electricity_mw = stage.electricity_mw
-        water_m3 = evaporation_kg_s(stage.dry_mw, p) / p["water"]["density_kg_m3"] * SECONDS_PER_YEAR
+        evaporation_m3 = evaporation_kg_s(stage.dry_mw, p) / p["water"]["density_kg_m3"] * SECONDS_PER_YEAR
+        cycles = plant["evaporative_cycles_of_concentration"]
+        if cycles <= 1.0:
+            raise ValueError("Evaporative cycles of concentration must exceed one")
+        water_m3 = evaporation_m3 * (1.0 + 1.0 / (cycles - 1.0) + plant["evaporative_drift_fraction"])
         hygiene_eur = p["cost"]["evaporative_hygiene_eur_year"] if stage.total_mw > 0.0 else 0.0
     elif technology == "dilution":
         flow = dilution_flow_m3_s(float(year), p)

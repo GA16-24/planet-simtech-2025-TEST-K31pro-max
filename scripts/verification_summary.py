@@ -32,7 +32,7 @@ def main() -> None:
         "report": {
             "physical_pages": len(report.pages),
             "main_pages": bibliography_start,
-            "main_bibliography_shared_page": "Schlussfolgerung" in texts[bibliography_start],
+            "main_bibliography_shared_page": bool(texts[bibliography_start].split("Literaturverzeichnis", 1)[0].strip(" \n\t0123456789")),
             "bibliography_and_appendix_pages": len(report.pages) - bibliography_start,
             "main_limit": 10,
             "back_limit": 5,
