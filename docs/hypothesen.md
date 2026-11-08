@@ -1,6 +1,6 @@
 # Unabhängige Hypothesenbildung
 
-Stand vor Auswertung der Recherche-Notizen und vor jeder quantitativen Auswahl.
+Die Abschnitte H1 bis H7 entstanden vor Auswertung der Recherche-Notizen und vor jeder quantitativen Auswahl. H8 wurde nach dem Council-Befund zur fehlenden wärmegetriebenen Kühlung ergänzt und ist nicht als ursprüngliche Hypothese datiert.
 
 ## Ausgangsbeobachtungen und alternative Erklärungen
 
@@ -50,9 +50,15 @@ Heatpipes oder geschlossene Wasserleitungen könnten Wärme aus der Tiefe zu Rad
 
 Die passive Anordnung braucht wenig Hilfsenergie. Ihre Leistung ist durch Temperaturdifferenz und Wetter begrenzt. Bei warmer Luft fehlt die treibende Differenz für eine Kühlung auf den kalten Normalzustand. H7 kann Hilfsenergie sparen, ist aber ohne Wärmepumpe nicht ganzjährig ausreichend.
 
+## H8. Heißes Wasser treibt eine Absorptionskältemaschine an
+
+Diese Variante wurde nach dem Council-Befund zur fehlenden wärmegetriebenen Kühlung ergänzt. Ein Heißwasserkreislauf von 96 auf 82 °C entzieht dem Quellstrom im Gegenstrom Wärme. Der thermische COP beträgt im Szenario 0,70, innerhalb des HAW-Bereichs 0,6 bis 0,8 für einstufige Absorptionsmaschinen. Die Lösungspumpe wird mit 5,56 % der Verdampferleistung angesetzt, entsprechend dem HAW-Beispiel 3 kW bei 54 kW Kälte. Alle Temperaturabstände und Wärmeströme werden ausgewiesen.
+
+Die Verdampferkälte reduziert im geprüften Temperaturfenster nur die direkte Trockenkühlung, nicht die nachfolgende Kompressionsstufe. Auch thermische COP-Werte bis 1,3 und die reversible Obergrenze bei 96 °C Antrieb, 35 °C Senke und 9 °C Verdampfung ändern daran nichts. H8 wird deshalb nicht bevorzugt. Investition, 25-Jahres-Barwert, Hilfsstrom, Notstrom, Emissionen und gekoppelte Monte-Carlo-Ziehungen folgen denselben Rechenregeln wie H1. Das ist ein begrenztes Screening, keine Herstellerauslegung und kein Ausschluss jeder anderen wärmegetriebenen Maschine.
+
 ## Skalierung nach der Wärmebilanz
 
-Der ursprünglich als begrenzter Teilkreislauf formulierte H1 wird nicht verworfen, sondern auf den gesamten betroffenen Strom skaliert. Erst die Bilanz entscheidet, ob ein kleiner Teilstrom genügt. Ohne Nachweis eines begrenzten heißen Astes wird die Vollstromvariante verwendet. Die p90-Kapazität wird anschließend mit 20 % Reserve ausgelegt; der erwartete Verbrauch folgt weiterhin dem mittleren Abfluss.
+Der ursprünglich als begrenzter Teilkreislauf formulierte H1 wird nicht verworfen, sondern nach der Wärmebilanz technisch weiterentwickelt. Geschlossene Wasserführung, externe Wärmeabgabe und Regelung bleiben erhalten. Den Tiefenkreislauf mit Diffusor ersetzt die Vollstromkühlung vor dem Becken mit Trockenkühlung und Kältemaschinen. Das ist keine bloße Maßstabsänderung. Erst die Bilanz entscheidet, ob ein kleiner Teilstrom genügt. Ohne Nachweis eines begrenzten heißen Astes wird die Vollstromvariante verwendet. Die p90-Kapazität wird anschließend mit 20 % Reserve ausgelegt; der erwartete Verbrauch folgt weiterhin dem mittleren Abfluss.
 
 ## Vorläufige Auswahlregel
 

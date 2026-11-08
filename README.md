@@ -10,6 +10,8 @@ Das private GitHub-Repository wurde neu angelegt. Ein Push erfolgte nicht, da ke
 
 Die Lösung ist eine zweistufige, modular aufgebaute Vollstromkühlung. Direkte Trockenkühlung nutzt die hohe Temperaturdifferenz zuerst. Kältemaschinen bringen das Wasser danach auf 9 °C. Die Wärme einschließlich Kondensator- und Hilfsenergie wird an Luft abgegeben, nicht an Blau oder Grundwasser. Im p90-Fall tragen elf Stränge die Last, ein zwölfter ist Reserve. Im Mittelbetrieb modulieren fünf.
 
+Die wärmegetriebene Absorptionsvariante H8 wird mit Generator, Verdampfer, Rückkühlung, Hilfsstrom, Kosten und Unsicherheit verglichen. Sie ersetzt im geprüften Temperaturfenster nur Trockenkühlung, nicht die Kompressionsstufe, und wird deshalb nicht gewählt. Die Bilanz steht in `output/model/results.json` unter `absorption` und in `report/generated/absorption.tex`.
+
 Im erwarteten Vollstromszenario sind im zehnten Jahr 877,8 MW Kühlleistung erforderlich. Für das historische 90-Prozent-Abflussquantil von 4,7 m³/s werden 1.793,7 MW benötigt und mit 20 % Reserve 2.152,5 MW installiert. Die isolierte Speicherrechnung liefert dagegen nur 0,0303 MW als untere energetische Grenze, nicht als Kühlbedarf des durchströmten Systems. Vor der endgültigen Dimensionierung müssen Durchfluss, betroffener Karstast, Netzanschluss und Standort geprüft werden.
 
 ## Produkt und Nachweise

@@ -19,6 +19,22 @@ class CoolingStage:
     air_rejection_mw: float
 
 
+@dataclass(frozen=True)
+class AbsorptionStage:
+    total_mw: float
+    generator_mw: float
+    evaporator_mw: float
+    rejection_mw: float
+    auxiliary_mw: float
+    dry_cooling_mw: float
+    chiller_mw: float
+    secondary_hot_inlet_c: float
+    secondary_return_c: float
+    secondary_flow_m3_s: float
+    source_after_generator_c: float
+    source_after_evaporator_c: float
+
+
 def heating_rate_k_per_year(p: dict[str, Any]) -> float:
     s = p["scenario"]
     return (s["boiling_temperature_c"] - s["initial_temperature_c"]) / s["forecast_years"]
@@ -63,27 +79,72 @@ def design_electrical_stage(p: dict[str, Any], affected_fraction: float | None =
     return cooling_stage(p["scenario"]["forecast_years"], design_p, affected_fraction=fraction, technology=technology)
 
 
+def absorption_stage(year: float, p: dict[str, Any], affected_fraction: float | None = None) -> AbsorptionStage:
+    plant = p["plant"]
+    total = float(required_cooling_mw(year, p, affected_fraction))
+    source = float(source_temperature_c(year, p))
+    capacitance = thermal_capacitance_mw_per_k(p, affected_fraction)
+    hot_return = plant["absorption_generator_return_c"]
+    approach = plant["absorption_approach_k"]
+    source_after_generator = hot_return + approach
+    secondary_hot_inlet = source - approach
+    fraction = p["scenario"]["affected_flow_fraction"] if affected_fraction is None else affected_fraction
+    source_flow = p["water"]["discharge_m3_s"] * fraction
+    secondary_flow = plant["absorption_secondary_flow_m3_s"] * source_flow / p["water"]["discharge_m3_s"]
+    if source < hot_return + 2.0 * approach:
+        outlet = dry_outlet_temperature_c(p)
+        dry = min(total, capacitance * max(source - outlet, 0.0)) if source > outlet else 0.0
+        return AbsorptionStage(total, 0.0, 0.0, 0.0, 0.0, dry, total - dry, secondary_hot_inlet, hot_return, secondary_flow, source, source - dry / capacitance)
+    generator = capacitance * (source - source_after_generator)
+    evaporator = min(generator * plant["absorption_thermal_cop"], total - generator)
+    source_after_evaporator = source_after_generator - evaporator / capacitance
+    remaining = total - generator - evaporator
+    outlet = dry_outlet_temperature_c(p)
+    dry = min(remaining, capacitance * max(source_after_evaporator - outlet, 0.0)) if source_after_evaporator > outlet else 0.0
+    return AbsorptionStage(
+        total,
+        generator,
+        evaporator,
+        generator + evaporator,
+        evaporator * plant["absorption_auxiliary_fraction"],
+        dry,
+        remaining - dry,
+        secondary_hot_inlet,
+        hot_return,
+        secondary_flow,
+        source_after_generator,
+        source_after_evaporator,
+    )
+
+
 def cooling_stage(year: float, p: dict[str, Any], affected_fraction: float | None = None, technology: str = "hybrid") -> CoolingStage:
     plant = p["plant"]
     total = float(required_cooling_mw(year, p, affected_fraction))
     source = float(source_temperature_c(year, p))
-    if technology == "hybrid":
-        outlet = dry_outlet_temperature_c(p)
-    elif technology == "evaporative":
-        outlet = plant.get("evaporative_source_outlet_c", plant["wet_bulb_design_c"] + plant["evaporative_approach_k"])
+    absorption_auxiliary = 0.0
+    if technology == "absorption":
+        absorption = absorption_stage(year, p, affected_fraction)
+        dry = absorption.generator_mw + absorption.evaporator_mw + absorption.dry_cooling_mw
+        chiller = absorption.chiller_mw
+        absorption_auxiliary = absorption.auxiliary_mw
     else:
-        raise ValueError(f"Unknown cooling stage: {technology}")
-    dry_delta = max(source - outlet, 0.0)
-    dry = min(total, thermal_capacitance_mw_per_k(p, affected_fraction) * dry_delta) if source > outlet else 0.0
-    chiller = total - dry
+        if technology == "hybrid":
+            outlet = dry_outlet_temperature_c(p)
+        elif technology == "evaporative":
+            outlet = plant.get("evaporative_source_outlet_c", plant["wet_bulb_design_c"] + plant["evaporative_approach_k"])
+        else:
+            raise ValueError(f"Unknown cooling stage: {technology}")
+        dry_delta = max(source - outlet, 0.0)
+        dry = min(total, thermal_capacitance_mw_per_k(p, affected_fraction) * dry_delta) if source > outlet else 0.0
+        chiller = total - dry
     condenser = chiller * (1.0 + 1.0 / plant["chiller_cop"])
     flow = p["water"]["discharge_m3_s"] * (p["scenario"]["affected_flow_fraction"] if affected_fraction is None else affected_fraction)
     pump_mw = 0.0
     if total > 0.0:
         pump_mw = p["water"]["density_kg_m3"] * plant["gravity_m_s2"] * flow * plant["pump_head_m"] / plant["pump_efficiency"] / 1e6
     fan_mw = plant["dry_auxiliary_fraction"] * (dry + condenser)
-    electricity = chiller / plant["chiller_cop"] + fan_mw + pump_mw
-    air_rejection = dry + condenser + fan_mw + pump_mw
+    electricity = chiller / plant["chiller_cop"] + fan_mw + pump_mw + absorption_auxiliary
+    air_rejection = dry + condenser + fan_mw + pump_mw + absorption_auxiliary
     return CoolingStage(total, dry, chiller, electricity, condenser, air_rejection)
 
 
@@ -125,7 +186,7 @@ def backup_fuel_cost_eur(p: dict[str, Any], technology: str = "hybrid") -> float
 
 def variable_capex_eur(year: float, p: dict[str, Any], technology: str = "hybrid") -> dict[str, float]:
     c = p["cost"]
-    stage_technology = technology if technology in {"hybrid", "evaporative"} else "hybrid"
+    stage_technology = technology if technology in {"hybrid", "evaporative", "absorption"} else "hybrid"
     stage = cooling_stage(year, p, technology=stage_technology)
     capacity_scale = design_flow_ratio(p) * (1.0 + p["plant"]["reserve_fraction"])
     design_affected_fraction = design_flow_ratio(p) * p["scenario"]["affected_flow_fraction"]
@@ -153,6 +214,15 @@ def variable_capex_eur(year: float, p: dict[str, Any], technology: str = "hybrid
             "dry_cooler": stage.condenser_mw * 1000.0 * dry_cooler_cost * capacity_scale,
             "backup_power": backup if stage.total_mw > 0.0 else 0.0,
         }
+    if technology == "absorption":
+        absorption = absorption_stage(year, p)
+        return {
+            "exchanger": stage.total_mw * 1000.0 * c["exchanger_eur_kw"] * capacity_scale,
+            "absorption_chiller": absorption.evaporator_mw * 1000.0 * c["absorption_eur_kw"] * c["legacy_escalation_factor"] * capacity_scale,
+            "chiller": stage.chiller_mw * 1000.0 * chiller_cost * capacity_scale,
+            "dry_cooler": (stage.dry_mw + stage.condenser_mw) * 1000.0 * dry_cooler_cost * capacity_scale,
+            "backup_power": backup if stage.total_mw > 0.0 else 0.0,
+        }
     if technology == "dilution":
         flow = dilution_flow_m3_s(year, p)
         pump_mw = p["water"]["density_kg_m3"] * p["plant"]["gravity_m_s2"] * flow * 20.0 / p["plant"]["pump_efficiency"] / 1e6
@@ -172,8 +242,8 @@ def cumulative_capex_eur(year: float, p: dict[str, Any], technology: str = "hybr
 
 def annual_operation(year: int, p: dict[str, Any], technology: str = "hybrid") -> dict[str, float]:
     plant = p["plant"]
-    stage = cooling_stage(float(year), p, technology=technology if technology in {"hybrid", "evaporative"} else "hybrid")
-    if technology == "hybrid":
+    stage = cooling_stage(float(year), p, technology=technology if technology in {"hybrid", "evaporative", "absorption"} else "hybrid")
+    if technology in {"hybrid", "absorption"}:
         electricity_mw = stage.electricity_mw
         water_m3 = 0.0
         hygiene_eur = 0.0

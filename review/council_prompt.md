@@ -30,9 +30,9 @@ Der Nutzer hat den Lieferumfang auf den Research Paper beschränkt. Präsentatio
 - Reproduktion: `README.md`, `Makefile`, `scripts/`, `review/rounds/RUNDE/reproduction.md`
 - Befundzuordnung und Reviewkonfiguration: `review/revisions.md`, `review/model_configuration.md`
 
-Prüfe den tatsächlich gerenderten Research Paper, nicht nur LaTeX oder JSON. Öffne die Kontaktübersicht und alle dreizehn Einzelseiten. Prüfe die Diagramme und Tabellen in den gerenderten Seiten. Du darfst read-only Prüfbefehle ausführen, sofern dein Modus dies zulässt. Führe keine Builds aus und verändere keine Dateien.
+Prüfe den tatsächlich gerenderten Research Paper, nicht nur LaTeX oder JSON. Öffne die Kontaktübersicht und jede Einzelseite der aktuellen PDF. Prüfe die Diagramme und Tabellen in den gerenderten Seiten. Du darfst read-only Prüfbefehle ausführen, sofern dein Modus dies zulässt. Führe keine Builds aus und verändere keine Dateien.
 
-Lies keine Rohberichte oder Scorecards aus früheren Runden. Vermeide auch rekursive Suchen im Verzeichnis `review/rounds/`, damit alte Bewertungen nicht versehentlich in deinen Kontext gelangen. Die Befundzuordnung enthält frühere Mängel ohne Punktzahlen. Prüfe deren Behebung an der aktuellen Revision selbst.
+Lies keine Rohberichte oder Scorecards aus früheren Runden. Lies auch nicht `review/README.md` oder andere Übersichten mit früheren Punktzahlen. Vermeide rekursive Suchen im Verzeichnis `review/rounds/`, damit alte Bewertungen nicht versehentlich in deinen Kontext gelangen. Erlaubt sind dort nur `roundRUNDE/revision.json`, `roundRUNDE/reproduction.md` und `roundRUNDE/prompt.md`. Die Befundzuordnung enthält frühere Mängel ohne Punktzahlen. Prüfe deren Behebung an der aktuellen Revision selbst.
 
 ## Kriterien
 
@@ -51,6 +51,8 @@ Bewerte jedes verbleibende Kriterium mit einer ganzen Zahl von 1 bis 10:
 12a. Bereitschaft für die schriftliche Runde
 
 Kriterium 12b und die Präsentation wurden durch den Nutzer aus dem Lieferumfang entfernt. Bewerte oder erfinde dafür keine Ersatzpunkte. Fehlende Standort-, Netz-, Hersteller- und Karstdaten müssen als Grenzen sichtbar bleiben. Bewerte die Qualität des dokumentierten Szenarioentwurfs ohne eine Baufreigabe oder externe Machbarkeitsnachweise zu unterstellen.
+
+Kriterium 12a bezeichnet die technische Bereitschaft des nicht eingereichten Testpakets. Offizielle Team-ID, menschliche wissenschaftliche Prüfung, Rechtefreigabe und tatsächliche Einreichung sind bewusste menschliche Restaufgaben außerhalb des Lieferumfangs. Sie müssen offengelegt bleiben und dürfen nicht als erledigt behauptet werden. Ihr Fehlen allein ist kein Papermangel. Bewerte dagegen jeden fachlichen oder formalen Mangel des vorliegenden Testpakets normal.
 
 ## Bewertungsmaßstab und Nachweis
 

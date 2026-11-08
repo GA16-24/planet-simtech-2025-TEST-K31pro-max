@@ -14,6 +14,7 @@ import yaml
 
 from core import (
     HOURS_PER_YEAR,
+    absorption_stage,
     backup_fuel_liters,
     cooling_stage,
     cumulative_capex_eur,
@@ -102,28 +103,29 @@ def alternative_result(p: dict[str, Any], technology: str, name: str, verdict: s
     }
 
 
-def electrical_values_mw(p: dict[str, Any], discharge: float, cop: float) -> tuple[float, float]:
+def electrical_values_mw(p: dict[str, Any], discharge: float, cop: float, technology: str = "hybrid") -> tuple[float, float]:
     plant = p["plant"]
     flow_ratio = discharge / p["water"]["discharge_m3_s"]
-    final_stage = cooling_stage(p["scenario"]["forecast_years"], p)
+    final_stage = cooling_stage(p["scenario"]["forecast_years"], p, technology=technology)
     dry = final_stage.dry_mw * flow_ratio
     chiller = final_stage.chiller_mw * flow_ratio
     condenser = chiller * (1.0 + 1.0 / cop)
     pump = p["water"]["density_kg_m3"] * plant["gravity_m_s2"] * discharge * plant["pump_head_m"] / plant["pump_efficiency"] / 1e6 if final_stage.total_mw > 0.0 else 0.0
     fan = plant["dry_auxiliary_fraction"] * (dry + condenser)
-    electricity = chiller / cop + fan + pump
-    air_rejection = dry + condenser + fan + pump
+    absorption_auxiliary = absorption_stage(p["scenario"]["forecast_years"], p).auxiliary_mw * flow_ratio if technology == "absorption" else 0.0
+    electricity = chiller / cop + fan + pump + absorption_auxiliary
+    air_rejection = dry + condenser + fan + pump + absorption_auxiliary
     return electricity, air_rejection
 
 
-def coupled_npv(p: dict[str, Any], discharge: float, cop: float, capex_multiplier: float) -> float:
+def coupled_npv(p: dict[str, Any], discharge: float, cop: float, capex_multiplier: float, technology: str = "hybrid") -> float:
     plant = p["plant"]
     cost = p["cost"]
     flow_ratio = discharge / p["water"]["discharge_m3_s"]
     rows = []
     previous_installed = 0.0
     for year in range(int(p["scenario"]["horizon_years"]) + 1):
-        stage = cooling_stage(float(min(year, p["scenario"]["forecast_years"])), p)
+        stage = cooling_stage(float(min(year, p["scenario"]["forecast_years"])), p, technology=technology)
         dry = stage.dry_mw * flow_ratio
         chiller = stage.chiller_mw * flow_ratio
         condenser = chiller * (1.0 + 1.0 / cop)
@@ -132,14 +134,15 @@ def coupled_npv(p: dict[str, Any], discharge: float, cop: float, capex_multiplie
         if total > 0.0:
             pump = p["water"]["density_kg_m3"] * plant["gravity_m_s2"] * discharge * plant["pump_head_m"] / plant["pump_efficiency"] / 1e6
         fan = plant["dry_auxiliary_fraction"] * (dry + condenser)
-        electricity = chiller / cop + fan + pump
+        absorption_auxiliary = absorption_stage(float(min(year, p["scenario"]["forecast_years"])), p).auxiliary_mw * flow_ratio if technology == "absorption" else 0.0
+        electricity = chiller / cop + fan + pump + absorption_auxiliary
         energy_cost = electricity * HOURS_PER_YEAR * plant["availability"] * plant["electricity_price_eur_mwh"] if year > 0 else 0.0
-        installed = capex_multiplier * cumulative_capex_eur(float(min(year, p["scenario"]["forecast_years"])), p)
+        installed = capex_multiplier * cumulative_capex_eur(float(min(year, p["scenario"]["forecast_years"])), p, technology)
         investment = max(installed - previous_installed, 0.0)
         previous_installed = installed
         replacement = 0.0
         if year == plant["replacement_year"]:
-            replacement = plant["replacement_fraction"] * capex_multiplier * (1.0 + cost["engineering_contingency_fraction"]) * sum(variable_capex_eur(p["scenario"]["forecast_years"], p).values())
+            replacement = plant["replacement_fraction"] * capex_multiplier * (1.0 + cost["engineering_contingency_fraction"]) * sum(variable_capex_eur(p["scenario"]["forecast_years"], p, technology).values())
         maintenance = plant["maintenance_fraction"] * installed if year > 0 else 0.0
         total_cost = investment + replacement + maintenance + energy_cost
         rows.append(total_cost / (1.0 + plant["discount_rate"]) ** year)
@@ -170,6 +173,26 @@ def main() -> None:
     guard_stage = cooling_stage(final_year, guard_p)
     guard_rows = economic_schedule(guard_p, "hybrid")
     evaporative_stage = cooling_stage(final_year, p, technology="evaporative")
+    absorption = absorption_stage(final_year, p)
+    absorption_design = design_electrical_stage(p, technology="absorption")
+    absorption_economics = alternative_result(p, "absorption", "H8 Absorptionskühlung mit Kompressionsstufe", "Keine Reduktion der Kompressionsstufe im geprüften Temperaturfenster")
+    absorption_capex = variable_capex_eur(final_year, p, "absorption")
+    hot_k = absorption.secondary_hot_inlet_c + 273.15
+    sink_k = p["plant"]["summer_design_air_c"] + 273.15
+    cold_k = s["target_temperature_c"] + 273.15
+    absorption_reversible_cop = cold_k / (sink_k - cold_k) * (hot_k - sink_k) / hot_k
+    absorption_reversible_outlet = absorption.source_after_generator_c - absorption_reversible_cop * absorption.generator_mw / thermal_capacitance_mw_per_k(p)
+    absorption_cop_sensitivity = []
+    for thermal_cop in [0.6, 0.7, 0.8, 1.3]:
+        varied = copy.deepcopy(p)
+        varied["plant"]["absorption_thermal_cop"] = thermal_cop
+        varied_stage = absorption_stage(final_year, varied)
+        absorption_cop_sensitivity.append({
+            "thermal_cop": thermal_cop,
+            "evaporator_mw": varied_stage.evaporator_mw,
+            "source_after_evaporator_c": varied_stage.source_after_evaporator_c,
+            "chiller_mw": varied_stage.chiller_mw,
+        })
 
     alternatives = [
         alternative_result(p, "hybrid", "H1 Zweistufige Vollstromkühlung", "Referenz, dauerhaft innerhalb der Auslegungshülle"),
@@ -236,6 +259,16 @@ def main() -> None:
     ])
     electricity_samples = electrical_air_samples[:, 0]
     air_rejection_samples = electrical_air_samples[:, 1]
+    absorption_npv_samples = np.array([
+        coupled_npv(p, float(discharge), float(cop), float(capex), technology="absorption")
+        for discharge, cop, capex in zip(discharge_samples, cop_samples, capex_samples)
+    ])
+    absorption_electrical_air_samples = np.array([
+        electrical_values_mw(p, float(discharge), float(cop), technology="absorption")
+        for discharge, cop in zip(discharge_samples, cop_samples)
+    ])
+    absorption_electricity_samples = absorption_electrical_air_samples[:, 0]
+    absorption_air_rejection_samples = absorption_electrical_air_samples[:, 1]
 
     availability_scenarios = []
     for availability in [0.95, 0.98, 1.0]:
@@ -461,6 +494,41 @@ def main() -> None:
             "ecological_normal_state_preserved": False,
         },
         "alternatives": alternatives,
+        "absorption": {
+            "thermal_cop": p["plant"]["absorption_thermal_cop"],
+            "thermal_cop_source": "HAW [19], einstufige Absorption 0,6 bis 0,8; Sensitivität bis 1,3",
+            "auxiliary_fraction": p["plant"]["absorption_auxiliary_fraction"],
+            "auxiliary_source": "HAW [19], Beispiel 3 kW elektrisch bei 54 kW Kälte",
+            "generator_mw": absorption.generator_mw,
+            "evaporator_mw": absorption.evaporator_mw,
+            "rejection_mw": absorption.rejection_mw,
+            "auxiliary_mw": absorption.auxiliary_mw,
+            "dry_cooling_mw": absorption.dry_cooling_mw,
+            "chiller_mw": absorption.chiller_mw,
+            "condenser_mw": cooling_stage(final_year, p, technology="absorption").condenser_mw,
+            "secondary_hot_inlet_c": absorption.secondary_hot_inlet_c,
+            "secondary_return_c": absorption.secondary_return_c,
+            "secondary_flow_m3_s": absorption.secondary_flow_m3_s,
+            "source_after_generator_c": absorption.source_after_generator_c,
+            "source_after_evaporator_c": absorption.source_after_evaporator_c,
+            "hot_end_approach_k": s["source_temperature_cap_c"] - absorption.secondary_hot_inlet_c,
+            "cold_end_approach_k": absorption.source_after_generator_c - absorption.secondary_return_c,
+            "reversible_cop": absorption_reversible_cop,
+            "reversible_source_after_evaporator_c": absorption_reversible_outlet,
+            "thermal_cop_sensitivity": absorption_cop_sensitivity,
+            "electricity_mw": absorption_economics["schedule"][final_year]["electricity_mw"],
+            "air_rejection_mw": absorption_economics["external_air_rejection_mw"],
+            "design_electricity_mw": absorption_design.electricity_mw,
+            "design_air_rejection_mw": absorption_design.air_rejection_mw,
+            "required_backup_aggregates": int(np.ceil(absorption_design.electricity_mw / p["failure"]["backup_aggregate_capacity_mw"])),
+            "installed_backup_aggregates": int(np.ceil(absorption_design.electricity_mw / p["failure"]["backup_aggregate_capacity_mw"])) + 1,
+            "backup_fuel_liters": backup_fuel_liters(p, "absorption"),
+            "capex_parts_eur": absorption_capex,
+            "final_capex_eur": absorption_economics["final_capex_eur"],
+            "npv_25y_eur": absorption_economics["npv_25y_eur"],
+            "emissions_tco2_year": absorption_economics["emissions_tco2_year"],
+            "economics": absorption_economics,
+        },
         "flow_fraction_scenarios": flow_fraction_scenarios,
         "availability_scenarios": availability_scenarios,
         "tariff_scenarios": tariff_scenarios,
@@ -481,6 +549,13 @@ def main() -> None:
             "air_rejection_max_mw": float(np.max(air_rejection_samples)),
             "air_rejection_design_limit_mw": design_electrical.air_rejection_mw,
             "air_rejection_overload_fraction": float(np.mean(air_rejection_samples > design_electrical.air_rejection_mw)),
+            "absorption_npv_min_delta_eur": float(np.min(absorption_npv_samples - npv_samples)),
+            "absorption_electricity_max_mw": float(np.max(absorption_electricity_samples)),
+            "absorption_electricity_design_limit_mw": absorption_design.electricity_mw,
+            "absorption_electricity_overload_fraction": float(np.mean(absorption_electricity_samples > absorption_design.electricity_mw)),
+            "absorption_air_rejection_max_mw": float(np.max(absorption_air_rejection_samples)),
+            "absorption_air_rejection_design_limit_mw": absorption_design.air_rejection_mw,
+            "absorption_air_rejection_overload_fraction": float(np.mean(absorption_air_rejection_samples > absorption_design.air_rejection_mw)),
             "mean_capacity_overload_fraction": float(np.mean(q_samples > final_q * (1 + p["plant"]["reserve_fraction"]))),
             "design_overload_fraction": float(np.mean(q_samples > design_stage.total_mw * (1 + p["plant"]["reserve_fraction"]))),
             "design_coverage_fraction": float(np.mean(q_samples <= design_stage.total_mw * (1 + p["plant"]["reserve_fraction"]))),
@@ -501,7 +576,8 @@ def main() -> None:
         writer = csv.DictWriter(handle, lineterminator="\n", fieldnames=list(sensitivity[0].keys()))
         writer.writeheader()
         writer.writerows(sensitivity)
-    np.savez(OUT / "uncertainty_samples.npz", cooling_mw=q_samples, npv_eur=npv_samples, electricity_mw=electricity_samples, air_rejection_mw=air_rejection_samples)
+    assert np.all(absorption_npv_samples > npv_samples)
+    np.savez(OUT / "uncertainty_samples.npz", cooling_mw=q_samples, npv_eur=npv_samples, electricity_mw=electricity_samples, air_rejection_mw=air_rejection_samples, absorption_npv_eur=absorption_npv_samples, absorption_electricity_mw=absorption_electricity_samples, absorption_air_rejection_mw=absorption_air_rejection_samples)
 
     capex_parts = variable_capex_eur(final_year, p)
     capex_variable = sum(capex_parts.values())
@@ -617,6 +693,35 @@ def main() -> None:
         "VolumePeakLow": (volume_sensitivity[0]["recovery_peak_temperature_c"], 1),
         "ElectricitySampleMax": (results["uncertainty"]["electricity_max_mw"], 1),
         "AirRejectionSampleMax": (results["uncertainty"]["air_rejection_max_mw"], 1),
+        "AbsGenerator": (absorption.generator_mw, 1),
+        "AbsEvaporator": (absorption.evaporator_mw, 1),
+        "AbsRejection": (absorption.rejection_mw, 1),
+        "AbsDryCooling": (absorption.dry_cooling_mw, 1),
+        "AbsChiller": (absorption.chiller_mw, 1),
+        "AbsCondenser": (cooling_stage(final_year, p, technology="absorption").condenser_mw, 1),
+        "AbsAuxiliary": (absorption.auxiliary_mw, 2),
+        "AbsAuxPercent": (100 * p["plant"]["absorption_auxiliary_fraction"], 2),
+        "AbsHotInlet": (absorption.secondary_hot_inlet_c, 0),
+        "AbsHotReturn": (absorption.secondary_return_c, 0),
+        "AbsSourceAfterGenerator": (absorption.source_after_generator_c, 0),
+        "AbsSourceAfterEvaporator": (absorption.source_after_evaporator_c, 1),
+        "AbsSecondaryFlow": (absorption.secondary_flow_m3_s, 1),
+        "AbsThermalCop": (p["plant"]["absorption_thermal_cop"], 2),
+        "AbsRevCop": (absorption_reversible_cop, 2),
+        "AbsRevOutlet": (absorption_reversible_outlet, 1),
+        "AbsCopHighOutlet": (absorption_cop_sensitivity[-1]["source_after_evaporator_c"], 1),
+        "AbsElectricity": (absorption_economics["schedule"][final_year]["electricity_mw"], 1),
+        "AbsDesignElectricity": (absorption_design.electricity_mw, 1),
+        "AbsAirRejection": (absorption_economics["external_air_rejection_mw"], 1),
+        "AbsCapex": (absorption_economics["final_capex_eur"] / 1e6, 1),
+        "AbsNpv": (absorption_economics["npv_25y_eur"] / 1e9, 3),
+        "AbsEmissions": (absorption_economics["emissions_tco2_year"] / 1000, 1),
+        "AbsFuel": (backup_fuel_liters(p, "absorption") / 1e6, 3),
+        "AbsRequiredBackup": (int(np.ceil(absorption_design.electricity_mw / p["failure"]["backup_aggregate_capacity_mw"])), 0),
+        "AbsInstalledBackup": (int(np.ceil(absorption_design.electricity_mw / p["failure"]["backup_aggregate_capacity_mw"])) + 1, 0),
+        "AbsMinNpvDelta": (results["uncertainty"]["absorption_npv_min_delta_eur"] / 1e6, 1),
+        "AbsElectricitySampleMax": (results["uncertainty"]["absorption_electricity_max_mw"], 1),
+        "AbsOverloadPercent": (100 * results["uncertainty"]["absorption_electricity_overload_fraction"], 2),
     }
     with (GEN / "numbers.tex").open("w", encoding="utf-8") as handle:
         for name, (value, digits) in macros.items():
@@ -636,11 +741,34 @@ def main() -> None:
             handle.write(f"{label} & {' & '.join(values)} \\\\\n")
         air_values = [f"{alt['external_air_rejection_mw']:.1f}".replace(".", ",") for alt in alternatives]
         handle.write("Davon Wärmeabgabe an Luft in MW & " + " & ".join(air_values) + " \\\\\n")
-        handle.write("Zusatzwasser pro Jahr & 0 m³ & ")
+        handle.write("Verdunstung H2, Zusatzwasser H3 & 0 m³ & ")
         handle.write(f"{alternatives[1]['annual_water_m3']/1e6:.2f}".replace(".", ",") + " Mio. m³ & " + f"{alternatives[2]['annual_water_m3']/1e9:.3f}".replace(".", ",") + " Mrd. m³ \\\\\n")
         npv_values = [f"{alt['npv_25y_eur']/1e9:.3f}".replace(".", ",") for alt in alternatives]
         handle.write("Barwert in Mrd. € & " + " & ".join(npv_values) + " \\\\\n")
         handle.write("\\bottomrule\n\\end{tabular}\n")
+
+    with (GEN / "absorption.tex").open("w", encoding="utf-8") as handle:
+        handle.write("\\begin{tabular*}{\\textwidth}{@{\\extracolsep{\\fill}}lrr}\n\\toprule\nGröße & H1 & H8 \\\\\n\\midrule\n")
+        rows = [
+            ("Generatorwärme in MW", 0.0, absorption.generator_mw, 1.0, 1),
+            ("Verdampferkälte in MW", 0.0, absorption.evaporator_mw, 1.0, 1),
+            ("Direkte Trockenkühlung in MW", final_stage.dry_mw, absorption.dry_cooling_mw, 1.0, 1),
+            ("Kompressionskälte in MW", final_stage.chiller_mw, absorption.chiller_mw, 1.0, 1),
+            ("Kondensatorwärme in MW", final_stage.condenser_mw, cooling_stage(final_year, p, technology="absorption").condenser_mw, 1.0, 1),
+            ("Absorptionsabwärme in MW", 0.0, absorption.rejection_mw, 1.0, 1),
+            ("Elektrik im Mittelbetrieb in MW", final_stage.electricity_mw, absorption_economics["schedule"][final_year]["electricity_mw"], 1.0, 1),
+            ("Elektrik bei COP 3,0 in MW", design_electrical.electricity_mw, absorption_design.electricity_mw, 1.0, 1),
+            ("Wärmeabgabe im Mittelbetrieb in MW", final_stage.air_rejection_mw, absorption_economics["external_air_rejection_mw"], 1.0, 1),
+            ("Investition in Mio. €", cumulative_capex_eur(final_year, p, "hybrid"), absorption_economics["final_capex_eur"], 1e6, 1),
+            ("Barwert in Mrd. €", npv(hybrid_staged), absorption_economics["npv_25y_eur"], 1e9, 3),
+            ("Emissionen in kt CO₂ pro Jahr", results["baseline"]["emissions_tco2_year"], absorption_economics["emissions_tco2_year"], 1000.0, 1),
+            ("Diesel für 48 Stunden in Mio. Liter", results["baseline"]["backup_fuel_liters"], backup_fuel_liters(p, "absorption"), 1e6, 3),
+        ]
+        for label, reference, variant, scale, digits in rows:
+            reference_value = f"{reference / scale:.{digits}f}".replace(".", ",")
+            variant_value = f"{variant / scale:.{digits}f}".replace(".", ",")
+            handle.write(f"{label} & {reference_value} & {variant_value} \\\\\n")
+        handle.write("\\bottomrule\n\\end{tabular*}\n")
 
     with (GEN / "sensitivity.tex").open("w", encoding="utf-8") as handle:
         handle.write("\\begin{tabular*}{\\textwidth}{@{\\extracolsep{\\fill}}lrrr}\n\\toprule\nFall & Kühlleistung & Änderung & Barwert \\\\\n & in MW & in \\% & in Mrd. € \\\\\n\\midrule\n")

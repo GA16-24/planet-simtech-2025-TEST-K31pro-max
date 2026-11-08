@@ -66,7 +66,7 @@ def main() -> None:
     require(bool(bibliography_pages), "Beginn des Literaturverzeichnisses nicht bestimmbar")
     if bibliography_pages:
         bibliography_start = bibliography_pages[0]
-        main_pages = bibliography_start - 1
+        main_pages = bibliography_start
         back_pages = len(page_texts) - bibliography_start
         require(main_pages <= 10, f"Haupttext hat {main_pages} statt höchstens 10 Seiten")
         require(back_pages <= 5, f"Literatur und Anhang haben {back_pages} statt höchstens 5 Seiten")

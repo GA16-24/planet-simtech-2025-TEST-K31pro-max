@@ -263,6 +263,33 @@ Die neue Revision enthält 19 bestandene Modelltests und 13 Seiten. Frühere Pun
 
 Die neue Revision enthält 19 bestandene Modelltests und 13 Seiten mit 8 Haupttext- und 4 Literatur-/Anhangsseiten. Frühere Punktzahlen werden nicht übernommen. Vor Runde 9 sind Modell, PDF, alle Seitenbilder und die Archivreproduktion erneut zu prüfen.
 
+## Befunde aus Runde 9, DeepSeek
+
+DeepSeek bewertete alle elf Kriterien mit 9 und fand keinen materiellen Mangel. Die folgenden optionalen Hinweise wurden bei der nächsten Revision geprüft.
+
+| Hinweis | Konkrete Änderung oder begründete Grenze | Verifikation |
+| --- | --- | --- |
+| NIST-URL im PDF | Die konkreten Abfragen stehen im Literaturtext und die vollständigen URLs im Quellenregister und den Modelleingaben. Keine neue externe Kurz-URL wird erfunden. | Quelle [4], `sources/registry.yml`, `data/parameters.yml` |
+| Seitenzählung | Die Schlussfolgerung auf der ersten Literaturseite wird zum Haupttext gezählt, statt die ganze Seite auszunehmen. | `scripts/verification_summary.py`, `scripts/verify_report.py` |
+| Ventilator und Pumpe | 1,5 % auf Trockenkühlung plus Kondensatorwärme sowie 12 m Förderhöhe und 80 % Wirkungsgrad sind im Paper genannt. | Bericht §3.2, `PFans`, `PPumps` |
+| Tabelle 2 und H2-Wasser | Mittelbetrieb und p90-Auslegung sind getrennt. Die 8,32 Mio. m³ sind nur Verdunstung ohne Abschlämmung und Spülwasser. | Bericht §3.3 und Tabelle 2, Zusammenfassung |
+| H1-Weiterentwicklung | Tiefenkreislauf mit Diffusor und Vollstromkühlung vor dem Becken werden als technische Weiterentwicklung statt bloßer Skalierung beschrieben. | Bericht §2.1, `docs/hypothesen.md` |
+| Abbildung 1 | Szenariokurve, Abflussanteile und Stoffwerte werden getrennt zugeordnet. | Bericht, Abbildung 1 |
+| Stufenplan | Die vorhandene Jahresreihe bleibt die Quelle der Ausbaustufen. Keine zusätzliche Tabelle ohne neuen Erkenntnisgewinn wird verlangt. | `output/model/hybrid_schedule.csv`, Bericht §3.3 |
+
+## Befunde aus Runde 9, Kimi
+
+| Befund | Konkrete Änderung oder begründete Grenze | Verifikation |
+| --- | --- | --- |
+| M1, wärmegetriebene Kühlung fehlt | H8 als einstufige Absorptionsvariante registriert. Heißwasser 96/82 °C, Quellstrom 100/86 °C, positive Pinchstellen von 4 K, Generator 135,0 MW, Verdampfer 94,5 MW, Absorptionsabwärme 229,6 MW. | `absorption_stage`, `test_absorption_stage_energy_and_pinch`, Bericht §3.3 |
+| Elektrische und thermodynamische Prüfung | Hilfsstrom 5,56 % nach HAW 3/54 kW. H8 benötigt 94,6 MW im Mittelbetrieb und 245,1 MW im Min-COP-Fall, acht Aggregate plus Reserve und 3,001 Mio. Liter Diesel. Thermische COP-Werte 0,6 bis 1,3 und reversible Obergrenze 1,793 lassen den Quellstrom über 40 °C, die Kompressionsstufe bleibt unverändert. | `test_absorption_design_and_cost`, `test_absorption_temperature_limit_and_uncertainty`, Tabelle H8 |
+| Kosten, Emissionen und Unsicherheit | HAW-Unterwert 250 €/kW plus 30 % für die Absorptionsmaschine, ansonsten dieselben Reserve- und Zuschlagsregeln. H8 kostet 1716,0 Mio. € Investition und 4,346 Mrd. € Barwert, verursacht 300,9 kt CO₂ pro Jahr und ist in allen 10.000 gekoppelten Ziehungen teurer als H1. | `variable_capex_eur`, `coupled_npv(..., technology="absorption")`, `output/model/results.json` |
+| M2, reale Abgabe fehlt | Keine offizielle Team-ID, menschliche Freigabe, Rechteprüfung oder Einreichung wird erfunden. Kriterium 12a bezeichnet im nächsten Auftrag ausdrücklich die technische Testpaketbereitschaft; reale Abgabevoraussetzungen bleiben sichtbar. | `README.md`, `PROVENANCE.md`, Anhang A, `review/council_prompt.md` |
+
+Die neue Revision enthält 22 bestandene Modelltests und 15 Seiten mit 10 Haupttext- und 5 Literatur-/Anhangsseiten. Die Spalten in Anhang A werden mit `\balance` ausgeglichen. Frühere Punktzahlen werden nicht übernommen. Vor Runde 10 ist die Archivreproduktion erneut zu prüfen.
+
+DeepSeek legte in Runde 9 offen, versehentlich `review/README.md` mit früheren Übersichtspunktzahlen gelesen zu haben. Die Werte wurden nach dem Bericht nicht verwendet. Der nächste Prüfauftrag schließt diese Datei ausdrücklich aus.
+
 ## Aktueller Lieferumfang
 
 Nach der Nutzerkorrektur ist nur der Research Paper Produkt. Die Kriterien 1 bis 6, 8 bis 11 und 12a bleiben Prüfgegenstand. Kriterium 12b und die Präsentationsartefakte werden nicht fortentwickelt. Nach den fachlichen Council-Runden folgt ein eigener Design-Council für den Research Paper.

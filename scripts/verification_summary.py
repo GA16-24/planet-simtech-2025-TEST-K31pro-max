@@ -31,7 +31,8 @@ def main() -> None:
         "artifact_sha256": digest.hexdigest(),
         "report": {
             "physical_pages": len(report.pages),
-            "main_pages": bibliography_start - 1,
+            "main_pages": bibliography_start,
+            "main_bibliography_shared_page": "Schlussfolgerung" in texts[bibliography_start],
             "bibliography_and_appendix_pages": len(report.pages) - bibliography_start,
             "main_limit": 10,
             "back_limit": 5,

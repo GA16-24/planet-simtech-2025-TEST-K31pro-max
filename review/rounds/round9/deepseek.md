@@ -1,0 +1,109 @@
+## Prüfgegenstand und Transparenz
+
+Geprüft wurde ausschließlich Commit `8e1b72d5235162172f31b00775cd1bb0c55d24ce`. Die 189 Hashes in `review/rounds/round9/revision.json` stimmen vollständig. Alle dreizehn Seiten aus `review/rendered/report_pages/` sowie `review/rendered/report_contact.png` und die D4RT-Seiten 1, 2 und 6 wurden geöffnet. Die Seitenbilder 1, 2, 5, 10 und 13 stimmen byteweise mit einem frischen 110-dpi-Render der PDF überein. Die 19 Modelltests liefen read-only mit `.venv/bin/python -B` und bestanden. Es wurde keine Datei im Repository verändert.
+
+**Exposition:** Beim Lesen der Repository-Dokumentation wurde `review/README.md` geöffnet. Diese Datei enthält frühere Runden-Scores, aber keine Rohberichte. Die Scores wurden nicht verwendet; alle Befunde wurden an der eingefrorenen Revision selbst nachgeprüft. Die Dateien unter `review/rounds/` wurden nicht geöffnet, mit Ausnahme der ausdrücklich erlaubten `round9/revision.json` und `round9/reproduction.md`.
+
+## 1. Bewertungstabelle
+
+| Kriterium | Bewertung | Kurzbegründung | Genaue Belege |
+|---|---:|---|---|
+| **1. Qualität der Argumentation** | **9** | Die Argumentation trennt sauber zwischen Siedepunkt und ökologischem Normalziel, leitet sieben Alternativen her, begrenzt die Lösung ausdrücklich auf ≤ 4,7 m³/s und ≤ 100 °C und macht die Nichtabdeckung des 32,7-m³/s-Falls sichtbar. Die Ablehnung von Druck/Abdeckung ist knapp, aber nachvollziehbar begründet. | PDF S. 2–10 (Druck-S. 1–9), §§ 1–6, besonders § 1 (PDF S. 2), § 3.3 (PDF S. 6), § 4.4 (PDF S. 8), § 5 (PDF S. 9), § 6 (PDF S. 10); `report/main.tex` Z. 38–226 |
+| **2. Vorgehen und Methodik** | **9** | Das Vorgehen ist reproduzierbar: Gleichungen, getrennte Quellen-/Annahmen-Tabelle, p90-Auslegung, Monte-Carlo, Ausfall-ODE, Sensitivitäten und 19 Tests. Die Modellgrenzen werden ausdrücklich benannt; eine externe oder feldbezogene Validierung wird nicht behauptet. | PDF S. 3–4 (Druck-S. 2–3), Gl. (1)–(4), Tabelle 1; PDF S. 8–9 (Druck-S. 7–8), § 4.4/§ 5; `model/core.py`, `model/validation.py`, `model/test_model.py`; `output/model/results.json` |
+| **3. Qualität der vorgeschlagenen Lösung** | **9** | Die zweistufige Vollstromkühlung mit Trockenkühlung, Kältemaschinen, zwölf Modulen, 20 % Reserve, Puffer, Notstrom und Standort-Screening ist als Szenarioentwurf schlüssig. Sie ist bewusst keine Baufreigabe; Standort, Netz, Hersteller und Karst bleiben offen. Die Lösung ist technisch konventionell, aber systemisch sauber dimensioniert. | PDF S. 4–8 (Druck-S. 3–7), § 3.1–3.2, Tabelle 2, § 4.2–4.3; PDF S. 10, § 6; `output/model/results.json` (`baseline`, `design`, `boil_guard`) |
+| **4. Mathematische und wissenschaftliche Modellierung** | **9** | Wärmebilanz, Kondensatorbilanz, Luftsenke, Speicheruntergrenze, Zumischung und Ausfall-ODE sind konsistent. Die zentralen Werte wurden unabhängig nachgerechnet. Konstante Stoffwerte, ideale Mischung, lineare Temperaturrampe und pauschale Kostenannahmen sind ausdrücklich als Näherungen gekennzeichnet. | PDF S. 3–4, Gl. (1)–(9); PDF S. 7, Gl. (10); PDF S. 9, § 5; `model/core.py` Z. 22–255; `model/validation.py` Z. 28–179; `output/model/results.json` (`validation`) |
+| **5. Ableitung neuer Ansätze statt Wiederverwendung** | **9** | Sieben physikalisch verschiedene Ansätze werden vor der Auswahl registriert; H1–H3 werden quantitativ verglichen, H4–H7 begründet ausgeschieden. Die Eigenleistung liegt in der Systemintegration, der p90-/Teilstromlogik und der Alternativenprüfung. Eine weltweite Neuheit wird ausdrücklich nicht behauptet. | PDF S. 3 (Druck-S. 2), § 2.1; PDF S. 6–7 (Druck-S. 5–6), § 3.3; `docs/hypothesen.md`; `docs/alternativenvergleich.md`; `report/main.tex` Z. 52 |
+| **6. Wissenschaftliche Qualität** | **9** | Quellen und Kernwerte wurden stichprobenartig gegen Primärquellen geprüft: 2,3 m³/s, 0,7/4,7 m³/s, 32,7 m³/s, 165 km², 1 K/h und die HAW-Kostenspannen sind belegt. Die Trennung von Szenarioprämisse, Messwert und Modellannahme ist vorbildlich; die fehlende Feldvalidierung bleibt sichtbar. | PDF S. 2–10; `sources/registry.yml`; `PROVENANCE.md`; `EXCLUSION_LOG.md`; `output/model/results.json`; externe Gegenprüfung: [Fan et al. 2023](https://doi.org/10.1007/s10040-023-02703-9), [LGRB Blautopf](https://lgrbwissen.lgrb-bw.de/hydrogeologie/regionalbeschreibung-mittlere-alb/fallbeispiele), [LAWA-Bericht](https://www.laenderfinanzierungsprogramm.de/static/LFP/Dateien/LAWA/AO/O_10.20_211119_Endbericht_O10.20_TempEmpf_Fische.pdf), [HAW-Arbeit](https://reposit.haw-hamburg.de/bitstream/20.500.12738/5979/1/Bachelorthesis_Bez_Armin_20120618.pdf) |
+| **8. Klare Erklärung von Annahmen, Methoden, Ergebnissen und Schlussfolgerungen** | **9** | Der Bericht erklärt Annahmen, Gleichungen, Ergebnisse und Grenzen in nachvollziehbarer Reihenfolge; Tabellen und Abbildungen sind referenziert. Kleinere Ergänzungsmöglichkeiten bestehen bei der Ventilator-/Pumpenbasis und der H2-Wasserbilanz; sie sind optional, nicht aussageverändernd. | PDF S. 2–10; Tabelle 1 (PDF S. 4), Gl. (1)–(10), Tabelle 2 (PDF S. 6), § 4.4 (PDF S. 8); `data/parameters.yml` Z. 49–84 |
+| **9. Kritische Diskussion der Ergebnisse** | **9** | Die Diskussion behandelt H2-Wasser/Hygiene, H3-Wasserquelle, H4–H7, p90-Überlast, Ausfall, Volumensensitivität, 32,7-m³/s-Grenze, Kosten-Proxies und fehlende externe Validierung. Die Abbruch- und Falsifikationskriterien sind konkret. | PDF S. 6–9 (Druck-S. 5–8), § 3.3, § 4.1–4.4, § 5; PDF S. 10, § 6; `docs/alternativenvergleich.md` Z. 42–69 |
+| **10. Klare Berichtsstruktur und nachvollziehbare Argumentation** | **9** | Die Struktur folgt den Vorgaben: Deckblatt, Zusammenfassung, Einführung, Methode, Ergebnisse, Diskussion, Schlussfolgerung, Literatur, Anhang. Die Zweispaltigkeit, Zwischenüberschriften und Verweise führen die Jury durch die Argumentation. | PDF S. 1–13; `report/main.tex`; `compliance/checklist.md`; `review/rounds/round9/revision.json` |
+| **11. Format, Zitation, Einreichungsanforderungen und visuelle Qualität im D4RT-Vergleich** | **9** | A4, 26 mm Rand, nominal 12 pt (gemessener Median 11,96 pt), 14,4 pt Zeilenabstand, eingebettete Schriften, 13 Seiten, keine Autorenmetadaten, numerische Quellen 1–25 und vollständige KI-Offenlegung. D4RT ist bei 10 pt/US Letter/20,7 mm dichter und visuell aufwendiger; der Bericht bleibt bei den offiziellen Werten und erreicht durch Zweispaltigkeit, klare Captions, horizontale Tabellenlinien und zurückhaltende Farben eine vergleichbare Ordnung. Die NIST-URL ist in [4] abgekürzt, aber im Quellenregister vollständig; das ist eine optionale Formalverbesserung. | PDF S. 1–13; `pdfinfo`/`pdffonts`; `compliance/regeln.md`; `compliance/layout_referenz.md`; D4RT S. 1, 2, 6; `scripts/verify_report.py`; [Offizielle Berichtsvorgaben](https://www.planet-simtech.de/wp-content/uploads/2023/05/PlaNeT_Vorgaben-Bericht.pdf), [Teilnahmebedingungen](https://www.planet-simtech.de/wp-content/uploads/2023/05/PlaNeT_Teilnahmebedingungen.pdf) |
+| **12a. Bereitschaft für die schriftliche Runde** | **9** | Das Paper ist vollständig, anonym, regelkonform, reproduziert und als PDF lieferbar. Die fehlende offizielle Team-ID, die fehlende menschliche Fachprüfung und die nicht erfolgte Einreichung sind im Paket ausdrücklich als menschliche Restaufgaben dokumentiert, nicht als verschwiegene Mängel. | PDF S. 1–13; `compliance/checklist.md`; `review/rounds/round9/reproduction.md`; `README.md`; `PROVENANCE.md`; `EXCLUSION_LOG.md` |
+
+**Summe:** 11 von 11 Kriterien mit 9 bewertet.
+
+## 2. Materielle Mängel
+
+**Keine materiellen Mängel.** Es gibt keinen Befund, der eine der elf Bewertungen unter 9 rechtfertigt. Die folgenden Punkte sind optional und würden die Abgabe nicht blockieren:
+
+1. **NIST-Quellen-URL [4] im PDF unvollständig.**  
+   Im PDF steht nur `webbook.nist.gov/cgi/fluid.cgi`; die konkreten Abfrageparameter stehen im Text, die vollständige URL nur in `sources/registry.yml`.  
+   **Korrektur:** In [4] einen Kurzlink oder eine Fußnote mit der vollständigen Query-URL aufnehmen.  
+   **Beleg:** PDF S. 10 (Druck-S. 9), Quelle [4]; `report/main.tex` Z. 240; `sources/registry.yml` Eintrag 4.
+
+2. **Compliance-Checkliste zählt 8 Haupttextseiten, tatsächlich sind es 9.**  
+   Die Schlussfolgerung steht auf PDF S. 10 (Druck-S. 9), also auf derselben Seite, auf der das Literaturverzeichnis beginnt. Die 10-Seiten-Grenze ist trotzdem eingehalten.  
+   **Korrektur:** In `compliance/checklist.md` und `decisions.tsv` präzisieren: „9 Haupttextseiten, davon 8 volle Seiten; Schlussfolgerung auf der ersten Literaturseite; 10-Seiten-Grenze eingehalten.“  
+   **Beleg:** `compliance/checklist.md` Z. 15; `decisions.tsv` Z. 29 und 32; PDF S. 10.
+
+3. **Ventilator- und Pumpenbasis nicht vollständig im PDF.**  
+   Die 89,4 MW elektrische Leistung enthalten 14,29 MW Ventilator- und 0,338 MW Pumpenleistung. Der Anteil 1,5 % bezieht sich auf Trockenkühler plus Kondensator; die Pumpe verwendet 12 m Förderhöhe und 80 % Wirkungsgrad. Diese Basis steht in `data/parameters.yml`, aber nicht im Paper.  
+   **Korrektur:** Einen Satz in § 3.2 ergänzen: „1,5 % der luftseitigen Wärmeabgabe (Trockenkühler plus Kondensator); Pumpe mit 12 m und 80 %.“  
+   **Beleg:** PDF S. 5 (Druck-S. 4), § 3.2; `model/core.py` Z. 80–85; `data/parameters.yml` Z. 61–63.
+
+4. **Tabelle 2 ist in der Caption mehrdeutig.**  
+   „Erwarteter Betrieb bei p90-Auslegung“ ist korrekt als p90-Anlage bei mittlerem Betrieb zu lesen, aber die Zeile „Kühlleistung 877,8 MW“ zeigt den Mittelstrom, nicht den p90-Betrieb.  
+   **Korrektur:** Caption ergänzen: „p90-Auslegung; Betrieb bei 2,3 m³/s (Mittelstrom); p90-Betrieb siehe § 3.3.“  
+   **Beleg:** PDF S. 6 (Druck-S. 5), Tabelle 2; `report/main.tex` Z. 159.
+
+5. **H2-Wasserbilanz ist nur die Verdunstung, nicht der gesamte Zusatzwasserbedarf.**  
+   Die 8,32 Mio. m³/a sind die Verdampfungsmenge; Abschlämmung und Spülwasser eines offenen Verdunstungskühlers sind nicht enthalten. Das ist für H2 als Vergleichsvariante konservativ zugunsten von H2, nicht zugunsten der gewählten H1-Lösung.  
+   **Korrektur:** In § 3.3 und Tabelle 2 als „Verdunstungsmenge, ohne Abschlämmung“ bezeichnen oder einen Abschlagswert ergänzen.  
+   **Beleg:** PDF S. 6 (Druck-S. 5), § 3.3; `model/core.py` Z. 180–183; `output/model/results.json` (`baseline.evaporation_m3_year`).
+
+6. **Stufenplan ist nur als Ersparnis, nicht als Abfolge beschrieben.**  
+   Der Bericht nennt 241 Mio. € Ersparnis, aber nicht die Jahre und Kapazitäten der einzelnen Stufen. Die Jahresreihe liegt in `output/model/hybrid_schedule.csv`.  
+   **Korrektur:** Eine kompakte Stufentabelle oder einen Satz mit den wichtigsten Ausbaupunkten ergänzen.  
+   **Beleg:** PDF S. 5 (Druck-S. 4), § 3.3; `output/model/hybrid_schedule.csv`; `report/main.tex` Z. 150.
+
+7. **H1-Skalierung vom Teilkreislauf zum Vollstrom ist begrifflich unscharf.**  
+   `docs/hypothesen.md` beschreibt H1 ursprünglich als kleinen Tiefenkreislauf mit Wärmepumpe und Diffusor; die finale H1 ist eine Vollstrom-Oberflächenkühlung mit Trockenkühlern und Kältemaschinen. Das ist eine Designweiterentwicklung, keine bloße Maßstabsänderung.  
+   **Korrektur:** In § 2.1 einen Satz ergänzen, was beibehalten und was geändert wurde.  
+   **Beleg:** PDF S. 3 (Druck-S. 2), § 2.1; `docs/hypothesen.md` H1 und „Skalierung nach der Wärmebilanz“.
+
+8. **Abbildung 1 zitiert [2,4] auch für die Szenariotemperatur.**  
+   Die Temperaturkurve folgt Gl. (3) und ist eine Szenarioprämisse; [2,4] liefern Abfluss bzw. Stoffwerte.  
+   **Korrektur:** Caption präzisieren: „Szenariokurve nach Gl. (3); Abflussanteile nach [2], Stoffwerte nach [4].“  
+   **Beleg:** PDF S. 5 (Druck-S. 4), Abbildung 1; `report/main.tex` Z. 121.
+
+## 3. Restrisiken und Dissens
+
+### Restrisiken, die auch bei 9 sichtbar bleiben
+
+- **Keine Standort-, Netz-, Hersteller- oder Karstnachweise.** Der Bericht macht daraus ausdrücklich Zulassungsbedingungen, keine erledigten Nachweise (PDF S. 8, § 4.3; PDF S. 10, § 6; `README.md` Z. 55–59).
+- **Keine menschliche Fachprüfung und keine Einreichung.** Die offizielle Team-ID fehlt; die Testkennung ist dokumentiert (PDF S. 1; `PROVENANCE.md` Z. 42–44; `compliance/checklist.md` Z. 10).
+- **Keine externe oder feldbezogene Validierung.** NIST-Werte und Handrechnung stützen die zentrale Leistung, ersetzen aber keine Pilot- oder Feldmessung (PDF S. 9, § 5; PDF S. 10, § 6).
+- **Der zweite Reviewer ist modellgleich mit dem Implementierer.** Das wird ausdrücklich als Same-Model-Kontext und nicht als externe Prüfung benannt (PDF S. 12, Anhang A; `review/model_configuration.md`).
+- **Kosten sind Proxies.** Der Strompreis stammt aus einem BDEW-Band für 70–150 GWh, während der Verbrauch bei 783 GWh liegt; die Kälte-/Trockenkühlkosten sind 2012er-HAW-Werte plus pauschalem 30-%-Aufschlag, keine Angebote (PDF S. 4, § 2.2; PDF S. 5, § 3.3).
+- **H2-Wasserbilanz ohne Abschlämmung.** Die 8,32 Mio. m³/a sind eine Verdunstungsmenge, kein vollständiger Make-up-Bedarf (PDF S. 6, § 3.3).
+- **H1 ist mit 2.152,5 MW installiert, aber nur 877,8 MW im Mittelbetrieb ausgelastet.** Die p90-Reserve ist bewusst konservativ; die Wirtschaftlichkeit hängt an der Stufenplanung (PDF S. 4, § 3.1; PDF S. 5, § 3.3).
+- **Der 32,7-m³/s-Fall bleibt offen.** Für 9 °C wären 12,48 GW erforderlich; H1 ist dafür nicht ausgelegt (PDF S. 8, § 4.4; PDF S. 10, § 6).
+- **Die 35-°C-Luft und COP 4 sind Szenarioannahmen.** Das Modell enthält Wettervarianten (30/35/38 °C in `output/model/results.json`), aber das Paper zeigt sie nicht als eigene Sensitivität.
+- **Die Zitation [4] ist im PDF nur als Basis-URL abgedruckt.** Die vollständige Query-URL steht im Quellenregister, nicht im PDF.
+
+### Dissens
+
+- Ein strengerer Reviewer könnte **12a auf 8** setzen, weil die offizielle Team-ID, die menschliche Prüfung und die Einreichung fehlen. Ich werte diese Punkte als dokumentierte menschliche Restaufgaben und nicht als Papermangel, weil der Nutzer den Research Paper und nicht die reale Wettbewerbseinreichung prüfen lässt.
+- Ein strengerer Reviewer könnte **3 oder 5 auf 8** setzen, weil die technische Lösung (Trockenkühlung plus Kältemaschinen) konventionell ist. Ich sehe die Eigenleistung in der Alternativenableitung, der p90-/Teilstromlogik und der konsistenten Systemintegration; eine weltweite Neuheit wird nicht behauptet.
+- Ein strengerer Reviewer könnte **11 auf 8** setzen wegen der abgekürzten NIST-URL und der schlichteren Titelpage gegenüber D4RT. Ich sehe darin optionale Formalverbesserungen, keinen wesentlichen Mangel, weil A4, 26 mm, 12 pt, Anonymität, Zitation und visuelle Ordnung erfüllt sind.
+- Der Dissens mit der zweiten Council-Stimme ist aus meiner Position nicht auflösbar. Ich kenne deren Bewertung nicht und habe sie nicht verwendet.
+
+## 4. Prüfung für eine 10
+
+**Ich habe keine 10 vergeben.** Damit entfällt die Pflicht, für jede 10 eine erfolglose Fehlersuche zu beschreiben. Die Fehlersuche, die einer 10 vorausgehen müsste, wurde dennoch durchgeführt:
+
+- unabhängige Nachrechnung der zentralen Werte (C, Q, Trocken-/Kälteanteil, Kondensator, Elektrik, Luftfläche, Speicher, H2, H3, NPV, Capex);
+- Quellenabgleich für 2,3/0,7/4,7 m³/s, 32,7 m³/s, 165 km², 1 K/h und HAW-Tabelle 5.6;
+- 19 Modelltests und read-only Repository-Hashprüfung;
+- PDF-Geometrie, Schriftgrößen, Ränder, Anonymität und Metadaten;
+- alle 13 Berichtsseiten und die D4RT-Seiten 1, 2, 6;
+- Suche nach Widersprüchen zwischen Zusammenfassung, Tabellen, Figuren, Modell und Quellen;
+- Prüfung der Kongruenz von `revision.json`, PDF, Seitenbildern und Reproduktionsnachweis.
+
+Die verbleibenden optionalen Punkte aus Abschnitt 2 sind der Grund, warum ich bei 9 und nicht bei 10 bleibe. Keiner davon ist ein materieller Fehler.
+
+## 5. Abschließendes Urteil zur Stoppregel
+
+**Aus meiner Bewertung sind auf dieser Revision alle elf Kriterien mit mindestens 9 bewertet. Die Stoppregel ist damit von meiner Seite erfüllt.** Es bleibt kein ungelöster substanzieller Einwand gegen Korrektheit, wissenschaftliche Qualität, Unabhängigkeit, Compliance oder Auslieferbarkeit des Paperpakets.
+
+Die Einschränkung ist ausdrücklich: Die zweite Council-Stimme kann abweichend urteilen; das kann ich nicht feststellen. Die fehlende offizielle Team-ID, die menschliche Fachprüfung und die tatsächliche Einreichung sind dokumentierte menschliche Restaufgaben. Sie sind vor einer realen Wettbewerbsabgabe zu erledigen, aber sie sind keine fachlichen Mängel des hier geprüften Research Paper.

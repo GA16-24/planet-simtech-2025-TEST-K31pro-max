@@ -8,11 +8,13 @@ from scipy.integrate import solve_ivp
 from core import (
     HOURS_PER_YEAR,
     SECONDS_PER_YEAR,
+    absorption_stage,
     backup_fuel_liters,
     variable_capex_eur,
     cooling_stage,
     design_electrical_stage,
     dilution_flow_m3_s,
+    dry_outlet_temperature_c,
     economic_schedule,
     evaporation_kg_s,
     heating_rate_k_per_year,
@@ -155,6 +157,26 @@ def run_validation(p: dict[str, Any]) -> dict[str, float | bool]:
     assert evaporative.chiller_mw > 0.0 and evaporative.electricity_mw > 0.0
     assert abs(evaporation_kg_s(evaporative.dry_mw, p) * w["latent_heat_j_kg"] / 1e6 - evaporative.dry_mw) < 1e-9
 
+    absorption = absorption_stage(final_year, p)
+    absorption_electric = cooling_stage(final_year, p, technology="absorption")
+    secondary_heat = absorption.secondary_flow_m3_s * w["density_kg_m3"] * w["specific_heat_j_kgk"] * (absorption.secondary_hot_inlet_c - absorption.secondary_return_c) / 1e6
+    assert abs(secondary_heat - absorption.generator_mw) < 1e-9
+    assert abs(absorption.generator_mw + absorption.evaporator_mw + absorption.dry_cooling_mw + absorption.chiller_mw - absorption.total_mw) < 1e-9
+    assert abs(absorption_electric.air_rejection_mw - absorption_electric.total_mw - absorption_electric.electricity_mw) < 1e-9
+    assert s["source_temperature_cap_c"] - absorption.secondary_hot_inlet_c > 0.0
+    assert absorption.source_after_generator_c - absorption.secondary_return_c > 0.0
+    for thermal_cop in [0.6, 0.7, 0.8, 1.3]:
+        varied = dict(p, plant=dict(p["plant"], absorption_thermal_cop=thermal_cop))
+        varied_absorption = absorption_stage(final_year, varied)
+        assert varied_absorption.source_after_evaporator_c > dry_outlet_temperature_c(p)
+        assert abs(varied_absorption.chiller_mw - stage.chiller_mw) < 1e-9
+    hot_k = absorption.secondary_hot_inlet_c + 273.15
+    sink_k = p["plant"]["summer_design_air_c"] + 273.15
+    cold_k = s["target_temperature_c"] + 273.15
+    reversible_cop = cold_k / (sink_k - cold_k) * (hot_k - sink_k) / hot_k
+    reversible_outlet = absorption.source_after_generator_c - reversible_cop * absorption.generator_mw / thermal_capacitance_mw_per_k(p)
+    assert reversible_outlet > dry_outlet_temperature_c(p)
+
     return {
         "replacement_error_eur": abs(hybrid_staged[p["plant"]["replacement_year"]]["replacement_eur"] - expected_replacement),
         "return_ramp_hours": ramp_hours,
@@ -165,6 +187,11 @@ def run_validation(p: dict[str, Any]) -> dict[str, float | bool]:
         "heat_sink_balance_error_mw": abs(stage.air_rejection_mw - stage.total_mw - stage.electricity_mw),
         "evaporation_balance_error_mw": abs(evaporation * w["latent_heat_j_kg"] / 1e6 - final_q),
         "evaporative_stage_error_mw": abs(evaporative.dry_mw + evaporative.chiller_mw - evaporative.total_mw),
+        "absorption_secondary_balance_error_mw": abs(secondary_heat - absorption.generator_mw),
+        "absorption_stage_error_mw": abs(absorption.generator_mw + absorption.evaporator_mw + absorption.dry_cooling_mw + absorption.chiller_mw - absorption.total_mw),
+        "absorption_heat_sink_error_mw": abs(absorption_electric.air_rejection_mw - absorption_electric.total_mw - absorption_electric.electricity_mw),
+        "absorption_reversible_cop": reversible_cop,
+        "absorption_reversible_outlet_c": reversible_outlet,
         "dilution_mixing_error_c": abs(mixed - s["target_temperature_c"]),
         "ode_max_error_k": ode_error_k,
         "pool_time_constant_h": tau_s / 3600.0,

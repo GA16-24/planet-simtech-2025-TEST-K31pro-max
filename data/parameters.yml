@@ -55,6 +55,12 @@ plant:
   evaporative_secondary_inlet_c: 32.0
   evaporative_secondary_outlet_c: 96.0
   evaporative_secondary_flow_m3_s: 2.3
+  absorption_thermal_cop: 0.70
+  absorption_generator_return_c: 82.0
+  absorption_approach_k: 4.0
+  absorption_secondary_flow_m3_s: 2.3
+  absorption_auxiliary_fraction: 0.05555555555555556
+  absorption_model_note: "Begrenztes H8-Screening mit Heißwasser 96/82 °C im Endjahr, thermischem COP 0,70 und 5,56 % Hilfsstrom der Verdampferleistung nach dem HAW-Beispiel 3/54 kW. Keine Herstellerzusage oder vollständige Kältekreislaufsimulation."
   module_design_velocity_m_s: 1.2
   chiller_cop: 4.0
   performance_evidence: "COP und Feuchtkugel sind technische Szenarioannahmen, keine Herstellerkurve oder lokale Wetterextremstatistik. Ein Tarif von 138 €/MWh folgt dem BDEW-Bereich 70 bis 150 GWh und bleibt Proxy für den größeren Abnahmefall."
@@ -110,6 +116,8 @@ cost:
   legacy_basis: "HAW 2012 nennt in Tabelle 5.6 für Kompressionskältemaschinen 75 bis 125, 125 bis 350 und 185 bis 236 €/kW. Der Modellwert 500 €/kW liegt bewusst darüber. Trockenkühler 120 und Verdunstung 80 €/kW sind eigene Szenariowerte. Auf alle drei wird ein pauschaler Aufschlag von 30 % angesetzt, kein amtlicher Index und kein Angebot."
   exchanger_eur_kw: 15.0
   chiller_eur_kw: 500.0
+  absorption_eur_kw: 250.0
+  absorption_cost_basis: "H8 verwendet das untere Ende der HAW-Spanne 250 bis 1800 €/kW für Absorptionskältemaschinen, plus 30 % Szenarioaufschlag. Das ist ein günstiger Screeningwert für H8, kein Angebot."
   dry_cooler_eur_kw: 120.0
   evaporative_eur_kw: 80.0
   dilution_pump_eur_kw: 1000.0

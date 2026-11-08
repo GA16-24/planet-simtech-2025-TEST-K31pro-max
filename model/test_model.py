@@ -7,7 +7,7 @@ import yaml
 
 import numpy as np
 
-from core import backup_fuel_cost_eur, backup_fuel_liters, cooling_stage, design_electrical_stage, design_flow_ratio, economic_schedule, npv, planned_return_temperature_c, required_cooling_mw, source_temperature_c, storage_heating_power_mw, variable_capex_eur
+from core import absorption_stage, backup_fuel_cost_eur, backup_fuel_liters, cooling_stage, cumulative_capex_eur, design_electrical_stage, design_flow_ratio, economic_schedule, npv, planned_return_temperature_c, required_cooling_mw, source_temperature_c, storage_heating_power_mw, variable_capex_eur
 from run_all import coupled_npv, electrical_values_mw
 from validation import run_validation, simulate_failure
 
@@ -171,6 +171,52 @@ class ModelTests(unittest.TestCase):
         at_peak = integration_constant + particular_slope * peak_time_s + (at_start - integration_constant) * np.exp(-peak_time_s / tau_seconds)
         self.assertAlmostEqual(failure["recovery_peak_temperature_c"], at_peak, places=5)
         self.assertLess(result["failure_p90_convergence_error_k"], 1e-6)
+
+    def test_absorption_stage_energy_and_pinch(self) -> None:
+        absorption = absorption_stage(10.0, self.p)
+        capacitance = 999.702 * 2.3 * 4195.14 / 1e6
+        self.assertAlmostEqual(absorption.generator_mw, capacitance * 14.0, places=9)
+        secondary_heat = absorption.secondary_flow_m3_s * self.p["water"]["density_kg_m3"] * self.p["water"]["specific_heat_j_kgk"] * (absorption.secondary_hot_inlet_c - absorption.secondary_return_c) / 1e6
+        self.assertAlmostEqual(secondary_heat, absorption.generator_mw, places=9)
+        self.assertAlmostEqual(100.0 - absorption.secondary_hot_inlet_c, 4.0, places=9)
+        self.assertAlmostEqual(absorption.source_after_generator_c - absorption.secondary_return_c, 4.0, places=9)
+        self.assertAlmostEqual(absorption.generator_mw + absorption.evaporator_mw + absorption.dry_cooling_mw + absorption.chiller_mw, absorption.total_mw, places=9)
+        self.assertAlmostEqual(absorption.rejection_mw, absorption.generator_mw + absorption.evaporator_mw, places=9)
+        stage = cooling_stage(10.0, self.p, technology="absorption")
+        self.assertAlmostEqual(stage.dry_mw + stage.chiller_mw, stage.total_mw, places=9)
+        self.assertAlmostEqual(stage.air_rejection_mw, stage.total_mw + stage.electricity_mw, places=9)
+
+    def test_absorption_design_and_cost(self) -> None:
+        reference = design_electrical_stage(self.p)
+        absorption = design_electrical_stage(self.p, technology="absorption")
+        self.assertGreater(absorption.electricity_mw, reference.electricity_mw)
+        self.assertGreater(absorption.air_rejection_mw, reference.air_rejection_mw)
+        self.assertGreater(backup_fuel_liters(self.p, "absorption"), backup_fuel_liters(self.p))
+        self.assertGreater(cumulative_capex_eur(10.0, self.p, "absorption"), cumulative_capex_eur(10.0, self.p, "hybrid"))
+        self.assertGreater(npv(economic_schedule(self.p, "absorption")), npv(economic_schedule(self.p, "hybrid")))
+
+    def test_absorption_temperature_limit_and_uncertainty(self) -> None:
+        reference_chiller = cooling_stage(10.0, self.p).chiller_mw
+        for thermal_cop in [0.6, 0.7, 0.8, 1.3]:
+            varied = copy.deepcopy(self.p)
+            varied["plant"]["absorption_thermal_cop"] = thermal_cop
+            absorption = absorption_stage(10.0, varied)
+            self.assertGreater(absorption.source_after_evaporator_c, 40.0)
+            self.assertAlmostEqual(absorption.chiller_mw, reference_chiller, places=9)
+        absorption = absorption_stage(10.0, self.p)
+        hot = absorption.secondary_hot_inlet_c + 273.15
+        sink = self.p["plant"]["summer_design_air_c"] + 273.15
+        cold = self.p["scenario"]["target_temperature_c"] + 273.15
+        reversible_cop = cold / (sink - cold) * (hot - sink) / hot
+        self.assertLess(reversible_cop, 1.8)
+        self.assertGreater(absorption.source_after_generator_c - reversible_cop * absorption.generator_mw / (999.702 * 2.3 * 4195.14 / 1e6), 40.0)
+        discharge = self.p["hydrology"]["design_discharge_m3_s"]
+        cop = self.p["uncertainty"]["cop_low"]
+        electricity, air = electrical_values_mw(self.p, discharge, cop, technology="absorption")
+        design = design_electrical_stage(self.p, technology="absorption")
+        self.assertAlmostEqual(electricity, design.electricity_mw, places=9)
+        self.assertAlmostEqual(air, design.air_rejection_mw, places=9)
+        self.assertGreater(coupled_npv(self.p, discharge, cop, 1.0, technology="absorption"), coupled_npv(self.p, discharge, cop, 1.0))
 
     def test_validation_suite(self) -> None:
         result = run_validation(self.p)

@@ -1,9 +1,10 @@
 {
-  "artifact_sha256": "643cee4533dc5875fee40062812374a70ba8b90101922d9c2835fc0dd539b8a3",
+  "artifact_sha256": "3f884181206098a9efea0fc4411825b40bfd6fac5e02a012a55cefd7ed2f3b28",
   "report": {
-    "physical_pages": 13,
-    "main_pages": 8,
-    "bibliography_and_appendix_pages": 4,
+    "physical_pages": 15,
+    "main_pages": 10,
+    "main_bibliography_shared_page": false,
+    "bibliography_and_appendix_pages": 5,
     "main_limit": 10,
     "back_limit": 5
   },
@@ -17,6 +18,11 @@
     "heat_sink_balance_error_mw": 4.263256414560601e-14,
     "evaporation_balance_error_mw": 0.0,
     "evaporative_stage_error_mw": 0.0,
+    "absorption_secondary_balance_error_mw": 0.0,
+    "absorption_stage_error_mw": 0.0,
+    "absorption_heat_sink_error_mw": 2.842170943040401e-14,
+    "absorption_reversible_cop": 1.7932203919607412,
+    "absorption_reversible_outlet_c": 60.89491451254962,
     "dilution_mixing_error_c": 1.7763568394002505e-15,
     "ode_max_error_k": 8.031904030758596e-10,
     "pool_time_constant_h": 3.019323671497585,

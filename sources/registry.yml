@@ -123,7 +123,7 @@
   year: 2012
   url: https://reposit.haw-hamburg.de/bitstream/20.500.12738/5979/1/Bachelorthesis_Bez_Armin_20120618.pdf
   accessed: 07.11.2026
-  use: Tabelle 5.6 für Kompressionskältemaschinen mit Bereichen 75 bis 125, 125 bis 350 und 185 bis 236 €/kW; Modellwert 500 €/kW bewusst darüber, Trockenkühlung und Verdunstung eigene Szenariowerte mit 30 % Aufschlag
+  use: Tabelle 5.6 für Kompressionskältemaschinen mit Bereichen 75 bis 125, 125 bis 350 und 185 bis 236 €/kW; Absorption 250 bis 1800 €/kW, einstufiger thermischer COP 0,6 bis 0,8 und Beispiel 3 kW Hilfsstrom bei 54 kW Kälte; Modellwert 500 €/kW für Kompression, H8-Kosten 250 €/kW plus 30 % Szenarioaufschlag
 - id: 20
   author: Stadt Blaubeuren
   title: Kommunale Wärmeplanung
