@@ -4,7 +4,7 @@
 \usepackage[ngerman]{babel}
 \usepackage[a4paper,top=26mm,left=26mm,right=26mm,bottom=34mm,footskip=7mm]{geometry}
 \usepackage{newtxtext,newtxmath}
-\usepackage[protrusion=false]{microtype}
+\usepackage{microtype}
 \usepackage{amsmath}
 \usepackage{booktabs}
 \usepackage{array}
@@ -27,8 +27,9 @@
 \setlength{\parindent}{1.25em}
 \setlength{\parskip}{0pt}
 \setlength{\columnsep}{8mm}
-\setlength{\emergencystretch}{5em}
-\sloppy
+\setlength{\emergencystretch}{1.5em}
+\brokenpenalty=10000
+\raggedbottom
 \renewcommand{\footnotesize}{\fontsize{12}{14.4}\selectfont}
 \renewcommand{\small}{\fontsize{12}{14.4}\selectfont}
 \renewcommand{\arraystretch}{1.12}

@@ -48,6 +48,15 @@ def main() -> None:
     require("1053,3" in full_text, "Bezugsgröße der alten Mittelwertkapazität fehlt")
     require("Szenariotemperatur in °C" in full_text, "Achsenlabel der Szenariotemperatur fehlt")
     require("Tiefe in °C" not in full_text, "Temperaturachse ist fälschlich als Tiefe beschriftet")
+    require("Symlog" in full_text, "Nichtlineare Kühlleistungsachse ist nicht deklariert")
+    compact_text = re.sub(r"\s+", "", full_text)
+    nist_urls = [
+        "https://webbook.nist.gov/cgi/fluid.cgi?Action=Data&Wide=on&ID=C7732185&Type=IsoBar&Digits=6&P=1.01325&TLow=0&THigh=100&TInc=10&RefState=DEF&TUnit=C&PUnit=bar&DUnit=kg%2Fm3&HUnit=kJ%2Fkg&WUnit=m%2Fs&VisUnit=uPa*s&STUnit=N%2Fm",
+        "https://webbook.nist.gov/cgi/fluid.cgi?Action=Data&Wide=on&ID=C7732185&Type=IsoBar&Digits=6&P=3.17080686&TLow=130&THigh=140&TInc=1&RefState=DEF&TUnit=C&PUnit=bar&DUnit=kg%2Fm3&HUnit=kJ%2Fkg&WUnit=m%2Fs&VisUnit=uPa*s&STUnit=N%2Fm",
+        "https://webbook.nist.gov/cgi/fluid.cgi?Action=Data&Wide=on&ID=C7732185&Type=SatP&Digits=6&TLow=32&THigh=100&TInc=1&RefState=DEF&TUnit=C&PUnit=bar&DUnit=kg%2Fm3&HUnit=kJ%2Fkg&WUnit=m%2Fs&VisUnit=uPa*s&STUnit=N%2Fm",
+    ]
+    for nist_url in nist_urls:
+        require(nist_url in compact_text, f"Vollständige NIST-Abfrage fehlt im PDF: {nist_url}")
     conclusion_text = full_text.split("Schlussfolgerung", 1)[-1].split("Literaturverzeichnis", 1)[0]
     require("Bearbeitungszeit" in conclusion_text, "Statement zu Verbesserungen bei mehr Bearbeitungszeit fehlt")
     source = (ROOT / "report" / "main.tex").read_text(encoding="utf-8")

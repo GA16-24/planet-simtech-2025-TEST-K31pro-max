@@ -351,7 +351,7 @@ def main() -> None:
     axes[0].set(xlabel="Jahre", ylabel="Szenariotemperatur in °C")
     for fraction, color, label in [(1.0, BLUE, "Gesamtstrom"), (0.01, ORANGE, "1 % Teilstrom"), (0.001, GREEN, "0,1 % Teilstrom")]:
         axes[1].plot(years, required_cooling_mw(years, p, fraction), color=color, lw=2, label=label)
-    axes[1].set(xlabel="Jahre", ylabel="Kühlleistung in MW")
+    axes[1].set(xlabel="Jahre", ylabel="Kühlleistung in MW, Symlog")
     axes[1].set_yscale("symlog", linthresh=1.0)
     axes[1].set_yticks([0.0, 1.0, 10.0, 100.0, 1000.0], ["0", "1", "10", "100", "1000"])
     fig.legend(handles=axes[1].get_lines(), frameon=False, ncol=3, loc="lower center", bbox_to_anchor=(0.5, 0.005))
@@ -391,22 +391,24 @@ def main() -> None:
     ax.legend(frameon=False, loc="lower right")
     save_figure(fig, "fig04_sensitivitaet")
 
-    fig, axes = plt.subplots(1, 2, figsize=(4.0, 5.0))
+    fig, axes = plt.subplots(1, 2, figsize=(4.0, 5.2))
     axes[0].hist(q_samples, bins=45, color=BLUE, alpha=0.85)
     mean_line = axes[0].axvline(final_q, color=RED, ls="--", lw=1.4, label="Basis: 877,8")
     reserve_line = axes[0].axvline(final_q * (1 + p["plant"]["reserve_fraction"]), color=GRAY, ls=":", lw=1.6, label="Basis +20 %: 1053,3")
     design_line = axes[0].axvline(design_stage.total_mw * (1 + p["plant"]["reserve_fraction"]), color=BLUE, ls="-.", lw=1.6, label="p90 + 20 %: 2152,5")
-    axes[0].set(xlabel="", ylabel="Anzahl", xlim=(0, 2300))
+    axes[0].set(xlabel="MW", ylabel="Anzahl", xlim=(0, 2300))
     axes[1].hist(npv_samples / 1e9, bins=45, color=ORANGE, alpha=0.85)
-    reference_line = axes[1].axvline(npv(hybrid_staged) / 1e9, color=RED, ls="--", lw=1.4, label=f"Referenz: {npv(hybrid_staged) / 1e9:.2f}".replace(".", ","))
-    axes[1].set(xlabel="", ylabel="Anzahl")
+    reference_line = axes[1].axvline(npv(hybrid_staged) / 1e9, color=RED, ls="--", lw=1.4, label=f"H1\n{npv(hybrid_staged) / 1e9:.2f}".replace(".", ","))
+    axes[1].set(xlabel="Mrd. €", ylabel="Anzahl")
+    axes[1].set_ylim(0, axes[1].get_ylim()[1] * 1.2)
     axes[1].xaxis.set_major_formatter(FuncFormatter(lambda value, position: f"{value:g}".replace(".", ",")))
     for ax in axes:
         ax.tick_params(labelsize=20)
         ax.xaxis.label.set_size(20)
         ax.yaxis.label.set_size(20)
-    fig.legend(handles=[mean_line, reserve_line, design_line, reference_line], frameon=False, ncol=1, loc="lower center", bbox_to_anchor=(0.5, 0.005), fontsize=20)
-    fig.subplots_adjust(bottom=0.43, wspace=0.55)
+    fig.legend(handles=[mean_line, reserve_line, design_line], frameon=False, ncol=1, loc="lower center", bbox_to_anchor=(0.5, 0.005), fontsize=18)
+    axes[1].legend(handles=[reference_line], frameon=False, loc="upper right", fontsize=18)
+    fig.subplots_adjust(bottom=0.38, wspace=0.55)
     save_figure(fig, "fig05_unsicherheit")
 
     fractions = np.logspace(-4, 0, 200)
@@ -778,7 +780,7 @@ def main() -> None:
             handle.write(macro(name, value, digits))
 
     with (GEN / "alternatives.tex").open("w", encoding="utf-8") as handle:
-        handle.write("\\begin{tabular}{@{}p{51mm}rrr@{}}\n\\toprule\nGröße im Auslegungsjahr & H1 Hybrid & H2 Verdunstung & H3 Zumischung \\\\\n\\midrule\n")
+        handle.write("\\begin{tabular}{@{}p{51mm}>{\\bfseries}rrr@{}}\n\\toprule\nGröße im Auslegungsjahr & H1 Hybrid & H2 Verdunstung & H3 Zumischung \\\\\n\\midrule\n")
         rows = [
             ("Kühlleistung (Wärmeentzug) in MW", "required_cooling_mw", 1.0, 1),
             ("Investition in Mio. €", "installed_capex_eur", 1e6, 1),
@@ -798,7 +800,7 @@ def main() -> None:
         handle.write("\\bottomrule\n\\end{tabular}\n")
 
     with (GEN / "absorption.tex").open("w", encoding="utf-8") as handle:
-        handle.write("\\begin{tabular*}{\\columnwidth}{@{\\extracolsep{\\fill}}>{\\hspace{0pt}\\raggedright\\arraybackslash}p{40mm}rr}\n\\toprule\nGröße & H1 & H8 \\\\\n\\midrule\n")
+        handle.write("\\begin{tabular*}{\\columnwidth}{@{\\extracolsep{\\fill}}>{\\hspace{0pt}\\raggedright\\arraybackslash}p{40mm}>{\\bfseries}rr}\n\\toprule\nGröße & H1 & H8 \\\\\n\\midrule\n")
         rows = [
             ("Generatorwärme in MW", 0.0, absorption.generator_mw, 1.0, 1),
             ("Verdampferkälte in MW", 0.0, absorption.evaporator_mw, 1.0, 1),

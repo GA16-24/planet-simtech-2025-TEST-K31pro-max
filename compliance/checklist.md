@@ -13,7 +13,7 @@ Regelstand und Prüfverfahren: `compliance/regeln.md`, offizielle Dokumente von 
 | Zusammenfassung höchstens eine Seite | Zusammenfassung beginnt auf Haupttextseite 1 | gerenderte Seite | erfüllt |
 | Pflichtaufbau | Zusammenfassung, Einführung, Methode, Ergebnisse, Diskussion, Schlussfolgerung sowie Verbesserungsmöglichkeiten bei mehr Bearbeitungszeit | PDF-Textprüfung | erfüllt |
 | Haupttext höchstens 10 Seiten | 10 Haupttextseiten nach Deckblatt, einschließlich des letzten Absatzes auf der ersten Literaturseite | automatische Seitenzählung | erfüllt |
-| Literatur und Anhang höchstens 5 Seiten | 4 Seiten gemeinsamer Zählbereich ab Literaturbeginn | automatische Seitenzählung | erfüllt |
+| Literatur und Anhang höchstens 5 Seiten | 5 Seiten gemeinsamer Zählbereich ab Literaturbeginn | automatische Seitenzählung | erfüllt |
 | A4 und 25 mm Rand | LaTeX-Geometrie, gemessen mindestens 25,997 mm | `report/preamble.tex`, `verify_report.py` | erfüllt |
 | 12 pt und Zeilenabstand mindestens 1,0 | 12 pt auf 14,4 pt, auch Tabellen, Quellen und eingebettete Diagramme | PDF-Schriftgrößen und Sichtprüfung | erfüllt |
 | Numerische Quellenverweise | Einheitliche IDs 1 bis 25 im Text und Verzeichnis | Quellenregister und PDF | erfüllt |

@@ -352,6 +352,19 @@ Die Revision enthält 24 bestandene Modelltests und 14 Seiten mit 10 Haupttext- 
 
 Alle gedruckten Gleichungen wurden auf Einheiten geprüft. Die Zahlen bleiben unverändert. Die Revision enthält 24 bestandene Modelltests und 14 Seiten mit 10 Haupttext- und 4 Literatur-/Anhangsseiten. Die Reproduktion wird für Runde 14 mit dem exakten Review-Commit geprüft.
 
+## Befunde aus Design-Runde 15
+
+| Befund | Konkrete Änderung oder begründete Grenze | Verifikation |
+| --- | --- | --- |
+| DeepSeek M1, gespreizter Satz und getrennte Einheiten | `\sloppy` entfernt, Mikrotypografie aktiviert, 1,5 em Notdehnung und Seitenumbruch nach Worttrennung verhindert. Zahlen und Einheiten an den Befundstellen sind geschützt, die Zusammenfassung ist neu formuliert. | `report/preamble.tex`, `report/main.tex`, PDF-Seiten 2 bis 11 |
+| DeepSeek M2, Leerraum und Anhangsplatzierung | `\raggedbottom` verhindert das Dehnen um Gleichung 4. Anhang A beginnt oben auf PDF-Seite 14. Anhang B steht daneben, die Tabellen 3 bis 5 nutzen PDF-Seite 15 in beiden Spalten. Eine zusätzliche Balancierung vor Anhang A wurde nach einem Überlauf verworfen. | PDF-Seiten 3, 13 bis 15, `make verify` |
+| DeepSeek M3, Abbildung 3 | Kurze Achsentitel ergänzt, die drei Kapazitätslinien bleiben unter der linken Grafik und H1 steht in der rechten. Die Legenden überlagern weder Daten noch Achsen. Mindestens 12 pt bleibt automatisch geprüft. | `model/run_all.py`, `report/figures/fig05_unsicherheit.pdf`, PDF-Seite 14 |
+| DeepSeek M4, NIST-URLs | Alle drei vollständigen Abfrage-URLs stehen im gedruckten Eintrag [4]. Jede Abfrage bildet einen eigenen Absatz mit Parametern und gemeinsamem Abrufdatum. | `report/main.tex`, PDF-Seiten 11 und 12; `scripts/verify_report.py` verlangt alle drei URLs im PDF-Text |
+| DeepSeek M5, visuelle Führung | H1 ist in den Tabellen 2 und 5 fett gesetzt. Die Symlog-Achse ist benannt und ihr linearer Bereich erklärt. Der Verweis auf Tabelle 5 nennt Anhang B. Ein Installationsschema bleibt optional und wird nicht erzwungen. | `model/run_all.py`, PDF-Seiten 5, 7, 14 und 15 |
+| Kimi, optionale Hinweise | Die Symlog-Skala ist erklärt. Die Legendeneinheiten stehen an den Achsen statt in zu langen Legendeneinträgen. Kimis Urteil ohne materiellen Mangel wird nicht auf die geänderte Revision übertragen. | PDF-Seiten 5 und 14 |
+
+Die Design-Stoppregel war in Runde 15 nicht erfüllt. Die neue Revision enthält 24 bestandene Modelltests und 15 Seiten mit 10 Haupttext- und 5 Literatur-/Anhangsseiten. Die Rechenwerte sind unverändert. Vor den erneuten Design- und Fachbewertungen ist die Archivreproduktion erforderlich. Frühere Punktzahlen werden nicht übernommen.
+
 ## Aktueller Lieferumfang
 
 Nach der Nutzerkorrektur ist nur der Research Paper Produkt. Die Kriterien 1 bis 6, 8 bis 11 und 12a bleiben Prüfgegenstand. Kriterium 12b und die Präsentationsartefakte werden nicht fortentwickelt. Nach den fachlichen Council-Runden folgt ein eigener Design-Council für den Research Paper.
