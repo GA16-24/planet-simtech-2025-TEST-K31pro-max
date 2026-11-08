@@ -265,7 +265,7 @@ Die neue Revision enthält 19 bestandene Modelltests und 13 Seiten mit 8 Hauptte
 
 ## Befunde aus Runde 9, DeepSeek
 
-DeepSeek bewertete alle elf Kriterien mit 9 und fand keinen materiellen Mangel. Die folgenden optionalen Hinweise wurden bei der nächsten Revision geprüft.
+DeepSeek fand keinen materiellen Mangel. Die folgenden optionalen Hinweise wurden bei der nächsten Revision geprüft.
 
 | Hinweis | Konkrete Änderung oder begründete Grenze | Verifikation |
 | --- | --- | --- |
