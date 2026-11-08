@@ -1,0 +1,70 @@
+# Design-Council Runde 16
+
+Geprüft wurde ausschließlich der eingefrorene Commit `11ba6fbf803b229f42b1f289d627851bdc8b8e92`. Die PDF, die Kontaktübersicht, alle 15 Seitenbilder und die drei D4RT-Seiten stimmen mit den Hashes in `revision.json` überein. Ich habe keine früheren Rohberichte, Scorecards oder Punktzahlen geöffnet, keine Dateien verändert und keine Builds ausgeführt.
+
+Prüfgrundlage ist :codex-file-citation{path="/Users/macbook_air_m1/.t3/scratch/2026-11-07-create-a-new-separate-github-162aa05c/planet-simtech-2025-TEST-K31pro-max/output/pdf/TEST-K31pro-max.pdf" purpose="source"}. Wissenschaftliche Modelle, Rechenwerte und physikalische Annahmen waren nicht Prüfgegenstand.
+
+## Bewertung
+
+| Kategorie | Bewertung | Begründung und Belegorte |
+|---|---:|---|
+| D1, Typografie | **8/10** | Grundschrift, Hierarchie, Formelsatz und Quellensatz sind überwiegend sauber. Es bleiben jedoch zahlreiche ungeschützte Zahl-Einheit-Verbindungen. Beispiele sind PDF-Seite 2, Zusammenfassung, `2152,5` / `MW`; PDF-Seite 5, Abschnitt 3.2, `112110` / `m³/s` über den Spaltenwechsel; PDF-Seite 7, Tabellenunterschrift 2, `95-Mio.-` / `€-Fixkostenbasis`; PDF-Seite 14, Anhang A, `26` / `mm`. |
+| D2, Seiten- und Spaltennutzung | **9/10** | Der Satzspiegel wird gleichmäßig genutzt. Um Gleichung 4 auf PDF-Seite 3 entsteht kein großer Leerraum. Anhang A beginnt oben auf PDF-Seite 14, Anhang B steht rechts auf derselben Seite und wird auf PDF-Seite 15 fortgesetzt. Die Weißräume auf den PDF-Seiten 13 und 15 sind Abschluss- und Strukturweißräume, keine Umbruchfehler. |
+| D3, Lesbarkeit und visuelle Führung | **9/10** | Die Zusammenfassung auf PDF-Seite 2 ist einspaltig, umfasst weniger als eine Seite und gliedert sich in vier nachvollziehbare Absätze. Überschriften, Absatzfolge und numerische Verweise führen von Einführung und Methode über Ergebnisse und Diskussion bis zur Schlussfolgerung auf PDF-Seite 11. Die hohe Textdichte bleibt kontrolliert. |
+| D4, Abbildungen, Tabellen und visuelle Erklärung | **8/10** | Abbildungen 1 und 2 auf den PDF-Seiten 5 und 8 sowie Tabelle 2 auf PDF-Seite 7 sind klar beschriftet und gut lesbar. In Abbildung 3 auf PDF-Seite 14 ragt die rechte Y-Achsengruppe mit "Anzahl" und Ticklabels zu weit in die linke Panelbreite. In Tabelle 3 auf PDF-Seite 15 werden `Abfluss 0,7` und `Abfluss 4,7` jeweils von `m³/s` getrennt. |
+| D5, Formale Compliance | **10/10** | A4, 15 PDF-Seiten, anonymer Deckblattsatz, Pflichtaufbau und Seitenbudget sind erfüllt. Die Zusammenfassung liegt auf einer Seite, der Haupttext auf den PDF-Seiten 2 bis 11, Literatur und Anhänge auf den PDF-Seiten 11 bis 15. `report/preamble.tex:5` setzt 26 mm Ränder, `report/preamble.tex:26` 12 pt auf 14,4 pt. Numerische Quellenverweise, KI-Offenlegung auf PDF-Seite 14 und alle drei vollständigen NIST-URLs auf den PDF-Seiten 11 und 12 sind vorhanden. |
+| D6, Direkter D4RT-Vergleich | **9/10** | Gegen D4RT-Seiten 1, 2 und 6 erreichen die ganzbreiten Kurven, die Tabellenlinien, die numerischen Verweise und die erklärenden Unterschriften des Berichts einen vergleichbaren Ordnungsgrad. Die lokaleren Mängel in Abbildung 3 und im Umbruch werden unter D1 und D4 bewertet, führen aber im Gesamtvergleich zu keinem zusätzlichen wesentlichen Abfall. D4RTs kleinere Schriften und andere Ränder wurden nicht als Vorbild übernommen. |
+
+## Materielle Mängel und konkrete Korrekturen
+
+### D1: Zahlen und Einheiten werden weiterhin getrennt
+
+Die Sicht- und PDF-Textprüfung belegt folgende Stellen:
+
+- PDF-Seite 2, Zusammenfassung: `2152,5` / `MW`.
+- PDF-Seite 3, Abschnitt 2.2: `60` / `%`.
+- PDF-Seite 4, Abschnitt 3.1: `2152,5` / `MW`.
+- PDF-Seite 5, Abschnitt 3.2: `89,4` / `MW`, `234,3` / `MW`, `8,41` / `ha` und `112110` / `m³/s`.
+- PDF-Seite 5, Abschnitt 3.3: `47,85` / `Mio. €` und `241` / `Mio. €`.
+- PDF-Seite 6, Abschnitt 3.3: `95` / `Mio. €`, `32,3` / `Mio. €` und `349,2` / `MW`.
+- PDF-Seite 7, Abschnitt 3.3: `1716,0` / `Mio. €` und `4,200` / `Mrd. €`.
+- PDF-Seite 7, Unterschrift zu Tabelle 2: `95-Mio.-` / `€-Fixkostenbasis`.
+- PDF-Seite 9, Abschnitt 4.2: `234,3` / `MW`.
+- PDF-Seite 14, Anhang A: `26` / `mm`.
+
+Die bisherige Antwort auf den Umbruchbefund schließt diesen Punkt daher nicht vollständig.
+
+**Korrektur:** Sämtliche genannten Verbindungen mit vorhandenen LaTeX-Mitteln schützen, beispielsweise `2152,5~MW`, `60~\%`, `47,85~Mio.~€` und `26~mm`. Die zusammengesetzte Angabe in der Unterschrift zu Tabelle 2 mit `\mbox{95-Mio.-€-Fixkostenbasis}` zusammenhalten. Wo das Verschieben einer Einheit eine zusätzliche Zeile erzeugen würde, den betroffenen Satz ohne Bedeutungsänderung knapp kürzen. In der Zusammenfassung kann beispielsweise "Im üblichen Betrieb" zu "Üblicherweise" und "ihrer installierten Leistung" zu "der installierten Leistung" verkürzt werden.
+
+Schriftgröße, Zeilenabstand, Spaltenbreite und Ränder dürfen nicht verändert werden. Anschließend müssen die Zusammenfassung weiterhin auf PDF-Seite 2, der Haupttext auf höchstens zehn Seiten und Literatur und Anhänge auf höchstens fünf Seiten bleiben.
+
+### D4: Achsengruppen in Abbildung 3 sind nicht sauber getrennt
+
+In Abbildung 3 auf PDF-Seite 14 stehen die rechte Y-Achsenbeschriftung "Anzahl" und die rechten Ticklabels so weit links, dass sie in die Breite des linken Panels hineinragen. Die Beschriftung bleibt zwar lesbar und H1 steht im rechten Panel, aber die Zuordnung der beiden Achsensysteme wirkt beengt und unruhig.
+
+**Korrektur:** Den horizontalen Abstand zwischen den beiden Panels vergrößern und beide Panelbreiten innerhalb derselben Spalte etwas reduzieren. Alternativ kann ein gemeinsames "Anzahl" links verwendet werden, sofern die unterschiedlichen Tickskalierungen erhalten bleiben. Sämtliche Achsentitel, Ticklabels, H1 und die drei Legendenzeilen müssen mindestens 12 pt behalten. Ein Floatwechsel oder zusätzlicher Seitenplatz ist nicht erforderlich.
+
+### D4: Tabellenwerte werden von ihren Einheiten getrennt
+
+In Tabelle 3 auf PDF-Seite 15 stehen die Zeilenbeschriftungen `Abfluss 0,7` und `Abfluss 4,7` jeweils über `m³/s`. Das erschwert das schnelle Erfassen der beiden Werte.
+
+**Korrektur:** Den Umbruch vor den Wert setzen und den Wert mit der Einheit schützen, also sinngemäß `Abfluss` in der ersten und `0,7~m³/s` beziehungsweise `4,7~m³/s` in der zweiten Zeile. Die vorhandene zweizeilige Zellhöhe, die Spaltenbreite und die 12-pt-Schrift können bleiben.
+
+## Optionale Verbesserungen und nicht erforderliche Maßnahmen
+
+- Der NIST-Eintrag [4] wird zwischen den PDF-Seiten 11 und 12 geteilt. Alle drei URLs sind vollständig und korrekt umbrochen. Für einen ruhigeren Quellensatz könnte der gesamte Eintrag auf PDF-Seite 12 beginnen. Das ist optional und nur zulässig, wenn der gemeinsame Literatur- und Anhangsbereich weiterhin höchstens fünf Seiten umfasst.
+- Ein Installationsschema bleibt optional. Sein Fehlen wurde nicht als Mangel gewertet. Ebenso besteht keine Veranlassung, die Abschlussweißräume auf den PDF-Seiten 13 und 15 mit zusätzlichem Inhalt zu füllen.
+
+## Erfolglose substanzielle Fehlersuche für die 10 in D5
+
+Für D5 habe ich gezielt nach formalen Ausschlussfehlern gesucht. `pdfinfo` bestätigt 15 A4-Seiten. Die Sichtprüfung aller Seiten fand keine Randverletzung; der Satzspiegel ist mit 26 mm angelegt. Fließtext, Tabellen, Quellen und Diagrammbeschriftungen erreichen mindestens 12 pt, kleinere mathematische Indizes gehören zum üblichen Formelsatz.
+
+Deckblatt, Testkennung, Datum, Aufgabenstellung und Wettbewerbsname sind vorhanden, ohne personenbezogene Team- oder Schulangaben. Der Pflichtaufbau einschließlich Schlussfolgerung und Verbesserungsmöglichkeiten ist vollständig. Seitenzählung und Seitenbudgets sind eingehalten. Die KI-Offenlegung nennt Systeme, Einsatzort, Art und Umfang. Die drei NIST-Abfragen aus `report/main.tex:245` kommen nach Normalisierung der Zeilenumbrüche jeweils vollständig im PDF-Text vor. Ein substanzieller formaler Verstoß blieb trotz dieser Prüfung aus.
+
+Offizielle Team-ID, Rechtefreigabe, menschliche Fachprüfung und tatsächliche Einreichung wurden als menschliche Restaufgaben nicht abgewertet.
+
+## Abschließendes Urteil
+
+Die Design-Stoppregel ist **nicht erfüllt**. D1 und D4 liegen mit jeweils 8/10 unter der geforderten Mindestbewertung von 9, und die genannten materiellen Umbruch- und Achsenmängel sind noch offen. D2, D3, D5 und D6 erfüllen die Schwelle.
+
+Nach den beschriebenen Korrekturen ist eine erneute Sichtprüfung der betroffenen Seiten und der Seitenbudgets erforderlich. Die endgültige Stoppregel verlangt zusätzlich die unabhängige Zustimmung des zweiten Reviewers.

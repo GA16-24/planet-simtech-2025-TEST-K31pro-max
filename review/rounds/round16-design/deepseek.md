@@ -1,0 +1,258 @@
+# Design-Council-Bericht, Runde 16
+
+**Prüfgegenstand:** Research Paper `output/pdf/TEST-K31pro-max.pdf`, eingefrorener Commit `11ba6fbf803b229f42b1f289d627851bdc8b8e92`
+**Prüfart:** design-only, read-only, ohne Build und ohne Dateiänderung
+
+## 0. Prüfumfang, Reproduktion und Unabhängigkeit
+
+- **Commit und Stand:** `HEAD` steht auf `11ba6fbf…`; die Arbeitskopie ist bis auf die beiden Dokumentationsdateien `review/rounds/round16-design/prompt.md` und `revision.json` unverändert. Alle **248** in `revision.json` verzeichneten SHA-256-Werte stimmen mit der Arbeitskopie überein. Der PDF-SHA-256 ist `430281f1…9ce575c` und stimmt mit `reproduction.md` und `revision.json` überein.
+- **PDF:** 15 Seiten, A4 (595,28 × 841,89 pt), Deckblatt unnummeriert, Druckseiten 1–14.
+- **Gesichtet:** Kontaktübersicht `report_contact.png`, alle fünfzehn Seiten `page-01.png` bis `page-15.png`, die drei D4RT-Seiten `d4rt_page01/02/06.png`. Zusätzlich Detailausschnitte aus diesen freigegebenen Seitenbildern (nur zur Vergrößerung), Text- und Geometrieauswertung der PDF sowie Schriftgrößen- und Randmessung.
+- **Nicht gelesen:** andere Dateien unter `review/rounds/`, `review/README.md`, `decisions.tsv`, frühere Rohberichte, Scorecards, Präsentations- und Videodateien. Es wurden keine früheren Punktzahlen übernommen.
+- **Nicht geprüft:** `generated/*.tex` (nicht in der zulässigen Dateiliste). Aussagen zu Tabellenbreiten stützen sich daher auf die gerenderte PDF, nicht auf den Quelltext. Die Klickbarkeit der URLs wurde nicht getestet, nur ihre Vollständigkeit und ihr Satz.
+- **Nicht bewertet:** wissenschaftliches Modell, Rechenwerte, physikalische Annahmen. Offizielle Team-ID, Rechtefreigabe, menschliche Fachprüfung und Einreichung sind menschliche Restaufgaben und wurden nicht als Mangel gewertet.
+
+## 1. Bewertung D1–D6
+
+| Kategorie | Bewertung | Kurzbegründung | Belegorte |
+|---|---|---|---|
+| **D1 Typografie** | **7** | Schriftwahl, Hierarchie und Grundlinienraster sind solide, aber Zahl/Einheit-Trennungen, stark gespreizte Zeilen, Dezimalkomma-Spatien im Mathematiksatz, eine versetzte Gleichungsnummer und der Flattersatz in Anhang A bleiben sichtbar. | PDF S. 2, 3, 4, 5, 6, 7, 9, 10, 11, 14 (Druckseiten 1–13); bes. Zusammenfassung S. 2, Gl. (4) und (6), Anhang A S. 14 |
+| **D2 Seiten- und Spaltennutzung** | **8** | Der Hauptteil ist straff und überwiegend ausgeglichen; im Anhang bleiben große Löcher: 119 mm in der rechten Spalte von S. 14, 86 mm auf S. 13, 30–32 mm auf S. 11/12, 24/33 mm auf S. 5/6. Seitenbudget (14 Seiten) wird eingehalten. | PDF S. 5, 6, 11, 12, 13, 14, 15 |
+| **D3 Lesbarkeit und visuelle Führung** | **9** | Einspaltige Zusammenfassung deutlich unter einer Seite; klare Abschnitts- und Unterabschnittshierarchie; alle Verweise (Tab. 1–5, Abb. 1–3, Gl. 3, Anhang A/B) lösen auf, keine `??`; Numerik [1]–[25] vollständig belegt. Abschnitt 5 ist sehr dicht, aber nachvollziehbar geführt; das ist Stil, kein materieller Führungsfehler. | PDF S. 2 (Zusammenfassung), S. 10/11 (Schluss), S. 11–13 (Literatur); Verweisprüfung im Gesamttext |
+| **D4 Abbildungen, Tabellen, visuelle Erklärung** | **7** | Achsen, Einheiten, Legenden und erklärende Unterschriften sind vorhanden; Abbildungsbeschriftungen ≥ 12 pt; Tabellen mit sauberen booktabs-Linien und rechtsbündigen Zahlen. Dagegen: neun allein stehende „MW“ in Tabelle 5, Wert/Einheit-Risse in Tabelle 3, zwei „in MW“-Waisen in Tabelle 2, Textwaisen in Tabelle 1 und eine echte Kollision in Abbildung 3. | PDF S. 4 (Tab. 1), S. 7 (Tab. 2), S. 14 (Abb. 3), S. 15 (Tab. 3–5) |
+| **D5 Formale Compliance** | **10** | A4, Ränder, 12 pt/14,4 pt, anonymer Deckblatt, Pflichtaufbau, Seitenzählung, Zitier- und Quellenform, Abrufdaten, KI-Offenlegung und die drei vollständigen NIST-URLs sind geprüft und erfüllt. Seitenbudget: 10 Haupttextseiten, Literatur und Anhang auf S. 10–14 (4,5 von 5 weiteren Seiten). Kein formaler Mangel gefunden; Einzelbegründung in Abschnitt 4. | Deckblatt PDF S. 1; Literatur PDF S. 11–13; Anhang A/B PDF S. 14–15; Geometrie- und Schriftmessung gesamt |
+| **D6 Direkter D4RT-Vergleich** | **8** | Die zweispaltige Times-Ordnung, die 14/12-pt-Hierarchie, die numerischen Verweise und die erklärenden Unterschriften erreichen D4RT-Niveau. Die Detailpolitur reicht nicht heran: D4RT zeigt keine Zahl/Einheit-Risse, keinen Flattersatz und keine Tabellenwaisen; Abb. 3 ist enger als jede D4RT-Abbildung. D4RTs US-Letter-, 10-pt- und Randverstöße wurden nicht übernommen. | D4RT S. 1, 2, 6 gegen eigene PDF S. 2–8 und 14 |
+
+## 2. Materielle Mängel
+
+### M1 — Zahl und Einheit werden an Zeilen- und Spaltengrenzen getrennt (D1)
+
+**Befund.** Mindestens 15 Trennungen, systembedingt bei makroerzeugten Zahlen, weil nach dem Zahlenmakro ein normales Leerzeichen statt einer geschützten Verbindung steht. Beispiele:
+
+| Ort | Zeilenende → Folgezeile |
+|---|---|
+| PDF S. 2 (S. 1), Zusammenfassung, 3. Absatz | „installiert werden 2152,5“ → „MW.“ |
+| PDF S. 3 (S. 2), Abschn. 2.2 | „Reserve und 60“ → „% Zuschlag“ |
+| PDF S. 4 (S. 3), Abschn. 3.1 | „zusammen also 2152,5“ → „MW“ |
+| PDF S. 5 (S. 4), Abschn. 3.2 | „folgen 89,4“ → „MW“; „sind 234,3“ → „MW“; „8,41“ → „ha“; „47,85“ → „Mio.“; „241“ → „Mio.“ |
+| PDF S. 6 (S. 5), Abschn. 3.3 | „die 95“ → „Mio.“; „umfasst 32,3“ → „Mio.“; „Trockenkühler 349,2“ → „MW“ |
+| PDF S. 7 (S. 6), Abschn. 3.3 | „ergeben sich 1716,0“ → „Mio.“; „H8 bei 4,200“ → „Mrd.“ |
+| PDF S. 9 (S. 8), Abschn. 4.2 | „für 234,3“ → „MW“ |
+| PDF S. 5 (S. 4), Spaltenwechsel | „und 112110“ (Ende linke Spalte) → „m³/s Luftvolumenstrom.“ (Anfang rechte Spalte) |
+
+Damit ist der frühere Einwand „getrennte Zahlen und Einheiten“ **nicht geschlossen**; er trifft sogar die Zusammenfassung und einen Spaltenwechsel.
+
+**Korrektur.** Alle Einheiten an den Wert binden: `\newcommand{\unit}[1]{\,\mathrm{#1}}` und im Text `\QReserve\unit{MW}` bzw. mindestens `\QReserve~MW`; dasselbe für `\PElectric`, `\QReserve`, `\EvapAnnual`, `\CapexFinal` usw. Die generierten Makros in `generated/numbers.tex` sind die Ursache. Danach die 15 Stellen im gerenderten PDF einzeln nachprüfen. 12 pt, Satzspiegel und Seitenbudget bleiben unverändert.
+
+**Nachprüfung.** Kein Zeilen- oder Spaltenende darf mit einer Ziffer enden, während die Folgezeile mit einer Einheit oder einem Einheitenkürzel beginnt; der Spaltenwechsel S. 5 muss „112110 m³/s“ zusammenhalten oder die Einheit in die Folgezeile mitnehmen.
+
+### M2 — Stark gespreizte Zeilen (D1)
+
+**Befund.** Die Wortzwischenräume erreichen das Vier- bis Sechsfache des Normalspatiums (ca. 3 pt):
+
+- PDF S. 2 (S. 1), Zusammenfassung, 4. Absatz: „betroffenen  Wasserfluss  und  höchstens“ — ca. 12,5 pt je Spatium.
+- PDF S. 3 (S. 2), Abschn. 2.2: „für  positive  Differenzen.  Natürliche“ — ca. 17,4 pt.
+- PDF S. 10 (S. 9), Abschn. 5: „Vierundzwanzig  Tests  und  interne“ — ca. 19,6 pt.
+- PDF S. 11 (S. 10), Abschn. 5: „kleiner  Teilstrom-  und  Siedeschutzfälle,“ — ca. 10,9 pt.
+
+**Korrektur.** Die vier Sätze gezielt umformulieren („24 Tests“ statt „Vierundzwanzig Tests“; „Fälle des Siedeschutzes“ statt „Siedeschutzfälle“; „für positive Differenzen; natürliche …“ mit anderem Umbruch) und `\emergencystretch` von 1,5 em auf 3 em erhöhen. Danach die Zeilen mit dem größten Wortabstand erneut messen; Ziel ist höchstens das Doppelte des Normalspatiums.
+
+**Nachprüfung.** Keine Zeile in der Zusammenfassung und in Abschnitt 5 mit einem Spatium über ca. 6 pt; die Umbruchstellen bleiben innerhalb der Spalte.
+
+### M3 — Dezimalkomma im Mathematiksatz mit Spatium (D1)
+
+**Befund.** In Mathematik-Umgebungen erzeugt das rohe Komma ein `\mathpunct`-Spatium:
+
+- PDF S. 3 (S. 2), Abschn. 2.2: „ρ = 999, 702 kg/m³“ und „c_p = 4195, 14 J/(kg K)“.
+- PDF S. 3 (S. 2), Gl. (4): „(1 + 0, 03)^y“ (die Textboxen `0,` und `03)` sind getrennt).
+- PDF S. 14 (S. 13), Anhang A, Handrechnung: „999, 702 · 2, 3 · 4195, 14 · 91“.
+
+In Gl. (3) ist es mit `{,}` bereits richtig gelöst; das zeigt, dass die Korrektur nur unvollständig angewendet wurde.
+
+**Korrektur.** In allen Mathematikstellen `{,}` schreiben, z. B. `999{,}702`, `4195{,}14`, `0{,}03`, `2{,}3`; alternativ die Werte im Fließtext in Textmode setzen. Danach die vier Stellen im PDF prüfen: zwischen Ziffer und Komma kein zusätzlicher Zwischenraum.
+
+**Nachprüfung.** „999,702“ und „4195,14“ erscheinen als eine Zahl ohne Spatium nach dem Komma; Gl. (4) zeigt „0,03“ eng.
+
+### M4 — Gleichungsnummer (6) steht allein unter der Gleichung (D1/D2)
+
+**Befund.** PDF S. 4 (S. 3), Abschn. 3.1, Gl. (6): Der Gleichungskörper endet bei x ≈ 284,2 pt, die Spaltenkante liegt bei 288,3 pt; die Nummer „(6)“ passt nicht mehr daneben und steht deshalb auf einer eigenen Zeile darunter (y = 413,2 pt gegen Baseline 396,2 pt). Das sieht wie eine verirrte Nummer aus und ist die einzige so versetzte Nummer im Dokument.
+
+**Korrektur.** Die Gleichung am zweiten „=“ in eine zweizeilige `aligned`-Umgebung brechen (Tag auf der letzten Zeile) oder „= 0,0303 MW“ in den folgenden Satz ziehen und die Gleichung auf „Q̇_V = …“ beschränken. 12 pt und Spaltenbreite bleiben unverändert.
+
+**Nachprüfung.** „(6)“ steht auf derselben Grundlinie wie der Gleichungskörper, rechtsbündig an der Spaltenkante; keine weitere Nummer steht unter ihrer Gleichung.
+
+### M5 — Anhang A im Flattersatz, Kommandoname zerrissen (D1)
+
+**Befund.** PDF S. 14 (S. 13), linke Spalte: Anhang A ist als einziger Fließtextteil `\raggedright` gesetzt. Die Zeilenenden springen stark („Recherche, Code, Text und Grafiken.“, „DeepSeek-V4.1-Flash bei“, „reasoning_effort=max unterstützte“), sodass der Anhang wie ein anderer Dokumentteil wirkt. Zusätzlich wird `make report` über die Zeilengrenze getrennt („make model, make test und make“ → „report erzeugen“).
+
+**Korrektur.** `\raggedright` im Anhang-A-Group entfernen und stattdessen `\sloppy` plus `\emergencystretch=3em` verwenden; `\texttt{make report}` in `\mbox{}` setzen und die Code-Zeilen auf Overfull-Boxen prüfen. Falls einzelne Codeblöcke nicht anders brechen: `\texttt{make\allowbreak\ report}` nur dort, nicht global.
+
+**Nachprüfung.** Anhang A hat denselben Blocksatz und dieselbe Textfarbe wie der Haupttext; kein Kommandoname ist über eine Zeilengrenze zerrissen; keine Zeile läuft über den Satzspiegel.
+
+### M6 — Tabelle 5: neun allein stehende „MW“ (D4)
+
+**Befund.** PDF S. 15 (S. 14), rechte Spalte. Die erste Spalte ist zu schmal; die Einheit rutscht in die zweite Zeile: „Generatorwärme in / MW“, „Verdampferkälte in / MW“, „Direkte / Trockenkühlung in / MW“, „Kompressionskälte in / MW“, „Kondensatorwärme in / MW“, „Absorptionsabwärme / in MW“, „Elektrik im / Mittelbetrieb in MW“, „Elektrik bei COP 3,0 in / MW“, „Wärmeabgabe im / Mittelbetrieb in MW“. Neun von zehn Zeilen tragen damit eine Einheit als Waisenwort.
+
+**Korrektur.** Die Einheit einmal in die Kopfzeile setzen („Leistung in MW“ bzw. „in MW“ über den Wertspalten) und aus den Zeilenbezeichnungen entfernen; die erste Spalte als `>{\raggedright}p{...}` belassen. Die Tabelle bleibt in der 74-mm-Spalte und bei 12 pt. Falls die Einheit in der Kopfzeile nicht gewünscht ist: erste Spalte auf 48 mm verbreitern und H1/H8 auf je 11 mm reduzieren.
+
+**Nachprüfung.** Keine Zeile der Tabelle 5 enthält eine allein stehende Einheit; die Tabelle bleibt innerhalb der Spalte und die Zahlen bleiben rechtsbündig.
+
+### M7 — Tabelle 3: Wert und Einheit gerissen (D4)
+
+**Befund.** PDF S. 15 (S. 14), linke Spalte: „Abfluss 0,7 / m³/s“, „Abfluss 4,7 / m³/s“, „Sieden nach 8 / Jahren“, „Sieden nach 12 / Jahren“. Vier von sechs Zeilen brechen um; bei den ersten beiden steht die Einheit allein in der zweiten Zeile. Zusätzlich sind die negativen Prozentwerte mit einem kurzen Bindestrich statt mit einem Minuszeichen gesetzt („-69,6“, „-16,7“, „-2,2“).
+
+**Korrektur.** Erste Spalte auf 38–40 mm verbreitern (die MW/%-/Mrd.-€-Spalten brauchen zusammen ca. 34 mm) und „m³/s“ mit `~` an den Wert binden; „Sieden nach 8 Jahren“ zu „Sieden, 8 Jahre“ kürzen. Minuszeichen als `$-$` setzen. 12 pt und Spaltenbreite bleiben erhalten.
+
+**Nachprüfung.** „Abfluss 0,7 m³/s“ steht in einer Zeile; kein Wert ist von seiner Einheit getrennt; die negativen Werte zeigen ein echtes Minuszeichen.
+
+### M8 — Tabellen 1 und 2: Text- und Einheitenwaisen (D4)
+
+**Befund.** PDF S. 4 (S. 3), Tabelle 1: „Trocken- und feuchte / Annäherung“ bricht in der 42-mm-Spalte um; in der letzten Zeile steht „[16]“ allein in der zweiten Zeile („COP eigene Annahme, Strompreis / [16]“). PDF S. 7 (S. 6), Tabelle 2: „Kühlleistung (Wärmeentzug) / in MW“ und „Davon Wärmeabgabe an Luft / in MW“ — die Einheit steht jeweils allein.
+
+**Korrektur.** Tabelle 1: erste Spalte 46 mm, dritte 61 mm (Summe 139 mm bleibt); Tabelle 2: erste Spalte 47 mm, H3 24 mm (Summe 139 mm bleibt). Beide Tabellen bleiben zentriert und 12 pt; die booktabs-Linien und die rechtsbündigen Zahlenspalten bleiben unverändert.
+
+**Nachprüfung.** Keine Zelle endet mit einer allein stehenden Einheit oder einer allein stehenden Zitatklammer; die Tabellenbreite bleibt 139 mm.
+
+### M9 — Abbildung 3: Kollision zwischen den Panels (D4)
+
+**Befund.** PDF S. 14 (S. 13), rechte Spalte, Abbildung 3. Die beiden Panels stehen in Spaltenbreite (74 mm) nebeneinander; die Beschriftung des rechten Panels liegt im Plotbereich des linken:
+
+- Die gestrichelt-punktierte p90+20-%-Linie des linken Panels läuft **durch die „1“ der rechten „1000“-Achsenbeschriftung** (bei 700 % Vergrößerung eindeutig).
+- Der Achsentitel „Anzahl“ des rechten Panels (x = 393,7–409,3 pt) und seine Tick-Beschriftungen 1000/500/0 (x = 412–446 pt) liegen im Plotbereich des linken Panels.
+- Die Legendenlinie zu „H1 4,14“ kreuzt die rechte y-Achse.
+- „2000“ (links) und „0“ (rechts) stehen nur ca. 10 pt auseinander.
+
+Damit ist der frühere Prüfauftrag „Kollisionen und kleine Spaltenbreite“ **nicht geschlossen**, obwohl Achsentitel, getrennte Legendenzuordnung, H1 im rechten Panel und ≥ 12 pt erreicht sind (gemessen 12,7–13,3 pt).
+
+**Korrektur.** Die beiden Panels bei gleicher Breite **untereinander** anordnen (2 × 1) statt nebeneinander; die freie Spaltenhöhe auf S. 14 (119 mm) reicht dafür. Alternativ Abbildung 3 als `figure*` über beide Spalten setzen. In beiden Fällen: eine gemeinsame „Anzahl“-Achse bzw. nur ein Achsentitel, keine Beschriftung im Nachbarpanel, H1-Legende außerhalb der Achse.
+
+**Nachprüfung.** Bei 100 % und 200 % Zoom kreuzt keine Linie eine Ziffer; kein Text liegt im Nachbarpanel; alle Beschriftungen bleiben ≥ 12 pt.
+
+### M10 — 119 mm Leerraum in der rechten Spalte von PDF S. 14 (D2)
+
+**Befund.** Unter der Abbildung-3-Unterschrift endet die rechte Spalte bei y = 407,6 pt; der Satzspiegel reicht bis 745,5 pt. Das sind **337,9 pt = 119,2 mm** leere Spalte mitten im Dokument, während die linke Spalte (Anhang A) bis 748 pt gefüllt ist. Ursache ist das `\clearpage` vor den Anhang-B-Tabellen (`report/main.tex`, Zeile 303).
+
+**Korrektur.** Das `\clearpage` entfernen, sodass Tabelle 3 (mit Unterschrift ca. 86 mm) auf S. 14 folgt; Tabelle 4 und 5 bleiben auf S. 15. Alternativ Tabelle 3 explizit auf S. 14 platzieren. Seitenzahl bleibt bei 14; das Budget von 15 Seiten wird nicht überschritten.
+
+**Nachprüfung.** Die rechte Spalte von S. 14 endet höchstens ca. 40 mm vor dem Satzspiegel; Anhang B bleibt auf S. 14/15; die Gesamtseitenzahl steigt nicht über 15.
+
+### M11 — 30–32 mm Spaltenlücken in der Literatur (D2)
+
+**Befund.** PDF S. 11 (S. 10), rechte Spalte endet 30,0 mm vor dem Satzspiegel nach Eintrag [4]; PDF S. 12 (S. 11), linke Spalte endet 31,7 mm vor dem Satzspiegel nach [6]. Die Einträge sind durch `\interlinepenalty=10000` (`report/main.tex`, Zeile 237) praktisch unteilbar; dadurch bricht die Spalte vor dem nächsten Eintrag ab, statt ihn zu beginnen.
+
+**Korrektur.** `\interlinepenalty` auf 0 (oder 100) setzen, damit ein Literaturapparat an der Spaltengrenze getrennt werden kann; zusätzlich `\widowpenalty`/`\clubpenalty` prüfen, damit kein Eintrag mit einer einzelnen Zeile endet. Seitenbudget und Satzspiegel bleiben unverändert.
+
+**Nachprüfung.** Keine Spalte der Literatur endet mehr als ca. 20 mm vor dem Satzspiegel; kein Eintrag beginnt mit einer einzelnen Zeile am Spaltenfuß.
+
+### M12 — Zahlenkonventionen: Bindestrich statt Minus, uneinheitliche Tausenderpunkte (D1)
+
+**Befund.** PDF S. 6 (S. 5): „100 - 96 = 4 K“ und „36 - 32 = 4 K“ mit Bindestrich; PDF S. 8 (S. 7): „-5,93 Minuten“; PDF S. 15, Tabelle 3: „-69,6“, „-16,7“, „-2,2“. Tausenderpunkte sind uneinheitlich: „25.000 m³“ (S. 4) und „1.650 Mrd. m³“ (S. 7) gegen „2869 m³“ (S. 9), „8760“ (S. 6), „1982,3“ (S. 10), „112110“ (S. 5).
+
+**Korrektur.** Negative Werte in Text und Tabellen mit `$-$` bzw. `\textminus` setzen; Tausenderpunkte einheitlich als „.“ („2.869“, „8.760“, „1.982,3“, „112.110“) oder als schmales Spatium. 12 pt und Tabellenbreite bleiben unverändert.
+
+**Nachprüfung.** Alle negativen Werte zeigen ein Minuszeichen in Mathematikbreite; alle fünfstelligen Zahlen tragen denselben Tausendertrenner.
+
+## 3. Optionale Verbesserungen (kein materieller Mangel)
+
+1. **Installationsschema:** fehlt weiterhin. Der frühere Rat hat es als optional eingestuft; ich werte das Fehlen daher nicht als Mangel. Falls es ergänzt wird: mindestens 12 pt beschriftet und im vorhandenen Budget (die 119 mm freie Spalte auf S. 14 oder die freie 15. Seite) unterbringen, ohne die 15-Seiten-Grenze zu reißen.
+2. **Abbildung 2** (kumulierte Barwertkosten) ist auf 158 mm Breite für zwei nahezu gerade Linien sehr breit und flach; eine Spaltenbreite würde ca. 60 mm Höhe sparen, ohne Erkenntnis zu verlieren. Kein Mangel, nur Budgetkomfort.
+3. **Abschnitt 5** („Nachweis, Falsifikation und Modellprüfung“) ist eine lange Folge gleichrangiger Absätze; zwei kursive Run-in-Überschriften („Messprogramm“, „Abbruchkriterien“) würden die Lesbarkeit erhöhen, ohne Inhalt zu ändern.
+4. **Tabelle 4:** Die Einheiten von `Q` und `P_el` stehen nur in der Unterschrift; ein „in MW“ in der Kopfzeile würde die Unterschrift entlasten.
+5. **Fette H1-Spalte** in Tabelle 2 und 5: Ein Halbsatz in der Unterschrift („H1 fett“) würde die Auszeichnung explizit machen; derzeit ist sie nur aus der Kopfzeile ableitbar.
+6. **Sprachliche Glättung:** „Elektrik im Mittelbetrieb“ → „elektrische Leistung im Mittelbetrieb“; [22] „Zhang et al.“ mit vollständiger Autorenliste, wenn die bibliografische Form vereinheitlicht werden soll.
+
+## 4. Begründung der 10 in D5 — dokumentierter Versuch, einen formalen Mangel zu finden
+
+Ich habe D5 gezielt gegen die Regeln aus `compliance/regeln.md` geprüft und keinen verbleibenden Verstoß gefunden:
+
+1. **Format:** A4 (595,28 × 841,89 pt), eine PDF, deutsch, 15 Seiten (1 Deckblatt + 14 nummerierte).
+2. **Ränder:** Geometrie 26 mm; gemessene Tintenausdehnung links 25,80 mm, rechts 25,26 mm, oben 26,30 mm, Fußzeile 26,08 mm. Kein Rand unterschreitet 25 mm.
+3. **Schrift und Zeilenabstand:** Fließtext 12 pt, Grundlinie 14,4 pt (1,2); Überschriften 14 pt; Titel 22 pt; Abbildungsbeschriftungen 12,7–15,3 pt. Die einzigen kleineren Zeichen sind Sub- und Superskripte (8,7 pt), was zulässig ist. Kein Fließtext unter 12 pt.
+4. **Deckblatt:** Wettbewerbsname „PlaNeT SimTech“, Aufgabenstellung, Test-Team-ID, Datum 07.11.2026; keine Namen, keine Schulangabe; PDF-Metadaten ohne Autor.
+5. **Pflichtaufbau:** Zusammenfassung, Einführung, Methode, Ergebnisse, Diskussion (Abschnitt 4 „Betrieb, Standort und Diskussion“), Schlussfolgerung, „Verbesserungsmöglichkeiten bei mehr Bearbeitungszeit“.
+6. **Zusammenfassung:** einspaltig in der linken Spalte, deutlich unter einer Seite.
+7. **Seitenbudget:** Haupttext bis S. 10; Literatur beginnt auf S. 10; Literatur und Anhang beanspruchen S. 10–14, also 4,5 von 5 erlaubten weiteren Seiten.
+8. **Seitenzählung:** Deckblatt unnummeriert, Druckseiten 1–14, Fußzahl mittig, innerhalb des 25-mm-Rands.
+9. **Zitate:** [1]–[25] im Text, alle 25 Quellen zitiert, keine undefinierten Verweise, kein `??`. Internetquellen mit Institution/Autor, Titel, URL und Abrufdatum 07.11.2026.
+10. **NIST-Eintrag [4]:** alle drei Abfrage-URLs vollständig, mit den zur jeweiligen Tabelle passenden Parametern (1,01325 bar/0–100 °C/10 K; 3,17080686 bar/130–140 °C/1 K; SatP 32–100 °C/1 K), jeweils mit Abrufdatum.
+11. **KI-Offenlegung:** System (Kimi K3.1 Pro, DeepSeek-V4.1-Flash), Ort/Art (Recherche, Code, Text, Grafiken, Review) und Umfang (gesamter Bericht) in Anhang A; keine KI-Aussage als alleinige Datenquelle.
+12. **Dateiname und Abgrenzung:** `TEST-K31pro-max.pdf` als Testkennung; Präsentation und Video sind nicht Lieferumfang und wurden nicht bewertet.
+
+Geprüft und **nicht** gefunden: US-Letter-Format, 10-pt-Fließtext, fehlende Abrufdaten, fehlende Pflichtabschnitte, Autorennamen, undefinierte Referenzen, unvollständige NIST-URLs, fehlende KI-Offenlegung. Die menschlichen Restaufgaben (offizielle Team-ID, Rechtefreigabe, fachliche Prüfung, Einreichung) sind auftragsgemäß keine Papermängel. Deshalb ist die 10 in D5 gerechtfertigt.
+
+## 5. Die ausdrücklich verlangten Einzelprüfungen
+
+| Prüfpunkt | Ergebnis |
+|---|---|
+| Einspaltige Zusammenfassung | **Erfüllt** (eine Spalte, < 1 Seite). Aber: Zahl/Einheit-Riss „2152,5 / MW.“ und eine stark gespreizte Zeile (M1, M2). |
+| Anhang A oben auf PDF S. 14 | **Erfüllt** (Überschrift bei y = 74,6 pt). Aber: einziger Flattersatzteil (M5). |
+| Anhang B auf PDF S. 14 und 15 | **Erfüllt** (Überschrift, Abb. 3 und Unterschrift rechts auf S. 14; Tab. 3/4 links, Tab. 5 rechts auf S. 15). Aber: 119 mm Leerraum unter Abb. 3 (M10). |
+| Installationsschema | **Fehlt weiterhin.** Als optional eingestuft, kein materieller Mangel; Empfehlung in Abschnitt 3. |
+| Drei vollständige NIST-URLs | **Erfüllt.** Alle drei URLs stehen vollständig in [4]; die Umbrüche erfolgen an `&`, `/` und `.` und bleiben lesbar. |
+
+## 6. Urteil zur Design-Stoppregel
+
+**Die Design-Stoppregel ist nicht erfüllt.**
+
+- D1 = 7, D2 = 8, D4 = 7, D6 = 8 — vier Kategorien liegen unter 9.
+- Die materiellen Einwände M1–M12 sind ungelöst; M1 (Zahl/Einheit), M2 (Spreizung), M3 (Dezimalkomma) und M9 (Abb.-3-Kollision) betreffen genau die Klassen, die der frühere Rat adressiert hatte, und sind im gerenderten PDF nachweisbar.
+- D3 = 9 und D5 = 10 erfüllen ihre Teilanforderungen; die Stoppregel verlangt aber mindestens 9 in **jeder** Kategorie und keine ungelösten materiellen Einwände.
+
+**Fairness gegenüber der Revision:** Geschlossen sind der frühere Leerraum um Gleichung 4 (kein Loch mehr im Haupttext), die Platzierung von Anhang A/B auf S. 14, die Tabellen 3/4 links und 5 rechts auf S. 15, die drei vollständigen NIST-URLs, die fette H1-Spalte in Tab. 2/5, die Symlog-Erklärung, die Achsentitel und ≥ 12 pt in Abb. 3 sowie Worttrennungen über Spaltengrenzen (keine gefunden). Nicht geschlossen sind die geschützten Einheiten, die Zeilenspreizung, die Dezimalkomma-Typografie und die Kollisionen in Abb. 3; der Leerraum wurde von Gleichung 4 auf S. 14 verschoben, nicht beseitigt.
+
+**Empfehlung für die nächste Revision:** Zuerst M1 (Einheitenbindung) und M3 (`{,}`) beheben — beide sind kleine, mechanische Änderungen mit großer sichtbarer Wirkung. Danach M10 (Seitenumbruch S. 14) und M6–M8 (Tabellenspalten), zuletzt M2 (Satzumformulierung) und M5 (Anhang-A-Blocksatz). Nach der Korrektur dieselben 15 Seiten und die drei D4RT-Seiten erneut vergleichen; die Stoppregel ist erst bei ≥ 9 in allen sechs Kategorien und ohne offene materielle Einwände erfüllt.
+
+## 7. Messprotokoll (Auszug)
+
+**Seiten und Ränder**
+
+| Größe | Messwert |
+|---|---|
+| PDF-Seiten | 15 (1 + 14) |
+| Format | 595,28 × 841,89 pt = A4 |
+| Linker Rand (Tinte) | 73,14 pt = 25,80 mm |
+| Rechter Rand (Tinte) | 71,61 pt = 25,26 mm |
+| Oberer Rand (Tinte) | 74,57 pt = 26,30 mm |
+| Fußzeile | 73,94 pt = 26,08 mm über Unterkante |
+| Satzspiegel unten | 745,5 pt; 34,0 mm Rand |
+
+**Spaltenenden (freie Höhe bis zum Satzspiegel)**
+
+| Seite | links | rechts |
+|---|---|---|
+| 5 | 23,9 mm | 4,5 mm |
+| 6 | 2,5 mm | 33,1 mm |
+| 11 | 6,6 mm | 30,0 mm |
+| 12 | 31,7 mm | 8,5 mm |
+| 13 | 18,7 mm | 86,3 mm |
+| 14 | voll | **119,2 mm** |
+| 15 | 84,9 mm | 74,8 mm |
+
+**Schriftgrößen (PDF-textlayer, Seiten 2–15)**
+
+| Größe | Verwendung |
+|---|---|
+| 12 pt | Fließtext, Tabellen, Unterschriften, Fußzahl |
+| 14 pt | Abschnitts- und Anhangüberschriften |
+| 16 pt | „PlaNeT SimTech“ auf dem Deckblatt |
+| 22 pt | Titel |
+| 12,7–15,3 pt | Abbildungsbeschriftungen (DejaVu Sans) |
+| 8,7 pt | ausschließlich Sub-/Superskripte (126 Zeichen) |
+
+**Gemessene Wortabstände (Normalspatium ca. 3 pt)**
+
+| Ort | Zeile | Abstand |
+|---|---|---|
+| S. 2, Zusammenfassung | „betroffenen Wasserfluss und höchstens“ | 12,5 pt |
+| S. 3, Abschn. 2.2 | „für positive Differenzen. Natürliche“ | 17,4 pt |
+| S. 10, Abschn. 5 | „Vierundzwanzig Tests und interne“ | 19,6 pt |
+| S. 11, Abschn. 5 | „kleiner Teilstrom- und Siedeschutzfälle,“ | 10,9 pt |
+
+**Abbildung 3 (PDF S. 14), Kollisionsbefund**
+
+| Element | Koordinate |
+|---|---|
+| „1000“ (rechtes Panel) | x = 412,0–446,0 pt, y = 116,6 pt |
+| p90+20-%-Linie (linkes Panel) | senkrechte Strichpunktlinie, kreuzt die „1“ von „1000“ |
+| „Anzahl“ (rechtes Panel) | x = 393,7–409,3 pt — im Plotbereich des linken Panels |
+| „2000“ (links) / „0“ (rechts) | 427,9 pt / 437,5 pt — ca. 10 pt Abstand |
