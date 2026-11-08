@@ -1,0 +1,7 @@
+{
+  "taskId": "node:delegated-task:command%3Amcp%3A33ec13a8-fb34-4048-aba2-ddbca57b8f6b%3Adelegate-task%3Apaper-design-round20-kimi",
+  "status": "completed",
+  "providerInstanceId": "kimi",
+  "model": "kimi-code/k3.1-pro",
+  "report": "kimi.md"
+}
