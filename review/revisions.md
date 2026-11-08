@@ -394,6 +394,14 @@ Die zweite Design-Runde war nicht bestanden, vergab aber bei beiden Reviewern D5
 
 Die dritte Design-Runde war nicht bestanden. Die neue Revision enthält 24 bestandene Modelltests und 15 Seiten mit 10 Haupttext- und 5 Literatur-/Anhangsseiten. Die wissenschaftlichen Ergebnisdateien sind unverändert. Vor der nächsten Bewertung ist die Archivreproduktion erforderlich. Frühere Punktzahlen werden nicht übernommen.
 
+## Befund aus Design-Runde 18
+
+| Befund | Konkrete Änderung oder begründete Grenze | Verifikation |
+| --- | --- | --- |
+| Beide Reviewer, 77 bis 80 mm Leerraum auf PDF-Seite 7 | Abbildung 2 nutzt 90 % der Spaltenbreite und eine kürzere Unterschrift. Sie bleibt nach H3 und vor Abschnitt 4. Die effektive Schrift bleibt über 12 pt, der Leerraum ist deutlich reduziert. | `report/main.tex`, PDF-Seite 7, `make verify` |
+
+Die vierte Design-Runde war nicht bestanden, vergab aber bei beiden Reviewern D5 10 für formale Compliance. Die neue Revision enthält 24 bestandene Modelltests und 15 Seiten mit 10 Haupttext- und 5 Literatur-/Anhangsseiten. Die wissenschaftlichen Ergebnisdateien sind unverändert. Vor der nächsten Bewertung ist die Archivreproduktion erforderlich. Frühere Punktzahlen werden nicht übernommen.
+
 ## Aktueller Lieferumfang
 
 Nach der Nutzerkorrektur ist nur der Research Paper Produkt. Die Kriterien 1 bis 6, 8 bis 11 und 12a bleiben Prüfgegenstand. Kriterium 12b und die Präsentationsartefakte werden nicht fortentwickelt. Nach den fachlichen Council-Runden folgt ein eigener Design-Council für den Research Paper.
