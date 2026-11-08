@@ -365,6 +365,22 @@ Alle gedruckten Gleichungen wurden auf Einheiten geprüft. Die Zahlen bleiben un
 
 Die Design-Stoppregel war in Runde 15 nicht erfüllt. Die neue Revision enthält 24 bestandene Modelltests und 15 Seiten mit 10 Haupttext- und 5 Literatur-/Anhangsseiten. Die Rechenwerte sind unverändert. Vor den erneuten Design- und Fachbewertungen ist die Archivreproduktion erforderlich. Frühere Punktzahlen werden nicht übernommen.
 
+## Befunde aus Design-Runde 16
+
+| Befund | Konkrete Änderung oder begründete Grenze | Verifikation |
+| --- | --- | --- |
+| M1 und beide Kimi-Befunde, Zahl-Einheit-Risse | Alle 111 expliziten Leerzeichen nach Zahlenmakros sind durch unbrechbare Verbindungen ersetzt. Auch literal gesetzte Einheiten sind geschützt. Ein eigener PDF-Scan findet keine verbleibende Zahl-Einheit-Trennung außerhalb der Achsenbilder. | `report/main.tex`, PDF-Text aller Seiten |
+| M2, gespreizte Zeilen | Die betroffenen Sätze in Zusammenfassung, Methodik, Kosten und Nachweis sind gekürzt oder neu geordnet. Die Notdehnung beträgt 3 em. | PDF-Seiten 2, 3, 6, 10 und 11 |
+| M3, Dezimalkomma-Spatien | Die Dezimalkommata in Stoffwerten, Barwertformel und Handrechnung stehen als `{,}` im Mathematiksatz. | Gleichung 4, Handrechnung in Anhang A |
+| M4, versetzte Nummer von Gleichung 6 | Die Speicherheizleistung steht zweizeilig in `aligned`, die Nummer steht nicht mehr allein unter der Formel. | PDF-Seite 4, Gleichung 6 |
+| M5, Anhang A | Der Anhang ist wieder im Blocksatz. KI-Einstellungen, Buildbefehle und Reproduktionshinweise sind umformuliert, damit keine Kommandonamen oder großen Wortabstände entstehen. | PDF-Seite 14 |
+| M6 bis M8, Tabellenwaisen | Leistungseinheiten stehen in Unterschriften oder bei ihren Werten. Die Sensitivitätstabelle bricht nach dem Szenarionamen um, hält Wert und Einheit aber zusammen. Tabellen 1 und 2 sind angepasst, H1 bleibt fett. | `model/run_all.py`, PDF-Seiten 4, 7 und 15 |
+| M9, Kollisionen in Abbildung 3 | Die Histogramme stehen übereinander und nutzen jeweils die volle Spaltenbreite. Kurze numerische Legenden und eine undurchsichtige weiße Legendenfläche verhindern Linien- und Textkollisionen. | `model/run_all.py`, PDF-Seite 14, mindestens 12 pt |
+| M10 und M11, Spaltenlücken | Die vertikale Abbildung nutzt die rechte Spalte auf Seite 14. Literaturangaben dürfen an geeigneten Stellen umbrechen, ohne einzelne Zeilen am Spaltenfuß zu erzeugen. | PDF-Seiten 11 bis 14 |
+| M12, Zahlenkonventionen | `latex_number` formatiert alle Makros und generierten Tabellenwerte mit deutschem Dezimalkomma und Tausenderpunkt. Negative Werte stehen im Mathematikmodus. | `model/run_all.py`, `report/generated/`, PDF |
+
+Die zweite Design-Runde war nicht bestanden, vergab aber bei beiden Reviewern D5 10 für die formale Umsetzung. Die neue Revision enthält 24 bestandene Modelltests und 15 Seiten mit 10 Haupttext- und 5 Literatur-/Anhangsseiten. Die wissenschaftlichen Ergebnisdateien sind unverändert. Vor der nächsten Bewertung ist die Archivreproduktion erforderlich. Frühere Punktzahlen werden nicht übernommen.
+
 ## Aktueller Lieferumfang
 
 Nach der Nutzerkorrektur ist nur der Research Paper Produkt. Die Kriterien 1 bis 6, 8 bis 11 und 12a bleiben Prüfgegenstand. Kriterium 12b und die Präsentationsartefakte werden nicht fortentwickelt. Nach den fachlichen Council-Runden folgt ein eigener Design-Council für den Research Paper.

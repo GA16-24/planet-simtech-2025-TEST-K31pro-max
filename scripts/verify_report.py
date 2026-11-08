@@ -49,7 +49,8 @@ def main() -> None:
     require("Szenariotemperatur in °C" in full_text, "Achsenlabel der Szenariotemperatur fehlt")
     require("Tiefe in °C" not in full_text, "Temperaturachse ist fälschlich als Tiefe beschriftet")
     require("Symlog" in full_text, "Nichtlineare Kühlleistungsachse ist nicht deklariert")
-    compact_text = re.sub(r"\s+", "", full_text)
+    compact_pages = [re.sub(rf"\s*{index}\s*$", "", text) if index > 0 else text for index, text in enumerate(page_texts)]
+    compact_text = re.sub(r"\s+", "", "\n".join(compact_pages))
     nist_urls = [
         "https://webbook.nist.gov/cgi/fluid.cgi?Action=Data&Wide=on&ID=C7732185&Type=IsoBar&Digits=6&P=1.01325&TLow=0&THigh=100&TInc=10&RefState=DEF&TUnit=C&PUnit=bar&DUnit=kg%2Fm3&HUnit=kJ%2Fkg&WUnit=m%2Fs&VisUnit=uPa*s&STUnit=N%2Fm",
         "https://webbook.nist.gov/cgi/fluid.cgi?Action=Data&Wide=on&ID=C7732185&Type=IsoBar&Digits=6&P=3.17080686&TLow=130&THigh=140&TInc=1&RefState=DEF&TUnit=C&PUnit=bar&DUnit=kg%2Fm3&HUnit=kJ%2Fkg&WUnit=m%2Fs&VisUnit=uPa*s&STUnit=N%2Fm",
@@ -62,13 +63,13 @@ def main() -> None:
     source = (ROOT / "report" / "main.tex").read_text(encoding="utf-8")
     require(r"\frac{10^6\,Q_{\mathrm{Kuehl,MW}}(t)" in source, "Ausfallgleichung muss MW in W umrechnen")
     require(r"\dot Q=\rho\,\dot V\,c_p\,(T_{ein}-T_{ziel})/10^6." in source, "Sensible Wärme muss in MW angegeben werden")
-    require(r"C=\rho\,\dot V\,c_p/10^6=\KDurchfluss\ \mathrm{MW/K}" in source, "Wärmekapazitätsstrom muss in MW/K angegeben werden")
+    require(r"C=\rho\,\dot V\,c_p/10^6=\KDurchfluss~\mathrm{MW/K}" in source, "Wärmekapazitätsstrom muss in MW/K angegeben werden")
     require(r"{10^6\cdot10\cdot365\cdot86400}" in source, "Speicherheizleistung muss in MW angegeben werden")
     require("absolute Temperaturen in Kelvin" in source, "Reversible COP-Temperaturen müssen in Kelvin definiert sein")
     test_source = (ROOT / "model" / "test_model.py").read_text(encoding="utf-8")
     test_count = len(re.findall(r"^    def test_", test_source, flags=re.M))
     require(test_count == 24, f"Erwartete 24 Testmethoden, gefunden {test_count}")
-    require("Vierundzwanzig Tests" in source, "Testzahl im Bericht ist veraltet")
+    require("24 Tests" in source, "Testzahl im Bericht ist veraltet")
     source_without_urls = re.sub(r"\\(?:url|href)\{[^{}]*\}", "", source)
     require(not re.search(r"(?<!\\)%", source_without_urls), "Unmaskiertes Prozentzeichen im LaTeX-Quelltext")
     figure_numbers = [int(number) for number in re.findall(r"\\caption\{Abbildung\s+(\d+)", source)]
