@@ -431,6 +431,12 @@ Die fünfte Design-Runde war nicht bestanden. Diese Revision enthält 24 bestand
 
 Die sechste Design-Runde war nicht bestanden. Diese Revision enthält 24 bestandene Modelltests und 15 Seiten mit 10 Haupttext- und 5 Literatur-/Anhangsseiten. `make verify` und die Sichtprüfung bestanden ohne Overfull-Warnungen. Die wissenschaftlichen Ergebnisdateien sind unverändert. Vor der nächsten Bewertung ist die Archivreproduktion erforderlich. Frühere Punktzahlen werden nicht übernommen.
 
+## Technische Disposition der verbleibenden Designeinwände
+
+Der Nutzer erlaubt eine eigene Abwägung darüber, welche Council-Kommentare ignoriert werden dürfen. Nach den Korrekturen bleibt die Leerfläche am Ende des Literaturverzeichnisses auf PDF-Seite 13. Sie wird als natürlicher Abschnittsabschluss und optionale Verbesserung bewertet, nicht als materieller Mangel. Quellen 19 bis 22 stehen vollständig links, Quellen 23 bis 25 vollständig rechts. Eine exaktere Balance durch getrennte Einträge, Zusatzseiten oder verschobene Anhangsinhalte wäre schlechter als die verbleibende Leerfläche.
+
+`review/rounds/round21-design/disposition.md` dokumentiert diese Entscheidung und ihre Grenzen. Sie ist keine unabhängige Reviewrunde und keine Council-Freigabe. Die Delegation von Runde 21 scheiterte an `parent_not_active`; es gibt keine neuen Punktzahlen. Die wissenschaftliche Runde 16 wurde nicht durchgeführt. Die lokale Lieferung dient der Nutzerprüfung und wird nicht als externe Abgabe oder menschliche Freigabe ausgegeben.
+
 ## Aktueller Lieferumfang
 
 Nach der Nutzerkorrektur ist nur der Research Paper Produkt. Die Kriterien 1 bis 6, 8 bis 11 und 12a bleiben Prüfgegenstand. Kriterium 12b und die Präsentationsartefakte werden nicht fortentwickelt. Nach den fachlichen Council-Runden folgt ein eigener Design-Council für den Research Paper.
