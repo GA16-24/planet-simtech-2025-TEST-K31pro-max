@@ -26,7 +26,7 @@
   saturation_table_url: https://webbook.nist.gov/cgi/fluid.cgi?Action=Data&Wide=on&ID=C7732185&Type=SatP&Digits=6&TLow=32&THigh=100&TInc=1&RefState=DEF&TUnit=C&PUnit=bar&DUnit=kg%2Fm3&HUnit=kJ%2Fkg&WUnit=m%2Fs&VisUnit=uPa*s&STUnit=N%2Fm
   source_data: data/nist_saturation_32_100.tsv
   accessed: 07.11.2026
-  use: Dichte, Wärmekapazität, Enthalpie und Sättigung; Drucktabelle bei 3,17007 bar und Sättigungstabelle von 32 bis 100 °C für die Verdampfungsenthalpie
+  use: Dichte, Wärmekapazität, Enthalpie und Sättigung; Drucktabelle bei 3,17080686 bar und Sättigungstabelle von 32 bis 100 °C für die Verdampfungsenthalpie
 - id: 5
   author: International Association for the Properties of Water and Steam
   title: Revised Release on the IAPWS Industrial Formulation 1997
@@ -118,12 +118,12 @@
   accessed: 07.11.2026
   use: Einzelnes Gerätepreis-Ankerbeispiel, keine Projekt offerte
 - id: 19
-  author: HAW Hamburg
-  title: Kälte- und Klimatisierungssysteme, wirtschaftlicher Vergleich
+  author: Armin Bez
+  title: Kälte durch Wärme erzeugen. Bachelorthesis, HAW Hamburg
   year: 2012
   url: https://reposit.haw-hamburg.de/bitstream/20.500.12738/5979/1/Bachelorthesis_Bez_Armin_20120618.pdf
   accessed: 07.11.2026
-  use: Historische Kältemaschinenkosten und VDI-2067-Annuität
+  use: Tabelle 5.6 für Kompressionskältemaschinen mit Bereichen 75 bis 125, 125 bis 350 und 185 bis 236 €/kW; Modellwert 500 €/kW bewusst darüber, Trockenkühlung und Verdunstung eigene Szenariowerte mit 30 % Aufschlag
 - id: 20
   author: Stadt Blaubeuren
   title: Kommunale Wärmeplanung

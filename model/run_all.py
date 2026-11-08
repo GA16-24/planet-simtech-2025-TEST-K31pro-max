@@ -280,10 +280,10 @@ def main() -> None:
     years = np.linspace(0.0, 12.0, 481)
     fig, axes = plt.subplots(1, 2, figsize=(9.2, 4.6))
     axes[0].plot(years, source_temperature_c(years, p), color=BLUE, lw=2)
-    axes[0].axhline(s["target_temperature_c"], color=GREEN, ls="--", lw=1, label="Regelziel 9 °C")
+    axes[0].axhline(s["target_temperature_c"], color=GREEN, ls="--", lw=1)
+    axes[0].text(0.4, 14.0, "Regelziel 9 °C", color=GREEN, va="bottom")
     axes[0].axvline(10, color=GRAY, lw=0.8)
     axes[0].set(xlabel="Jahre", ylabel="Szenariotemperatur in °C")
-    axes[0].legend(frameon=False, loc="upper left")
     for fraction, color, label in [(1.0, BLUE, "Gesamtstrom"), (0.01, ORANGE, "1 % Teilstrom"), (0.001, GREEN, "0,1 % Teilstrom")]:
         axes[1].plot(years, required_cooling_mw(years, p, fraction), color=color, lw=2, label=label)
     axes[1].set(xlabel="Jahre", ylabel="Kühlleistung in MW")
@@ -331,12 +331,12 @@ def main() -> None:
     mean_line = axes[0].axvline(final_q, color=RED, ls="--", lw=1.4, label="Mittelstrom: 877,8")
     reserve_line = axes[0].axvline(final_q * (1 + p["plant"]["reserve_fraction"]), color=GRAY, ls=":", lw=1.6, label="Mittelstrom + 20 %: 1053,3")
     design_line = axes[0].axvline(design_stage.total_mw * (1 + p["plant"]["reserve_fraction"]), color=BLUE, ls="-.", lw=1.6, label="p90 + 20 %: 2152,5")
-    axes[0].set(xlabel="Kühlleistung in MW", ylabel="Anzahl")
+    axes[0].set(xlabel="Kühlleistung in MW", ylabel="Anzahl", xlim=(0, 2300))
     axes[1].hist(npv_samples / 1e9, bins=45, color=ORANGE, alpha=0.85)
-    axes[1].axvline(npv(hybrid_staged) / 1e9, color=RED, ls="--", lw=1.4)
+    reference_line = axes[1].axvline(npv(hybrid_staged) / 1e9, color=RED, ls="--", lw=1.4, label=f"Referenz: {npv(hybrid_staged) / 1e9:.2f}".replace(".", ","))
     axes[1].set(xlabel="Barwert in Mrd. €", ylabel="Anzahl")
     axes[1].xaxis.set_major_formatter(FuncFormatter(lambda value, position: f"{value:g}".replace(".", ",")))
-    fig.legend(handles=[mean_line, reserve_line, design_line], frameon=False, ncol=1, loc="lower center", bbox_to_anchor=(0.5, 0.005))
+    fig.legend(handles=[mean_line, reserve_line, design_line, reference_line], frameon=False, ncol=2, loc="lower center", bbox_to_anchor=(0.5, 0.005))
     fig.subplots_adjust(bottom=0.43, wspace=0.40)
     save_figure(fig, "fig05_unsicherheit")
 
@@ -503,6 +503,11 @@ def main() -> None:
         writer.writerows(sensitivity)
     np.savez(OUT / "uncertainty_samples.npz", cooling_mw=q_samples, npv_eur=npv_samples, electricity_mw=electricity_samples, air_rejection_mw=air_rejection_samples)
 
+    capex_parts = variable_capex_eur(final_year, p)
+    capex_variable = sum(capex_parts.values())
+    capex_engineered = capex_variable * (1.0 + p["cost"]["engineering_contingency_fraction"])
+    capex_fixed = p["cost"]["fixed_civil_eur"] + p["cost"]["controls_eur"]
+
     macros = {
         "QFinal": (final_q, 1),
         "QFinalFull": (final_q, 3),
@@ -590,7 +595,16 @@ def main() -> None:
         "McCapexSigma": (p["uncertainty"]["capex_multiplier_sigma"], 2),
         "McSeed": (p["uncertainty"]["random_seed"], 0),
         "EvapSourceOutlet": (p["plant"]["evaporative_source_outlet_c"], 0),
-        "EvapSecondaryOutlet": (p["plant"]["wet_bulb_design_c"] + p["plant"]["evaporative_approach_k"], 0),
+        "EvapSecondaryInlet": (p["plant"]["evaporative_secondary_inlet_c"], 0),
+        "EvapSecondaryOutlet": (p["plant"]["evaporative_secondary_outlet_c"], 0),
+        "EvapSecondaryFlow": (p["plant"]["evaporative_secondary_flow_m3_s"], 1),
+        "CapexExchanger": (capex_parts["exchanger"] / 1e6, 1),
+        "CapexChiller": (capex_parts["chiller"] / 1e6, 1),
+        "CapexDryCooler": (capex_parts["dry_cooler"] / 1e6, 1),
+        "CapexBackup": (capex_parts["backup_power"] / 1e6, 1),
+        "CapexVariable": (capex_variable / 1e6, 1),
+        "CapexEngineered": (capex_engineered / 1e6, 1),
+        "CapexFixed": (capex_fixed / 1e6, 1),
         "BackupRequired": (results["design"]["required_backup_aggregates"], 0),
         "BackupInstalled": (results["design"]["installed_backup_aggregates"], 0),
         "BackupAggregateCapacity": (p["failure"]["backup_aggregate_capacity_mw"], 0),
@@ -629,17 +643,17 @@ def main() -> None:
         handle.write("\\bottomrule\n\\end{tabular}\n")
 
     with (GEN / "sensitivity.tex").open("w", encoding="utf-8") as handle:
-        handle.write("\\begin{tabular}{@{}lrrr@{}}\n\\toprule\nFall & Kühlleistung & Änderung & Barwert \\\\\n & in MW & in \\% & in Mrd. € \\\\\n\\midrule\n")
+        handle.write("\\begin{tabular*}{\\textwidth}{@{\\extracolsep{\\fill}}lrrr}\n\\toprule\nFall & Kühlleistung & Änderung & Barwert \\\\\n & in MW & in \\% & in Mrd. € \\\\\n\\midrule\n")
         for row in sensitivity:
             label = row["case"].replace("%", "\\%")
             handle.write(f"{label} & {row['final_cooling_mw']:.1f} & {100*row['relative_change']:+.1f} & {row['npv_25y_eur']/1e9:.3f} \\\\\n".replace(".", ","))
-        handle.write("\\bottomrule\n\\end{tabular}\n")
+        handle.write("\\bottomrule\n\\end{tabular*}\n")
 
     with (GEN / "flow_fractions.tex").open("w", encoding="utf-8") as handle:
-        handle.write("\\begin{tabular}{@{}lrrrr@{}}\n\\toprule\nAnteil & Kühlung & Elektrik & Investition & Barwert \\\\\n & in MW & in MW & in Mio. € & in Mrd. € \\\\\n\\midrule\n")
+        handle.write("\\begin{tabular*}{\\textwidth}{@{\\extracolsep{\\fill}}lrrrr}\n\\toprule\nAnteil & Kühlung & Elektrik & Investition & Barwert \\\\\n & in MW & in MW & in Mio. € & in Mrd. € \\\\\n\\midrule\n")
         for row in flow_fraction_scenarios:
-            handle.write(f"{100*row['affected_fraction']:.1f} \\% & {row['final_cooling_mw']:.1f} & {row['electricity_mw']:.2f} & {row['final_capex_eur']/1e6:.0f} & {row['npv_25y_eur']/1e9:.4f} \\\\\n".replace(".", ","))
-        handle.write("\\bottomrule\n\\end{tabular}\n")
+            handle.write(f"{100*row['affected_fraction']:.1f} \\% & {row['final_cooling_mw']:.1f} & {row['electricity_mw']:.2f} & {row['final_capex_eur']/1e6:.0f} & {row['npv_25y_eur']/1e9:.3f} \\\\\n".replace(".", ","))
+        handle.write("\\bottomrule\n\\end{tabular*}\n")
 
     manifest = {}
     manifest_paths = [

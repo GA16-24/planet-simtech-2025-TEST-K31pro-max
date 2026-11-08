@@ -72,9 +72,16 @@ class ModelTests(unittest.TestCase):
 
     def test_evaporative_pinch(self) -> None:
         stage = cooling_stage(10.0, self.p, technology="evaporative")
-        expected_dry = (100.0 - self.p["plant"]["evaporative_source_outlet_c"]) * self.p["water"]["density_kg_m3"] * self.p["water"]["discharge_m3_s"] * self.p["water"]["specific_heat_j_kgk"] / 1e6
+        hot_inlet = self.p["scenario"]["source_temperature_cap_c"]
+        source_outlet = self.p["plant"]["evaporative_source_outlet_c"]
+        secondary_inlet = self.p["plant"]["evaporative_secondary_inlet_c"]
+        secondary_outlet = self.p["plant"]["evaporative_secondary_outlet_c"]
+        self.assertAlmostEqual(hot_inlet - secondary_outlet, 4.0, places=9)
+        self.assertAlmostEqual(source_outlet - secondary_inlet, 4.0, places=9)
+        expected_dry = (hot_inlet - source_outlet) * self.p["water"]["density_kg_m3"] * self.p["water"]["discharge_m3_s"] * self.p["water"]["specific_heat_j_kgk"] / 1e6
+        secondary_gain = (secondary_outlet - secondary_inlet) * self.p["water"]["density_kg_m3"] * self.p["plant"]["evaporative_secondary_flow_m3_s"] * self.p["water"]["specific_heat_j_kgk"] / 1e6
         self.assertAlmostEqual(stage.dry_mw, expected_dry, places=9)
-        self.assertGreater(self.p["plant"]["evaporative_source_outlet_c"], self.p["plant"]["wet_bulb_design_c"] + self.p["plant"]["evaporative_approach_k"])
+        self.assertAlmostEqual(expected_dry, secondary_gain, places=9)
 
     def test_volume_sensitivity(self) -> None:
         low = copy.deepcopy(self.p)

@@ -52,6 +52,9 @@ plant:
   wet_bulb_design_c: 28.0
   evaporative_approach_k: 4.0
   evaporative_source_outlet_c: 36.0
+  evaporative_secondary_inlet_c: 32.0
+  evaporative_secondary_outlet_c: 96.0
+  evaporative_secondary_flow_m3_s: 2.3
   module_design_velocity_m_s: 1.2
   chiller_cop: 4.0
   performance_evidence: "COP und Feuchtkugel sind technische Szenarioannahmen, keine Herstellerkurve oder lokale Wetterextremstatistik. Ein Tarif von 138 €/MWh folgt dem BDEW-Bereich 70 bis 150 GWh und bleibt Proxy für den größeren Abnahmefall."
@@ -86,7 +89,7 @@ failure:
   full_cooling_minutes: 10.0
   controls_ups_minutes: 15.0
   backup_aggregate_capacity_mw: 35.0
-  note: "Erst 0,5 min Detektion, danach 5 min Generatorstart und 10 min bis voller Kühlung. Absolute Zeit nach Ausfall: 5,5 min Start und 10,5 min volle Kühlung. Aggregatgröße und Werte sind Szenarioannahmen, kein Zuschaltversuch."
+  note: "Erst 0,5 min Detektion, danach 5 min bis zum Generatorstart und weitere 5 min bis voller Kühlung. Absolute Zeit nach Ausfall: 5,5 min Start und 10,5 min volle Kühlung. Die 15-min-USV hat 4,5 min Reserve. Aggregatgröße und Werte sind Szenarioannahmen, kein Zuschaltversuch."
 
 air:
   density_kg_m3: 1.2
@@ -104,7 +107,7 @@ cost:
   price_year: 2026
   legacy_reference_year: 2012
   legacy_escalation_factor: 1.30
-  legacy_basis: "Pauschaler Szenarioaufschlag von 30 % auf Kälte-, Trockenkühl- und Verdunstungskosten der Literaturbasis 2012, kein amtlicher Baupreisindex und kein Angebot"
+  legacy_basis: "HAW 2012 nennt in Tabelle 5.6 für Kompressionskältemaschinen 75 bis 125, 125 bis 350 und 185 bis 236 €/kW. Der Modellwert 500 €/kW liegt bewusst darüber. Trockenkühler 120 und Verdunstung 80 €/kW sind eigene Szenariowerte. Auf alle drei wird ein pauschaler Aufschlag von 30 % angesetzt, kein amtlicher Index und kein Angebot."
   exchanger_eur_kw: 15.0
   chiller_eur_kw: 500.0
   dry_cooler_eur_kw: 120.0
@@ -120,7 +123,7 @@ cost:
   fixed_cost_basis: "Tiefbau und Steuerung sind separate All-in-Schätzposten einschließlich projektbezogener Reserve und erhalten daher nicht erneut den 60-%-Zuschlag der variablen Ausrüstung."
   water_price_eur_m3: 0.50
   evaporative_hygiene_eur_year: 500000.0
-  evidence: "Exchanger vendor anchor and chiller literature range are documented separately. Dry coolers, civil works, backup power, multipliers and water price are explicit scenario estimates, not quotations."
+  evidence: "HAW ranges 75-350 and 185-236 €/kW are separated from the deliberately higher 500 €/kW scenario value. Dry cooler 120 and evaporative 80 €/kW are independent scenario estimates. Civil works, backup power, multipliers and water price are not quotations."
 
 passive:
   heat_transfer_w_m2k: 10.0

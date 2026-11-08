@@ -233,6 +233,36 @@ Die neue Revision enthält 19 bestandene Modelltests und 13 Seiten. Frühere Pun
 
 Die neue Revision enthält 19 bestandene Modelltests und 13 Seiten. Frühere Punktzahlen werden nicht übernommen. Vor Runde 8 sind Modell, PDF, alle Seitenbilder und die Archivreproduktion erneut zu prüfen.
 
+## Befunde aus Runde 8, DeepSeek
+
+| Befund | Konkrete Änderung oder begründete Grenze | Verifikation |
+| --- | --- | --- |
+| M1, 9-°C-Legende kollidiert und ist falsch zugeordnet | Direkte Beschriftung neben der 9-°C-Linie statt entfernter Legende | `model/run_all.py`, `report/figures/fig01_prognose_last.pdf`, PDF-Seite 5 |
+| M2, Appendixtext und kleine Handrechnung | Absatzabstand und Einzug festgelegt, Handrechnung als mehrzeilige Displayformel gesetzt | `report/main.tex`, Anhang A, PDF-Seite 12 |
+| M3 und M4, Anhangsumbruch und schwach genutzte Fläche | Anhang A beginnt nicht mehr als isolierte Überschrift. Anhang B nutzt eine seitenbreite Abbildung und zwei seitenbreite Tabellen. Ein weiterer erzwungener Umbruch vor Anhang B wurde verworfen, weil er die Floats auf eine fast leere Folgeseite verschob. | `report/main.tex`, `scripts/verify_report.py`, PDF-Seiten 11 bis 13 |
+| M5, unbeschriftete Referenzlinie und uneinheitliche Präzision | Kostenreferenz direkt erklärt, erweiterte Kapazitätsachse und drei Nachkommastellen in beiden Tabellen | `model/run_all.py`, `report/generated/sensitivity.tex`, `report/generated/flow_fractions.tex`, PDF-Seite 13 |
+| M6, H2-Temperaturbeschreibung | Mit Kimis thermodynamischem Befund als Gegenstrommodell neu gefasst | `plant.evaporative_secondary_*`, `test_evaporative_pinch`, Bericht §3.3 |
+| M7, Ausfallsequenz | 0,5 min Detektion, 5 min Generatorstart und weitere 5 min bis voller Kühlung; 10,5 min absolut und 4,5 min USV-Reserve | `data/parameters.yml`, `model/validation.py`, Bericht §4.2 |
+| M8 und M9, Diesel- und Siedeschutzvergleich | Erwartungslast 89,4 MW im 95-%-Kostenfall und 234,336 MW für den 48-Stunden-Vorrat getrennt; Siedeschutz bei 2,3 m³/s und H1 bei 4,7 m³/s ausdrücklich nicht gleichgesetzt | Bericht §4.4, `availability_scenarios`, `boil_guard` |
+| M10 und M11, unklare Alternativen und fehlendes Zitat | H4 bis H7 mit Namen im Paper genannt; 165 km² mit [2,3] belegt | Bericht §§1, 2.1 und 3.3 |
+| M12, Fachbegriffe in der Zusammenfassung | Gerätestränge durch Kühlmodule ersetzt und die Temperaturrampe in Alltagssprache erklärt | PDF-Seite 2, `scripts/verify_report.py` |
+| M13, unzureichender Leerseitentest | Jede Seite braucht mindestens 200 Textzeichen und 200 pt vertikale Textausdehnung; alle Seiten erneut gerendert und gesichtet | `scripts/verify_report.py`, `make verify`, `review/rendered/` |
+| M14, fehlende Investitionsaufteilung | Wärmetauscher, Kältemaschinen, Trockenkühler, Ersatzstrom, Engineeringzuschlag und separate Festposten einzeln ausgewiesen | Bericht §3.3, generierte Kostenmakros |
+| M15, optionale Satzverbesserung | Keine ungeprüfte globale Satzänderung. Die Zusammenfassung bleibt Gegenstand des separaten Design-Councils. | gerenderte PDF-Seite 2 |
+| Reale Umsetzbarkeit und externe Reproduktion | Keine Standort-, Netz- oder Herstellerzusage erfunden. Die Archivprüfung gilt nur in der dokumentierten Referenzumgebung. | Bericht §§4.3, 5 und 6; neuer Archivnachweis für Runde 9 |
+
+## Befunde aus Runde 8, Kimi
+
+| Befund | Konkrete Änderung oder begründete Grenze | Verifikation |
+| --- | --- | --- |
+| M1, H2-Pinch am heißen Ende 0 K | Gegenstrom mit Quellstrom 100 bis 36 °C und Sekundärkreislauf 32 bis 96 °C. Beide Endabstände betragen 4 K. Der Sekundärstrom von 2,3 m³/s hat denselben Wärmekapazitätsstrom. | `plant.evaporative_secondary_*`, `test_evaporative_pinch` prüft beide Pinchstellen und die Energiebilanz; H2 617,3/260,4 MW und 8,32 Mio. m³/Jahr |
+| M2, Kostenherkunft und Druckregister | HAW Tabelle 5.6 nennt für Kompressionskältemaschinen 75 bis 125, 125 bis 350 sowie 185 bis 236 €/kW, getrennt vom bewusst höheren Modellwert 500 €/kW. Trockenkühlung und Verdunstung sind eigene Szenariowerte. Hydrostatischer Druck auf 3,17080686 bar korrigiert. | `data/parameters.yml`, `sources/registry.yml`, Bericht §§2.2 und 3.1; HAW Tabelle 5.6 direkt geprüft |
+| M3, Anhangslayout | Mit DeepSeek M2 bis M4 überarbeitet und anhand der gerenderten Seiten geprüft | PDF-Seiten 11 bis 13, `review/rendered/report_contact.png` |
+| M4, 9-°C-Label | Mit DeepSeek M1 direkt an der Ziellinie beschriftet | PDF-Seite 5 |
+| M5, menschliche Abgabevoraussetzungen | Keine offizielle Team-ID, Rechtefreigabe, menschliche Prüfung oder Einreichung behauptet. Diese Schritte bleiben offen. | `README.md`, `PROVENANCE.md`, Anhang A |
+
+Die neue Revision enthält 19 bestandene Modelltests und 13 Seiten mit 8 Haupttext- und 4 Literatur-/Anhangsseiten. Frühere Punktzahlen werden nicht übernommen. Vor Runde 9 sind Modell, PDF, alle Seitenbilder und die Archivreproduktion erneut zu prüfen.
+
 ## Aktueller Lieferumfang
 
 Nach der Nutzerkorrektur ist nur der Research Paper Produkt. Die Kriterien 1 bis 6, 8 bis 11 und 12a bleiben Prüfgegenstand. Kriterium 12b und die Präsentationsartefakte werden nicht fortentwickelt. Nach den fachlichen Council-Runden folgt ein eigener Design-Council für den Research Paper.

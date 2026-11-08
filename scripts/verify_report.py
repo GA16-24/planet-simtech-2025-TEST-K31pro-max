@@ -80,10 +80,13 @@ def main() -> None:
             require(abs(page.width - 595.276) < 1.0 and abs(page.height - 841.89) < 1.0, f"Seite {index + 1} ist nicht A4")
             body_chars = [char for char in page.chars if char["text"].strip()]
             if body_chars:
+                text_length = len("".join(char["text"] for char in body_chars).strip())
+                require(text_length >= 200, f"Seite {index + 1} enthält zu wenig Text")
                 min_x = min(char["x0"] for char in body_chars)
                 max_x = max(char["x1"] for char in body_chars)
                 min_top = min(char["top"] for char in body_chars)
                 max_bottom = max(char["bottom"] for char in body_chars)
+                require(max_bottom - min_top >= 200, f"Seite {index + 1} nutzt zu wenig vertikalen Raum")
                 require(min_x >= margin_pt, f"Seite {index + 1}: Inhalt links unter 25 mm")
                 require(max_x <= page.width - margin_pt, f"Seite {index + 1}: Inhalt rechts über 25 mm")
                 require(min_top >= margin_pt, f"Seite {index + 1}: Inhalt oben unter 25 mm")
