@@ -107,26 +107,28 @@ def passive_area_m2(cooling_mw: float, p: dict[str, Any]) -> float:
     return cooling_mw * 1e6 / (passive["heat_transfer_w_m2k"] * passive["driving_temperature_k"])
 
 
-def backup_fuel_liters(p: dict[str, Any]) -> float:
+def backup_fuel_liters(p: dict[str, Any], technology: str = "hybrid") -> float:
     plant = p["plant"]
-    final_electricity_mw = cooling_stage(p["scenario"]["forecast_years"], p, affected_fraction=design_flow_ratio(p)).electricity_mw
+    final_electricity_mw = cooling_stage(p["scenario"]["forecast_years"], p, affected_fraction=design_flow_ratio(p), technology=technology).electricity_mw
     return final_electricity_mw * 1000.0 * plant["backup_duration_hours"] / (plant["backup_thermal_efficiency"] * plant["diesel_energy_kwh_l"])
 
 
-def backup_fuel_cost_eur(p: dict[str, Any]) -> float:
-    return backup_fuel_liters(p) * p["plant"]["diesel_price_eur_l"]
+def backup_fuel_cost_eur(p: dict[str, Any], technology: str = "hybrid") -> float:
+    return backup_fuel_liters(p, technology) * p["plant"]["diesel_price_eur_l"]
 
 
 def variable_capex_eur(year: float, p: dict[str, Any], technology: str = "hybrid") -> dict[str, float]:
     c = p["cost"]
-    stage = cooling_stage(year, p, technology=technology if technology in {"hybrid", "evaporative"} else "hybrid")
+    stage_technology = technology if technology in {"hybrid", "evaporative"} else "hybrid"
+    stage = cooling_stage(year, p, technology=stage_technology)
     capacity_scale = design_flow_ratio(p) * (1.0 + p["plant"]["reserve_fraction"])
-    design_electricity_mw = cooling_stage(p["scenario"]["forecast_years"], p, affected_fraction=design_flow_ratio(p)).electricity_mw
-    reference_scenario = dict(p["scenario"], target_temperature_c=p["scenario"]["initial_temperature_c"])
+    design_affected_fraction = design_flow_ratio(p) * p["scenario"]["affected_flow_fraction"]
+    design_electricity_mw = cooling_stage(p["scenario"]["forecast_years"], p, affected_fraction=design_affected_fraction, technology=stage_technology).electricity_mw
+    reference_scenario = dict(p["scenario"], target_temperature_c=p["scenario"]["initial_temperature_c"], affected_flow_fraction=1.0)
     reference_p = dict(p, scenario=reference_scenario, hydrology=dict(p["hydrology"], design_discharge_m3_s=p["hydrology"]["discharge_p90_m3_s"]))
-    reference_electricity_mw = cooling_stage(p["scenario"]["forecast_years"], reference_p, affected_fraction=p["hydrology"]["discharge_p90_m3_s"] / p["water"]["discharge_m3_s"]).electricity_mw
+    reference_electricity_mw = cooling_stage(p["scenario"]["forecast_years"], reference_p, affected_fraction=design_flow_ratio(reference_p), technology=stage_technology).electricity_mw
     electricity_ratio = design_electricity_mw / reference_electricity_mw if reference_electricity_mw > 0.0 else 0.0
-    backup = (c["backup_power_eur"] + backup_fuel_cost_eur(reference_p)) * electricity_ratio
+    backup = (c["backup_power_eur"] + backup_fuel_cost_eur(reference_p, stage_technology)) * electricity_ratio
     if technology == "hybrid":
         return {
             "exchanger": stage.total_mw * 1000.0 * c["exchanger_eur_kw"] * capacity_scale,
@@ -209,11 +211,13 @@ def economic_schedule(p: dict[str, Any], technology: str = "hybrid", upfront: bo
             investment = max(installed - previous_capex, 0.0)
         previous_capex = installed
         operation = annual_operation(year, p, technology)
+        if year == 0:
+            operation = {key: 0.0 for key in operation}
         replacement = 0.0
         if year == plant["replacement_year"]:
             replacement = plant["replacement_fraction"] * (1.0 + p["cost"]["engineering_contingency_fraction"]) * sum(variable_capex_eur(p["scenario"]["forecast_years"], p, technology).values())
-        maintenance = plant["maintenance_fraction"] * installed
-        backup_mwh = operation["electricity_mw"] * HOURS_PER_YEAR * (1.0 - plant["availability"]) if backup_shortfall else 0.0
+        maintenance = plant["maintenance_fraction"] * installed if year > 0 else 0.0
+        backup_mwh = operation["electricity_mw"] * HOURS_PER_YEAR * (1.0 - plant["availability"]) if backup_shortfall and year > 0 else 0.0
         backup_liters = backup_mwh * 1000.0 / (plant["backup_thermal_efficiency"] * plant["diesel_energy_kwh_l"])
         backup_cost = backup_liters * plant["diesel_price_eur_l"]
         net_operation = operation["energy_cost_eur"] + operation["water_cost_eur"] + operation["hygiene_eur"] + maintenance - operation["heat_credit_eur"] + backup_cost

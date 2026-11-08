@@ -46,6 +46,10 @@ def main() -> None:
     require("Für stärkeren Wasserfluss wird die Anlage größer ausgelegt" in summary_text, "Zusammenfassung ist unvollständig")
     require("p90" not in summary_text and "Barwert" not in summary_text and "H1" not in summary_text, "Zusammenfassung verwendet unerklärte Fachkürzel")
     require("1053,3" in full_text, "Bezugsgröße der alten Mittelwertkapazität fehlt")
+    require("Szenariotemperatur in °C" in full_text, "Achsenlabel der Szenariotemperatur fehlt")
+    require("Tiefe in °C" not in full_text, "Temperaturachse ist fälschlich als Tiefe beschriftet")
+    conclusion_text = full_text.split("Schlussfolgerung", 1)[-1].split("Literaturverzeichnis", 1)[0]
+    require("Bearbeitungszeit" in conclusion_text, "Statement zu Verbesserungen bei mehr Bearbeitungszeit fehlt")
     source = (ROOT / "report" / "main.tex").read_text(encoding="utf-8")
     source_without_urls = re.sub(r"\\(?:url|href)\{[^{}]*\}", "", source)
     require(not re.search(r"(?<!\\)%", source_without_urls), "Unmaskiertes Prozentzeichen im LaTeX-Quelltext")

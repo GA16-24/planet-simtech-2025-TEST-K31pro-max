@@ -51,7 +51,6 @@ plant:
   dry_cooler_approach_k: 5.0
   wet_bulb_design_c: 28.0
   evaporative_approach_k: 4.0
-  condenser_temperature_c: 45.0
   module_design_velocity_m_s: 1.2
   chiller_cop: 4.0
   performance_evidence: "COP und Feuchtkugel sind technische Szenarioannahmen, keine Herstellerkurve oder lokale Wetterextremstatistik. Ein Tarif von 138 €/MWh folgt dem BDEW-Bereich 70 bis 150 GWh und bleibt Proxy für den größeren Abnahmefall."
@@ -78,7 +77,7 @@ plant:
   diesel_energy_kwh_l: 9.8
   diesel_price_eur_l: 1.50
   intake_design_pressure_bar: 3.5
-  operation_year_convention: "Konservative Jahreskosten: Temperatur und Leistung am Jahresende gelten für alle 8760 Stunden des Jahres. Jahr 0 enthält Anfangsinvestition und den ersten Betriebsjahresposten ohne Diskontierung."
+  operation_year_convention: "Konservative Jahreskosten: Temperatur und Leistung am Jahresende gelten für alle 8760 Stunden des Jahres. Jahr 0 enthält nur die Anfangsinvestition ohne Betriebs- oder Wartungskosten. Die 25 Betriebsjahre 1 bis 25 folgen mit Diskontierung."
 
 failure:
   detection_minutes: 0.5

@@ -76,6 +76,34 @@ class ModelTests(unittest.TestCase):
         self.assertAlmostEqual(actual, expected, places=6)
         self.assertLess(actual, 1e6)
 
+    def test_partial_flow_backup_and_capex(self) -> None:
+        varied = copy.deepcopy(self.p)
+        varied["scenario"]["affected_flow_fraction"] = 0.001
+        backup = variable_capex_eur(10.0, varied)["backup_power"]
+        rows = economic_schedule(varied, "hybrid")
+        self.assertLess(backup, 1e6)
+        self.assertLess(rows[10]["installed_capex_eur"], 10e6)
+        varied["scenario"]["affected_flow_fraction"] = 0.01
+        rows = economic_schedule(varied, "hybrid")
+        self.assertLess(rows[10]["installed_capex_eur"], 30e6)
+
+    def test_evaporative_backup_uses_evaporative_reference(self) -> None:
+        design_ratio = design_flow_ratio(self.p)
+        design_electricity = cooling_stage(10.0, self.p, affected_fraction=design_ratio, technology="evaporative").electricity_mw
+        reference_electricity = cooling_stage(10.0, self.p, affected_fraction=design_ratio, technology="evaporative").electricity_mw
+        expected = (self.p["cost"]["backup_power_eur"] + backup_fuel_cost_eur(self.p, "evaporative")) * design_electricity / reference_electricity
+        actual = variable_capex_eur(10.0, self.p, "evaporative")["backup_power"]
+        self.assertAlmostEqual(actual, expected, places=6)
+        self.assertLess(actual, variable_capex_eur(10.0, self.p, "hybrid")["backup_power"])
+
+    def test_operating_year_count(self) -> None:
+        rows = economic_schedule(self.p, "hybrid")
+        self.assertEqual(len(rows), 26)
+        self.assertEqual(rows[0]["maintenance_eur"], 0.0)
+        self.assertEqual(rows[0]["net_operation_eur"], 0.0)
+        self.assertEqual(rows[0]["electricity_mwh"], 0.0)
+        self.assertEqual(sum(row["year"] > 0 and row["net_operation_eur"] > 0.0 for row in rows), 25)
+
     def test_evaporative_has_summer_chiller(self) -> None:
         stage = cooling_stage(10.0, self.p, technology="evaporative")
         self.assertGreater(stage.chiller_mw, 0.0)

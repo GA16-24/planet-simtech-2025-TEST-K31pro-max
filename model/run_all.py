@@ -113,7 +113,6 @@ def coupled_npv(p: dict[str, Any], discharge: float, cop: float, capex_multiplie
     final_electricity = final_chiller / cop + plant["dry_auxiliary_fraction"] * (final_dry + final_condenser) + final_pump
     rows = []
     previous_installed = 0.0
-    final_variable = 0.0
     for year in range(int(p["scenario"]["horizon_years"]) + 1):
         stage = cooling_stage(float(min(year, p["scenario"]["forecast_years"])), p)
         dry = stage.dry_mw * flow_ratio
@@ -125,14 +124,14 @@ def coupled_npv(p: dict[str, Any], discharge: float, cop: float, capex_multiplie
             pump = p["water"]["density_kg_m3"] * plant["gravity_m_s2"] * discharge * plant["pump_head_m"] / plant["pump_efficiency"] / 1e6
         fan = plant["dry_auxiliary_fraction"] * (dry + condenser)
         electricity = chiller / cop + fan + pump
-        energy_cost = electricity * HOURS_PER_YEAR * plant["availability"] * plant["electricity_price_eur_mwh"]
+        energy_cost = electricity * HOURS_PER_YEAR * plant["availability"] * plant["electricity_price_eur_mwh"] if year > 0 else 0.0
         installed = capex_multiplier * cumulative_capex_eur(float(min(year, p["scenario"]["forecast_years"])), p)
         investment = max(installed - previous_installed, 0.0)
         previous_installed = installed
         replacement = 0.0
         if year == plant["replacement_year"]:
             replacement = plant["replacement_fraction"] * capex_multiplier * (1.0 + cost["engineering_contingency_fraction"]) * sum(variable_capex_eur(p["scenario"]["forecast_years"], p).values())
-        maintenance = plant["maintenance_fraction"] * installed
+        maintenance = plant["maintenance_fraction"] * installed if year > 0 else 0.0
         total_cost = investment + replacement + maintenance + energy_cost
         rows.append(total_cost / (1.0 + plant["discount_rate"]) ** year)
     return float(sum(rows))
@@ -255,7 +254,7 @@ def main() -> None:
     axes[0].plot(years, source_temperature_c(years, p), color=BLUE, lw=2)
     axes[0].axhline(s["target_temperature_c"], color=GREEN, ls="--", lw=1, label="Regelziel 9 °C")
     axes[0].axvline(10, color=GRAY, lw=0.8)
-    axes[0].set(xlabel="Jahre", ylabel="Tiefe in °C")
+    axes[0].set(xlabel="Jahre", ylabel="Szenariotemperatur in °C")
     axes[0].legend(frameon=False, loc="upper left")
     for fraction, color, label in [(1.0, BLUE, "Gesamtstrom"), (0.01, ORANGE, "1 % Teilstrom"), (0.001, GREEN, "0,1 % Teilstrom")]:
         axes[1].plot(years, required_cooling_mw(years, p, fraction), color=color, lw=2, label=label)
@@ -547,6 +546,14 @@ def main() -> None:
         "NpvSampleHigh": (results["uncertainty"]["npv_p95_eur"] / 1e9, 2),
         "MeanOverloadPercent": (100 * results["uncertainty"]["mean_capacity_overload_fraction"], 2),
         "DesignOverloadPercent": (100 * results["uncertainty"]["design_overload_fraction"], 1),
+        "McDischargeLow": (p["uncertainty"]["discharge_low_m3_s"], 1),
+        "McDischargeMode": (p["uncertainty"]["discharge_mode_m3_s"], 1),
+        "McDischargeHigh": (p["uncertainty"]["discharge_high_m3_s"], 1),
+        "McCopLow": (p["uncertainty"]["cop_low"], 1),
+        "McCopMode": (p["uncertainty"]["cop_mode"], 1),
+        "McCopHigh": (p["uncertainty"]["cop_high"], 1),
+        "McCapexSigma": (p["uncertainty"]["capex_multiplier_sigma"], 2),
+        "McSeed": (p["uncertainty"]["random_seed"], 0),
     }
     with (GEN / "numbers.tex").open("w", encoding="utf-8") as handle:
         for name, (value, digits) in macros.items():
@@ -575,7 +582,8 @@ def main() -> None:
     with (GEN / "sensitivity.tex").open("w", encoding="utf-8") as handle:
         handle.write("\\begin{tabular}{@{}lrrr@{}}\n\\toprule\nFall & Kühlleistung & Änderung & Barwert \\\\\n & in MW & in \\% & in Mrd. € \\\\\n\\midrule\n")
         for row in sensitivity:
-            handle.write(f"{row['case']} & {row['final_cooling_mw']:.1f} & {100*row['relative_change']:+.1f} & {row['npv_25y_eur']/1e9:.3f} \\\\\n".replace(".", ","))
+            label = row["case"].replace("%", "\\%")
+            handle.write(f"{label} & {row['final_cooling_mw']:.1f} & {100*row['relative_change']:+.1f} & {row['npv_25y_eur']/1e9:.3f} \\\\\n".replace(".", ","))
         handle.write("\\bottomrule\n\\end{tabular}\n")
 
     with (GEN / "flow_fractions.tex").open("w", encoding="utf-8") as handle:

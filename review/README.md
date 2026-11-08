@@ -24,9 +24,10 @@ Runde 1 bis Runde 5 sind vollständig dokumentiert. Die Stoppregel war jeweils n
 | 3 | `77c1f972df9c67a00354e395ce31f27fd0c1b95c` | 1 bis 4, 6, 8, 10: 8; 5, 9: 9; 11: 6; 12a: 7; 12b: 8 | 1 bis 4, 6, 8 bis 10: 8; 5: 9; 11: 7; 12a: 7; 12b: 8 | Zusammenfassung, WebVTT, Kapazitätslinien, p90-Ausfall, Satz und Nachweisführung |
 | 4 | `2fd9f3cd11e2f984f4fb8ce693b855529cabc580` | 1 bis 3, 5, 6, 9, 10: 9; 4, 8, 11, 12a, 12b: 8 | 1 bis 6, 8 bis 10: 9; 11, 12a, 12b: 8 | Ausfallzeit, Strangleistung, Fußzeile, Diagrammschrift, Quellen und Finalmaterialien |
 | 5 | `e821bf60ef9fe637a5c5915a50d7748ab829c46c` | 7 bis 9; nur 3, 5 und 9 erreichen 9 | 8 bis 9; nur 3 und 12b bleiben bei 8 | Kostenmodell, Sättigungsdaten, Satz, Literatur und reale Machbarkeitsgrenzen |
-| 6 | `a963e211813cb5bb4b34dd0e6c5b77bb6882d969` mit Reproduktions- und Freeze-Nachweis | ausstehend | ausstehend | Paper und Modell ohne Präsentationsbewertung |
+| 6 | `473e397c4d45a909cc024e1722d572cdbd73df7d` | 1, 2, 3, 5, 8, 9, 10: 9; 4, 6, 11, 12a: 8 | 1, 3, 5, 9, 10: 9; 2, 4, 6, 8, 11, 12a: 8 | Teilstrom-Notstrom, Betriebsjahre, Monte-Carlo-Dokumentation, Achsenlabel und Schlusssatz |
+| 7 | Paperkandidat nach diesen Korrekturen | ausstehend | ausstehend | Erneute Prüfung ohne Übernahme früherer Werte |
 
-Die vollständigen Matrizen mit Begründungen und Belegen stehen in `rounds/round1/scorecard.md` bis `rounds/round5/scorecard.md`. Der erste Kimi-Lauf in Runde 1 wurde wegen blockierender Leseberechtigungen verworfen. Der Neustart arbeitete mit technisch weiteren Berechtigungen, aber einem ausdrücklich read-only Auftrag und ohne Kenntnis des DeepSeek-Reviews. Die Reviews seit Runde 2 liefen read-only mit `runtimeMode=full-access`. `review/model_configuration.md` hält die tatsächlichen Einstellungen fest.
+Die vollständigen Matrizen mit Begründungen und Belegen stehen in `rounds/round1/scorecard.md` bis `rounds/round6/scorecard.md`. Der erste Kimi-Lauf in Runde 1 wurde wegen blockierender Leseberechtigungen verworfen. Der Neustart arbeitete mit technisch weiteren Berechtigungen, aber einem ausdrücklich read-only Auftrag und ohne Kenntnis des DeepSeek-Reviews. Die Reviews seit Runde 2 liefen read-only mit `runtimeMode=full-access`. `review/model_configuration.md` hält die tatsächlichen Einstellungen fest.
 
 Frühere Bewertungen gelten nie für eine neue Revision. Auch der Wechsel zum Paperumfang überträgt keine alte Punktzahl.
 

@@ -170,7 +170,7 @@ Diese Datei verbindet Juryfragen und Council-Befunde mit konkreten Änderungen o
 | M5, Unsicherheitsfigur unter falschem Anhang | Abbildung 3 steht unmittelbar unter Anhang C statt vor dessen Überschrift | PDF-Seite 12 |
 | M6, Foliengrafik überlappt Achsenmarke | Die Präsentation ist nach Nutzerkorrektur kein Produkt mehr. Der Befund wird nicht als Paperfehler übernommen. Eine unabhängig sichtbar gewordene Kollision zweier Ticklabels im Bericht wurde dagegen durch Entfernen des redundanten 0,1-Ticks behoben. | `model/run_all.py`, `report/figures/fig01_prognose_last.pdf`, PDF-Seite 5 |
 | M7, Verdampfungsenthalpie für 20 °C statt Prozessbereich | Arithmetisches Mittel der NIST-Sättigungswerte bei 32 und 100 °C, 2340,730 kJ/kg, mit ausdrücklicher Grenze statt vollständiger Temperaturintegration | `data/nist_saturation_32_100.tsv`, `data/parameters.yml`, Bericht §3.3, Wasserbedarf 8,84 Mio. m³ und 12,2 % |
-| M8, kleinere Text- und Belegmängel | Speichergröße als untere Grenze statt Kühlbedarf, korrekte Überlastungsrichtung, HQ 1951 bis 2007 ohne genanntes Wiederkehrintervall, `u_T=0` und Sensitivitätsformel, 13 statt elf Tests | Bericht §§2.1, 3.1, 4.4 und 5; `sources/registry.yml` |
+| M8, kleinere Text- und Belegmängel | Speichergröße als untere Grenze statt Kühlbedarf, korrekte Überlastungsrichtung, HQ 1951 bis 2007 ohne genanntes Wiederkehrintervall, `u_T=0` und Sensitivitätsformel, 16 statt elf Tests | Bericht §§2.1, 3.1, 4.4 und 5; `sources/registry.yml` |
 | M8, veraltete Finalhinweise und Cuezahl | Diese Punkte betreffen ausschließlich das zurückgezogene Finalprodukt. Sie werden nicht weiterentwickelt und nicht als abgeschlossen ausgegeben. | Nutzerkorrektur zum Lieferumfang, `README.md` |
 | Selbstberichtete Archivreproduktion | Für den Paperkandidaten wird eine neue Archivkopie erzeugt und mit den tatsächlichen Artefakten verglichen. Kein früherer Reproduktionsnachweis wird auf die neue Revision übertragen. | `review/rounds/round6/reproduction.md`, sobald geprüft |
 
@@ -181,6 +181,31 @@ Diese Datei verbindet Juryfragen und Council-Befunde mit konkreten Änderungen o
 | M1, reale Machbarkeit der Referenzlösung | Keine Standortwahl, Netzzusage, Herstellerkurve oder vollständige Karsterfassung wird erfunden. Der Paper bleibt ein bedingter Szenarioentwurf mit harten Zulassungs- und Verwerfungsbedingungen. Diese externe Grenze ist nicht geschlossen und muss im Council ausdrücklich bewertet werden. | Bericht §§1, 4.3, 5 und 6; offene Restrisiken bleiben bestehen |
 | M2, fehlende menschliche Medien- und Teamprobe | Das Finalprodukt und Kriterium 12b wurden durch den Nutzer aus dem Lieferumfang entfernt. Es wird keine menschliche Probe oder Freigabe behauptet. | `README.md`, `review/README.md` |
 | Jahresreihen in Juryfrage 6 | Die Jurydatei gehört nicht mehr zum Lieferumfang. Der Paper verweist für die Sensitivität auf die tatsächlich vorhandenen Tabellen und Modellreihen. | `report/generated/sensitivity.tex`, `output/model/sensitivity.csv` |
+
+## Befunde aus Runde 6, DeepSeek
+
+| Befund | Konkrete Änderung oder begründete Grenze | Verifikation |
+| --- | --- | --- |
+| M1, Notstromskalierung in Teilstromfällen | Designstrom wird aus p90-Verhältnis und tatsächlichem betroffenem Anteil gebildet. Referenzanlage und Kraftstoff verwenden dieselbe Kühltechnologie wie die Variante. | `model/core.py`, `test_partial_flow_backup_and_capex`, `test_evaporative_backup_uses_evaporative_reference`; Tabelle 4 mit 141, 17 und 3 Mio. € statt 233, 118 und 104 Mio. € |
+| M2, Achsenlabel „Tiefe in °C“ | Label auf „Szenariotemperatur in °C“ korrigiert und semantische Prüfung ergänzt | `model/run_all.py`, `scripts/verify_report.py`, PDF-Seite 5 |
+| M3, H3 ohne Notstrom | H3 wird ausdrücklich als reine Pumpen- und Wasserkostenschätzung ohne Notstromposten beschrieben, statt identische Kostenregeln zu behaupten | Bericht §3.3 und Tabelle 2, `docs/alternativenvergleich.md` |
+| M4, Manifestumfang | Text präzisiert Hashes für Modell-Eingaben, Programme und Modellergebnisse. PDF-Hash und Renderbilder bleiben ausdrücklich im Reproduktionsnachweis. | Bericht Anhang A, `review/rounds/round7/reproduction.md` nach erneutem Lauf |
+| M5, „Wärmeabfuhr“ in der Zusammenfassung | 877,8 MW als Kühlleistung bezeichnet und 967,2 MW externe Wärmeabgabe getrennt genannt | PDF-Seite 2 |
+| M7, URL-Bruch in Quelle [19] | Numerischer Pfadteil 20.500.12738 als untrennbare Box gesetzt, vollständiger Hyperlink erhalten | PDF-Seite 11, Quelle [19] |
+| M9, Statement bei mehr Bearbeitungszeit | Konkrete Prioritäten für Karst- und Standortmessungen, Teillast- und Pinch-Auslegung sowie Angebote ergänzt; automatische Textprüfung ergänzt | Bericht §6, `scripts/verify_report.py` |
+| Optionale Hinweise | Die obere ODE-Schranke bleibt korrekt. Das Deckblatt wird im eigenen Design-Council geprüft. Der kollidierende 0,1-Tick bleibt entfernt, weil Lesbarkeit der Kurve wichtiger ist als ein zusätzlicher Zahlenwert. | PDF-Seiten 1 und 5 |
+
+## Befunde aus Runde 6, Kimi
+
+| Befund | Konkrete Änderung oder begründete Grenze | Verifikation |
+| --- | --- | --- |
+| M1, 26 statt 25 Betriebsjahre | Jahr 0 enthält nur Investitionen. Betrieb, Wartung und Ersatzstrom beginnen erst in den 25 Betriebsjahren 1 bis 25. Gekoppelte und direkte Kostenrechnung bleiben konsistent. | `model/core.py`, `model/run_all.py`, `test_operating_year_count`; H1-Barwert 3,663 statt 3,666 Mrd. € |
+| M2, fehlende Monte-Carlo-Annahmen | Dreiecksverteilungen für Abfluss und COP, lognormaler Investitionsfaktor mit Parametern, Seed und Unabhängigkeit der Ziehungen im Paper dokumentiert; keine empirische Kalibrierung behauptet | Bericht §4.4, generierte Makros aus `data/parameters.yml` |
+| M3, falsche Achsenbezeichnung | Mit DeepSeek M2 behoben und durch den PDF-Test abgesichert | PDF-Seite 5 |
+| H2-Topologie | Separater Sekundärkreislauf ausdrücklich beschrieben. Der Quellstrom bleibt geschlossen und wird vollständig weitergekühlt, der Dampfstrom gehört nicht zum Quellabfluss. | Bericht §3.3, `docs/alternativenvergleich.md` |
+| Kosten- und Auslegungsgrenzen | Der ungenutzte Kondensatorparameter wurde entfernt. Teillast- und Pinch-Auslegung bleiben ausdrücklich zukünftige Herstellerarbeit. Der lognormale Investitionsfaktor bleibt die dokumentierte Kostensensitivität. | `data/parameters.yml`, Bericht §4.4 und §6 |
+
+Die neue Revision enthält 16 bestandene Modelltests und 12 Seiten. Frühere Punktzahlen werden nicht übernommen. Vor Runde 7 sind Modell, PDF, alle Seitenbilder und die Archivreproduktion erneut zu prüfen.
 
 ## Aktueller Lieferumfang
 
