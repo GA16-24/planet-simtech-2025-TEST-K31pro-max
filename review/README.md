@@ -26,7 +26,7 @@ Runde 1 bis Runde 5 sind vollständig dokumentiert. Die Stoppregel war jeweils n
 | 5 | `e821bf60ef9fe637a5c5915a50d7748ab829c46c` | 7 bis 9; nur 3, 5 und 9 erreichen 9 | 8 bis 9; nur 3 und 12b bleiben bei 8 | Kostenmodell, Sättigungsdaten, Satz, Literatur und reale Machbarkeitsgrenzen |
 | 6 | `473e397c4d45a909cc024e1722d572cdbd73df7d` | 1, 2, 3, 5, 8, 9, 10: 9; 4, 6, 11, 12a: 8 | 1, 3, 5, 9, 10: 9; 2, 4, 6, 8, 11, 12a: 8 | Teilstrom-Notstrom, Betriebsjahre, Monte-Carlo-Dokumentation, Achsenlabel und Schlusssatz |
 | 7 | `a405cd19f187e2e6c80b51453617a6b6d883ae2a` | 1 bis 10 und 12a: 9; 11: 8 | 1, 5, 8, 10, 11: 9; 2, 3, 4, 6, 9, 12a: 8 | Elektrische Min-COP-Auslegung, Anhang, Tabellenplatzierung, Typografie und Zitationen |
-| 8 | Paperkandidat nach diesen Korrekturen | ausstehend | ausstehend | Erneute Prüfung ohne Übernahme früherer Werte |
+| 8 | `2385effc1d03a39bdf3965222d4121030d7a6569` mit Reproduktions- und Freeze-Nachweis | ausstehend | ausstehend | Erneute Prüfung ohne Übernahme früherer Werte |
 
 Die vollständigen Matrizen mit Begründungen und Belegen stehen in `rounds/round1/scorecard.md` bis `rounds/round7/scorecard.md`. Der erste Kimi-Lauf in Runde 1 wurde wegen blockierender Leseberechtigungen verworfen. Der Neustart arbeitete mit technisch weiteren Berechtigungen, aber einem ausdrücklich read-only Auftrag und ohne Kenntnis des DeepSeek-Reviews. Die Reviews seit Runde 2 liefen read-only mit `runtimeMode=full-access`. `review/model_configuration.md` hält die tatsächlichen Einstellungen fest.
 
