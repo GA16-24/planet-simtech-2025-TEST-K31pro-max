@@ -401,8 +401,8 @@ def main() -> None:
     fig, axes = plt.subplots(2, 1, figsize=(4.0, 9.2))
     axes[0].hist(q_samples, bins=45, color=BLUE, alpha=0.85)
     mean_line = axes[0].axvline(final_q, color=RED, ls="--", lw=1.4, label="877,8")
-    reserve_line = axes[0].axvline(final_q * (1 + p["plant"]["reserve_fraction"]), color=GRAY, ls=":", lw=1.6, label="1053,3")
-    design_line = axes[0].axvline(design_stage.total_mw * (1 + p["plant"]["reserve_fraction"]), color=BLUE, ls="-.", lw=1.6, label="2152,5")
+    reserve_line = axes[0].axvline(final_q * (1 + p["plant"]["reserve_fraction"]), color=GRAY, ls=":", lw=1.6, label="1.053,3")
+    design_line = axes[0].axvline(design_stage.total_mw * (1 + p["plant"]["reserve_fraction"]), color=BLUE, ls="-.", lw=1.6, label="2.152,5")
     axes[0].set(xlabel="MW", ylabel="Anzahl", xlim=(0, 2300))
     axes[0].set_ylim(0, axes[0].get_ylim()[1] * 1.35)
     axes[1].hist(npv_samples / 1e9, bins=45, color=ORANGE, alpha=0.85)
@@ -415,9 +415,9 @@ def main() -> None:
         ax.tick_params(labelsize=20)
         ax.xaxis.label.set_size(20)
         ax.yaxis.label.set_size(20)
-    for x, label, color, linestyle in [(0.10, "877,8", RED, "--"), (0.38, "1053,3", GRAY, ":"), (0.75, "2152,5", BLUE, "-.")]:
-        fig.add_artist(Line2D([x, x + 0.07], [0.535, 0.535], color=color, ls=linestyle, lw=1.6))
-        fig.text(x + 0.085, 0.535, label, color=color, fontsize=20, va="center")
+    for x, label, color, linestyle in [(0.03, "877,8", RED, "--"), (0.30, "1.053,3", GRAY, ":"), (0.64, "2.152,5", BLUE, "-.")]:
+        fig.add_artist(Line2D([x, x + 0.05], [0.535, 0.535], color=color, ls=linestyle, lw=1.6))
+        fig.text(x + 0.065, 0.535, label, color=color, fontsize=20, va="center")
     fig.subplots_adjust(left=0.18, right=0.95, top=0.97, bottom=0.08, hspace=0.55)
     save_figure(fig, "fig05_unsicherheit")
 
@@ -790,9 +790,9 @@ def main() -> None:
             handle.write(macro(name, value, digits))
 
     with (GEN / "alternatives.tex").open("w", encoding="utf-8") as handle:
-        handle.write("\\begin{tabular}{@{}p{47mm}>{\\bfseries}rrr@{}}\n\\toprule\nGröße im Auslegungsjahr & H1 Hybrid & H2 Verdunstung & H3 Zumischung \\\\\n\\midrule\n")
+        handle.write("\\begin{tabular}{@{}>{\\hspace{0pt}\\raggedright\\arraybackslash}p{54mm}>{\\bfseries}rrr@{}}\n\\toprule\nGröße im Auslegungsjahr & H1 Hybrid & H2 Verdunstung & H3 Zumischung \\\\\n\\midrule\n")
         rows = [
-            ("Kühlleistung (Wärmeentzug)", "required_cooling_mw", 1.0, 1),
+            ("Kühlung (Wärmeentzug)", "required_cooling_mw", 1.0, 1),
             ("Investition in Mio. €", "installed_capex_eur", 1e6, 1),
             ("Elektrische Leistung", "electricity_mw", 1.0, 1),
             ("Strom pro Jahr in GWh", "electricity_mwh", 1000.0, 1),
@@ -802,7 +802,7 @@ def main() -> None:
             values = [latex_number(alt["schedule"][final_year][key] / scale, digits) for alt in alternatives]
             handle.write(f"{label} & {' & '.join(values)} \\\\\n")
         air_values = [latex_number(alt["external_air_rejection_mw"], 1) for alt in alternatives]
-        handle.write("Davon Wärmeabgabe an Luft & " + " & ".join(air_values) + " \\\\\n")
+        handle.write("Wärmeabgabe an Luft & " + " & ".join(air_values) + " \\\\\n")
         handle.write("Zusatzwasser H2/H3 & 0~m³ & ")
         handle.write(latex_number(alternatives[1]["annual_water_m3"] / 1e6, 2) + "~Mio.~m³ & " + latex_number(alternatives[2]["annual_water_m3"] / 1e9, 3) + "~Mrd.~m³ \\\\\n")
         npv_values = [latex_number(alt["npv_25y_eur"] / 1e9, 3) for alt in alternatives]
@@ -833,7 +833,7 @@ def main() -> None:
         handle.write("\\bottomrule\n\\end{tabular*}\n")
 
     with (GEN / "sensitivity.tex").open("w", encoding="utf-8") as handle:
-        handle.write("\\begin{tabular*}{\\columnwidth}{@{\\extracolsep{\\fill}}>{\\hspace{0pt}\\raggedright\\arraybackslash}p{24mm}rrr}\n\\toprule\nFall & MW & \\% & Mrd. € \\\\\n\\midrule\n")
+        handle.write("\\begingroup\n\\setlength{\\tabcolsep}{4pt}\n\\begin{tabular*}{\\columnwidth}{@{}@{\\extracolsep{\\fill}}>{\\hspace{0pt}\\raggedright\\arraybackslash}p{21mm}rrr@{}}\n\\toprule\nFall & MW & Änderung & Barwert \\\\\n\\midrule\n")
         for row in sensitivity:
             label = row["case"].replace("%", "\\%").replace(" m³/s", "~m³/s")
             label = label.replace("Abfluss ", "Abfluss\\newline ")
@@ -842,10 +842,10 @@ def main() -> None:
             change = latex_number(100 * row["relative_change"], 1, signed=True)
             cost = latex_number(row["npv_25y_eur"] / 1e9, 3)
             handle.write(f"{label} & {cooling} & {change} & {cost} \\\\\n")
-        handle.write("\\bottomrule\n\\end{tabular*}\n")
+        handle.write("\\bottomrule\n\\end{tabular*}\n\\endgroup\n")
 
     with (GEN / "flow_fractions.tex").open("w", encoding="utf-8") as handle:
-        handle.write("\\begin{tabular*}{\\columnwidth}{@{\\extracolsep{\\fill}}lrrrr}\n\\toprule\nAnteil & \\(Q\\) & \\(P_{el}\\) & Mio. € & Mrd. € \\\\\n\\midrule\n")
+        handle.write("\\begingroup\n\\setlength{\\tabcolsep}{3.5pt}\n\\begin{tabular*}{\\columnwidth}{@{}@{\\extracolsep{\\fill}}lrrrr@{}}\n\\toprule\nAnteil & \\(Q\\) & \\(P_{el}\\) & Investition & Barwert \\\\\n\\midrule\n")
         for row in flow_fraction_scenarios:
             values = [
                 latex_number(100 * row["affected_fraction"], 1) + "~\\%",
@@ -855,7 +855,7 @@ def main() -> None:
                 latex_number(row["npv_25y_eur"] / 1e9, 3),
             ]
             handle.write(" & ".join(values) + " \\\\\n")
-        handle.write("\\bottomrule\n\\end{tabular*}\n")
+        handle.write("\\bottomrule\n\\end{tabular*}\n\\endgroup\n")
 
     manifest = {}
     manifest_paths = [

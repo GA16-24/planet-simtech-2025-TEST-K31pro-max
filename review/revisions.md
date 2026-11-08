@@ -402,6 +402,21 @@ Die dritte Design-Runde war nicht bestanden. Die neue Revision enthält 24 besta
 
 Die vierte Design-Runde war nicht bestanden, vergab aber bei beiden Reviewern D5 10 für formale Compliance. Die neue Revision enthält 24 bestandene Modelltests und 15 Seiten mit 10 Haupttext- und 5 Literatur-/Anhangsseiten. Die wissenschaftlichen Ergebnisdateien sind unverändert. Vor der nächsten Bewertung ist die Archivreproduktion erforderlich. Frühere Punktzahlen werden nicht übernommen.
 
+## Befunde aus Design-Runde 19
+
+| Befund | Konkrete Änderung oder begründete Grenze | Verifikation |
+| --- | --- | --- |
+| M1, letzte Literaturseite unausgewogen | Nur Quelle 23 endet mit einem erzwungenen Spaltenwechsel. Quellen 21 bis 23 stehen links, Quellen 24 und 25 rechts. Quelle 22 bleibt zusammen. Ein zweiter erzwungener Umbruch wurde verworfen, weil er eine weitere fast leere Seite erzeugte. | PDF-Seite 13, 15 Seiten mit 5 Literatur-/Anhangsseiten |
+| M2, Tabelle 2 zu spät | Der `table*`-Block steht vor dem einführenden Kostenabsatz. Tabelle 2 erscheint oben auf PDF-Seite 6 nach der ersten Referenz auf PDF-Seite 5 und vor Abschnitt 4. | `report/main.tex`, PDF-Seiten 5 bis 7 |
+| M3, Kostenkolonnen ohne Größenbezeichnung | Die Tabellenköpfe nennen Änderung, Investition und Barwert. Die Unterschriften geben Prozent, Mio. € und Mrd. € an. Lokale Zellenabstände und eine 21 mm breite Szenariospalte verhindern Überläufe bei unveränderter Schrift. | `model/run_all.py`, `report/generated/sensitivity.tex`, `flow_fractions.tex`, PDF-Seite 15 |
+| M4, fehlende Tausenderpunkte | Abbildung 3 und ihre Unterschrift verwenden 1.053,3 und 2.152,5. Der NIST-Wert ist 4.195,14. Die Legende nutzt kurze, erkennbare Linienmuster und bleibt innerhalb der Figurenbreite. | `model/run_all.py`, `report/main.tex`, PDF-Seiten 3 und 14, `scripts/verify_report.py` |
+| M5, Tabellenzelle mit Restwort | Die erste Spalte von Tabelle 2 ist 54 mm breit und linksbündig. Kühlung und Wärmeabgabe verwenden kürzere Zeilenlabels. | `model/run_all.py`, PDF-Seite 6 |
+| M6, falsche Trennung von Antriebsenergie | Die Präambel enthält die korrekte Trennstellenliste. | `report/preamble.tex`, PDF-Seite 2 |
+| M7, Formeleinleitung über Spaltenbruch getrennt | Einleitung und Gleichung 2 stehen in derselben `samepage`-Gruppe. | `report/main.tex`, PDF-Seite 3 |
+| M8, Abbildung-3-Verweis ohne Anhang | Der Verweis nennt Anhang B und Abbildung 3. | `report/main.tex`, PDF-Seite 9 |
+
+Die fünfte Design-Runde war nicht bestanden. Diese Revision enthält 24 bestandene Modelltests und 15 Seiten mit 10 Haupttext- und 5 Literatur-/Anhangsseiten. `make verify` und die Sichtprüfung bestanden ohne Overfull-Warnungen. Die wissenschaftlichen Ergebnisdateien sind unverändert. Vor der nächsten Bewertung ist die Archivreproduktion erforderlich. Frühere Punktzahlen werden nicht übernommen.
+
 ## Aktueller Lieferumfang
 
 Nach der Nutzerkorrektur ist nur der Research Paper Produkt. Die Kriterien 1 bis 6, 8 bis 11 und 12a bleiben Prüfgegenstand. Kriterium 12b und die Präsentationsartefakte werden nicht fortentwickelt. Nach den fachlichen Council-Runden folgt ein eigener Design-Council für den Research Paper.

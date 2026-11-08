@@ -45,7 +45,7 @@ def main() -> None:
     summary_text = re.sub(r"\s+", " ", page_texts[1].split("1. Einführung", 1)[0].replace("-\n", "").replace("\n", " "))
     require("Für stärkeren Wasserfluss wird die Anlage größer ausgelegt" in summary_text, "Zusammenfassung ist unvollständig")
     require("p90" not in summary_text and "Barwert" not in summary_text and "H1" not in summary_text, "Zusammenfassung verwendet unerklärte Fachkürzel")
-    require("1053,3" in full_text, "Bezugsgröße der alten Mittelwertkapazität fehlt")
+    require("1.053,3" in full_text, "Formatierte Bezugsgröße der alten Mittelwertkapazität fehlt")
     require("Szenariotemperatur in °C" in full_text, "Achsenlabel der Szenariotemperatur fehlt")
     require("Tiefe in °C" not in full_text, "Temperaturachse ist fälschlich als Tiefe beschriftet")
     require("Symlog" in full_text, "Nichtlineare Kühlleistungsachse ist nicht deklariert")

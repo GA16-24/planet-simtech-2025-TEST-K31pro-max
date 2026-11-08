@@ -79,11 +79,12 @@ Für sensible Wärme ohne Phasenwechsel gilt
 \dot Q=\rho\,\dot V\,c_p\,(T_{ein}-T_{ziel})/10^6.
 \label{eq:sensible}
 \end{equation}
-Die Stoffwerte \(\rho=999{,}702~\mathrm{kg/m^3}\) und \(c_p=4195{,}14~\mathrm{J/(kg\,K)}\) stammen aus der NIST-Tabelle bei etwa 10~°C und 1,01325~bar [4]. Konstante Werte sind eine Näherung; die Detailauslegung muss IAPWS-Werte über Temperatur und Druck verwenden [5]. Mit \(\dot Q\) in MW folgt
+Die Stoffwerte \(\rho=999{,}702~\mathrm{kg/m^3}\) und \(c_p=4.195{,}14~\mathrm{J/(kg\,K)}\) stammen aus der NIST-Tabelle bei etwa 10~°C und 1,01325~bar [4]. Konstante Werte sind eine Näherung; die Detailauslegung muss IAPWS-Werte über Temperatur und Druck verwenden [5]. \begin{samepage}Mit \(\dot Q\) in MW folgt
 \begin{equation}
 C=\rho\,\dot V\,c_p/10^6=\KDurchfluss~\mathrm{MW/K}.
 \label{eq:capacity}
 \end{equation}
+\end{samepage}
 Die Temperatur in~°C folgt mit \(t\) in Jahren als
 \begin{equation}
 T_q(t)=\min(9+9{,}1\,t,100).
@@ -150,6 +151,13 @@ Für Netz, Ersatzstrom und Luftsenke wird der ungünstigste deklarierte COP von 
 
 \subsection{Stufenplan und Kosten}
 
+\begin{table*}[!t]
+\centering
+\input{generated/alternatives.tex}
+\caption{Betrieb bei 2,3~m³/s mit p90-Auslegung, Leistungsangaben in MW, H1 fett. H2 ist günstiger, verändert aber Wasserhaushalt und Hygieneregime. Ihr Zusatzwasser enthält Verdunstung, Abschlämmung und Drift bei drei Konzentrationszyklen, mit Sensitivität bis fünf. H3 verwendet ebenfalls die \mbox{95-Mio.-€-Fixkostenbasis}, aber keinen Notstromposten.}
+\label{tab:alternativen}
+\end{table*}
+
 Die Investition enthält die p90-Reserve und beträgt \CapexFinal~Mio.~€. Im Erwartungsjahr kosten Strom \EnergyCostFinal~Mio.~€ und Wartung \MaintenanceFinal~Mio.~€, zusammen \OpexFinal~Mio.~€. Der Barwert beträgt \NpvHybridFull~Mrd.~€; sofortiger Endausbau kostet \NpvUpfront~Mrd.~€. Der Stufenplan spart \NpvSaving~Mio.~€, sofern jede Stufe vor ihrem Lastjahr geprüft ist. Bei dauerhaftem p90-Betrieb steigen Betrieb und Barwert auf \DesignOpex~Mio.~€ beziehungsweise \DesignNpv~Mrd.~€. H1 und H2 verwenden dieselbe Kapazitäts- und Kostenregel. H3 enthält als variable Ausrüstung nur Pumpen und keinen Notstromposten; die 95~Mio.~€ für Tiefbau und Steuerung bleiben als Fixkostenbasis erhalten. Tabelle \ref{tab:alternativen} und Abbildung \ref{fig:kosten} zeigen diesen Unterschied.
 
 Wärmetauscher kosten \CapexExchanger~Mio.~€, Kältemaschinen \CapexChiller~Mio.~€, Trockenkühler \CapexDryCooler~Mio.~€ und Ersatzstrom \CapexBackup~Mio.~€. Zusammen sind das \CapexVariable~Mio.~€ für variable Ausrüstung. Mit dem 60-\%-Zuschlag ergibt das \CapexEngineered~Mio.~€. Die separaten 95~Mio.~€ für Tiefbau und Steuerung führen zur Gesamtinvestition von \CapexFinal~Mio.~€.
@@ -163,13 +171,6 @@ Nach der Registrierung von H1 bis H7 wurde H8 als wärmegetriebene Vergleichsvar
 Der Hilfsstrom der Absorptionsstufe beträgt \AbsAuxPercent~\% der Verdampferleistung, entsprechend dem HAW-Beispiel 3 kW bei 54 kW [19]. Einschließlich Kältemaschinen, Ventilatoren und Pumpen werden \AbsElectricity~MW im Erwartungsbetrieb und \AbsDesignElectricity~MW im elektrischen Auslegungsfall benötigt. Acht Aggregate plus eines sind erforderlich, der Dieselvorrat beträgt \AbsFuel~Mio. Liter. Für die Absorptionsmaschine wird ein eigener günstiger Screeningwert von 250~€/kW innerhalb der HAW-Spanne 80 bis 1800~€/kW plus 30~\% angesetzt [19]. Dadurch ergeben sich \AbsCapex~Mio.~€ Investition, \AbsNpv~Mrd.~€ Barwert und \AbsEmissions~kt CO₂ pro Jahr. Selbst eine kostenlose Absorptionsmaschine ließe H8 bei \AbsZeroNpv~Mrd.~€ statt \NpvHybridFull~Mrd.~€. Auch bei thermischem COP 1,3 bleibt der Quellstrom nach dem Verdampfer über 40~°C. Die Temperaturen \(T_e,T_g,T_c\) in \(COP_{rev}\) sind absolute Temperaturen in Kelvin, hier 282,15~K, 369,15~K und 308,15~K. Bei der dokumentierten Generatorwärme von \AbsGenerator~MW und Heißwasser 96/82~°C beträgt die reversible Obergrenze \(COP_{rev}=T_e(T_g-T_c)/[(T_c-T_e)T_g]\) bei 96~°C Antrieb, 35~°C Senke und 9~°C Verdampfung \AbsRevCop; selbst sie lässt den Quellstrom nur auf \AbsRevOutlet~°C sinken. H8 ersetzt daher Trockenkühlung statt Kompressionskälte. Es ist in allen 10.000 gekoppelten Ziehungen teurer und wird nicht gewählt. Tabelle \ref{tab:absorption} in Anhang B zeigt die Bilanz. Andere Maschinen und Temperaturführungen benötigen Herstellerdaten, Teillastkurven und eine erneute Prüfung; das Screening schließt sie nicht allgemein aus.
 
 H3 benötigt mit 5~°C kaltem Zusatzwasser \DilutionFlow~m³/s, das \DilutionRatio-fache des erwarteten Quellstroms. Diese Quelle ist nicht belegt. Die Wärme bleibt zudem im Wasserkreislauf. H4 (geologische Wärmeentnahme) scheitert ohne genaue Karstwege an der vollständigen Erfassung. H5 (Bypass) kann nur zusammen mit H1 wirken. H6 (Druckverschiebung) erhöht lediglich den Siedepunkt. H7 (passive Wärmerohre) benötigt \PassiveArea~km² aktive Fläche und kann bei 35~°C Luft nicht passiv auf 9~°C kühlen [7].
-
-\begin{table*}[!t]
-\centering
-\input{generated/alternatives.tex}
-\caption{Betrieb bei 2,3~m³/s mit p90-Auslegung, Leistungsangaben in MW, H1 fett. H2 ist günstiger, verändert aber Wasserhaushalt und Hygieneregime. Ihr Zusatzwasser enthält Verdunstung, Abschlämmung und Drift bei drei Konzentrationszyklen, mit Sensitivität bis fünf. H3 verwendet ebenfalls die \mbox{95-Mio.-€-Fixkostenbasis}, aber keinen Notstromposten.}
-\label{tab:alternativen}
-\end{table*}
 
 \begin{figure}[H]
 \centering
@@ -209,7 +210,7 @@ Das reine Siedeverbot ist vom ökologischen Normalziel zu unterscheiden. Mit 5~K
 
 Die 10.000 Monte-Carlo-Ziehungen variieren Abfluss, COP und Investitionsfaktor gekoppelt über alle Jahresreihen. Der Abfluss folgt einer Dreiecksverteilung mit Minimum \McDischargeLow, Modalwert \McDischargeMode~und Maximum \McDischargeHigh~m³/s. Der COP folgt einer Dreiecksverteilung mit \McCopLow, \McCopMode~und \McCopHigh. Der Investitionsfaktor ist lognormal mit \(\sigma=\McCapexSigma\) und \(\mu=-\sigma^2/2\) im Logarithmus, sodass sein Erwartungswert 1 beträgt. Der Seed lautet \McSeed. Die drei Eingangsgrößen werden unabhängig gezogen und bleiben innerhalb einer Ziehung über alle Jahre konstant. Diese Verteilungen sind Szenarioannahmen, keine empirisch kalibrierten Häufigkeitsmodelle.
 
-In \MeanOverloadPercent~\% der Fälle übersteigt der erforderliche Wärmestrom die Kapazität einer Anlage, die auf den Mittelstrom mit 20~\% Reserve ausgelegt ist, also \MeanCapacity~MW. Die p90-Reserve überschreitet in der auf 4,7~m³/s begrenzten Verteilung keinen Fall. Das ist eine Folge der bewussten Kapazitätswahl, keine Garantie für Extremhochwasser oder andere Wärmequellen. Jede Ziehung verwendet dieselbe p90-Anlage mit Reserve. Abfluss und COP verändern die Betriebskosten, während der explizite Investitionsfaktor die Investition verändert. Eine erneute Kapazitätsskalierung pro Ziehung findet nicht statt. Die Kostenquantile reichen von \NpvSampleLow~bis \NpvSampleHigh~Mrd.~€ und sind in Abbildung \ref{fig:unsicherheit} dargestellt. Ein Tarif von 179~€/MWh ergibt \TariffHighNpv~Mrd.~€. Bei 95~\% Netzverfügbarkeit steigt der Barwert mit vollständigem Dieselersatz auf \AvailabilityLowNpv~statt \AvailabilityHighNpv~Mrd.~€. Geringere Verfügbarkeit ist somit kein Kostenvorteil mehr.
+In \MeanOverloadPercent~\% der Fälle übersteigt der erforderliche Wärmestrom die Kapazität einer Anlage, die auf den Mittelstrom mit 20~\% Reserve ausgelegt ist, also \MeanCapacity~MW. Die p90-Reserve überschreitet in der auf 4,7~m³/s begrenzten Verteilung keinen Fall. Das ist eine Folge der bewussten Kapazitätswahl, keine Garantie für Extremhochwasser oder andere Wärmequellen. Jede Ziehung verwendet dieselbe p90-Anlage mit Reserve. Abfluss und COP verändern die Betriebskosten, während der explizite Investitionsfaktor die Investition verändert. Eine erneute Kapazitätsskalierung pro Ziehung findet nicht statt. Die Kostenquantile reichen von \NpvSampleLow~bis \NpvSampleHigh~Mrd.~€ und sind in Anhang B, Abbildung \ref{fig:unsicherheit} dargestellt. Ein Tarif von 179~€/MWh ergibt \TariffHighNpv~Mrd.~€. Bei 95~\% Netzverfügbarkeit steigt der Barwert mit vollständigem Dieselersatz auf \AvailabilityLowNpv~statt \AvailabilityHighNpv~Mrd.~€. Geringere Verfügbarkeit ist somit kein Kostenvorteil mehr.
 
 Die elektrische Leistung und die Wärmesenke werden separat am ungünstigsten COP von \McCopLow~begrenzt. Das Stichprobenmaximum beträgt \ElectricitySampleMax~statt \DesignElectric~MW elektrischer Auslegung und \AirRejectionSampleMax~statt \DesignAirRejection~MW zulässiger Wärmeabgabe. Die Überlastanteile betragen \ElectricityOverloadPercent~\% beziehungsweise \AirRejectionOverloadPercent~\%. Diese Prüfung ergänzt die thermische Abdeckung und verhindert, dass niedrige COP-Werte Netz oder Senke überlasten.
 
@@ -266,8 +267,8 @@ Mit mehr Bearbeitungszeit würden wir zuerst die Karst- und Standortmessungen, e
 \bibitem{waermeplanung} [20] Stadt Blaubeuren: Kommunale Wärmeplanung. \href{https://www.blaubeuren.de/de/Aktuelles/Kommunale-Waermeplanung}{\nolinkurl{blaubeuren.de/de/Aktuelles/Kommunale-Waermeplanung}}. Abruf: 07.11.2026.
 \bibitem{planetbericht} [21] PlaNeT SimTech: Vorgaben für den Bericht, Stand 10/2026. \href{https://www.planet-simtech.de/wp-content/uploads/2023/05/PlaNeT_Vorgaben-Bericht.pdf}{\nolinkurl{planet-simtech.de/wp-content/uploads/2023/05/PlaNeT_Vorgaben-Bericht.pdf}}. Abruf: 07.11.2026.
 \bibitem{d4rt} [22] Zhang et al. (2025): Efficiently Reconstructing Dynamic Scenes One D4RT at a Time. Preprint, Version vom 10.12.2025. \href{https://storage.googleapis.com/d4rt_assets/D4RT_paper.pdf}{\nolinkurl{storage.googleapis.com/d4rt_assets/D4RT_paper.pdf}}. Abruf: 07.11.2026. Ausschließlich Layoutvergleich.
-\newpage
 \bibitem{uba} [23] Umweltbundesamt (2025): CO₂-Emissionen pro Kilowattstunde Strom 2024 gesunken. \href{https://www.umweltbundesamt.de/themen/co2-emissionen-pro-kilowattstunde-strom-2024}{\nolinkurl{umweltbundesamt.de/themen/co2-emissionen-pro-kilowattstunde-strom-2024}}. Abruf: 07.11.2026.
+\newpage
 \bibitem{bnatschg} [24] Bundesrepublik Deutschland: Bundesnaturschutzgesetz, § 34, Verträglichkeitsprüfung. \href{https://www.gesetze-im-internet.de/bnatschg_2009/__34.html}{\nolinkurl{gesetze-im-internet.de/bnatschg_2009/__34.html}}. Abruf: 07.11.2026.
 \bibitem{awsv} [25] Bundesrepublik Deutschland: Verordnung über Anlagen zum Umgang mit wassergefährdenden Stoffen, § 18, Rückhaltung. \href{https://www.gesetze-im-internet.de/awsv/__18.html}{\nolinkurl{gesetze-im-internet.de/awsv/__18.html}}. Abruf: 07.11.2026.
 \end{description}
@@ -288,7 +289,7 @@ Die Ergebnisse und die PDF entstehen mit \mbox{\texttt{make model}}, \mbox{\text
 
 \[
 \begin{aligned}
-&\frac{999{,}702\cdot2{,}3\cdot4195{,}14\cdot91}{10^6}\\
+&\frac{999{,}702\cdot2{,}3\cdot4.195{,}14\cdot91}{10^6}\\
 &\quad=\QFinalFull~\mathrm{MW}
 \end{aligned}
 \]
@@ -302,7 +303,7 @@ Das Layout folgt D4RT [22], mit A4, 26~mm Rand und 12~pt statt US Letter [21]. D
 \begin{figure}[H]
 \centering
 \includegraphics[width=\columnwidth]{figures/fig05_unsicherheit.pdf}
-\caption{Oben Kühlleistung in MW: Basis 877,8, Basis mit 20~\% 1053,3 und p90 mit 20~\% 2152,5. Unten Barwert in Mrd.~€. Unsicherheit von Abfluss, COP und Investitionsfaktor, begrenzt auf 4,7~m³/s. Eigene Rechnung mit Kimi K3.1 Pro.}
+\caption{Oben Kühlleistung in MW: Basis 877,8, Basis mit 20~\% 1.053,3 und p90 mit 20~\% 2.152,5. Unten Barwert in Mrd.~€. Unsicherheit von Abfluss, COP und Investitionsfaktor, begrenzt auf 4,7~m³/s. Eigene Rechnung mit Kimi K3.1 Pro.}
 \label{fig:unsicherheit}
 \end{figure}
 
@@ -318,7 +319,7 @@ Das Layout folgt D4RT [22], mit A4, 26~mm Rand und 12~pt statt US Letter [21]. D
 \begin{table}[H]
 \centering
 \input{generated/flow_fractions.tex}
-\caption{Teilstromszenarien. \(Q\) ist die Kühlung, \(P_{el}\) die elektrische Leistung, jeweils in MW. Fixkosten \(80f^{0,65}+15f^{0,5}\)~Mio.~€, variable Ausrüstung mit p90-Reserve.}
+\caption{Teilstromszenarien. \(Q\) ist die Kühlung, \(P_{el}\) die elektrische Leistung, jeweils in MW. Investition in Mio.~€, Barwert in Mrd.~€. Fixkosten \(80f^{0,65}+15f^{0,5}\)~Mio.~€, variable Ausrüstung mit p90-Reserve.}
 \label{tab:teilstrom}
 \end{table}
 
