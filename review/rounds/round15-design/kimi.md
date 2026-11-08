@@ -1,0 +1,50 @@
+# Design-Council Runde 15
+
+## Prüfgrundlage
+
+Geprüft wurde :codex-file-citation{path="/Users/macbook_air_m1/.t3/scratch/2026-11-07-create-a-new-separate-github-162aa05c/planet-simtech-2025-TEST-K31pro-max/output/pdf/TEST-K31pro-max.pdf" purpose="source"} im Commit `7ca2f3dc2137e958a6b0e8c5efbb7b4ac2f7a6eb`.
+
+Die Arbeitskopie stand auf diesem Commit. Alle 24 zulässigen Dateien mit Freeze-Hash stimmten mit `revision.json` überein und zeigten keine Abweichung vom eingefrorenen Stand. Ich habe die PDF, die Kontaktübersicht, alle 14 Seitenbilder und die drei D4RT-Seiten vollständig gesichtet. Builds und wissenschaftliche Bewertungen waren nicht Teil der Prüfung.
+
+Im Folgenden bezeichnet "PDF-S." die physische PDF-Seite einschließlich Deckblatt.
+
+## Bewertung
+
+| Kategorie | Bewertung | Begründung und Belegorte |
+| --- | ---: | --- |
+| D1, Typografie | 9/10 | Durchgehend klare Times-Hierarchie mit 12 pt Fließtext und 14,4 pt Zeilenabstand. Hauptüberschriften mit 14 pt sind auf PDF-S. 2 bis 14 konsistent. Mathematik auf PDF-S. 3 bis 5 und 8 ist sauber gesetzt. Die kleineren Zeichen in Indizes und Hochzahlen sind mathematische Konvention, kein unzulässig verkleinerter Fließtext. Quellen und URLs auf PDF-S. 11 bis 13 bleiben ohne sichtbare Überläufe im Satzspiegel. |
+| D2, Seiten- und Spaltennutzung | 9/10 | Alle 14 Seiten sind A4. Die gemessenen Textgrenzen lassen mindestens 25,75 mm, die LaTeX-Geometrie setzt 26 mm beziehungsweise 34 mm unten. Breite Tabellen und Abbildungen auf PDF-S. 4, 5, 7 und 8 sind gut eingebunden. Literatur und Anhänge auf PDF-S. 11 bis 14 nutzen das Budget ohne Leerseiten oder gequetschte Schlussseite. Das Deckblatt auf PDF-S. 1 hat einen angemessenen, ruhigen Satzspiegel. |
+| D3, Lesbarkeit und visuelle Führung | 9/10 | Die Zusammenfassung auf PDF-S. 2 vermittelt in einer Spalte Lösung, Größenordnungen und Grenzen. Einführung, Methode, Ergebnisse, Diskussion und Schlussfolgerung folgen auf PDF-S. 2 bis 11 in nachvollziehbarer Reihenfolge. Verweise führen von PDF-S. 10 zu Abbildung 3 und den Tabellen auf PDF-S. 14. Anhang B hält die Lesereihenfolge ein. |
+| D4, Abbildungen, Tabellen und visuelle Erklärung | 9/10 | Abbildung 1 auf PDF-S. 5 erklärt Lastverlauf und Stromanteile, Tabelle 2 auf PDF-S. 7 die Alternativen, Abbildung 2 auf PDF-S. 8 den Kostenpfad und Abbildung 3 auf PDF-S. 14 die Unsicherheit. Achsen, Legenden, Linien und Unterschriften sind lesbar. Die Diagrammbeschriftungen haben 13 bis 15 pt. Die Tabellen auf PDF-S. 4, 7 und 14 verwenden zurückhaltende Linien und bleiben gut lesbar. Verbesserungen bei einzelnen Skalen- und Legendenangaben sind optional. |
+| D5, Formale Compliance | 9/10 | Deckblatt mit Testkennung, Datum, Aufgabe und Wettbewerbsname auf PDF-S. 1; keine Namen oder Schulangaben in den sichtbaren Inhalte n oder PDF-Metadaten. Haupttext und Zusammenfassung halten das Seitenbudget, Literatur und Anhänge enden auf PDF-S. 14. Numerische Verweise, Pflichtaufbau und KI-Offenlegung auf PDF-S. 13 sind vorhanden. Die NIST-Angabe auf PDF-S. 11 erfüllt die Quellenregel, wie unten ausgeführt. Menschliche Restaufgaben wurden nicht abgewertet. |
+| D6, Direkter D4RT-Vergleich | 9/10 | Die zweispaltige Hierarchie, die numerischen Verweise und die erklärenden Unterschriften erreichen den D4RT-Qualitätsmaßstab. Der Bericht steht mit seiner Zusammenfassung auf PDF-S. 2 neben D4RT-S. 1, mit den breiten Grafiken auf PDF-S. 5 und 8 neben D4RT-S. 2 sowie mit den Tabellen auf PDF-S. 7 und 14 neben D4RT-S. 6. D4RT ist bildreicher, der Bericht dafür großzügiger beschriftet. Die geringere Bilddichte ist hier kein wesentlicher Führungsmangel. |
+
+## Materielle Mängel
+
+Keine.
+
+## Befunde zu den ausdrücklich verlangten Prüfpunkten
+
+- **Einspaltige Zusammenfassung, PDF-S. 2.** Die Beschränkung auf die linke Spalte funktioniert. Vier Absätze trennen Lösung, Leistung und Kosten sowie Grenzen. Die Einführung beginnt sichtbar getrennt oben rechts. Eine seitenbreite Zusammenfassung ist nicht erforderlich.
+
+- **Anhang A, PDF-S. 13.** Die Überschrift steht am Ende der linken Spalte, gefolgt von zwei vollständigen Textzeilen. Der Inhalt läuft oben rechts weiter. Damit bleibt die Überschrift bei ihrem Text und die Lesereihenfolge ist eindeutig. Der Umbruch ist nicht besonders elegant, aber kein materieller Mangel. Eine neue Umbruchkonfiguration ist nicht erforderlich.
+
+- **Anhang B, PDF-S. 14.** Der einspaltige Floatfluss folgt der Quellreihenfolge: links Abbildung 3 und Tabelle 3, rechts Tabelle 4 und Tabelle 5. Beschriftungen und Unterschriften überlagern nichts. Es besteht kein nachgewiesener Floatmangel, der eine erneute Platzierungsprobe rechtfertigen würde.
+
+- **Fehlendes Installationsschema.** Die vorhandenen Grafiken und Beschreibungen genügen. Abschnitt 3.2 auf PDF-S. 4 und 5 erklärt die zweistufige Kühlung, Abschnitt 4 auf PDF-S. 7 bis 10 Betrieb und Standortbedingungen. Die Grafiken tragen die Verläufe und Vergleiche, die Tabellen die Auslegungswerte. Da ausdrücklich kein Standort ausgewählt ist, wäre ein Installationsplan spekulativ. Auch im Vergleich mit dem Prozessschema auf D4RT-S. 2 sehe ich keine zwingende Erklärlücke. Ich fordere daher kein zusätzliches Schema und keine Seitenverschiebung.
+
+- **NIST-Quelle [4], PDF-S. 11.** Sichtbar steht `webbook.nist.gov/cgi/fluid.cgi`, zusammen mit Institution, Titel, Abrufdatum und den verwendeten Druck-, Temperatur- und Schrittweitenangaben. Das ist eine gültige URL zum Abfrageinstrument, wenngleich keine vollständig ausgeschriebene Abfrage-URL. Die PDF-Annotation enthält zusätzlich die vollständige URL einschließlich aller Query-Parameter. Die formale Regel verlangt Institution, Titel, URL und Abrufdatum; alle Angaben sind im gedruckten Eintrag vorhanden. Der Verweis auf das Quellenregister ist nicht die einzige digitale Zugriffsmöglichkeit. Keine Abwertung.
+
+## Optionale Verbesserungen
+
+- **PDF-S. 5, Abbildung 1, rechte y-Achse.** Die Tickfolge 0, 1, 10, 100 und 1000 zeigt eine nichtlineare Abstufung, deren Transformation nicht ausdrücklich benannt ist. Die tatsächlich verwendete Skala sollte im Achsentitel genannt werden, etwa `Kühlleistung in MW, Symlog`, falls dies der Erzeugung entspricht. Die Nullbehandlung kann durch eine kurze Umformulierung der vorhandenen Unterschrift erläutert werden. Dafür sind keine kleinere Schrift und keine zusätzliche Seite nötig. Die Tickwerte machen die Abstufung bereits sichtbar, deshalb ist dies kein materieller Einwand.
+
+- **PDF-S. 14, Abbildung 3, gemeinsame Legende.** Die Werte könnten direkt mit ihren Einheiten versehen werden, etwa `Basis: 877,8 MW` und `Referenz: 4,14 Mrd. €`. Die Unterschrift erklärt die Zuordnung bereits, aber die Legende würde ohne Rückbezug auf die beiden Diagramme verständlicher. Die vorhandenen Legend enzeilen bieten dafür Platz.
+
+## Bewertungen von 10
+
+Keine Kategorie erhält 10. Damit ist kein zusätzlicher Nachweis einer erfolglosen substanziellen Fehlersuche für eine 10 erforderlich.
+
+## Abschließendes Urteil
+
+Meine Bewertung erfüllt die Design-Stoppregel. Alle sechs Kategorien erreichen mindestens 9, und es bleiben keine ungelösten materiellen Einwände. Dies ist mein unabhängiges Votum. Die Stoppregel verlangt zusätzlich die unabhängige Zustimmung des zweiten Reviewers.
