@@ -170,7 +170,7 @@ Diese Datei verbindet Juryfragen und Council-Befunde mit konkreten Änderungen o
 | M5, Unsicherheitsfigur unter falschem Anhang | Abbildung 3 steht unmittelbar unter Anhang C statt vor dessen Überschrift | PDF-Seite 12 |
 | M6, Foliengrafik überlappt Achsenmarke | Die Präsentation ist nach Nutzerkorrektur kein Produkt mehr. Der Befund wird nicht als Paperfehler übernommen. Eine unabhängig sichtbar gewordene Kollision zweier Ticklabels im Bericht wurde dagegen durch Entfernen des redundanten 0,1-Ticks behoben. | `model/run_all.py`, `report/figures/fig01_prognose_last.pdf`, PDF-Seite 5 |
 | M7, Verdampfungsenthalpie für 20 °C statt Prozessbereich | Arithmetisches Mittel der NIST-Sättigungswerte bei 32 und 100 °C, 2340,730 kJ/kg, mit ausdrücklicher Grenze statt vollständiger Temperaturintegration | `data/nist_saturation_32_100.tsv`, `data/parameters.yml`, Bericht §3.3, Wasserbedarf 8,84 Mio. m³ und 12,2 % |
-| M8, kleinere Text- und Belegmängel | Speichergröße als untere Grenze statt Kühlbedarf, korrekte Überlastungsrichtung, HQ 1951 bis 2007 ohne genanntes Wiederkehrintervall, `u_T=0` und Sensitivitätsformel, 16 statt elf Tests | Bericht §§2.1, 3.1, 4.4 und 5; `sources/registry.yml` |
+| M8, kleinere Text- und Belegmängel | Speichergröße als untere Grenze statt Kühlbedarf, korrekte Überlastungsrichtung, HQ 1951 bis 2007 ohne genanntes Wiederkehrintervall, `u_T=0` und Sensitivitätsformel, 19 statt elf Tests | Bericht §§2.1, 3.1, 4.4 und 5; `sources/registry.yml` |
 | M8, veraltete Finalhinweise und Cuezahl | Diese Punkte betreffen ausschließlich das zurückgezogene Finalprodukt. Sie werden nicht weiterentwickelt und nicht als abgeschlossen ausgegeben. | Nutzerkorrektur zum Lieferumfang, `README.md` |
 | Selbstberichtete Archivreproduktion | Für den Paperkandidaten wird eine neue Archivkopie erzeugt und mit den tatsächlichen Artefakten verglichen. Kein früherer Reproduktionsnachweis wird auf die neue Revision übertragen. | `review/rounds/round6/reproduction.md`, sobald geprüft |
 
@@ -189,7 +189,7 @@ Diese Datei verbindet Juryfragen und Council-Befunde mit konkreten Änderungen o
 | M1, Notstromskalierung in Teilstromfällen | Designstrom wird aus p90-Verhältnis und tatsächlichem betroffenem Anteil gebildet. Referenzanlage und Kraftstoff verwenden dieselbe Kühltechnologie wie die Variante. | `model/core.py`, `test_partial_flow_backup_and_capex`, `test_evaporative_backup_uses_evaporative_reference`; Tabelle 4 mit 141, 17 und 3 Mio. € statt 233, 118 und 104 Mio. € |
 | M2, Achsenlabel „Tiefe in °C“ | Label auf „Szenariotemperatur in °C“ korrigiert und semantische Prüfung ergänzt | `model/run_all.py`, `scripts/verify_report.py`, PDF-Seite 5 |
 | M3, H3 ohne Notstrom | H3 wird ausdrücklich als reine Pumpen- und Wasserkostenschätzung ohne Notstromposten beschrieben, statt identische Kostenregeln zu behaupten | Bericht §3.3 und Tabelle 2, `docs/alternativenvergleich.md` |
-| M4, Manifestumfang | Text präzisiert Hashes für Modell-Eingaben, Programme und Modellergebnisse. PDF-Hash und Renderbilder bleiben ausdrücklich im Reproduktionsnachweis. | Bericht Anhang A, `review/rounds/round7/reproduction.md` nach erneutem Lauf |
+| M4, Manifestumfang | Text präzisiert Hashes für Modell-Eingaben, Programme und Modellergebnisse. PDF-Hash und Renderbilder bleiben ausdrücklich im Reproduktionsnachweis. | Bericht Anhang A, `review/rounds/round8/reproduction.md` nach erneutem Lauf |
 | M5, „Wärmeabfuhr“ in der Zusammenfassung | 877,8 MW als Kühlleistung bezeichnet und 967,2 MW externe Wärmeabgabe getrennt genannt | PDF-Seite 2 |
 | M7, URL-Bruch in Quelle [19] | Numerischer Pfadteil 20.500.12738 als untrennbare Box gesetzt, vollständiger Hyperlink erhalten | PDF-Seite 11, Quelle [19] |
 | M9, Statement bei mehr Bearbeitungszeit | Konkrete Prioritäten für Karst- und Standortmessungen, Teillast- und Pinch-Auslegung sowie Angebote ergänzt; automatische Textprüfung ergänzt | Bericht §6, `scripts/verify_report.py` |
@@ -205,7 +205,33 @@ Diese Datei verbindet Juryfragen und Council-Befunde mit konkreten Änderungen o
 | H2-Topologie | Separater Sekundärkreislauf ausdrücklich beschrieben. Der Quellstrom bleibt geschlossen und wird vollständig weitergekühlt, der Dampfstrom gehört nicht zum Quellabfluss. | Bericht §3.3, `docs/alternativenvergleich.md` |
 | Kosten- und Auslegungsgrenzen | Der ungenutzte Kondensatorparameter wurde entfernt. Teillast- und Pinch-Auslegung bleiben ausdrücklich zukünftige Herstellerarbeit. Der lognormale Investitionsfaktor bleibt die dokumentierte Kostensensitivität. | `data/parameters.yml`, Bericht §4.4 und §6 |
 
-Die neue Revision enthält 16 bestandene Modelltests und 12 Seiten. Frühere Punktzahlen werden nicht übernommen. Vor Runde 7 sind Modell, PDF, alle Seitenbilder und die Archivreproduktion erneut zu prüfen.
+Die neue Revision enthält 19 bestandene Modelltests und 13 Seiten. Frühere Punktzahlen werden nicht übernommen. Vor Runde 8 sind Modell, PDF, alle Seitenbilder und die Archivreproduktion erneut zu prüfen.
+
+## Befunde aus Runde 7, DeepSeek
+
+| Befund | Konkrete Änderung oder begründete Grenze | Verifikation |
+| --- | --- | --- |
+| A1, „Anhang C“ ohne „Anhang B“ | Ergänzende Ergebnisse und beide Textverweise heißen jetzt Anhang B | `report/main.tex`, PDF-Seiten 9 und 13 |
+| A2, Tabelle mitten im Absatz | Annahmentabelle steht nach dem abgeschlossenen Hypothesenabsatz statt mitten in „Wärmeentnahme“ | `report/main.tex`, PDF-Seiten 2 bis 4 |
+| A3, gespreizte Appendixtypografie | Anhang A steht rechtsbündig statt mit erzwungenen Wortabständen | `report/main.tex`, PDF-Seiten 11 und 12 |
+| A4, Zitationsdetails | Quelle [6] mit Untertitel, [5] mit 2007, [7] mit 2011 und [8] mit 2016 | `report/main.tex`, PDF-Seiten 9 bis 11 |
+| B1, H2-Wärmeübertrager-Pinch | Sekundärkreislauf 32 °C, Quellstrom 36 °C. Die 4 K sind damit ein physikalisch möglicher Pinch statt eines widersprüchlichen gemeinsamen Austritts. | `plant.evaporative_source_outlet_c`, `test_evaporative_pinch`, H2 617,3/260,4 MW |
+| B2, lokaler Siedepunkt | Die Schutzmarke wird ausdrücklich als Standarddruckszenario geführt. Höhenabhängiger Druck ist vor Ort zu messen, keine Standortgarantie. | Bericht §4.4 |
+| B3, Kostenbasis 2012 | Pauschaler Szenarioaufschlag von 30 % auf Kälte-, Trockenkühl- und Verdunstungskosten, ohne amtlichen Index oder Angebot zu behaupten | `cost.legacy_escalation_factor`, Bericht §2.2, alle Kosten neu berechnet |
+| B4, Beckenvolumen und Mischung | Sensitivität für 10.000, 25.000 und 50.000 m³. Der kleine Fall zeigt 26,4 °C und -5,93 min, der große 12,34 min. | `volume_sensitivity`, `test_volume_sensitivity`, Bericht §4.2 |
+| B5, Dieselvorrat gegen 95-%-Fall | Kostensensitivität mit unbegrenzter Dieselverfügbarkeit ausdrücklich von der 48-Stunden-Lagerplanung getrennt | Bericht §4.4, `availability_scenarios` |
+| Archiv und externe Grenzen | Keine externe Validierung erfunden. Archivreproduktion und Same-Model-Review bleiben als Grenzen sichtbar. | `review/rounds/round8/reproduction.md`, `review/model_configuration.md` |
+
+## Befunde aus Runde 7, Kimi
+
+| Befund | Konkrete Änderung oder begründete Grenze | Verifikation |
+| --- | --- | --- |
+| M1, fehlende elektrische Auslegung am minimalen COP | Einheitliche Min-COP-Auslegung für Netz, Aggregate, Diesel und Luftsenke. Der Randfall umfasst 234,336 MW elektrische Leistung und 2028,062 MW Wärmeabgabe. Sieben Aggregate mit 35 MW plus Reserve, 2,869 Mio. Liter Diesel und 8,41 ha Servicefläche. | `design_electrical_stage`, `test_electrical_design_at_minimum_cop`, Bericht §§3.2, 4.2 und 4.4 |
+| Monte-Carlo nur thermisch | Elektrische Leistung und Wärmeabgabe aller 10.000 Ziehungen werden separat gegen die Min-COP-Grenzen geprüft und in NPZ gespeichert. Beide Überlastanteile sind 0,00 %. | `uncertainty.electricity_overload_fraction`, `air_rejection_overload_fraction`, Stichprobenmaxima 211,546 und 1982,279 MW |
+| Team und Freigabe | Keine offizielle Team-ID, menschliche Prüfung oder Einreichung erfunden. Diese Restaufgaben bleiben ausdrücklich offen. | `README.md`, `PROVENANCE.md`, Anhang A |
+| Hydrostatischer Nebenbefund | Druck aus Dichte, Gravitation und Tiefe auf 3,17080686 bar gesetzt; NIST-Abfrage und Sättigungspunkt 135,421 °C exakt verknüpft | `data/parameters.yml`, `sources/registry.yml`, Bericht §3.1 und Quelle [4] |
+
+Die neue Revision enthält 19 bestandene Modelltests und 13 Seiten. Frühere Punktzahlen werden nicht übernommen. Vor Runde 8 sind Modell, PDF, alle Seitenbilder und die Archivreproduktion erneut zu prüfen.
 
 ## Aktueller Lieferumfang
 

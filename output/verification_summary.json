@@ -1,8 +1,8 @@
 {
-  "artifact_sha256": "7cf1fea2819fa0d1d9165726130b664e025ff570d94fdcfa9e418bc28308a29b",
+  "artifact_sha256": "b81078e187ed6958e82860006c04f9fa1cca50f8e5b8ed8ccfd1522b812dbfbf",
   "report": {
-    "physical_pages": 12,
-    "main_pages": 7,
+    "physical_pages": 13,
+    "main_pages": 8,
     "bibliography_and_appendix_pages": 4,
     "main_limit": 10,
     "back_limit": 5
@@ -11,7 +11,7 @@
     "replacement_error_eur": 0.0,
     "return_ramp_hours": 91.0,
     "return_ramp_max_rate_k_h": 1.0000000000001066,
-    "backup_fuel_liters": 2236544.9817894283,
+    "backup_fuel_liters": 2869417.93807291,
     "energy_balance_error_mw": 0.0,
     "stage_split_error_mw": 0.0,
     "heat_sink_balance_error_mw": 4.263256414560601e-14,
@@ -52,7 +52,7 @@
     "failure_p90_convergence_error_k": 1.7905676941154525e-12,
     "staged_npv_lower_than_upfront": true,
     "all_checks_passed": true,
-    "coupled_npv_error_eur": 0.0
+    "coupled_npv_error_eur": 4.76837158203125e-07
   },
   "presentation": {
     "duration_s": 290.23175,

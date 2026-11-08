@@ -21,7 +21,7 @@ Konkrete KI-Läufe:
 | Berichtssynthese | Kimi K3.1 Pro, `thinking=max` | `reports/Blautopf Wärmeschutz.md` | Redaktion und Zahlenabgleich durch den implementierenden Agenten |
 | Präsentation und Vertonung | Kimi K3.1 Pro, `thinking=max`, und eSpeak NG 1.52.0 | `presentation/`, PDF-Folien, Sprechtext und MP4 | Sichtprüfung, `ffprobe`, vollständige Decodierung und Laufzeitmessung |
 | Council | DeepSeek-V4.1-Flash, `reasoning_effort=max`, und separates Kimi K3.1 Pro, `thinking=max` | Reviews nach Runden in `review/rounds/` | Getrennte read-only Bewertungen derselben eingefrorenen Revision. Council B ist ein unabhängiger Same-Model-Kontext, keine externe Prüfung |
-| Übernahme und Paper-Revision | Kimi K3.1 Pro, `thinking=max` | Kostenkorrekturen, NIST-Sättigungsdaten, Bericht und Reviewpaket | 16 Modelltests, `make report`, Sichtprüfung aller 12 Seiten. Der verzögerte Schreibprozess des Ausgangslaufs wurde vor der Übernahme beendet |
+| Übernahme und Paper-Revision | Kimi K3.1 Pro, `thinking=max` | Kostenkorrekturen, NIST-Sättigungsdaten, Bericht und Reviewpaket | 19 Modelltests, `make report`, Sichtprüfung aller 13 Seiten. Der verzögerte Schreibprozess des Ausgangslaufs wurde vor der Übernahme beendet |
 
 ## Quellen- und Entscheidungsregister
 

@@ -19,6 +19,7 @@ from core import (
     cumulative_capex_eur,
     dilution_flow_m3_s,
     design_flow_ratio,
+    design_electrical_stage,
     economic_schedule,
     evaporation_kg_s,
     heating_rate_k_per_year,
@@ -31,7 +32,7 @@ from core import (
     thermal_capacitance_mw_per_k,
     variable_capex_eur,
 )
-from validation import run_validation
+from validation import run_validation, simulate_failure
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "output" / "model"
@@ -101,16 +102,24 @@ def alternative_result(p: dict[str, Any], technology: str, name: str, verdict: s
     }
 
 
+def electrical_values_mw(p: dict[str, Any], discharge: float, cop: float) -> tuple[float, float]:
+    plant = p["plant"]
+    flow_ratio = discharge / p["water"]["discharge_m3_s"]
+    final_stage = cooling_stage(p["scenario"]["forecast_years"], p)
+    dry = final_stage.dry_mw * flow_ratio
+    chiller = final_stage.chiller_mw * flow_ratio
+    condenser = chiller * (1.0 + 1.0 / cop)
+    pump = p["water"]["density_kg_m3"] * plant["gravity_m_s2"] * discharge * plant["pump_head_m"] / plant["pump_efficiency"] / 1e6 if final_stage.total_mw > 0.0 else 0.0
+    fan = plant["dry_auxiliary_fraction"] * (dry + condenser)
+    electricity = chiller / cop + fan + pump
+    air_rejection = dry + condenser + fan + pump
+    return electricity, air_rejection
+
+
 def coupled_npv(p: dict[str, Any], discharge: float, cop: float, capex_multiplier: float) -> float:
     plant = p["plant"]
     cost = p["cost"]
     flow_ratio = discharge / p["water"]["discharge_m3_s"]
-    final_stage = cooling_stage(p["scenario"]["forecast_years"], p)
-    final_dry = final_stage.dry_mw * flow_ratio
-    final_chiller = final_stage.chiller_mw * flow_ratio
-    final_condenser = final_chiller * (1.0 + 1.0 / cop)
-    final_pump = p["water"]["density_kg_m3"] * plant["gravity_m_s2"] * discharge * plant["pump_head_m"] / plant["pump_efficiency"] / 1e6
-    final_electricity = final_chiller / cop + plant["dry_auxiliary_fraction"] * (final_dry + final_condenser) + final_pump
     rows = []
     previous_installed = 0.0
     for year in range(int(p["scenario"]["horizon_years"]) + 1):
@@ -152,6 +161,7 @@ def main() -> None:
     design_p = copy.deepcopy(p)
     design_p["water"]["discharge_m3_s"] = p["hydrology"]["design_discharge_m3_s"]
     design_stage = cooling_stage(final_year, design_p)
+    design_electrical = design_electrical_stage(p)
     design_rows = economic_schedule(design_p, "hybrid")
     assert abs(cumulative_capex_eur(final_year, p) - cumulative_capex_eur(final_year, design_p)) < 1e-6
     guard_p = copy.deepcopy(p)
@@ -220,6 +230,12 @@ def main() -> None:
         coupled_npv(p, float(discharge), float(cop), float(capex))
         for discharge, cop, capex in zip(discharge_samples, cop_samples, capex_samples)
     ])
+    electrical_air_samples = np.array([
+        electrical_values_mw(p, float(discharge), float(cop))
+        for discharge, cop in zip(discharge_samples, cop_samples)
+    ])
+    electricity_samples = electrical_air_samples[:, 0]
+    air_rejection_samples = electrical_air_samples[:, 1]
 
     availability_scenarios = []
     for availability in [0.95, 0.98, 1.0]:
@@ -232,6 +248,18 @@ def main() -> None:
             "final_grid_electricity_mwh": rows[final_year]["electricity_mwh"],
             "final_backup_electricity_mwh": rows[final_year]["backup_electricity_mwh"],
             "final_backup_fuel_liters": rows[final_year]["backup_fuel_liters"],
+        })
+
+    volume_sensitivity = []
+    for volume in [10000.0, 25000.0, 50000.0]:
+        varied = copy.deepcopy(p)
+        varied["scenario"]["pool_volume_m3"] = volume
+        failure = simulate_failure(varied, design_flow_ratio(varied), rtol=1e-11, atol=1e-11, max_step_s=5.0)
+        volume_sensitivity.append({
+            "effective_pool_volume_m3": volume,
+            "failure_time_to_20c_h": failure["failure_time_to_20c_h"],
+            "recovery_peak_temperature_c": failure["recovery_peak_temperature_c"],
+            "recovery_margin_minutes": failure["recovery_margin_minutes"],
         })
 
     tariff_scenarios = []
@@ -407,17 +435,17 @@ def main() -> None:
             "required_cooling_mw": design_stage.total_mw,
             "dry_cooling_mw": design_stage.dry_mw,
             "chiller_mw": design_stage.chiller_mw,
-            "electricity_mw": design_stage.electricity_mw,
-            "condenser_heat_mw": design_stage.condenser_mw,
-            "air_rejection_mw": design_stage.air_rejection_mw,
-            "air_face_area_m2": design_stage.air_rejection_mw * 1e6 / (p["air"]["face_velocity_m_s"] * p["air"]["density_kg_m3"] * p["air"]["specific_heat_j_kgk"] * p["air"]["temperature_rise_k"]),
-            "air_service_area_m2": design_stage.air_rejection_mw * 1e6 / (p["air"]["face_velocity_m_s"] * p["air"]["density_kg_m3"] * p["air"]["specific_heat_j_kgk"] * p["air"]["temperature_rise_k"]) * p["air"]["service_area_factor"],
-            "air_volume_flow_m3_s": design_stage.air_rejection_mw * 1e6 / (p["air"]["density_kg_m3"] * p["air"]["specific_heat_j_kgk"] * p["air"]["temperature_rise_k"]),
+            "electricity_mw": design_electrical.electricity_mw,
+            "condenser_heat_mw": design_electrical.condenser_mw,
+            "air_rejection_mw": design_electrical.air_rejection_mw,
+            "air_face_area_m2": design_electrical.air_rejection_mw * 1e6 / (p["air"]["face_velocity_m_s"] * p["air"]["density_kg_m3"] * p["air"]["specific_heat_j_kgk"] * p["air"]["temperature_rise_k"]),
+            "air_service_area_m2": design_electrical.air_rejection_mw * 1e6 / (p["air"]["face_velocity_m_s"] * p["air"]["density_kg_m3"] * p["air"]["specific_heat_j_kgk"] * p["air"]["temperature_rise_k"]) * p["air"]["service_area_factor"],
+            "air_volume_flow_m3_s": design_electrical.air_rejection_mw * 1e6 / (p["air"]["density_kg_m3"] * p["air"]["specific_heat_j_kgk"] * p["air"]["temperature_rise_k"]),
             "installed_capacity_mw": design_stage.total_mw * (1 + p["plant"]["reserve_fraction"]),
             "required_modules": p["plant"]["required_modules"],
             "installed_modules": p["plant"]["module_count"],
-            "required_backup_aggregates": p["failure"]["backup_required_aggregates"],
-            "installed_backup_aggregates": p["failure"]["backup_installed_aggregates"],
+            "required_backup_aggregates": int(np.ceil(design_electrical.electricity_mw / p["failure"]["backup_aggregate_capacity_mw"])),
+            "installed_backup_aggregates": int(np.ceil(design_electrical.electricity_mw / p["failure"]["backup_aggregate_capacity_mw"])) + 1,
             "backup_fuel_m3": backup_fuel_liters(p) / 1000.0,
             "annual_operating_eur": design_rows[final_year]["net_operation_eur"],
             "npv_25y_eur": npv(design_rows),
@@ -438,6 +466,7 @@ def main() -> None:
         "tariff_scenarios": tariff_scenarios,
         "weather_scenarios": weather_scenarios,
         "sensitivity": sensitivity,
+        "volume_sensitivity": volume_sensitivity,
         "uncertainty": {
             "sample_count": count,
             "cooling_p05_mw": float(np.quantile(q_samples, 0.05)),
@@ -446,10 +475,16 @@ def main() -> None:
             "npv_p05_eur": float(np.quantile(npv_samples, 0.05)),
             "npv_p50_eur": float(np.quantile(npv_samples, 0.50)),
             "npv_p95_eur": float(np.quantile(npv_samples, 0.95)),
+            "electricity_max_mw": float(np.max(electricity_samples)),
+            "electricity_design_limit_mw": design_electrical.electricity_mw,
+            "electricity_overload_fraction": float(np.mean(electricity_samples > design_electrical.electricity_mw)),
+            "air_rejection_max_mw": float(np.max(air_rejection_samples)),
+            "air_rejection_design_limit_mw": design_electrical.air_rejection_mw,
+            "air_rejection_overload_fraction": float(np.mean(air_rejection_samples > design_electrical.air_rejection_mw)),
             "mean_capacity_overload_fraction": float(np.mean(q_samples > final_q * (1 + p["plant"]["reserve_fraction"]))),
             "design_overload_fraction": float(np.mean(q_samples > design_stage.total_mw * (1 + p["plant"]["reserve_fraction"]))),
             "design_coverage_fraction": float(np.mean(q_samples <= design_stage.total_mw * (1 + p["plant"]["reserve_fraction"]))),
-            "coverage_scope": "Nur innerhalb der auf 0,7 bis 4,7 m³/s begrenzten Dreiecksverteilung. Keine Wahrscheinlichkeitsaussage für Extremhochwasser oder andere Wärmequellen.",
+            "coverage_scope": "Nur innerhalb der auf 0,7 bis 4,7 m³/s begrenzten Dreiecksverteilung und des COP-Bereichs 3,0 bis 6,5. Keine Wahrscheinlichkeitsaussage für Extremhochwasser oder andere Wärmequellen.",
         },
         "validation": validation,
         "hybrid_schedule": hybrid_staged,
@@ -466,14 +501,14 @@ def main() -> None:
         writer = csv.DictWriter(handle, lineterminator="\n", fieldnames=list(sensitivity[0].keys()))
         writer.writeheader()
         writer.writerows(sensitivity)
-    np.savez(OUT / "uncertainty_samples.npz", cooling_mw=q_samples, npv_eur=npv_samples)
+    np.savez(OUT / "uncertainty_samples.npz", cooling_mw=q_samples, npv_eur=npv_samples, electricity_mw=electricity_samples, air_rejection_mw=air_rejection_samples)
 
     macros = {
         "QFinal": (final_q, 1),
         "QFinalFull": (final_q, 3),
         "DesignCooling": (design_stage.total_mw, 1),
-        "DesignElectric": (design_stage.electricity_mw, 1),
-        "DesignAirRejection": (design_stage.air_rejection_mw, 1),
+        "DesignElectric": (design_electrical.electricity_mw, 1),
+        "DesignAirRejection": (design_electrical.air_rejection_mw, 1),
         "DesignNpv": (npv(design_rows) / 1e9, 3),
         "DesignOpex": (design_rows[final_year]["net_operation_eur"] / 1e6, 1),
         "GuardTarget": (guard_p["scenario"]["target_temperature_c"], 2),
@@ -554,6 +589,20 @@ def main() -> None:
         "McCopHigh": (p["uncertainty"]["cop_high"], 1),
         "McCapexSigma": (p["uncertainty"]["capex_multiplier_sigma"], 2),
         "McSeed": (p["uncertainty"]["random_seed"], 0),
+        "EvapSourceOutlet": (p["plant"]["evaporative_source_outlet_c"], 0),
+        "EvapSecondaryOutlet": (p["plant"]["wet_bulb_design_c"] + p["plant"]["evaporative_approach_k"], 0),
+        "BackupRequired": (results["design"]["required_backup_aggregates"], 0),
+        "BackupInstalled": (results["design"]["installed_backup_aggregates"], 0),
+        "BackupAggregateCapacity": (p["failure"]["backup_aggregate_capacity_mw"], 0),
+        "ElectricityOverloadPercent": (100 * results["uncertainty"]["electricity_overload_fraction"], 2),
+        "AirRejectionOverloadPercent": (100 * results["uncertainty"]["air_rejection_overload_fraction"], 2),
+        "VolumeMarginLow": (volume_sensitivity[0]["recovery_margin_minutes"], 2),
+        "VolumeMarginHigh": (volume_sensitivity[-1]["recovery_margin_minutes"], 2),
+        "AvailabilityBackupFuel": (availability_scenarios[0]["final_backup_fuel_liters"] / 1e6, 2),
+        "LegacyEscalationPercent": (100 * (p["cost"]["legacy_escalation_factor"] - 1.0), 0),
+        "VolumePeakLow": (volume_sensitivity[0]["recovery_peak_temperature_c"], 1),
+        "ElectricitySampleMax": (results["uncertainty"]["electricity_max_mw"], 1),
+        "AirRejectionSampleMax": (results["uncertainty"]["air_rejection_max_mw"], 1),
     }
     with (GEN / "numbers.tex").open("w", encoding="utf-8") as handle:
         for name, (value, digits) in macros.items():

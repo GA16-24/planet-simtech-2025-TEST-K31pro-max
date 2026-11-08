@@ -11,6 +11,7 @@ from core import (
     backup_fuel_liters,
     variable_capex_eur,
     cooling_stage,
+    design_electrical_stage,
     dilution_flow_m3_s,
     economic_schedule,
     evaporation_kg_s,
@@ -43,7 +44,7 @@ def simulate_failure(p: dict[str, Any], flow_ratio: float, rtol: float = 1e-9, a
         cooling_loss = cooling_mw * 1e6 / (w["density_kg_m3"] * s["pool_volume_m3"] * w["specific_heat_j_kgk"]) * fraction
         return [source_gain - cooling_loss]
 
-    end_s = failure_time_h * 3600.0 * 1.2
+    end_s = max(failure_time_h * 3600.0 * 1.2, full_s * 1.2)
     time_s = np.unique(np.concatenate([np.linspace(0.0, end_s, 1001), [start_s, full_s]]))
     options: dict[str, Any] = {"rtol": rtol, "atol": atol}
     if max_step_s is not None:
@@ -115,7 +116,12 @@ def run_validation(p: dict[str, Any]) -> dict[str, float | bool]:
     assert ode_error_k < 1e-6
 
     f = p["failure"]
-    assert f["backup_installed_aggregates"] > f["backup_required_aggregates"]
+    design_electricity = design_electrical_stage(p).electricity_mw
+    aggregate_capacity = f["backup_aggregate_capacity_mw"]
+    required_aggregates = int(np.ceil(design_electricity / aggregate_capacity))
+    assert required_aggregates > 0
+    assert required_aggregates * aggregate_capacity >= design_electricity
+    assert (required_aggregates - 1) * aggregate_capacity < design_electricity
     design_ratio = p["hydrology"]["design_discharge_m3_s"] / w["discharge_m3_s"]
     failure_mean = simulate_failure(p, 1.0)
     failure_p90 = simulate_failure(p, design_ratio, rtol=1e-11, atol=1e-11, max_step_s=5.0)
@@ -142,7 +148,7 @@ def run_validation(p: dict[str, Any]) -> dict[str, float | bool]:
     assert abs(ramp_hours - 91.0) < 1e-12
     assert ramp_max_rate_k_h <= e["maximum_return_rate_k_h"] + 1e-12
     assert ramp_temperature_c[-1] == s["target_temperature_c"]
-    expected_fuel = cooling_stage(final_year, p, affected_fraction=p["hydrology"]["design_discharge_m3_s"] / w["discharge_m3_s"]).electricity_mw * 1000.0 * p["plant"]["backup_duration_hours"] / (p["plant"]["backup_thermal_efficiency"] * p["plant"]["diesel_energy_kwh_l"])
+    expected_fuel = design_electrical_stage(p).electricity_mw * 1000.0 * p["plant"]["backup_duration_hours"] / (p["plant"]["backup_thermal_efficiency"] * p["plant"]["diesel_energy_kwh_l"])
     assert abs(backup_fuel_liters(p) - expected_fuel) < 1e-9
     evaporative = cooling_stage(final_year, p, technology="evaporative")
     assert abs(evaporative.dry_mw + evaporative.chiller_mw - evaporative.total_mw) < 1e-9

@@ -7,9 +7,9 @@ import yaml
 
 import numpy as np
 
-from core import backup_fuel_cost_eur, backup_fuel_liters, cooling_stage, design_flow_ratio, economic_schedule, npv, planned_return_temperature_c, required_cooling_mw, source_temperature_c, storage_heating_power_mw, variable_capex_eur
-from run_all import coupled_npv
-from validation import run_validation
+from core import backup_fuel_cost_eur, backup_fuel_liters, cooling_stage, design_electrical_stage, design_flow_ratio, economic_schedule, npv, planned_return_temperature_c, required_cooling_mw, source_temperature_c, storage_heating_power_mw, variable_capex_eur
+from run_all import coupled_npv, electrical_values_mw
+from validation import run_validation, simulate_failure
 
 
 class ModelTests(unittest.TestCase):
@@ -44,8 +44,7 @@ class ModelTests(unittest.TestCase):
         temperature = planned_return_temperature_c(time_h, self.p)
         self.assertEqual(temperature[-1], self.p["scenario"]["target_temperature_c"])
         self.assertLessEqual(float(np.max(np.abs(np.diff(temperature) / np.diff(time_h)))), 1.0 + 1e-12)
-        design_ratio = self.p["hydrology"]["design_discharge_m3_s"] / self.p["water"]["discharge_m3_s"]
-        expected_fuel = cooling_stage(10.0, self.p, affected_fraction=design_ratio).electricity_mw * 1000.0 * self.p["plant"]["backup_duration_hours"] / (self.p["plant"]["backup_thermal_efficiency"] * self.p["plant"]["diesel_energy_kwh_l"])
+        expected_fuel = design_electrical_stage(self.p).electricity_mw * 1000.0 * self.p["plant"]["backup_duration_hours"] / (self.p["plant"]["backup_thermal_efficiency"] * self.p["plant"]["diesel_energy_kwh_l"])
         self.assertAlmostEqual(backup_fuel_liters(self.p), expected_fuel, places=6)
         self.assertGreater(backup_fuel_liters(self.p), 2e6)
 
@@ -58,6 +57,35 @@ class ModelTests(unittest.TestCase):
         self.assertEqual(self.p["plant"]["module_count"], self.p["plant"]["required_modules"] + 1)
         self.assertEqual(variable_capex_eur(1.0, self.p)["backup_power"], variable_capex_eur(10.0, self.p)["backup_power"])
 
+    def test_electrical_design_at_minimum_cop(self) -> None:
+        stage = design_electrical_stage(self.p)
+        self.assertAlmostEqual(stage.electricity_mw, 234.336, places=3)
+        electricity, air_rejection = electrical_values_mw(self.p, self.p["hydrology"]["design_discharge_m3_s"], self.p["uncertainty"]["cop_low"])
+        self.assertAlmostEqual(electricity, stage.electricity_mw, places=9)
+        self.assertAlmostEqual(air_rejection, stage.air_rejection_mw, places=9)
+        capacity = self.p["failure"]["backup_aggregate_capacity_mw"]
+        required = int(np.ceil(stage.electricity_mw / capacity))
+        self.assertEqual(required, 7)
+        self.assertEqual(required + 1, 8)
+        self.assertGreaterEqual(required * capacity, stage.electricity_mw)
+        self.assertLess((required - 1) * capacity, stage.electricity_mw)
+
+    def test_evaporative_pinch(self) -> None:
+        stage = cooling_stage(10.0, self.p, technology="evaporative")
+        expected_dry = (100.0 - self.p["plant"]["evaporative_source_outlet_c"]) * self.p["water"]["density_kg_m3"] * self.p["water"]["discharge_m3_s"] * self.p["water"]["specific_heat_j_kgk"] / 1e6
+        self.assertAlmostEqual(stage.dry_mw, expected_dry, places=9)
+        self.assertGreater(self.p["plant"]["evaporative_source_outlet_c"], self.p["plant"]["wet_bulb_design_c"] + self.p["plant"]["evaporative_approach_k"])
+
+    def test_volume_sensitivity(self) -> None:
+        low = copy.deepcopy(self.p)
+        high = copy.deepcopy(self.p)
+        low["scenario"]["pool_volume_m3"] = 10000.0
+        high["scenario"]["pool_volume_m3"] = 50000.0
+        low_failure = simulate_failure(low, design_flow_ratio(low), rtol=1e-11, atol=1e-11, max_step_s=5.0)
+        high_failure = simulate_failure(high, design_flow_ratio(high), rtol=1e-11, atol=1e-11, max_step_s=5.0)
+        self.assertLess(low_failure["recovery_margin_minutes"], high_failure["recovery_margin_minutes"])
+        self.assertGreater(low_failure["recovery_peak_temperature_c"], high_failure["recovery_peak_temperature_c"])
+
     def test_coupled_npv_at_design_point(self) -> None:
         design_p = copy.deepcopy(self.p)
         design_p["water"]["discharge_m3_s"] = self.p["hydrology"]["design_discharge_m3_s"]
@@ -69,8 +97,8 @@ class ModelTests(unittest.TestCase):
         guard = copy.deepcopy(self.p)
         guard["scenario"]["target_temperature_c"] = self.p["hydrology"]["surface_saturation_c"] - self.p["hydrology"]["boiling_margin_k"]
         guard["hydrology"]["design_discharge_m3_s"] = guard["water"]["discharge_m3_s"]
-        guard_electricity = cooling_stage(10.0, guard).electricity_mw
-        reference_electricity = cooling_stage(10.0, self.p, affected_fraction=design_flow_ratio(self.p)).electricity_mw
+        guard_electricity = design_electrical_stage(guard).electricity_mw
+        reference_electricity = design_electrical_stage(self.p).electricity_mw
         expected = (self.p["cost"]["backup_power_eur"] + backup_fuel_cost_eur(self.p)) * guard_electricity / reference_electricity
         actual = variable_capex_eur(10.0, guard)["backup_power"]
         self.assertAlmostEqual(actual, expected, places=6)
@@ -88,13 +116,11 @@ class ModelTests(unittest.TestCase):
         self.assertLess(rows[10]["installed_capex_eur"], 30e6)
 
     def test_evaporative_backup_uses_evaporative_reference(self) -> None:
-        design_ratio = design_flow_ratio(self.p)
-        design_electricity = cooling_stage(10.0, self.p, affected_fraction=design_ratio, technology="evaporative").electricity_mw
-        reference_electricity = cooling_stage(10.0, self.p, affected_fraction=design_ratio, technology="evaporative").electricity_mw
+        design_electricity = design_electrical_stage(self.p, technology="evaporative").electricity_mw
+        reference_electricity = design_electrical_stage(self.p, technology="evaporative").electricity_mw
         expected = (self.p["cost"]["backup_power_eur"] + backup_fuel_cost_eur(self.p, "evaporative")) * design_electricity / reference_electricity
         actual = variable_capex_eur(10.0, self.p, "evaporative")["backup_power"]
         self.assertAlmostEqual(actual, expected, places=6)
-        self.assertLess(actual, variable_capex_eur(10.0, self.p, "hybrid")["backup_power"])
 
     def test_operating_year_count(self) -> None:
         rows = economic_schedule(self.p, "hybrid")

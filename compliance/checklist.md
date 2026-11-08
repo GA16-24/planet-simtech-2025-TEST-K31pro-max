@@ -12,7 +12,7 @@ Regelstand und Prüfverfahren: `compliance/regeln.md`, offizielle Dokumente von 
 | Pflichtdeckblatt | Wettbewerbsname, Team-ID, Datum und Aufgabenstellung | erste PDF-Seite | erfüllt |
 | Zusammenfassung höchstens eine Seite | Zusammenfassung beginnt auf Haupttextseite 1 | gerenderte Seite | erfüllt |
 | Pflichtaufbau | Zusammenfassung, Einführung, Methode, Ergebnisse, Diskussion, Schlussfolgerung sowie Verbesserungsmöglichkeiten bei mehr Bearbeitungszeit | PDF-Textprüfung | erfüllt |
-| Haupttext höchstens 10 Seiten | 7 Haupttextseiten ab Deckblatt bis Literaturbeginn | automatische Seitenzählung | erfüllt |
+| Haupttext höchstens 10 Seiten | 8 Haupttextseiten ab Deckblatt bis Literaturbeginn | automatische Seitenzählung | erfüllt |
 | Literatur und Anhang höchstens 5 Seiten | 4 Seiten gemeinsamer Zählbereich ab Literaturbeginn | automatische Seitenzählung | erfüllt |
 | A4 und 25 mm Rand | LaTeX-Geometrie, gemessen mindestens 25,85 mm | `report/preamble.tex`, `verify_report.py` | erfüllt |
 | 12 pt und Zeilenabstand mindestens 1,0 | 12 pt auf 14,4 pt, auch Tabellen, Quellen und eingebettete Diagramme | PDF-Schriftgrößen und Sichtprüfung | erfüllt |

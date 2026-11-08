@@ -30,7 +30,7 @@ Der Nutzer hat den Lieferumfang auf den Research Paper beschränkt. Präsentatio
 - Reproduktion: `README.md`, `Makefile`, `scripts/`, `review/rounds/RUNDE/reproduction.md`
 - Befundzuordnung und Reviewkonfiguration: `review/revisions.md`, `review/model_configuration.md`
 
-Prüfe den tatsächlich gerenderten Research Paper, nicht nur LaTeX oder JSON. Öffne die Kontaktübersicht und alle zwölf Einzelseiten. Prüfe die Diagramme und Tabellen in den gerenderten Seiten. Du darfst read-only Prüfbefehle ausführen, sofern dein Modus dies zulässt. Führe keine Builds aus und verändere keine Dateien.
+Prüfe den tatsächlich gerenderten Research Paper, nicht nur LaTeX oder JSON. Öffne die Kontaktübersicht und alle dreizehn Einzelseiten. Prüfe die Diagramme und Tabellen in den gerenderten Seiten. Du darfst read-only Prüfbefehle ausführen, sofern dein Modus dies zulässt. Führe keine Builds aus und verändere keine Dateien.
 
 Lies keine Rohberichte oder Scorecards aus früheren Runden. Vermeide auch rekursive Suchen im Verzeichnis `review/rounds/`, damit alte Bewertungen nicht versehentlich in deinen Kontext gelangen. Die Befundzuordnung enthält frühere Mängel ohne Punktzahlen. Prüfe deren Behebung an der aktuellen Revision selbst.
 

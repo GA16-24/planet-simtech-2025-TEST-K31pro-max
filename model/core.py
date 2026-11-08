@@ -57,6 +57,12 @@ def design_flow_ratio(p: dict[str, Any]) -> float:
     return p["hydrology"]["design_discharge_m3_s"] / p["water"]["discharge_m3_s"]
 
 
+def design_electrical_stage(p: dict[str, Any], affected_fraction: float | None = None, technology: str = "hybrid") -> CoolingStage:
+    design_p = dict(p, plant=dict(p["plant"], chiller_cop=p["uncertainty"]["cop_low"]))
+    fraction = design_flow_ratio(p) * p["scenario"]["affected_flow_fraction"] if affected_fraction is None else affected_fraction
+    return cooling_stage(p["scenario"]["forecast_years"], design_p, affected_fraction=fraction, technology=technology)
+
+
 def cooling_stage(year: float, p: dict[str, Any], affected_fraction: float | None = None, technology: str = "hybrid") -> CoolingStage:
     plant = p["plant"]
     total = float(required_cooling_mw(year, p, affected_fraction))
@@ -64,7 +70,7 @@ def cooling_stage(year: float, p: dict[str, Any], affected_fraction: float | Non
     if technology == "hybrid":
         outlet = dry_outlet_temperature_c(p)
     elif technology == "evaporative":
-        outlet = plant["wet_bulb_design_c"] + plant["evaporative_approach_k"]
+        outlet = plant.get("evaporative_source_outlet_c", plant["wet_bulb_design_c"] + plant["evaporative_approach_k"])
     else:
         raise ValueError(f"Unknown cooling stage: {technology}")
     dry_delta = max(source - outlet, 0.0)
@@ -109,7 +115,7 @@ def passive_area_m2(cooling_mw: float, p: dict[str, Any]) -> float:
 
 def backup_fuel_liters(p: dict[str, Any], technology: str = "hybrid") -> float:
     plant = p["plant"]
-    final_electricity_mw = cooling_stage(p["scenario"]["forecast_years"], p, affected_fraction=design_flow_ratio(p), technology=technology).electricity_mw
+    final_electricity_mw = design_electrical_stage(p, technology=technology).electricity_mw
     return final_electricity_mw * 1000.0 * plant["backup_duration_hours"] / (plant["backup_thermal_efficiency"] * plant["diesel_energy_kwh_l"])
 
 
@@ -123,25 +129,28 @@ def variable_capex_eur(year: float, p: dict[str, Any], technology: str = "hybrid
     stage = cooling_stage(year, p, technology=stage_technology)
     capacity_scale = design_flow_ratio(p) * (1.0 + p["plant"]["reserve_fraction"])
     design_affected_fraction = design_flow_ratio(p) * p["scenario"]["affected_flow_fraction"]
-    design_electricity_mw = cooling_stage(p["scenario"]["forecast_years"], p, affected_fraction=design_affected_fraction, technology=stage_technology).electricity_mw
+    design_electricity_mw = design_electrical_stage(p, affected_fraction=design_affected_fraction, technology=stage_technology).electricity_mw
     reference_scenario = dict(p["scenario"], target_temperature_c=p["scenario"]["initial_temperature_c"], affected_flow_fraction=1.0)
     reference_p = dict(p, scenario=reference_scenario, hydrology=dict(p["hydrology"], design_discharge_m3_s=p["hydrology"]["discharge_p90_m3_s"]))
-    reference_electricity_mw = cooling_stage(p["scenario"]["forecast_years"], reference_p, affected_fraction=design_flow_ratio(reference_p), technology=stage_technology).electricity_mw
+    reference_electricity_mw = design_electrical_stage(reference_p, technology=stage_technology).electricity_mw
     electricity_ratio = design_electricity_mw / reference_electricity_mw if reference_electricity_mw > 0.0 else 0.0
     backup = (c["backup_power_eur"] + backup_fuel_cost_eur(reference_p, stage_technology)) * electricity_ratio
+    chiller_cost = c["chiller_eur_kw"] * c["legacy_escalation_factor"]
+    dry_cooler_cost = c["dry_cooler_eur_kw"] * c["legacy_escalation_factor"]
+    evaporative_cost = c["evaporative_eur_kw"] * c["legacy_escalation_factor"]
     if technology == "hybrid":
         return {
             "exchanger": stage.total_mw * 1000.0 * c["exchanger_eur_kw"] * capacity_scale,
-            "chiller": stage.chiller_mw * 1000.0 * c["chiller_eur_kw"] * capacity_scale,
-            "dry_cooler": (stage.dry_mw + stage.condenser_mw) * 1000.0 * c["dry_cooler_eur_kw"] * capacity_scale,
+            "chiller": stage.chiller_mw * 1000.0 * chiller_cost * capacity_scale,
+            "dry_cooler": (stage.dry_mw + stage.condenser_mw) * 1000.0 * dry_cooler_cost * capacity_scale,
             "backup_power": backup if stage.total_mw > 0.0 else 0.0,
         }
     if technology == "evaporative":
         return {
             "exchanger": stage.total_mw * 1000.0 * c["exchanger_eur_kw"] * capacity_scale,
-            "evaporative": stage.dry_mw * 1000.0 * c["evaporative_eur_kw"] * capacity_scale,
-            "chiller": stage.chiller_mw * 1000.0 * c["chiller_eur_kw"] * capacity_scale,
-            "dry_cooler": stage.condenser_mw * 1000.0 * c["dry_cooler_eur_kw"] * capacity_scale,
+            "evaporative": stage.dry_mw * 1000.0 * evaporative_cost * capacity_scale,
+            "chiller": stage.chiller_mw * 1000.0 * chiller_cost * capacity_scale,
+            "dry_cooler": stage.condenser_mw * 1000.0 * dry_cooler_cost * capacity_scale,
             "backup_power": backup if stage.total_mw > 0.0 else 0.0,
         }
     if technology == "dilution":
